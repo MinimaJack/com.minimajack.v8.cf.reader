@@ -17,7 +17,7 @@
 	</issueManagement>
 	
 	<scm>
-		<url>>https://github.com/MinimaJack/com.minimajack.v8.cf.reader</url>
+		<url>https://github.com/MinimaJack/com.minimajack.v8.cf.reader</url>
 		<connection>scm:git:git://github.com/MinimaJack/com.minimajack.v8.cf.reader.git</connection>
 		<developerConnection>scm:git:git@github.com:MinimaJack/com.minimajack.v8.cf.reader.git</developerConnection>
 	</scm>
