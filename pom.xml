@@ -10,12 +10,34 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
+	
+	<issueManagement>
+		<url>https://github.com/MinimaJack/com.minimajack.v8.cf.reader/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+	
+	<scm>
+		<url>>https://github.com/MinimaJack/com.minimajack.v8.cf.reader</url>
+		<connection>scm:git:git://github.com/MinimaJack/com.minimajack.v8.cf.reader.git</connection>
+		<developerConnection>scm:git:git@github.com:MinimaJack/com.minimajack.v8.cf.reader.git</developerConnection>
+	</scm>
+	
 	<repositories>
 		<repository>
-			<id>github</id>
+			<id>v8Unpack4j</id>
 			<url>https://raw.github.com/MinimaJack/v8Unpack4j/mvn-repo/</url>
 		</repository>
 	</repositories>
+	
+	<developers>
+		<developer>
+			<email>minimajack@gmail.com</email>
+			<name>Evgeniy V</name>
+			<url>https://github.com/MinimaJack</url>
+			<id>minimajack</id>
+		</developer>
+	</developers>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.minimajack.v8</groupId>
