@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class CommonThreadPoolManager implements ThreadPoolManager {
-	
+
 	private static ThreadPoolManager instance = null;
 	/** The scheduled pool. */
 	private ScheduledThreadPoolExecutor scheduledPool;
@@ -19,10 +19,11 @@ public class CommonThreadPoolManager implements ThreadPoolManager {
 	private static final long MAX_DELAY = TimeUnit.NANOSECONDS
 			.toMillis(Long.MAX_VALUE - System.nanoTime()) / 2;
 
-	private CommonThreadPoolManager(){
-		
+	private CommonThreadPoolManager() {
+
 	}
-	
+
+	@Override
 	public void start() {
 
 		final int scheduledPoolSize = 1;
@@ -36,6 +37,7 @@ public class CommonThreadPoolManager implements ThreadPoolManager {
 		this.instantPool.prestartAllCoreThreads();
 	}
 
+	@Override
 	public void stop() {
 
 		this.instantPool.shutdownNow();
@@ -43,12 +45,13 @@ public class CommonThreadPoolManager implements ThreadPoolManager {
 	}
 
 	public synchronized static ThreadPoolManager getInstance() {
-		if(instance == null){
+		if (instance == null) {
 			instance = new CommonThreadPoolManager();
 			instance.start();
 		}
 		return instance;
 	}
+
 	/**
 	 * Validate.
 	 * 

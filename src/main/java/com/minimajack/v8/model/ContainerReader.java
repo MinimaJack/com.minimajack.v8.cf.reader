@@ -13,7 +13,7 @@ import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.threadpool.CommonThreadPoolManager;
 
-public class ContainerReader extends AbstractReader implements Runnable  {
+public class ContainerReader extends AbstractReader implements Runnable {
 
 	/**
 	 * 
@@ -65,10 +65,12 @@ public class ContainerReader extends AbstractReader implements Runnable  {
 									.getDocSize()];
 							IOUtils.readFully(
 									v8File.getBody().getInputStream(), data);
-							Container childContainer = new Container(data,
-									v8File.getContext().isInflated(),
-									childContext);
+
+							Container childContainer = new Container(data);
+							childContainer.setContext(childContext);
+
 							childContext.parseContainer(childContainer);
+
 						} else {
 							File destination = getOrCreateFile(v8File);
 							InputStream dataStream = v8File.getBody()
@@ -94,14 +96,17 @@ public class ContainerReader extends AbstractReader implements Runnable  {
 		}
 	}
 
+	@Override
 	public Context getContext() {
 		return context;
 	}
 
+	@Override
 	public void setContext(Context context) {
 		this.context = context;
 	}
 
+	@Override
 	public void read() {
 		CountHolder.increment();
 		CommonThreadPoolManager.getInstance().executeInstant(this);

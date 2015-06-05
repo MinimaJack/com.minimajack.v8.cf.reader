@@ -27,14 +27,16 @@ public class Reader {
 			root.setName(destination);
 			root.setInflated(true);
 			root.setReader(ContainerReader.class);
-			
-			this.container = new Container(buffer, root);
+
+			this.container = new Container(buffer);
+			this.container.setContext(root);
+
 			root.parseContainer(container);
 			do {
 				Thread.sleep(1000);
 				System.out.println("Active tasks: " + CountHolder.get());
 			} while (CountHolder.get() != 0);
-			
+
 			CommonThreadPoolManager.getInstance().stop();
 			System.out.println("Time: "
 					+ (int) (System.currentTimeMillis() - times) / 1000);
