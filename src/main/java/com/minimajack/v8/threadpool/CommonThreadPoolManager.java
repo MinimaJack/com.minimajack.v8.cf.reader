@@ -30,7 +30,7 @@ public class CommonThreadPoolManager implements ThreadPoolManager {
 		this.scheduledPool = new ScheduledThreadPoolExecutor(scheduledPoolSize);
 		this.scheduledPool.prestartAllCoreThreads();
 
-		final int instantPoolSize = 4;
+		final int instantPoolSize = 2;
 		this.instantPool = new ThreadPoolExecutor(instantPoolSize,
 				instantPoolSize, 0, TimeUnit.SECONDS,
 				new ArrayBlockingQueue<Runnable>(50000));

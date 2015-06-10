@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.apache.commons.io.IOUtils;
-
+import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
+import com.minimajack.v8.io.reader.AbstractReader;
 import com.minimajack.v8.threadpool.CommonThreadPoolManager;
 
 public class ContainerReader extends AbstractReader implements Runnable {
@@ -63,9 +63,7 @@ public class ContainerReader extends AbstractReader implements Runnable {
 							childContext.setReader(ContainerReader.class);
 							byte[] data = new byte[v8File.getBody()
 									.getDocSize()];
-							IOUtils.readFully(
-									v8File.getBody().getInputStream(), data);
-
+							ByteStreams.readFully(v8File.getBody().getInputStream(), data);	
 							Container childContainer = new Container(data);
 							childContainer.setContext(childContext);
 
@@ -77,7 +75,7 @@ public class ContainerReader extends AbstractReader implements Runnable {
 									.getDataStream();
 							try (OutputStream fos = new BufferedOutputStream(
 									new FileOutputStream(destination))) {
-								IOUtils.copyLarge(dataStream, fos);
+								ByteStreams.copy(dataStream, fos);
 								dataStream.close();
 							} catch (Exception e) {
 								e.printStackTrace();

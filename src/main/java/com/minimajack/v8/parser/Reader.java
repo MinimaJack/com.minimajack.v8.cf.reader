@@ -9,14 +9,12 @@ import com.minimajack.v8.format.Container;
 import com.minimajack.v8.model.ContainerReader;
 import com.minimajack.v8.model.Context;
 import com.minimajack.v8.model.CountHolder;
-import com.minimajack.v8.threadpool.CommonThreadPoolManager;
 
 public class Reader {
 
 	public Container container;
 
 	public final void unpack(String string, String destination) {
-		long times = System.currentTimeMillis();
 		try (RandomAccessFile aFile = new RandomAccessFile(string, "r");
 				FileChannel inChannel = aFile.getChannel();) {
 			MappedByteBuffer buffer = inChannel.map(
@@ -36,10 +34,6 @@ public class Reader {
 				Thread.sleep(1000);
 				System.out.println("Active tasks: " + CountHolder.get());
 			} while (CountHolder.get() != 0);
-
-			CommonThreadPoolManager.getInstance().stop();
-			System.out.println("Time: "
-					+ (int) (System.currentTimeMillis() - times) / 1000);
 
 		} catch (Exception e) {
 			e.printStackTrace();

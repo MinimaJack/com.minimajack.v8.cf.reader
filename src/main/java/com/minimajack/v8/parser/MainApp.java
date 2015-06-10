@@ -1,5 +1,13 @@
 package com.minimajack.v8.parser;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import com.google.common.io.ByteStreams;
+import com.minimajack.v8.model.SimpleFileContainerWriter;
+import com.minimajack.v8.threadpool.CommonThreadPoolManager;
+
 public class MainApp {
 
 	public static void main(String[] args) {
@@ -7,8 +15,28 @@ public class MainApp {
 			System.out.println("Usage %file% %path%");
 			return;
 		}
-		Reader reader = new Reader();
-		reader.unpack(args[0], args[1]);
+		long times = System.currentTimeMillis();
+		File fileInput = new File(args[0]);
+		File fileOutput = new File(args[1]);
+		if(!fileInput.exists()){
+			throw new RuntimeException("File not exsist");
+		}
+		if(fileInput.isFile()){
+			Reader reader = new Reader();
+			reader.unpack(args[0], args[1]);
+			CommonThreadPoolManager.getInstance().stop();
+		}else{
+			SimpleFileContainerWriter fscw = new SimpleFileContainerWriter(fileInput, true);
+			fscw.writeAllData();
+			byte[] data = fscw.getRawData();
+			try (FileOutputStream fos = new FileOutputStream(fileOutput)) {
+				ByteStreams.copy(new ByteArrayInputStream(data), fos);
+			} catch (Exception e) {
+			}
+		}
+
+		System.out.println("Time: "
+				+ (int) (System.currentTimeMillis() - times) / 1000);
 	}
 
 }
