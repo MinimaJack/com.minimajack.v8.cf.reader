@@ -111,7 +111,7 @@ public class SimpleFileContainerWriter extends ContainerWriter {
 		if(this.packed){
 			bodyChunkWriter.setSizeResolver(new ChunkSizeResolver(Math.max(512, data.length)));
 		}else{
-			bodyChunkWriter.setSizeResolver(new ChunkSizeResolver(Math.min(data.length,16384)));
+			bodyChunkWriter.setSizeResolver(new ChunkSizeResolver(data.length));
 		}
 		
 		
