@@ -23,7 +23,9 @@ public class Reader {
 
 			Context root = new Context();
 			root.setName(destination);
-			root.setInflated(true);
+			if(!string.endsWith(".hbk")){
+				root.setInflated(true);
+			}
 			root.setReader(ContainerReader.class);
 
 			this.container = new Container(buffer);
