@@ -94,7 +94,6 @@ public class ContainerReader
                             {
                                 e.printStackTrace();
                             }
-                            v8File.getBody().clean();
                         }
                     }
                     catch ( IOException e )
