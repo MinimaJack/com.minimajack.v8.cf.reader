@@ -6,90 +6,99 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class CommonThreadPoolManager implements ThreadPoolManager {
+public class CommonThreadPoolManager
+    implements ThreadPoolManager
+{
 
-	private static ThreadPoolManager instance = null;
-	/** The scheduled pool. */
-	private ScheduledThreadPoolExecutor scheduledPool;
+    private static ThreadPoolManager instance = null;
 
-	/** The instant pool. */
-	private ThreadPoolExecutor instantPool;
+    /** The scheduled pool. */
+    private ScheduledThreadPoolExecutor scheduledPool;
 
-	/** The Constant MAX_DELAY. */
-	private static final long MAX_DELAY = TimeUnit.NANOSECONDS
-			.toMillis(Long.MAX_VALUE - System.nanoTime()) / 2;
+    /** The instant pool. */
+    private ThreadPoolExecutor instantPool;
 
-	private CommonThreadPoolManager() {
+    /** The Constant MAX_DELAY. */
+    private static final long MAX_DELAY = TimeUnit.NANOSECONDS.toMillis( Long.MAX_VALUE - System.nanoTime() ) / 2;
 
-	}
+    private CommonThreadPoolManager()
+    {
 
-	@Override
-	public void start() {
+    }
 
-		final int scheduledPoolSize = 1;
-		this.scheduledPool = new ScheduledThreadPoolExecutor(scheduledPoolSize);
-		this.scheduledPool.prestartAllCoreThreads();
+    @Override
+    public void start()
+    {
 
-		final int instantPoolSize = 2;
-		this.instantPool = new ThreadPoolExecutor(instantPoolSize,
-				instantPoolSize, 0, TimeUnit.SECONDS,
-				new ArrayBlockingQueue<Runnable>(50000));
-		this.instantPool.prestartAllCoreThreads();
-	}
+        final int scheduledPoolSize = 1;
+        this.scheduledPool = new ScheduledThreadPoolExecutor( scheduledPoolSize );
+        this.scheduledPool.prestartAllCoreThreads();
 
-	@Override
-	public void stop() {
+        final int instantPoolSize = 2;
+        this.instantPool = new ThreadPoolExecutor( instantPoolSize, instantPoolSize, 0, TimeUnit.SECONDS,
+                                                   new ArrayBlockingQueue<Runnable>( 50000 ) );
+        this.instantPool.prestartAllCoreThreads();
+    }
 
-		this.instantPool.shutdownNow();
-		this.scheduledPool.shutdownNow();
-	}
+    @Override
+    public void stop()
+    {
 
-	public synchronized static ThreadPoolManager getInstance() {
-		if (instance == null) {
-			instance = new CommonThreadPoolManager();
-			instance.start();
-		}
-		return instance;
-	}
+        this.instantPool.shutdownNow();
+        this.scheduledPool.shutdownNow();
+    }
 
-	/**
-	 * Validate.
-	 * 
-	 * @param delay
-	 *            the delay
-	 * @return the long
-	 */
-	private final long validate(final long delay) {
+    public synchronized static ThreadPoolManager getInstance()
+    {
+        if ( instance == null )
+        {
+            instance = new CommonThreadPoolManager();
+            instance.start();
+        }
+        return instance;
+    }
 
-		return Math.max(0, Math.min(MAX_DELAY, delay));
-	}
+    /**
+     * Validate.
+     * 
+     * @param delay
+     *            the delay
+     * @return the long
+     */
+    private final long validate( final long delay )
+    {
 
-	@Override
-	public final ScheduledFuture<?> schedule(final Runnable r, final long delay) {
+        return Math.max( 0, Math.min( MAX_DELAY, delay ) );
+    }
 
-		return this.scheduledPool.schedule(new ExecutionWrapper(r),
-				validate(delay), TimeUnit.MILLISECONDS);
-	}
+    @Override
+    public final ScheduledFuture<?> schedule( final Runnable r, final long delay )
+    {
 
-	@Override
-	public final ScheduledFuture<?> scheduleAtFixedRate(final Runnable r,
-			final long delay, final long period) {
+        return this.scheduledPool.schedule( new ExecutionWrapper( r ), validate( delay ), TimeUnit.MILLISECONDS );
+    }
 
-		return this.scheduledPool.scheduleAtFixedRate(new ExecutionWrapper(r),
-				validate(delay), validate(period), TimeUnit.MILLISECONDS);
-	}
+    @Override
+    public final ScheduledFuture<?> scheduleAtFixedRate( final Runnable r, final long delay, final long period )
+    {
 
-	@Override
-	public final void executeInstant(final Runnable r) {
+        return this.scheduledPool.scheduleAtFixedRate( new ExecutionWrapper( r ), validate( delay ),
+                                                       validate( period ), TimeUnit.MILLISECONDS );
+    }
 
-		this.instantPool.execute(new ExecutionWrapper(r));
-	}
+    @Override
+    public final void executeInstant( final Runnable r )
+    {
 
-	@Override
-	public void purge() {
+        this.instantPool.execute( new ExecutionWrapper( r ) );
+    }
 
-		this.scheduledPool.purge();
-		this.instantPool.purge();
-	}
+    @Override
+    public void purge()
+    {
+
+        this.scheduledPool.purge();
+        this.instantPool.purge();
+    }
 
 }
