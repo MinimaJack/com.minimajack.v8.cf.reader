@@ -40,9 +40,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.minimajack.v8</groupId>
-			<artifactId>com.minimajack.v8.cf</artifactId>
-			<version>0.0.1</version>
+			<groupId>com.minimajack.v8.format</groupId>
+			<artifactId>com.minimajack.v8.format.cf</artifactId>
+			<version>0.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
