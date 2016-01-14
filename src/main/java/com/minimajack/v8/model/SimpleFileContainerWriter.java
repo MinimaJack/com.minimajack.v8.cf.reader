@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
+
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
@@ -34,14 +36,26 @@ public class SimpleFileContainerWriter
 
         date = new Date();
         int version = 0;
+        HashMap<String, File> fileNames = new HashMap<String, File>();
         for ( File file : path.listFiles() )
         {
-            aFiles.add( file );
-            if ( !getRealName( file ).equals( "info" ) )
-            {
-                version++;
-            }
+        	fileNames.put( file.getName().toLowerCase() , file);
+           
         }
+        fileNames.keySet().stream().map(n -> {
+        	if(n.endsWith(".txt")){
+        		return n.substring(0, n.lastIndexOf('.'));
+        	}else{
+        		return n;	
+        	}
+        }).sorted().forEach(t->{
+        	if(fileNames.containsKey(t)){
+        		aFiles.add(fileNames.get(t));	
+        	}else{
+        		aFiles.add(fileNames.get(t+".txt"));
+        	}
+        });
+
         this.path = path;
         this.packed = packed;
         Container container = new Container();

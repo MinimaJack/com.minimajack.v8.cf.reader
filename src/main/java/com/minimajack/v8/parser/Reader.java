@@ -22,24 +22,21 @@ public class Reader
             MappedByteBuffer buffer = inChannel.map( FileChannel.MapMode.READ_ONLY, 0, inChannel.size() );
             buffer.order( ByteOrder.LITTLE_ENDIAN );
 
-            Context root = new Context();
-            root.setName( destination );
-            if ( !string.endsWith( ".hbk" ) )
-            {
-                root.setInflated( true );
-            }
-            root.setReader( ContainerReader.class );
+			Context root = new Context();
+			root.setName(destination);
+			if (!string.endsWith(".hbk")) {
+				root.setInflated(true);
+			}
+			root.setReader(ContainerReader.class);
 
-            this.container = new Container( buffer );
-            this.container.setContext( root );
+			this.container = new Container(buffer);
+			this.container.setContext(root);
 
-            root.parseContainer( container );
-            do
-            {
-                Thread.sleep( 1000 );
-                System.out.println( "Active tasks: " + CountHolder.get() );
-            }
-            while ( CountHolder.get() != 0 );
+			root.parseContainer(container);
+			do {
+				Thread.sleep(100);
+				System.out.println("Active tasks: " + CountHolder.get());
+			} while (CountHolder.get() != 0);
 
         }
         catch ( Exception e )
