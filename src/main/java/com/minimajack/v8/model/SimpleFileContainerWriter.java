@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -82,16 +81,7 @@ public class SimpleFileContainerWriter
         attributes.setName( getRealName( currentFile ) );
         attributes.setCreationDate( date );
         attributes.setModifyDate( date );
-        int attrSize = 0;
-        try
-        {
-            attrSize = attributes.getPayloadSize();
-        }
-        catch ( UnsupportedEncodingException e )
-        {
-            e.printStackTrace();
-        }
-        attrSize = Math.max( 32, attrSize );
+        int attrSize = attributes.getPayloadSize();
         attributes.setDocSize( attrSize );
 
         BlockHeaderChunkWriter atrChunkWriter = new BlockHeaderChunkWriter( attributes );
@@ -108,6 +98,7 @@ public class SimpleFileContainerWriter
             SimpleFileContainerWriter fscw = new SimpleFileContainerWriter( currentFile, false );
             fscw.writeAllData();
             data = fscw.getRawData();
+            fscw = null;
         }
         else
         {
@@ -140,7 +131,6 @@ public class SimpleFileContainerWriter
 
         v8file.setBodyAddress( this.getPosition() );
         RawChunkWriter bodyChunkWriter = new RawChunkWriter( data );
-        bodyChunkWriter.setFullSize( data.length );
         if ( this.packed )
         {
             bodyChunkWriter.setSizeResolver( new ChunkSizeResolver( Math.max( 512, data.length ) ) );
