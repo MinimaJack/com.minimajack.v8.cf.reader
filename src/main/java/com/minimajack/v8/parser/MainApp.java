@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.model.SimpleFileContainerWriter;
-import com.minimajack.v8.threadpool.CommonThreadPoolManager;
 
 public class MainApp
 {
@@ -29,7 +28,6 @@ public class MainApp
         {
             Reader reader = new Reader();
             reader.unpack( args[0], args[1] );
-            CommonThreadPoolManager.getInstance().stop();
         }
         else
         {

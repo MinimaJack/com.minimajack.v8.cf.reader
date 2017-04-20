@@ -1,103 +1,93 @@
 package com.minimajack.v8.model;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveTask;
 
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.reader.AbstractReader;
-import com.minimajack.v8.threadpool.CommonThreadPoolManager;
 
-public class ContainerReader extends AbstractReader implements Runnable {
+@SuppressWarnings("serial")
+public class ContainerReader
+    extends RecursiveTask<Boolean>
+    implements AbstractReader
+{
 
-	/**
+    /**
      * 
      */
-	private Context context;
+    private Context context;
 
-	private Container container;
+    private Container container;
 
-	private final File getOrCreateFile(V8File v8File) throws IOException {
-		String name = v8File.getAttributes().getName();
-		String path = v8File.getContext().getPath();
-		File file = new File(path);
-		file.mkdirs();
-		file = new File(path + "/" + name.trim() + ".txt");
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return file;
-	}
+    @Override
+    public Context getContext()
+    {
+        return context;
+    }
 
-	@Override
-	public void run() {
-		try {
-			container.read();
-			container.getFileSystem().read();
-			container.getFileSystem().readFiles();
-			container
-					.getFileSystem()
-					.getStream()
-					.forEach(f -> {
-						try {
-							if( f.isContainer()) {
-								Context childContext = f.getContext().createChildContext(f.getAttributes().getName().trim());
-								childContext.setReader(ContainerReader.class);
-								byte[] data = new byte[f.getBody().getDocSize()];
-								ByteStreams.readFully(f.getBody().getInputStream(), data);
-								Container childContainer = new Container(data);
-								childContainer.setContext(childContext);
-								childContext.parseContainer(childContainer);
+    @Override
+    public void setContext( Context context )
+    {
+        this.context = context;
+    }
 
-							} else {
-								File destination = getOrCreateFile(f);
+    @Override
+    public void read()
+    {
+        ForkJoinPool.commonPool().invoke( this );
+    }
 
-								try (InputStream dataStream = f.getBody().getDataStream();
-										OutputStream fos = new BufferedOutputStream(new FileOutputStream(destination))) {
-									ByteStreams.copy(dataStream, fos);
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							}
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					});
-			container.cleanUp();
-			CountHolder.decrement();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void setContainer( Container container )
+    {
+        this.container = container;
+    }
 
-	@Override
-	public Context getContext() {
-		return context;
-	}
+    @Override
+    public Boolean compute()
+    {
+        LinkedList<RecursiveTask<Boolean>> tasks = new LinkedList<RecursiveTask<Boolean>>();
+        Boolean allOk = true;
+        try
+        {
+            container.read();
+            container.getFileSystem().read();
+            container.getFileSystem().readFiles();
+            List<V8File> v8list = container.getFileSystem().getV8FileList();
+            for ( V8File f : v8list )
+            {
+                if (f.isContainer() )
+                {
+                    Context childContext = f.getContext().createChildContext( f.getAttributes().getName().trim() );
+                    Container childContainer = new Container( ByteStreams.toByteArray( f.getBody().getInputStream() ) );
+                    childContainer.setContext( childContext );
+                    ContainerReader reader = new ContainerReader();
+                    reader.setContext( childContext );
+                    reader.setContainer( childContainer );
+                    tasks.add( reader );
+                }
+                else
+                {
+                    tasks.add( new FileReader( f ) );
+                }
+            }
+        }
+        catch ( IOException e1 )
+        {
+            e1.printStackTrace();
+        }
 
-	@Override
-	public void setContext(Context context) {
-		this.context = context;
-	}
-
-	@Override
-	public void read() {
-		CountHolder.increment();
-		CommonThreadPoolManager.getInstance().executeInstant(this);
-	}
-
-	@Override
-	public void setContainer(Container container) {
-		this.container = container;
-	}
+        allOk = allOk
+            & ForkJoinTask.invokeAll( tasks ).stream().map( e -> e.getRawResult() ).reduce( ( a, b ) -> a & b )
+                .orElse( true );
+        container.cleanUp();
+        return allOk;
+    }
 
 }

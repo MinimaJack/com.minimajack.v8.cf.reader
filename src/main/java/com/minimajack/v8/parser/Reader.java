@@ -8,7 +8,6 @@ import java.nio.channels.FileChannel;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.model.ContainerReader;
 import com.minimajack.v8.model.Context;
-import com.minimajack.v8.model.CountHolder;
 
 public class Reader
 {
@@ -33,10 +32,6 @@ public class Reader
 			this.container.setContext(root);
 
 			root.parseContainer(container);
-			do {
-				Thread.sleep(100);
-				System.out.println("Active tasks: " + CountHolder.get());
-			} while (CountHolder.get() != 0);
 
         }
         catch ( Exception e )
