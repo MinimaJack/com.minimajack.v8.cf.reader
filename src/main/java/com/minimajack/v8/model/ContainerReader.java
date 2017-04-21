@@ -7,6 +7,9 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
@@ -17,6 +20,7 @@ public class ContainerReader
     extends RecursiveTask<Boolean>
     implements AbstractReader
 {
+    final Logger logger = LoggerFactory.getLogger( ContainerReader.class );
 
     /**
      * 
@@ -40,7 +44,15 @@ public class ContainerReader
     @Override
     public void read()
     {
-        ForkJoinPool.commonPool().invoke( this );
+        try
+        {
+            ForkJoinPool.commonPool().invoke( this );
+        }
+        catch ( Exception e )
+        {
+            logger.error( "Error while parsing container", e );
+        }
+
     }
 
     @Override
@@ -62,7 +74,7 @@ public class ContainerReader
             List<V8File> v8list = container.getFileSystem().getV8FileList();
             for ( V8File f : v8list )
             {
-                if (f.isContainer() )
+                if ( f.isContainer() )
                 {
                     Context childContext = f.getContext().createChildContext( f.getAttributes().getName().trim() );
                     Container childContainer = new Container( ByteStreams.toByteArray( f.getBody().getInputStream() ) );
@@ -77,15 +89,18 @@ public class ContainerReader
                     tasks.add( new FileReader( f ) );
                 }
             }
+            allOk = allOk
+                & ForkJoinTask.invokeAll( tasks ).stream().map( e -> e.getRawResult() ).reduce( ( a, b ) -> a & b )
+                    .orElse( true );
         }
-        catch ( IOException e1 )
+        catch ( IOException e )
         {
-            e1.printStackTrace();
+            logger.error( "Error while parsing container", e );
         }
-
-        allOk = allOk
-            & ForkJoinTask.invokeAll( tasks ).stream().map( e -> e.getRawResult() ).reduce( ( a, b ) -> a & b )
-                .orElse( true );
+        catch( OutOfMemoryError e){
+            logger.error( "Out of memory", e );
+        }
+        
         container.cleanUp();
         return allOk;
     }

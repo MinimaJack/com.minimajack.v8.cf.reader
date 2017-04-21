@@ -1,9 +1,13 @@
 package com.minimajack.v8.parser;
 
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.model.ContainerReader;
@@ -11,7 +15,7 @@ import com.minimajack.v8.model.Context;
 
 public class Reader
 {
-
+    final Logger logger = LoggerFactory.getLogger( Reader.class );
     public Container container;
 
     public final void unpack( String string, String destination )
@@ -34,9 +38,12 @@ public class Reader
 			root.parseContainer(container);
 
         }
-        catch ( Exception e )
+        catch ( IOException e )
         {
-            e.printStackTrace();
+            logger.error( "Error while parse root container: {}", e.getMessage() );
+        }
+        catch( OutOfMemoryError e){
+            logger.error( "Out of memory, can't map file to memory", e );
         }
     }
 }

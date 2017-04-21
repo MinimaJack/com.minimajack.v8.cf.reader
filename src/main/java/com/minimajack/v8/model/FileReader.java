@@ -12,6 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.util.concurrent.RecursiveTask;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.V8File;
 
@@ -19,6 +22,8 @@ import com.minimajack.v8.format.V8File;
 public class FileReader
     extends RecursiveTask<Boolean>
 {
+    final Logger logger = LoggerFactory.getLogger( FileReader.class );
+
     private V8File file;
 
     public FileReader( V8File file )
@@ -30,9 +35,11 @@ public class FileReader
     protected Boolean compute()
     {
         Boolean allOk = true;
+
         File fileReal = null;
         try
         {
+
             fileReal = getOrCreateFile( file );
             Path p = fileReal.toPath();
             long lastModifyVirtual = file.getAttributes().getModifyDate().getTime();
@@ -50,7 +57,7 @@ public class FileReader
             }
             catch ( Exception e )
             {
-                System.out.println( "creation time " + createdVirtual + "\t modtime: " + lastModifyVirtual );
+                logger.error( "Error while saving data to disk", e );
                 allOk = false;
             }
             Files.setAttribute( p, "creationTime", FileTime.fromMillis( createdVirtual ) );
@@ -58,7 +65,7 @@ public class FileReader
         }
         catch ( IOException e )
         {
-            e.printStackTrace();
+            logger.error( "Error in FileReader", e );
             allOk = false;
         }
 

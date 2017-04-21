@@ -4,17 +4,23 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.model.SimpleFileContainerWriter;
 
 public class MainApp
 {
+    final Logger logger = LoggerFactory.getLogger( MainApp.class );
 
     public static void main( String[] args )
     {
+        Logger logger = LoggerFactory.getLogger( MainApp.class );
+
         if ( args.length != 2 )
         {
-            System.out.println( "Usage %file% %path%" );
+            logger.info( "Usage %file% %path%" );
             return;
         }
         long times = System.currentTimeMillis();
@@ -22,7 +28,8 @@ public class MainApp
         File fileOutput = new File( args[1] );
         if ( !fileInput.exists() )
         {
-            throw new RuntimeException( "File not exsist" );
+            logger.error( "File not exsist" );
+            throw new RuntimeException();
         }
         if ( fileInput.isFile() )
         {
@@ -43,7 +50,7 @@ public class MainApp
             }
         }
 
-        System.out.println( "Time: " + (int) ( System.currentTimeMillis() - times ) / 1000 );
+        logger.info( "Time: {}", (int) ( System.currentTimeMillis() - times ) / 1000 );
     }
 
 }
