@@ -1,1 +1,3 @@
 # Cf Reader : Demo project unpacker-packer...
+
+[![Build Status](https://travis-ci.org/MinimaJack/com.minimajack.v8.cf.reader.svg?branch=master)](https://travis-ci.org/MinimaJack/com.minimajack.v8.cf.reader)
