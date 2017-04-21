@@ -47,14 +47,14 @@ public class FileReader
                 OutputStream fos = new BufferedOutputStream( new FileOutputStream( fileReal ) ))
             {
                 ByteStreams.copy( dataStream, fos );
-                Files.setAttribute( p, "creationTime", FileTime.fromMillis( createdVirtual ) );
-                Files.setAttribute( p, "lastModifiedTime", FileTime.fromMillis( lastModifyVirtual ) );
             }
             catch ( Exception e )
             {
                 System.out.println( "creation time " + createdVirtual + "\t modtime: " + lastModifyVirtual );
                 allOk = false;
             }
+            Files.setAttribute( p, "creationTime", FileTime.fromMillis( createdVirtual ) );
+            Files.setAttribute( p, "lastModifiedTime", FileTime.fromMillis( lastModifyVirtual ) );
         }
         catch ( IOException e )
         {
