@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.FileTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -26,14 +29,11 @@ public class SimpleFileContainerWriter
 
     boolean packed;
 
-    final Date date;
-
     final ConcurrentLinkedDeque<File> aFiles = new ConcurrentLinkedDeque<>();
 
     public SimpleFileContainerWriter( File path, boolean packed )
     {
 
-        date = new Date();
         int version = 0;
         HashMap<String, File> fileNames = new HashMap<String, File>();
         for ( File file : path.listFiles() )
@@ -75,12 +75,25 @@ public class SimpleFileContainerWriter
     {
         File currentFile = aFiles.poll();
         V8File v8file = new V8File();
-
+        Path p = currentFile.toPath();
+        long createdVirtual = 0;
+        long lastModifyVirtual = 0;
+        try
+        {
+            createdVirtual = ((FileTime)Files.getAttribute( p, "creationTime")).toMillis();
+            lastModifyVirtual = ((FileTime)Files.getAttribute( p, "lastModifiedTime")).toMillis();
+        }
+        
+        catch ( IOException e2 )
+        {
+            e2.printStackTrace();
+        }
+  
         V8FileAttribute attributes = new V8FileAttribute();
         attributes.setPosition( this.getPosition() );
         attributes.setName( getRealName( currentFile ) );
-        attributes.setCreationDate( date );
-        attributes.setModifyDate( date );
+        attributes.setCreationDate(new Date(createdVirtual) );
+        attributes.setModifyDate( new Date(lastModifyVirtual) );
         int attrSize = attributes.getPayloadSize();
         attributes.setDocSize( attrSize );
 
