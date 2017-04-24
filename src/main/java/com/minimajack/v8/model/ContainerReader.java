@@ -86,7 +86,7 @@ public class ContainerReader
                 }
                 else
                 {
-                    tasks.add( new FileReader( f ) );
+                    tasks.add( new VirtualFileReader( f ) );
                 }
             }
             allOk = allOk
@@ -97,10 +97,11 @@ public class ContainerReader
         {
             logger.error( "Error while parsing container", e );
         }
-        catch( OutOfMemoryError e){
+        catch ( OutOfMemoryError e )
+        {
             logger.error( "Out of memory", e );
         }
-        
+
         container.cleanUp();
         return allOk;
     }

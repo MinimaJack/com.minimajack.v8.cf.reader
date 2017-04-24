@@ -38,22 +38,28 @@ public class SimpleFileContainerWriter
         HashMap<String, File> fileNames = new HashMap<String, File>();
         for ( File file : path.listFiles() )
         {
-        	fileNames.put( file.getName().toLowerCase() , file);
-           
+            fileNames.put( file.getName().toLowerCase(), file );
+
         }
-        fileNames.keySet().stream().map(n -> {
-        	if(n.endsWith(".txt")){
-        		return n.substring(0, n.lastIndexOf('.'));
-        	}else{
-        		return n;	
-        	}
-        }).sorted().forEach(t->{
-        	if(fileNames.containsKey(t)){
-        		aFiles.add(fileNames.get(t));	
-        	}else{
-        		aFiles.add(fileNames.get(t+".txt"));
-        	}
-        });
+        fileNames.keySet().stream().map( n -> {
+            if ( n.endsWith( ".txt" ) )
+            {
+                return n.substring( 0, n.lastIndexOf( '.' ) );
+            }
+            else
+            {
+                return n;
+            }
+        } ).sorted().forEach( t -> {
+            if ( fileNames.containsKey( t ) )
+            {
+                aFiles.add( fileNames.get( t ) );
+            }
+            else
+            {
+                aFiles.add( fileNames.get( t + ".txt" ) );
+            }
+        } );
 
         this.path = path;
         this.packed = packed;
@@ -80,20 +86,20 @@ public class SimpleFileContainerWriter
         long lastModifyVirtual = 0;
         try
         {
-            createdVirtual = ((FileTime)Files.getAttribute( p, "creationTime")).toMillis();
-            lastModifyVirtual = ((FileTime)Files.getAttribute( p, "lastModifiedTime")).toMillis();
+            createdVirtual = ( (FileTime) Files.getAttribute( p, "creationTime" ) ).toMillis();
+            lastModifyVirtual = ( (FileTime) Files.getAttribute( p, "lastModifiedTime" ) ).toMillis();
         }
-        
+
         catch ( IOException e2 )
         {
             e2.printStackTrace();
         }
-  
+
         V8FileAttribute attributes = new V8FileAttribute();
         attributes.setPosition( this.getPosition() );
         attributes.setName( getRealName( currentFile ) );
-        attributes.setCreationDate(new Date(createdVirtual) );
-        attributes.setModifyDate( new Date(lastModifyVirtual) );
+        attributes.setCreationDate( new Date( createdVirtual ) );
+        attributes.setModifyDate( new Date( lastModifyVirtual ) );
         int attrSize = attributes.getPayloadSize();
         attributes.setDocSize( attrSize );
 

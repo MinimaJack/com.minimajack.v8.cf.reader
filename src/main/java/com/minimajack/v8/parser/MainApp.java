@@ -3,11 +3,13 @@ package com.minimajack.v8.parser;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.ByteStreams;
+import com.minimajack.v8.model.FileReader;
 import com.minimajack.v8.model.SimpleFileContainerWriter;
 
 public class MainApp
@@ -15,6 +17,7 @@ public class MainApp
     final Logger logger = LoggerFactory.getLogger( MainApp.class );
 
     public static void main( String[] args )
+        throws InterruptedException, ExecutionException
     {
         Logger logger = LoggerFactory.getLogger( MainApp.class );
 
@@ -33,8 +36,8 @@ public class MainApp
         }
         if ( fileInput.isFile() )
         {
-            Reader reader = new Reader();
-            reader.unpack( args[0], args[1] );
+            FileReader reader = new FileReader( args[0], args[1] );
+            reader.compute();
         }
         else
         {
