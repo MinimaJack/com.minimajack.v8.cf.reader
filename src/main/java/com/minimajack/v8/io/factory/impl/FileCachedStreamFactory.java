@@ -1,8 +1,9 @@
-package com.minimajack.v8.io.factory;
+package com.minimajack.v8.io.factory.impl;
 
 import java.io.IOException;
 
 import com.minimajack.v8.format.V8File;
+import com.minimajack.v8.io.factory.CachedStreamFactory;
 import com.minimajack.v8.io.stream.CacheOutput;
 import com.minimajack.v8.io.stream.FileCacheOutputStream;
 

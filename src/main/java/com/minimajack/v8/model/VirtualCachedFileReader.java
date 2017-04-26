@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.factory.CachedStreamFactory;
-import com.minimajack.v8.io.factory.FileCachedStreamFactory;
+import com.minimajack.v8.io.factory.impl.FileCachedStreamFactory;
 import com.minimajack.v8.io.stream.CacheOutput;
 
 @SuppressWarnings("serial")

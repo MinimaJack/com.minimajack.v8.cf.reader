@@ -1,9 +1,10 @@
-package com.minimajack.v8.io.factory;
+package com.minimajack.v8.io.factory.impl;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 import com.minimajack.v8.format.V8File;
+import com.minimajack.v8.io.factory.StreamFactory;
 import com.minimajack.v8.io.stream.RawFileOutputStream;
 
 public class FileStreamFactory
