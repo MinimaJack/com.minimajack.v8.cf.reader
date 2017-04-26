@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.ByteStreams;
+import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.model.FileReader;
 import com.minimajack.v8.model.SimpleFileContainerWriter;
 
@@ -20,12 +21,19 @@ public class MainApp
         throws InterruptedException, ExecutionException
     {
         Logger logger = LoggerFactory.getLogger( MainApp.class );
-
-        if ( args.length != 2 )
+        
+        Strategy defaultStrategy = Strategy.MODIFYDATE;
+        
+        if ( args.length < 2 || args.length > 3)
         {
             logger.info( "Usage %file% %path%" );
             return;
         }
+        if ( args.length == 3 )
+        {
+            defaultStrategy = Strategy.valueOf( args[2] );
+        }
+
         long times = System.currentTimeMillis();
         File fileInput = new File( args[0] );
         File fileOutput = new File( args[1] );
@@ -36,7 +44,7 @@ public class MainApp
         }
         if ( fileInput.isFile() )
         {
-            FileReader reader = new FileReader( args[0], args[1] );
+            FileReader reader = new FileReader( args[0], args[1], defaultStrategy);
             reader.compute();
         }
         else

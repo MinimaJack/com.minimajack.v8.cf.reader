@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.minimajack.v8.format.Container;
+import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.model.Context;
 
 @SuppressWarnings("serial")
@@ -25,10 +26,13 @@ public class FileReader
 
     private String destPath;
 
-    public FileReader( String filePath, String destPath )
+    private Strategy strategy;
+
+    public FileReader( String filePath, String destPath, Strategy strategy )
     {
         this.filePath = filePath;
         this.destPath = destPath;
+        this.strategy = strategy;
     }
 
     @Override
@@ -50,8 +54,11 @@ public class FileReader
 
             this.container = new Container( buffer );
             this.container.setContext( root );
-
-            root.parseContainer( container );
+            ContainerReader reader = new ContainerReader();
+            reader.setContext( root );
+            reader.setContainer( this.container );
+            reader.setStrategy( strategy );
+            reader.read();
 
         }
         catch ( IOException e )

@@ -13,12 +13,14 @@ import org.slf4j.LoggerFactory;
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
+import com.minimajack.v8.io.Strategy;
+import com.minimajack.v8.io.StrategyHolder;
 import com.minimajack.v8.io.reader.AbstractReader;
 
 @SuppressWarnings("serial")
 public class ContainerReader
     extends RecursiveTask<Boolean>
-    implements AbstractReader
+    implements AbstractReader, StrategyHolder
 {
     final Logger logger = LoggerFactory.getLogger( ContainerReader.class );
 
@@ -28,6 +30,8 @@ public class ContainerReader
     private Context context;
 
     private Container container;
+
+    private Strategy strategy;
 
     @Override
     public Context getContext()
@@ -80,13 +84,25 @@ public class ContainerReader
                     Container childContainer = new Container( ByteStreams.toByteArray( f.getBody().getInputStream() ) );
                     childContainer.setContext( childContext );
                     ContainerReader reader = new ContainerReader();
+                    reader.setStrategy( getStrategy() );
                     reader.setContext( childContext );
                     reader.setContainer( childContainer );
                     tasks.add( reader );
                 }
                 else
                 {
-                    tasks.add( new VirtualFileReader( f ) );
+                    switch ( getStrategy() )
+                    {
+                        case MODIFYDATE:
+                            tasks.add( new VirtualCachedFileReader( f ) );
+                            break;
+                        case NONCACHE:
+                            tasks.add( new VirtualFileReader( f ) );
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
             }
             allOk = allOk
@@ -104,6 +120,19 @@ public class ContainerReader
 
         container.cleanUp();
         return allOk;
+    }
+
+    @Override
+    public Strategy getStrategy()
+    {
+        return this.strategy;
+    }
+
+    @Override
+    public void setStrategy( Strategy strategy )
+    {
+        this.strategy = strategy;
+
     }
 
 }
