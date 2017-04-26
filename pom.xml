@@ -65,7 +65,7 @@
 					<archive>
 						<manifest>
 							<mainClass>
-								com.minimajack.v8.parser.MainApp
+								com.minimajack.v8.MainApp
 							</mainClass>
 						</manifest>
 					</archive>

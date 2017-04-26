@@ -1,4 +1,4 @@
-package com.minimajack.v8.model;
+package com.minimajack.v8.parser;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

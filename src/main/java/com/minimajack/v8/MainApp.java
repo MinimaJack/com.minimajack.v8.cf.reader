@@ -1,4 +1,4 @@
-package com.minimajack.v8.parser;
+package com.minimajack.v8;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.io.Strategy;
-import com.minimajack.v8.model.FileReader;
-import com.minimajack.v8.model.SimpleFileContainerWriter;
+import com.minimajack.v8.packer.SimpleFileContainerWriter;
+import com.minimajack.v8.parser.FileReader;
 
 public class MainApp
 {

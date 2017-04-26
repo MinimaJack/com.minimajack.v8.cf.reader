@@ -1,4 +1,4 @@
-package com.minimajack.v8.model;
+package com.minimajack.v8.parser;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -16,6 +16,7 @@ import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.io.StrategyHolder;
 import com.minimajack.v8.io.reader.AbstractReader;
+import com.minimajack.v8.model.Context;
 
 @SuppressWarnings("serial")
 public class ContainerReader

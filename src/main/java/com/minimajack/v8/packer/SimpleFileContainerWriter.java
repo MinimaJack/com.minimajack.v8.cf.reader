@@ -1,4 +1,4 @@
-package com.minimajack.v8.model;
+package com.minimajack.v8.packer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
