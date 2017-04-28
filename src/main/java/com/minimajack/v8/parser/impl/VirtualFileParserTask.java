@@ -14,7 +14,6 @@ import com.minimajack.v8.io.factory.impl.FileStreamFactory;
 import com.minimajack.v8.io.stream.SmartV8OutputStream;
 import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.parser.result.Result;
-import com.minimajack.v8.parser.result.ResultList;
 import com.minimajack.v8.parser.result.ResultType;
 
 @SuppressWarnings("serial")
@@ -33,24 +32,25 @@ public class VirtualFileParserTask
     }
 
     @Override
-    protected ResultList compute()
+    protected Result compute()
     {
-        ResultList resultList = new ResultList();
+        Result result;
         Path path = null;
         try (SmartV8OutputStream fos = streamFactory.createStream( file );
             InputStream dataStream = file.getBody().getDataStream();)
         {
             path = fos.getPath();
             ByteStreams.copy( dataStream, fos );
-            resultList.addResult( new Result( fos.getPath(), ResultType.FILE ) );
+            result = new Result( fos.getPath(), ResultType.FILE );
         }
         catch ( IOException e )
         {
-            resultList.addResult( new Result( path, ResultType.ERROR ) );
             logger.error( "Error in FileReader", e );
-        }
+            result = new Result( path, ResultType.ERROR );
 
-        return resultList;
+        }
+        return result;
+
     }
 
 }

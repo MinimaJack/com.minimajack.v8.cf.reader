@@ -5,13 +5,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.concurrent.ExecutionException;
 
+import javax.xml.bind.JAXBException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.ByteStreams;
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.packer.SimpleFileContainerWriter;
-import com.minimajack.v8.parser.impl.FileParserTask;
+import com.minimajack.v8.project.Project;
 
 public class MainApp
 {
@@ -44,8 +46,18 @@ public class MainApp
         }
         if ( fileInput.isFile() )
         {
-            FileParserTask reader = new FileParserTask( args[0], args[1], defaultStrategy );
-            reader.compute();
+            Project project = new Project();
+            project.setPackedFile( fileInput );
+            project.setLocation( fileOutput );
+            project.setStrategy( defaultStrategy );
+            try
+            {
+                project.unpackProject();
+            }
+            catch ( JAXBException e )
+            {
+                e.printStackTrace();
+            }
         }
         else
         {

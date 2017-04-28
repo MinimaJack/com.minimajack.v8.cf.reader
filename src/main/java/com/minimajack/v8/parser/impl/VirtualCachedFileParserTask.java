@@ -13,7 +13,6 @@ import com.minimajack.v8.io.factory.impl.FileCachedStreamFactory;
 import com.minimajack.v8.io.stream.CacheOutput;
 import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.parser.result.Result;
-import com.minimajack.v8.parser.result.ResultList;
 import com.minimajack.v8.parser.result.ResultType;
 
 @SuppressWarnings("serial")
@@ -32,16 +31,16 @@ public class VirtualCachedFileParserTask
     }
 
     @Override
-    protected ResultList compute()
+    protected Result compute()
     {
-        ResultList resultList = new ResultList();
+        Result result = new Result();
 
         try (CacheOutput fos = streamFactory.createStream( file ))
         {
 
             if ( fos.isInCache() )
             {
-                resultList.addResult( new Result( fos.getPath(), ResultType.FILE ) );
+                result = new Result( fos.getPath(), ResultType.FILE );
             }
             else
             {
@@ -49,12 +48,12 @@ public class VirtualCachedFileParserTask
                 try (InputStream dataStream = file.getBody().getDataStream();)
                 {
                     ByteStreams.copy( dataStream, fos );
-                    resultList.addResult( new Result( fos.getPath(), ResultType.FILE ) );
+                    result = new Result( fos.getPath(), ResultType.FILE );
                 }
                 catch ( Exception e )
                 {
                     logger.error( "Error while saving data to disk", e );
-                    resultList.addResult( new Result( fos.getPath(), ResultType.ERROR ) );
+                    return new Result( fos.getPath(), ResultType.ERROR );
                 }
 
             }
@@ -64,7 +63,6 @@ public class VirtualCachedFileParserTask
             logger.error( "Error while creating stream", e );
         }
 
-        return resultList;
+        return result;
     }
-
 }
