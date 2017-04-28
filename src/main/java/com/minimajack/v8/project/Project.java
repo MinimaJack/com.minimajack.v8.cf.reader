@@ -19,6 +19,8 @@ public class Project
 
     public static final String BASE_NAME = "project.xml";
 
+    public static final String BASE_SRC_NAME = "src";
+
     private File packedFile;
 
     private File location;
@@ -37,8 +39,8 @@ public class Project
     public boolean unpackProject()
         throws JAXBException
     {
-        FileParserTask reader = new FileParserTask( packedFile.getPath(), location.getPath() + File.separator + "src"
-            + File.separator, strategy );
+        FileParserTask reader = new FileParserTask( packedFile.getPath(), location.getPath() + File.separator
+            + BASE_SRC_NAME + File.separator, strategy );
         Result result = reader.compute();
         String projectFile = location.getPath() + File.separator + BASE_NAME;
         logger.debug( "Project path {}", projectFile );
