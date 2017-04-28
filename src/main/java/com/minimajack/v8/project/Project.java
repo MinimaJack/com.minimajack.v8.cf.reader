@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.parser.impl.FileParserTask;
-import com.minimajack.v8.parser.result.Result;
 
 public class Project
 {
@@ -41,13 +40,13 @@ public class Project
     {
         FileParserTask reader = new FileParserTask( packedFile.getPath(), location.getPath() + File.separator
             + BASE_SRC_NAME + File.separator, strategy );
-        Result result = reader.compute();
+        ProjectTree result = reader.compute();
         String projectFile = location.getPath() + File.separator + BASE_NAME;
         logger.debug( "Project path {}", projectFile );
 
         result.relativize( location.toPath().toAbsolutePath() );
 
-        JAXBContext jaxbContext = JAXBContext.newInstance( Result.class );
+        JAXBContext jaxbContext = JAXBContext.newInstance( ProjectTree.class );
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
         jaxbMarshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, true );

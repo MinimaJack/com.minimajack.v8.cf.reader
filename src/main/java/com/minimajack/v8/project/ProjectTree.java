@@ -1,4 +1,4 @@
-package com.minimajack.v8.parser.result;
+package com.minimajack.v8.project;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -13,23 +13,23 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PROPERTY)
 @XmlType(propOrder = { "type", "path", "child" })
-public class Result
+public class ProjectTree
 {
     @XmlTransient
     public Path path;
 
     @XmlElement
-    public ResultType type;
+    public FileType type;
 
     @XmlTransient
-    public ArrayList<Result> child = new ArrayList<Result>();
+    public ArrayList<ProjectTree> child = new ArrayList<ProjectTree>();
 
-    public Result()
+    public ProjectTree()
     {
 
     }
 
-    public Result( Path path, ResultType type )
+    public ProjectTree( Path path, FileType type )
     {
         super();
         this.path = path;
@@ -57,23 +57,23 @@ public class Result
     }
 
     @XmlTransient
-    public ResultType getType()
+    public FileType getType()
     {
         return type;
     }
 
-    public void setType( ResultType type )
+    public void setType( FileType type )
     {
         this.type = type;
     }
 
     @XmlElement
-    public ArrayList<Result> getChild()
+    public ArrayList<ProjectTree> getChild()
     {
         return child;
     }
 
-    public void addChild( Result child )
+    public void addChild( ProjectTree child )
     {
         this.child.add( child );
     }

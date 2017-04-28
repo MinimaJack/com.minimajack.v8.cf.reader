@@ -19,8 +19,8 @@ import com.minimajack.v8.io.StrategyHolder;
 import com.minimajack.v8.io.reader.AbstractReader;
 import com.minimajack.v8.model.Context;
 import com.minimajack.v8.parser.ParserTask;
-import com.minimajack.v8.parser.result.Result;
-import com.minimajack.v8.parser.result.ResultType;
+import com.minimajack.v8.project.FileType;
+import com.minimajack.v8.project.ProjectTree;
 
 @SuppressWarnings("serial")
 public class ContainerParserTask
@@ -71,10 +71,10 @@ public class ContainerParserTask
     }
 
     @Override
-    public Result compute()
+    public ProjectTree compute()
     {
         LinkedList<ParserTask> tasks = new LinkedList<ParserTask>();
-        Result result = new Result( new File( this.getContext().getPath() ).toPath(), ResultType.CONTAINER );
+        ProjectTree result = new ProjectTree( new File( this.getContext().getPath() ).toPath(), FileType.CONTAINER );
 
         try
         {

@@ -14,7 +14,7 @@ import com.minimajack.v8.format.Container;
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.model.Context;
 import com.minimajack.v8.parser.ParserTask;
-import com.minimajack.v8.parser.result.Result;
+import com.minimajack.v8.project.ProjectTree;
 
 @SuppressWarnings("serial")
 public class FileParserTask
@@ -38,9 +38,9 @@ public class FileParserTask
     }
 
     @Override
-    public Result compute()
+    public ProjectTree compute()
     {
-        Result result = new Result();
+        ProjectTree result = new ProjectTree();
         try (RandomAccessFile aFile = new RandomAccessFile( filePath, "r" ); FileChannel inChannel = aFile.getChannel();)
         {
             MappedByteBuffer buffer = inChannel.map( FileChannel.MapMode.READ_ONLY, 0, inChannel.size() );
