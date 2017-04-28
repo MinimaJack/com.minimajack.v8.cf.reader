@@ -14,7 +14,7 @@ import com.minimajack.v8.format.Container;
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.model.Context;
 import com.minimajack.v8.parser.ParserTask;
-import com.minimajack.v8.parser.result.ResultList;
+import com.minimajack.v8.project.ProjectTree;
 
 @SuppressWarnings("serial")
 public class FileParserTask
@@ -38,9 +38,9 @@ public class FileParserTask
     }
 
     @Override
-    public ResultList compute()
+    public ProjectTree compute()
     {
-        ResultList resultList = new ResultList();
+        ProjectTree result = new ProjectTree();
         try (RandomAccessFile aFile = new RandomAccessFile( filePath, "r" ); FileChannel inChannel = aFile.getChannel();)
         {
             MappedByteBuffer buffer = inChannel.map( FileChannel.MapMode.READ_ONLY, 0, inChannel.size() );
@@ -60,7 +60,7 @@ public class FileParserTask
             reader.setContext( root );
             reader.setContainer( this.container );
             reader.setStrategy( strategy );
-            resultList.merge( ForkJoinPool.commonPool().invoke( reader ) );
+            result =  ForkJoinPool.commonPool().invoke( reader ) ;
 
         }
         catch ( IOException e )
@@ -71,6 +71,6 @@ public class FileParserTask
         {
             logger.error( "Out of memory, can't map file to memory", e );
         }
-        return resultList;
+        return result;
     }
 }

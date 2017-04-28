@@ -13,9 +13,8 @@ import com.minimajack.v8.io.factory.StreamFactory;
 import com.minimajack.v8.io.factory.impl.FileStreamFactory;
 import com.minimajack.v8.io.stream.SmartV8OutputStream;
 import com.minimajack.v8.parser.ParserTask;
-import com.minimajack.v8.parser.result.Result;
-import com.minimajack.v8.parser.result.ResultList;
-import com.minimajack.v8.parser.result.ResultType;
+import com.minimajack.v8.project.FileType;
+import com.minimajack.v8.project.ProjectTree;
 
 @SuppressWarnings("serial")
 public class VirtualFileParserTask
@@ -33,24 +32,25 @@ public class VirtualFileParserTask
     }
 
     @Override
-    protected ResultList compute()
+    protected ProjectTree compute()
     {
-        ResultList resultList = new ResultList();
+        ProjectTree result;
         Path path = null;
         try (SmartV8OutputStream fos = streamFactory.createStream( file );
             InputStream dataStream = file.getBody().getDataStream();)
         {
             path = fos.getPath();
             ByteStreams.copy( dataStream, fos );
-            resultList.addResult( new Result( fos.getPath(), ResultType.FILE ) );
+            result = new ProjectTree( fos.getPath(), FileType.FILE );
         }
         catch ( IOException e )
         {
-            resultList.addResult( new Result( path, ResultType.ERROR ) );
             logger.error( "Error in FileReader", e );
-        }
+            result = new ProjectTree( path, FileType.ERROR );
 
-        return resultList;
+        }
+        return result;
+
     }
 
 }

@@ -19,9 +19,8 @@ import com.minimajack.v8.io.StrategyHolder;
 import com.minimajack.v8.io.reader.AbstractReader;
 import com.minimajack.v8.model.Context;
 import com.minimajack.v8.parser.ParserTask;
-import com.minimajack.v8.parser.result.Result;
-import com.minimajack.v8.parser.result.ResultList;
-import com.minimajack.v8.parser.result.ResultType;
+import com.minimajack.v8.project.FileType;
+import com.minimajack.v8.project.ProjectTree;
 
 @SuppressWarnings("serial")
 public class ContainerParserTask
@@ -72,17 +71,16 @@ public class ContainerParserTask
     }
 
     @Override
-    public ResultList compute()
+    public ProjectTree compute()
     {
         LinkedList<ParserTask> tasks = new LinkedList<ParserTask>();
-        ResultList resultList = new ResultList();
+        ProjectTree result = new ProjectTree( new File( this.getContext().getPath() ).toPath(), FileType.CONTAINER );
 
         try
         {
             container.read();
             container.getFileSystem().read();
             container.getFileSystem().readFiles();
-            resultList.addResult( new Result( new File( this.getContext().getPath() ).toPath(), ResultType.CONTAINER ) );
             List<V8File> v8list = container.getFileSystem().getV8FileList();
             for ( V8File f : v8list )
             {
@@ -117,7 +115,7 @@ public class ContainerParserTask
             Collection<ParserTask> taskResults = ForkJoinTask.invokeAll( tasks );
             for ( ParserTask parserTask : taskResults )
             {
-                resultList.merge( parserTask.getRawResult() );
+                result.addChild( parserTask.getRawResult() );
             }
         }
         catch ( IOException e )
@@ -129,7 +127,7 @@ public class ContainerParserTask
             logger.error( "Out of memory", e );
         }
         container.cleanUp();
-        return resultList;
+        return result;
     }
 
     @Override

@@ -34,7 +34,7 @@ public abstract class SmartV8OutputStream
         String path = file.getContext().getPath();
         File file = new File( path );
         file.mkdirs();
-        realFile = new File( path + File.separator + name + ".txt" );
+        realFile = new File( path + File.separator + name );
         if ( !realFile.exists() )
         {
             realFile.createNewFile();
