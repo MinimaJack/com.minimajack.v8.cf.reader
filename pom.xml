@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.minimajack.v8.format</groupId>
 	<artifactId>com.minimajack.v8.cf.reader</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Demo usage</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -67,6 +66,7 @@
 				<version>1.0-m5.1</version>
 				<configuration>
 					<pushReleases>true</pushReleases>
+					<noDeploy>true</noDeploy>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<username>${git.user}</username>
 					<password>${git.password}</password>
