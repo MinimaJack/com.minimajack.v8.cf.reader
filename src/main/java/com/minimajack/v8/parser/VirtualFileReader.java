@@ -2,7 +2,6 @@ package com.minimajack.v8.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.concurrent.RecursiveTask;
 
 import org.slf4j.Logger;
@@ -12,6 +11,7 @@ import com.google.common.io.ByteStreams;
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.factory.StreamFactory;
 import com.minimajack.v8.io.factory.impl.FileStreamFactory;
+import com.minimajack.v8.io.stream.SmartV8OutputStream;
 
 @SuppressWarnings("serial")
 public class VirtualFileReader
@@ -33,7 +33,7 @@ public class VirtualFileReader
     {
         Boolean allOk = true;
 
-        try (OutputStream fos = streamFactory.createStream( file );
+        try (SmartV8OutputStream fos = streamFactory.createStream( file );
             InputStream dataStream = file.getBody().getDataStream();)
         {
             ByteStreams.copy( dataStream, fos );
