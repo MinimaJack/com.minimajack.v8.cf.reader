@@ -1,9 +1,13 @@
 package com.minimajack.v8.project;
 
 import java.io.File;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.parser.impl.FileParserTask;
@@ -11,7 +15,9 @@ import com.minimajack.v8.parser.result.Result;
 
 public class Project
 {
-    public static final String BASE_DIR = "src" + File.separator;
+    final Logger logger = LoggerFactory.getLogger( Project.class );
+
+    public static final String BASE_NAME = "project.xml";
 
     private File packedFile;
 
@@ -34,9 +40,11 @@ public class Project
         FileParserTask reader = new FileParserTask( packedFile.getPath(), location.getPath() + File.separator + "src"
             + File.separator, strategy );
         Result result = reader.compute();
-        String projectFile = location.getPath() + File.separator + "project.xml";
+        String projectFile = location.getPath() + File.separator + BASE_NAME;
+        logger.debug( "Project path {}", projectFile );
+
         result.relativize( location.toPath().toAbsolutePath() );
-        System.out.println( projectFile );
+
         JAXBContext jaxbContext = JAXBContext.newInstance( Result.class );
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
