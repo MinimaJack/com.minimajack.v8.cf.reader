@@ -66,6 +66,7 @@
 				<version>1.0-m5.1</version>
 				<configuration>
 					<pushReleases>true</pushReleases>
+					<noDeploy>true</noDeploy>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<username>${git.user}</username>
 					<password>${git.password}</password>
