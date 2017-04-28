@@ -1,11 +1,12 @@
-package com.minimajack.v8.parser;
+package com.minimajack.v8.parser.impl;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
-import java.util.concurrent.RecursiveTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +18,17 @@ import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.io.StrategyHolder;
 import com.minimajack.v8.io.reader.AbstractReader;
 import com.minimajack.v8.model.Context;
+import com.minimajack.v8.parser.ParserTask;
+import com.minimajack.v8.parser.result.Result;
+import com.minimajack.v8.parser.result.ResultList;
+import com.minimajack.v8.parser.result.ResultType;
 
 @SuppressWarnings("serial")
-public class ContainerReader
-    extends RecursiveTask<Boolean>
+public class ContainerParserTask
+    extends ParserTask
     implements AbstractReader, StrategyHolder
 {
-    final Logger logger = LoggerFactory.getLogger( ContainerReader.class );
+    final Logger logger = LoggerFactory.getLogger( ContainerParserTask.class );
 
     /**
      * 
@@ -67,15 +72,17 @@ public class ContainerReader
     }
 
     @Override
-    public Boolean compute()
+    public ResultList compute()
     {
-        LinkedList<RecursiveTask<Boolean>> tasks = new LinkedList<RecursiveTask<Boolean>>();
-        Boolean allOk = true;
+        LinkedList<ParserTask> tasks = new LinkedList<ParserTask>();
+        ResultList resultList = new ResultList();
+
         try
         {
             container.read();
             container.getFileSystem().read();
             container.getFileSystem().readFiles();
+            resultList.addResult( new Result( new File( this.getContext().getPath() ).toPath(), ResultType.CONTAINER ) );
             List<V8File> v8list = container.getFileSystem().getV8FileList();
             for ( V8File f : v8list )
             {
@@ -84,7 +91,7 @@ public class ContainerReader
                     Context childContext = f.getContext().createChildContext( f.getAttributes().getName().trim() );
                     Container childContainer = new Container( ByteStreams.toByteArray( f.getBody().getInputStream() ) );
                     childContainer.setContext( childContext );
-                    ContainerReader reader = new ContainerReader();
+                    ContainerParserTask reader = new ContainerParserTask();
                     reader.setStrategy( getStrategy() );
                     reader.setContext( childContext );
                     reader.setContainer( childContainer );
@@ -95,10 +102,10 @@ public class ContainerReader
                     switch ( getStrategy() )
                     {
                         case MODIFYDATE:
-                            tasks.add( new VirtualCachedFileReader( f ) );
+                            tasks.add( new VirtualCachedFileParserTask( f ) );
                             break;
                         case NONCACHE:
-                            tasks.add( new VirtualFileReader( f ) );
+                            tasks.add( new VirtualFileParserTask( f ) );
                             break;
                         default:
                             break;
@@ -106,9 +113,12 @@ public class ContainerReader
 
                 }
             }
-            allOk = allOk
-                & ForkJoinTask.invokeAll( tasks ).stream().map( e -> e.getRawResult() ).reduce( ( a, b ) -> a & b )
-                    .orElse( true );
+
+            Collection<ParserTask> taskResults = ForkJoinTask.invokeAll( tasks );
+            for ( ParserTask parserTask : taskResults )
+            {
+                resultList.merge( parserTask.getRawResult() );
+            }
         }
         catch ( IOException e )
         {
@@ -118,9 +128,8 @@ public class ContainerReader
         {
             logger.error( "Out of memory", e );
         }
-
         container.cleanUp();
-        return allOk;
+        return resultList;
     }
 
     @Override

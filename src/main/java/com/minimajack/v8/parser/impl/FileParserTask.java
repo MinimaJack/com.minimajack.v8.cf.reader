@@ -1,11 +1,11 @@
-package com.minimajack.v8.parser;
+package com.minimajack.v8.parser.impl;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.ForkJoinPool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +13,14 @@ import org.slf4j.LoggerFactory;
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.model.Context;
+import com.minimajack.v8.parser.ParserTask;
+import com.minimajack.v8.parser.result.ResultList;
 
 @SuppressWarnings("serial")
-public class FileReader
-    extends RecursiveTask<Boolean>
+public class FileParserTask
+    extends ParserTask
 {
-    final Logger logger = LoggerFactory.getLogger( FileReader.class );
+    final Logger logger = LoggerFactory.getLogger( FileParserTask.class );
 
     public Container container;
 
@@ -28,7 +30,7 @@ public class FileReader
 
     private Strategy strategy;
 
-    public FileReader( String filePath, String destPath, Strategy strategy )
+    public FileParserTask( String filePath, String destPath, Strategy strategy )
     {
         this.filePath = filePath;
         this.destPath = destPath;
@@ -36,9 +38,9 @@ public class FileReader
     }
 
     @Override
-    public Boolean compute()
+    public ResultList compute()
     {
-        boolean allOk = true;
+        ResultList resultList = new ResultList();
         try (RandomAccessFile aFile = new RandomAccessFile( filePath, "r" ); FileChannel inChannel = aFile.getChannel();)
         {
             MappedByteBuffer buffer = inChannel.map( FileChannel.MapMode.READ_ONLY, 0, inChannel.size() );
@@ -50,27 +52,25 @@ public class FileReader
             {
                 root.setInflated( true );
             }
-            root.setReader( ContainerReader.class );
+            root.setReader( ContainerParserTask.class );
 
             this.container = new Container( buffer );
             this.container.setContext( root );
-            ContainerReader reader = new ContainerReader();
+            ContainerParserTask reader = new ContainerParserTask();
             reader.setContext( root );
             reader.setContainer( this.container );
             reader.setStrategy( strategy );
-            reader.read();
+            resultList.merge( ForkJoinPool.commonPool().invoke( reader ) );
 
         }
         catch ( IOException e )
         {
-            allOk = false;
             logger.error( "Error while parse root container: {}", e.getMessage() );
         }
         catch ( OutOfMemoryError e )
         {
-            allOk = false;
             logger.error( "Out of memory, can't map file to memory", e );
         }
-        return allOk;
+        return resultList;
     }
 }

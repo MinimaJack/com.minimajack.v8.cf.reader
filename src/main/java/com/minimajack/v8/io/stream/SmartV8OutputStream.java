@@ -39,8 +39,7 @@ public abstract class SmartV8OutputStream
         {
             realFile.createNewFile();
         }
-        this.realPath = file.toPath();
-        this.realFile = file;
+        this.realPath = realFile.toPath();
     }
 
     public Path getPath()

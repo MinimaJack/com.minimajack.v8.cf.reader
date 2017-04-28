@@ -1,8 +1,8 @@
-package com.minimajack.v8.parser;
+package com.minimajack.v8.parser.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.RecursiveTask;
+import java.nio.file.Path;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,39 +12,45 @@ import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.factory.StreamFactory;
 import com.minimajack.v8.io.factory.impl.FileStreamFactory;
 import com.minimajack.v8.io.stream.SmartV8OutputStream;
+import com.minimajack.v8.parser.ParserTask;
+import com.minimajack.v8.parser.result.Result;
+import com.minimajack.v8.parser.result.ResultList;
+import com.minimajack.v8.parser.result.ResultType;
 
 @SuppressWarnings("serial")
-public class VirtualFileReader
-    extends RecursiveTask<Boolean>
+public class VirtualFileParserTask
+    extends ParserTask
 {
-    final Logger logger = LoggerFactory.getLogger( VirtualFileReader.class );
+    final Logger logger = LoggerFactory.getLogger( VirtualFileParserTask.class );
 
     private StreamFactory streamFactory = new FileStreamFactory();
 
     private V8File file;
 
-    public VirtualFileReader( V8File file )
+    public VirtualFileParserTask( V8File file )
     {
         this.file = file;
     }
 
     @Override
-    protected Boolean compute()
+    protected ResultList compute()
     {
-        Boolean allOk = true;
-
+        ResultList resultList = new ResultList();
+        Path path = null;
         try (SmartV8OutputStream fos = streamFactory.createStream( file );
             InputStream dataStream = file.getBody().getDataStream();)
         {
+            path = fos.getPath();
             ByteStreams.copy( dataStream, fos );
+            resultList.addResult( new Result( fos.getPath(), ResultType.FILE ) );
         }
         catch ( IOException e )
         {
+            resultList.addResult( new Result( path, ResultType.ERROR ) );
             logger.error( "Error in FileReader", e );
-            allOk = false;
         }
 
-        return allOk;
+        return resultList;
     }
 
 }
