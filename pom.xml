@@ -9,6 +9,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<github.global.server>github</github.global.server>
+		<github.repo>com.minimajack.v8.format</github.repo>
+		<github.owner>MinimaJack</github.owner>
 	</properties>
 
 	<issueManagement>
@@ -57,8 +60,18 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
+			<plugin>
+				<groupId>external.atlassian.jgitflow</groupId>
+				<artifactId>jgitflow-maven-plugin</artifactId>
+				<version>1.0-m5.1</version>
+				<configuration>
+					<pushReleases>true</pushReleases>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<username>${git.user}</username>
+					<password>${git.password}</password>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
