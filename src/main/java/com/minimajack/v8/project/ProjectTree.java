@@ -46,18 +46,15 @@ public class ProjectTree
         return path.toString();
     }
 
+    @XmlTransient
+    public Path getRawPath()
+    {
+        return path;
+    }
+
     public void setPath( String path )
     {
         this.path = Paths.get( path );
-    }
-
-    public void relativize( Path path )
-    {
-        if ( this.path != null )
-        {
-            this.setPath( path.relativize( this.path.toAbsolutePath() ).toString() );
-        }
-        child.forEach( e -> e.relativize( path ) );
     }
 
     @XmlTransient
