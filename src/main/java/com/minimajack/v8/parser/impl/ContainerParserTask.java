@@ -22,19 +22,23 @@ import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.ProjectTree;
 
-@SuppressWarnings("serial")
 public class ContainerParserTask
     extends ParserTask
     implements AbstractReader, StrategyHolder
 {
-    final Logger logger = LoggerFactory.getLogger( ContainerParserTask.class );
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4612951038206319516L;
+
+    final transient Logger logger = LoggerFactory.getLogger( ContainerParserTask.class );
 
     /**
      * 
      */
-    private Context context;
+    private transient Context context;
 
-    private Container container;
+    private transient Container container;
 
     private Strategy strategy;
 
@@ -75,7 +79,7 @@ public class ContainerParserTask
     {
         LinkedList<ParserTask> tasks = new LinkedList<ParserTask>();
         ProjectTree result = new ProjectTree( new File( this.getContext().getPath() ).toPath(), FileType.CONTAINER );
-
+        result.setName( context.getName() );
         try
         {
             container.read();

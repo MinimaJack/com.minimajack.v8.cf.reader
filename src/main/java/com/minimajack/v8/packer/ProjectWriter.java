@@ -1,16 +1,17 @@
 package com.minimajack.v8.packer;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
-import java.security.InvalidParameterException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 
@@ -22,74 +23,41 @@ import com.minimajack.v8.io.metrix.ChunkSizeResolver;
 import com.minimajack.v8.io.writer.BlockHeaderChunkWriter;
 import com.minimajack.v8.io.writer.ContainerWriter;
 import com.minimajack.v8.io.writer.RawChunkWriter;
+import com.minimajack.v8.project.FileType;
+import com.minimajack.v8.project.ProjectTree;
 
-@Deprecated
-public class SimpleFileContainerWriter
+public class ProjectWriter
     extends ContainerWriter
 {
+    public static final int MIN_PACKED_CHUNK_SIZE = 512;
 
-    boolean packed;
+    private boolean packed;
 
-    final ConcurrentLinkedDeque<File> aFiles = new ConcurrentLinkedDeque<>();
+    final Deque<ProjectTree> aFiles = new LinkedList<ProjectTree>();
 
-    public SimpleFileContainerWriter( File path, boolean packed )
+    private String location;
+
+    public ProjectWriter( ProjectTree root, boolean packed, String location )
     {
-        if ( path == null )
-        {
-            throw new InvalidParameterException( "Path can't be null" );
-        }
-        int version = 0;
-        HashMap<String, File> fileNames = new HashMap<String, File>();
-        File[] fileList = path.listFiles();
-        if ( fileList == null )
-        {
-            throw new InvalidParameterException( "Path must be a file" );
-        }
-        for ( File file : fileList )
-        {
-            fileNames.put( file.getName().toLowerCase(), file );
-
-        }
-        fileNames.keySet().stream().map( n -> {
-            if ( n.endsWith( ".txt" ) )
-            {
-                return n.substring( 0, n.lastIndexOf( '.' ) );
-            }
-            else
-            {
-                return n;
-            }
-        } ).sorted().forEach( t -> {
-            if ( fileNames.containsKey( t ) )
-            {
-                aFiles.add( fileNames.get( t ) );
-            }
-            else
-            {
-                aFiles.add( fileNames.get( t + ".txt" ) );
-            }
-        } );
-
         this.packed = packed;
+        this.location = location;
         Container container = new Container();
-        container.setVersion( version );
+        container.setVersion( root.child.size() );
         this.setContainer( container );
-        this.setFileSystemSize( aFiles.size() * V8File.FILE_DESCRIPTION_SIZE );
+        this.setFileSystemSize( root.child.size() * V8File.FILE_DESCRIPTION_SIZE );
+        for ( ProjectTree file : root.child )
+        {
+            aFiles.add( file );
+        }
 
-    }
-
-    @Override
-    public boolean hasData()
-    {
-        return super.hasData() || aFiles.size() > 0;
     }
 
     @Override
     public void getDataToWrite()
     {
-        File currentFile = aFiles.poll();
+        ProjectTree currentFile = aFiles.poll();
         V8File v8file = new V8File();
-        Path p = currentFile.toPath();
+        Path p = Paths.get( location + currentFile.getPath() );
         long createdVirtual = 0;
         long lastModifyVirtual = 0;
         try
@@ -105,7 +73,7 @@ public class SimpleFileContainerWriter
 
         V8FileAttribute attributes = new V8FileAttribute();
         attributes.setPosition( this.getPosition() );
-        attributes.setName( getRealName( currentFile ) );
+        attributes.setName( currentFile.name );
         attributes.setCreationDate( new Date( createdVirtual ) );
         attributes.setModifyDate( new Date( lastModifyVirtual ) );
         int attrSize = attributes.getPayloadSize();
@@ -119,35 +87,33 @@ public class SimpleFileContainerWriter
 
         v8file.setAttributes( attributes );
 
-        byte[] data;
-        if ( currentFile.isDirectory() )
+        byte[] data = null;
+        if ( currentFile.type.equals( FileType.CONTAINER ) )
         {
-            SimpleFileContainerWriter fscw = new SimpleFileContainerWriter( currentFile, false );
+            ProjectWriter fscw = new ProjectWriter( currentFile, false, this.location );
             fscw.writeAllData();
             data = fscw.getRawData();
             fscw = null;
         }
         else
         {
-            data = new byte[(int) currentFile.length()];
-            try
+            try (FileInputStream fis = new FileInputStream( new File( location + currentFile.getPath() ) ))
             {
-                ByteStreams.readFully( new FileInputStream( currentFile ), data );
+                data = ByteStreams.toByteArray( fis );
             }
             catch ( IOException e )
             {
                 e.printStackTrace();
             }
         }
+
         if ( this.packed )
         {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            DeflaterOutputStream dataStream = new DeflaterOutputStream( baos, new Deflater( 6, true ) );
-            try
+
+            try (DeflaterOutputStream dataStream = new DeflaterOutputStream( baos, new Deflater( 6, true ) );)
             {
-                dataStream.write( data );
-                dataStream.finish();
-                dataStream.flush();
+                ByteStreams.copy( new ByteArrayInputStream( data ), dataStream );
             }
             catch ( IOException e1 )
             {
@@ -155,12 +121,15 @@ public class SimpleFileContainerWriter
             }
             data = baos.toByteArray();
         }
-
+        if ( data == null )
+        {
+            throw new RuntimeException( "Data can't be null" );
+        }
         v8file.setBodyAddress( this.getPosition() );
         RawChunkWriter bodyChunkWriter = new RawChunkWriter( data );
         if ( this.packed )
         {
-            bodyChunkWriter.setSizeResolver( new ChunkSizeResolver( Math.max( 512, data.length ) ) );
+            bodyChunkWriter.setSizeResolver( new ChunkSizeResolver( Math.max( MIN_PACKED_CHUNK_SIZE, data.length ) ) );
         }
         else
         {
@@ -181,21 +150,9 @@ public class SimpleFileContainerWriter
     }
 
     @Override
-    public byte[] getRawData()
+    public boolean hasData()
     {
-        return super.getRawData();
+        return super.hasData() || aFiles.size() > 0;
     }
 
-    private String getRealName( File file )
-    {
-        String fileName = file.getName();
-        if ( file.isDirectory() )
-        {
-            return fileName;
-        }
-        else
-        {
-            return fileName.substring( 0, fileName.length() - 4 );
-        }
-    }
 }

@@ -1,15 +1,21 @@
 package com.minimajack.v8.project;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.ByteStreams;
 import com.minimajack.v8.io.Strategy;
+import com.minimajack.v8.packer.ProjectWriter;
 import com.minimajack.v8.parser.impl.FileParserTask;
 
 public class Project
@@ -18,7 +24,7 @@ public class Project
 
     public static final String BASE_NAME = "project.xml";
 
-    public static final String BASE_SRC_NAME = "src";
+    public static final String SRC_PATH = "src";
 
     private File packedFile;
 
@@ -26,20 +32,39 @@ public class Project
 
     private Strategy strategy;
 
-    public void loadProject()
+    public boolean packProject()
+        throws JAXBException
     {
+
+        JAXBContext jaxbContext = JAXBContext.newInstance( ProjectTree.class );
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        File file = new File( getProjectPath() );
+        ProjectTree tree = (ProjectTree) jaxbUnmarshaller.unmarshal( file );
+
+        ProjectWriter fscw = new ProjectWriter( tree, true, location.getPath() + File.separator );
+        fscw.writeAllData();
+        byte[] data = fscw.getRawData();
+        try (FileOutputStream fos = new FileOutputStream( packedFile ))
+        {
+            ByteStreams.copy( new ByteArrayInputStream( data ), fos );
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace();
+        }
+        return true;
     }
 
-    public void saveProject()
+    public String getProjectPath()
     {
-
+        return location.getPath() + File.separator + BASE_NAME;
     }
 
     public boolean unpackProject()
         throws JAXBException
     {
         FileParserTask reader = new FileParserTask( packedFile.getPath(), location.getPath() + File.separator
-            + BASE_SRC_NAME + File.separator, strategy );
+            + SRC_PATH + File.separator, strategy );
         ProjectTree result = reader.compute();
         String projectFile = location.getPath() + File.separator + BASE_NAME;
         logger.debug( "Project path {}", projectFile );

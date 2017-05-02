@@ -15,15 +15,19 @@ import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.ProjectTree;
 
-@SuppressWarnings("serial")
 public class VirtualCachedFileParserTask
     extends ParserTask
 {
-    final Logger logger = LoggerFactory.getLogger( VirtualCachedFileParserTask.class );
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6050931028538206418L;
 
-    private CachedStreamFactory streamFactory = new FileCachedStreamFactory();
+    final transient Logger logger = LoggerFactory.getLogger( VirtualCachedFileParserTask.class );
 
-    private V8File file;
+    private transient CachedStreamFactory streamFactory = new FileCachedStreamFactory();
+
+    private transient V8File file;
 
     public VirtualCachedFileParserTask( V8File file )
     {
@@ -33,11 +37,10 @@ public class VirtualCachedFileParserTask
     @Override
     protected ProjectTree compute()
     {
-        ProjectTree result = new ProjectTree();
+        ProjectTree result = null;
 
         try (CacheOutput fos = streamFactory.createStream( file ))
         {
-
             if ( fos.isInCache() )
             {
                 result = new ProjectTree( fos.getPath(), FileType.FILE );
@@ -57,6 +60,7 @@ public class VirtualCachedFileParserTask
                 }
 
             }
+            result.setName( file.getAttributes().getName() );
         }
         catch ( IOException e )
         {

@@ -16,13 +16,17 @@ import com.minimajack.v8.model.Context;
 import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.project.ProjectTree;
 
-@SuppressWarnings("serial")
 public class FileParserTask
     extends ParserTask
 {
-    final Logger logger = LoggerFactory.getLogger( FileParserTask.class );
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3593273381663000741L;
 
-    public Container container;
+    final transient Logger logger = LoggerFactory.getLogger( FileParserTask.class );
+
+    public transient Container container;
 
     private String filePath;
 
@@ -60,7 +64,7 @@ public class FileParserTask
             reader.setContext( root );
             reader.setContainer( this.container );
             reader.setStrategy( strategy );
-            result =  ForkJoinPool.commonPool().invoke( reader ) ;
+            result = ForkJoinPool.commonPool().invoke( reader );
 
         }
         catch ( IOException e )
