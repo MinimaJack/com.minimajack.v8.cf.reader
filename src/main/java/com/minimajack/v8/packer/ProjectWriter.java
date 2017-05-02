@@ -1,5 +1,6 @@
 package com.minimajack.v8.packer;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -112,12 +113,10 @@ public class ProjectWriter
         if ( this.packed )
         {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            DeflaterOutputStream dataStream = new DeflaterOutputStream( baos, new Deflater( 6, true ) );
-            try
+
+            try (DeflaterOutputStream dataStream = new DeflaterOutputStream( baos, new Deflater( 6, true ) );)
             {
-                dataStream.write( data );
-                dataStream.finish();
-                dataStream.flush();
+                ByteStreams.copy( new ByteArrayInputStream( data ), dataStream );
             }
             catch ( IOException e1 )
             {
