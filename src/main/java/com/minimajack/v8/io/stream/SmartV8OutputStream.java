@@ -36,17 +36,10 @@ public abstract class SmartV8OutputStream
         realFile = new File( path + File.separator + name );
         if ( !realFile.exists() )
         {
-            boolean folderExisted = file.exists() || file.mkdirs();
-            if ( folderExisted )
+            file.mkdirs();
+            if ( !realFile.createNewFile() )
             {
-                if ( !realFile.createNewFile() )
-                {
-                    throw new IOException( "Can't create output file" );
-                }
-            }
-            else
-            {
-                throw new IOException( "Unable to create path" );
+                throw new IOException( "Can't create output file" );
             }
 
         }

@@ -1,7 +1,8 @@
-package com.minimajack.v8.code;
+package com.minimajack.v8.code.impl;
 
 import java.nio.file.Path;
 
+import com.minimajack.v8.code.Processor;
 import com.minimajack.v8.project.ProjectTree;
 
 public class RelativizeProcessor

@@ -14,8 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.io.ByteStreams;
-import com.minimajack.v8.code.CodeProcessor;
-import com.minimajack.v8.code.RelativizeProcessor;
+import com.minimajack.v8.code.impl.CodeProcessor;
+import com.minimajack.v8.code.impl.MetadataProcessor;
+import com.minimajack.v8.code.impl.RelativizeProcessor;
 import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.packer.ProjectWriter;
 import com.minimajack.v8.parser.impl.FileParserTask;
@@ -73,8 +74,9 @@ public class Project
 
         CodeProcessor codeProcessor = new CodeProcessor();
         codeProcessor.addProcessor( new RelativizeProcessor( location.toPath().toAbsolutePath() ) );
+        codeProcessor.addProcessor( new MetadataProcessor( location.toPath().toAbsolutePath() ) );
         codeProcessor.process( result );
-        
+
         JAXBContext jaxbContext = JAXBContext.newInstance( ProjectTree.class );
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
