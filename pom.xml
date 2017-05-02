@@ -11,6 +11,7 @@
 		<github.global.server>github</github.global.server>
 		<github.repo>com.minimajack.v8.format</github.repo>
 		<github.owner>MinimaJack</github.owner>
+		<v8.format.version>0.0.15</v8.format.version>
 	</properties>
 
 	<issueManagement>
@@ -69,7 +70,12 @@
 		<dependency>
 			<groupId>com.minimajack.v8.format</groupId>
 			<artifactId>com.minimajack.v8.format.cf</artifactId>
-			<version>0.0.15</version>
+			<version>${v8.format.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.minimajack.v8.format</groupId>
+			<artifactId>com.minimajack.v8.format.bs</artifactId>
+			<version>${v8.format.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
