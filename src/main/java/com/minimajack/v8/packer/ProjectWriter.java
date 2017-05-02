@@ -28,6 +28,8 @@ import com.minimajack.v8.project.ProjectTree;
 public class ProjectWriter
     extends ContainerWriter
 {
+    public static int MIN_PACKED_CHUNK_SIZE = 512;
+
     ProjectTree root;
 
     private boolean packed;
@@ -87,7 +89,7 @@ public class ProjectWriter
 
         v8file.setAttributes( attributes );
 
-        byte[] data;
+        byte[] data = null;
         if ( currentFile.type.equals( FileType.CONTAINER ) )
         {
             ProjectWriter fscw = new ProjectWriter( currentFile, false, this.location );
@@ -97,11 +99,9 @@ public class ProjectWriter
         }
         else
         {
-            File file = new File( location + currentFile.getPath() );
-            data = new byte[(int) file.length()];
-            try
+            try (FileInputStream fis = new FileInputStream( new File( location + currentFile.getPath() ) ))
             {
-                ByteStreams.readFully( new FileInputStream( file ), data );
+                data = ByteStreams.toByteArray( fis );
             }
             catch ( IOException e )
             {
@@ -130,7 +130,7 @@ public class ProjectWriter
         RawChunkWriter bodyChunkWriter = new RawChunkWriter( data );
         if ( this.packed )
         {
-            bodyChunkWriter.setSizeResolver( new ChunkSizeResolver( Math.max( 512, data.length ) ) );
+            bodyChunkWriter.setSizeResolver( new ChunkSizeResolver( Math.max( MIN_PACKED_CHUNK_SIZE, data.length ) ) );
         }
         else
         {
