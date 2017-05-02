@@ -23,22 +23,13 @@ public class Project
 
     public static final String BASE_NAME = "project.xml";
 
-    public static final String BASE_SRC_NAME = "src";
+    public static final String SRC_PATH = "src";
 
     private File packedFile;
 
     private File location;
 
     private Strategy strategy;
-
-    public void loadProject()
-    {
-    }
-
-    public void saveProject()
-    {
-
-    }
 
     public boolean packProject()
         throws JAXBException
@@ -71,7 +62,7 @@ public class Project
         throws JAXBException
     {
         FileParserTask reader = new FileParserTask( packedFile.getPath(), location.getPath() + File.separator
-            + BASE_SRC_NAME + File.separator, strategy );
+            + SRC_PATH + File.separator, strategy );
         ProjectTree result = reader.compute();
         String projectFile = location.getPath() + File.separator + BASE_NAME;
         logger.debug( "Project path {}", projectFile );
