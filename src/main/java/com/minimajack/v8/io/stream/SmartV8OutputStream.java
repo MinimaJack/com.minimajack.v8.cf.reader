@@ -33,11 +33,22 @@ public abstract class SmartV8OutputStream
         String name = cachedV8FileAttributes.getName().trim();
         String path = file.getContext().getPath();
         File file = new File( path );
-        file.mkdirs();
         realFile = new File( path + File.separator + name );
         if ( !realFile.exists() )
         {
-            realFile.createNewFile();
+            boolean folderExisted = file.exists() || file.mkdirs();
+            if ( folderExisted )
+            {
+                if ( !realFile.createNewFile() )
+                {
+                    throw new IOException( "Can't create output file" );
+                }
+            }
+            else
+            {
+                throw new IOException( "Unable to create path" );
+            }
+
         }
         this.realPath = realFile.toPath();
     }

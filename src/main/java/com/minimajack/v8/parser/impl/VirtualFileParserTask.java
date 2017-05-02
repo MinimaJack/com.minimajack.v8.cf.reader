@@ -16,15 +16,19 @@ import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.ProjectTree;
 
-@SuppressWarnings("serial")
 public class VirtualFileParserTask
     extends ParserTask
 {
-    final Logger logger = LoggerFactory.getLogger( VirtualFileParserTask.class );
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3177536977013094515L;
 
-    private StreamFactory streamFactory = new FileStreamFactory();
+    final transient Logger logger = LoggerFactory.getLogger( VirtualFileParserTask.class );
 
-    private V8File file;
+    private transient StreamFactory streamFactory = new FileStreamFactory();
+
+    private transient V8File file;
 
     public VirtualFileParserTask( V8File file )
     {

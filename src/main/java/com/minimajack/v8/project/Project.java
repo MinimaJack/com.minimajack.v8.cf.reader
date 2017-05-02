@@ -3,6 +3,7 @@ package com.minimajack.v8.project;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -40,15 +41,16 @@ public class Project
         File file = new File( getProjectPath() );
         ProjectTree tree = (ProjectTree) jaxbUnmarshaller.unmarshal( file );
 
-        ProjectWriter fscw = new ProjectWriter( tree, true, location.getPath() + File.separator);
+        ProjectWriter fscw = new ProjectWriter( tree, true, location.getPath() + File.separator );
         fscw.writeAllData();
         byte[] data = fscw.getRawData();
         try (FileOutputStream fos = new FileOutputStream( packedFile ))
         {
             ByteStreams.copy( new ByteArrayInputStream( data ), fos );
         }
-        catch ( Exception e )
+        catch ( IOException e )
         {
+            e.printStackTrace();
         }
         return true;
     }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
+import java.security.InvalidParameterException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
@@ -26,7 +27,6 @@ import com.minimajack.v8.io.writer.RawChunkWriter;
 public class SimpleFileContainerWriter
     extends ContainerWriter
 {
-    File path;
 
     boolean packed;
 
@@ -34,10 +34,18 @@ public class SimpleFileContainerWriter
 
     public SimpleFileContainerWriter( File path, boolean packed )
     {
-
+        if ( path == null )
+        {
+            throw new InvalidParameterException( "Path can't be null" );
+        }
         int version = 0;
         HashMap<String, File> fileNames = new HashMap<String, File>();
-        for ( File file : path.listFiles() )
+        File[] fileList = path.listFiles();
+        if ( fileList == null )
+        {
+            throw new InvalidParameterException( "Path must be a file" );
+        }
+        for ( File file : fileList )
         {
             fileNames.put( file.getName().toLowerCase(), file );
 
@@ -62,7 +70,6 @@ public class SimpleFileContainerWriter
             }
         } );
 
-        this.path = path;
         this.packed = packed;
         Container container = new Container();
         container.setVersion( version );

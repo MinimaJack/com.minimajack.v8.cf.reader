@@ -29,9 +29,7 @@ import com.minimajack.v8.project.ProjectTree;
 public class ProjectWriter
     extends ContainerWriter
 {
-    public static int MIN_PACKED_CHUNK_SIZE = 512;
-
-    ProjectTree root;
+    public static final int MIN_PACKED_CHUNK_SIZE = 512;
 
     private boolean packed;
 
@@ -41,7 +39,6 @@ public class ProjectWriter
 
     public ProjectWriter( ProjectTree root, boolean packed, String location )
     {
-        this.root = root;
         this.packed = packed;
         this.location = location;
         Container container = new Container();
@@ -124,7 +121,10 @@ public class ProjectWriter
             }
             data = baos.toByteArray();
         }
-
+        if ( data == null )
+        {
+            throw new RuntimeException( "Data can't be null" );
+        }
         v8file.setBodyAddress( this.getPosition() );
         RawChunkWriter bodyChunkWriter = new RawChunkWriter( data );
         if ( this.packed )
