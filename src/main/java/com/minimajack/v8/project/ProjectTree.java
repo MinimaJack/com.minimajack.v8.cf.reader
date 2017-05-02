@@ -1,6 +1,7 @@
 package com.minimajack.v8.project;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,15 +12,18 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.PROPERTY)
-@XmlType(propOrder = { "type", "path", "child" })
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder = { "type", "name", "path", "child" })
 public class ProjectTree
 {
     @XmlTransient
-    public Path path;
+    private Path path;
 
     @XmlElement
     public FileType type;
+
+    @XmlElement
+    public String name;
 
     @XmlTransient
     public ArrayList<ProjectTree> child = new ArrayList<ProjectTree>();
@@ -42,16 +46,16 @@ public class ProjectTree
         return path.toString();
     }
 
-    public void setPath( Path path )
+    public void setPath( String path )
     {
-        this.path = path;
+        this.path = Paths.get( path );
     }
 
     public void relativize( Path path )
     {
         if ( this.path != null )
         {
-            this.setPath( path.relativize( this.path.toAbsolutePath() ) );
+            this.setPath( path.relativize( this.path.toAbsolutePath() ).toString() );
         }
         child.forEach( e -> e.relativize( path ) );
     }
@@ -76,6 +80,17 @@ public class ProjectTree
     public void addChild( ProjectTree child )
     {
         this.child.add( child );
+    }
+
+    @XmlTransient
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName( String name )
+    {
+        this.name = name;
     }
 
 }

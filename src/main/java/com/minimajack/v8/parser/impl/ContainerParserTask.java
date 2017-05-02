@@ -75,7 +75,7 @@ public class ContainerParserTask
     {
         LinkedList<ParserTask> tasks = new LinkedList<ParserTask>();
         ProjectTree result = new ProjectTree( new File( this.getContext().getPath() ).toPath(), FileType.CONTAINER );
-
+        result.setName( context.getName() );
         try
         {
             container.read();

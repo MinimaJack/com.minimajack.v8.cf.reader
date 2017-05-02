@@ -5,6 +5,7 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,23 @@ public class Project
     public void saveProject()
     {
 
+    }
+
+    public boolean packProject()
+        throws JAXBException
+    {
+
+        JAXBContext jaxbContext = JAXBContext.newInstance( ProjectTree.class );
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        File file = new File( getProjectPath() );
+        ProjectTree tree = (ProjectTree) jaxbUnmarshaller.unmarshal( file );
+        System.out.println( tree );
+        return true;
+    }
+
+    public String getProjectPath()
+    {
+        return location.getPath() + File.separator + BASE_NAME;
     }
 
     public boolean unpackProject()

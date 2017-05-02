@@ -33,11 +33,10 @@ public class VirtualCachedFileParserTask
     @Override
     protected ProjectTree compute()
     {
-        ProjectTree result = new ProjectTree();
+        ProjectTree result = null;
 
         try (CacheOutput fos = streamFactory.createStream( file ))
         {
-
             if ( fos.isInCache() )
             {
                 result = new ProjectTree( fos.getPath(), FileType.FILE );
@@ -57,6 +56,7 @@ public class VirtualCachedFileParserTask
                 }
 
             }
+            result.setName( file.getAttributes().getName() );
         }
         catch ( IOException e )
         {

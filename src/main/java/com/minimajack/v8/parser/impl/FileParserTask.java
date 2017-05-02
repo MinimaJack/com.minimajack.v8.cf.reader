@@ -60,7 +60,7 @@ public class FileParserTask
             reader.setContext( root );
             reader.setContainer( this.container );
             reader.setStrategy( strategy );
-            result =  ForkJoinPool.commonPool().invoke( reader ) ;
+            result = ForkJoinPool.commonPool().invoke( reader );
 
         }
         catch ( IOException e )

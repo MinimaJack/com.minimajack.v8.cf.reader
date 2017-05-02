@@ -49,6 +49,7 @@ public class VirtualFileParserTask
             result = new ProjectTree( path, FileType.ERROR );
 
         }
+        result.setName( file.getContext().getName() );
         return result;
 
     }
