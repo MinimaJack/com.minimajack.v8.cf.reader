@@ -1,6 +1,8 @@
 package com.minimajack.v8.project;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -10,7 +12,9 @@ import javax.xml.bind.Unmarshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.io.ByteStreams;
 import com.minimajack.v8.io.Strategy;
+import com.minimajack.v8.packer.ProjectWriter;
 import com.minimajack.v8.parser.impl.FileParserTask;
 
 public class Project
@@ -44,7 +48,17 @@ public class Project
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         File file = new File( getProjectPath() );
         ProjectTree tree = (ProjectTree) jaxbUnmarshaller.unmarshal( file );
-        System.out.println( tree );
+
+        ProjectWriter fscw = new ProjectWriter( tree, true, location.getPath() + File.separator);
+        fscw.writeAllData();
+        byte[] data = fscw.getRawData();
+        try (FileOutputStream fos = new FileOutputStream( packedFile ))
+        {
+            ByteStreams.copy( new ByteArrayInputStream( data ), fos );
+        }
+        catch ( Exception e )
+        {
+        }
         return true;
     }
 

@@ -1,8 +1,6 @@
 package com.minimajack.v8;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.concurrent.ExecutionException;
 
 import javax.xml.bind.JAXBException;
@@ -10,9 +8,7 @@ import javax.xml.bind.JAXBException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.ByteStreams;
 import com.minimajack.v8.io.Strategy;
-import com.minimajack.v8.packer.SimpleFileContainerWriter;
 import com.minimajack.v8.project.Project;
 
 public class MainApp
@@ -20,7 +16,7 @@ public class MainApp
     final Logger logger = LoggerFactory.getLogger( MainApp.class );
 
     public static void main( String[] args )
-        throws InterruptedException, ExecutionException
+        throws InterruptedException, ExecutionException, JAXBException
     {
         Logger logger = LoggerFactory.getLogger( MainApp.class );
 
@@ -50,27 +46,14 @@ public class MainApp
             project.setPackedFile( fileInput );
             project.setLocation( fileOutput );
             project.setStrategy( defaultStrategy );
-            try
-            {
-                project.unpackProject();
-            }
-            catch ( JAXBException e )
-            {
-                e.printStackTrace();
-            }
+            project.unpackProject();
         }
         else
         {
-            SimpleFileContainerWriter fscw = new SimpleFileContainerWriter( fileInput, true );
-            fscw.writeAllData();
-            byte[] data = fscw.getRawData();
-            try (FileOutputStream fos = new FileOutputStream( fileOutput ))
-            {
-                ByteStreams.copy( new ByteArrayInputStream( data ), fos );
-            }
-            catch ( Exception e )
-            {
-            }
+            Project project = new Project();
+            project.setPackedFile( fileOutput );
+            project.setLocation( fileInput );
+            project.packProject();
         }
 
         logger.info( "Time: {}", (int) ( System.currentTimeMillis() - times ) / 1000 );
