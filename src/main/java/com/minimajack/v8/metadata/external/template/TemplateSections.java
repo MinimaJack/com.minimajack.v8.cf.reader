@@ -7,7 +7,7 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 
 @V8Class
-public class V8MetaTamplateSection
+public class TemplateSections
     extends MetadataSection
 {
     public UUID type;

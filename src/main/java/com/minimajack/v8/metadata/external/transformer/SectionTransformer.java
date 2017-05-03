@@ -7,7 +7,7 @@ import java.util.UUID;
 import com.minimajack.v8.metadata.external.attributes.AttributesSection;
 import com.minimajack.v8.metadata.external.forms.FormsSection;
 import com.minimajack.v8.metadata.external.tabularsection.TabularSections;
-import com.minimajack.v8.metadata.external.template.V8MetaTamplateSection;
+import com.minimajack.v8.metadata.external.template.TemplateSections;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;
@@ -38,7 +38,7 @@ public class SectionTransformer
         }
         else if ( guid.equals( TEMPLATE_SECTION ) )
         {
-            section = V8Reader.read( V8MetaTamplateSection.class, buffer );
+            section = V8Reader.read( TemplateSections.class, buffer );
         }
         else if ( guid.equals( FIELD_SECTION ) )
         {

@@ -17,11 +17,12 @@ import com.minimajack.v8.metadata.external.forms.FormsSection;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
 import com.minimajack.v8.metadata.external.tabularsection.TabularSections;
-import com.minimajack.v8.metadata.external.template.V8MetaTamplateSection;
+import com.minimajack.v8.metadata.external.template.TemplateDescription;
+import com.minimajack.v8.metadata.external.template.TemplateSections;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 import com.minimajack.v8.metadata.external.transformer.SectionTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
-import com.minimajack.v8.parser.impl.ContainerParserTask;
+import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.project.ProjectTree;
 import com.minimajack.v8.utility.V8Reader;
@@ -31,9 +32,15 @@ public class MetadataProcessor
 {
     private Path path;
 
-    final Logger logger = LoggerFactory.getLogger( ContainerParserTask.class );
+    final Logger logger = LoggerFactory.getLogger( MetadataProcessor.class );
 
     private static final UUID EXTERNAL_DATA_PROCESSOR = UUID.fromString( "c3831ec8-d8d5-4f93-8a22-f9bfae07327f" );
+
+    private static final String TEMPLATES_PATH = "Templates";
+
+    private static final String FORM_PATH = "Forms";
+
+    private static final String METADATA_FILE = "metadata.mdo";
 
     public MetadataProcessor( Path path )
     {
@@ -78,9 +85,10 @@ public class MetadataProcessor
             {
                 logger.debug( "TabularSections size: {}", ( (TabularSections) section ).tabularSections.size() );
             }
-            else if ( section instanceof V8MetaTamplateSection )
+            else if ( section instanceof TemplateSections )
             {
-                logger.debug( "TamplateSection size: {}", ( (V8MetaTamplateSection) section ).templates.size() );
+                logger.debug( "TemplateSection size: {}", ( (TemplateSections) section ).templates.size() );
+                processTemplates( tree, (TemplateSections) section );
             }
             else if ( section instanceof AttributesSection )
             {
@@ -93,18 +101,44 @@ public class MetadataProcessor
         }
     }
 
+    private void processTemplates( ProjectTree tree, TemplateSections templateSection )
+    {
+        for ( UUID template : templateSection.templates )
+        {
+            TemplateDescription description = getTemplateDescription( tree, template.toString() );
+            String destinationDir = path.toString() + File.separator + Project.SRC_PATH + File.separator
+                + TEMPLATES_PATH + File.separator + description.templateInnerDescription.msn.name + File.separator;
+            moveToFolder( tree, template.toString(), destinationDir + METADATA_FILE );
+            moveLinkedContainerToFolder( tree, template.toString(), destinationDir );
+        }
+    }
+
     private void processForms( ProjectTree tree, FormsSection formSection )
     {
         for ( UUID form : formSection.forms )
         {
             FormDescription description = getFormDescription( tree, form.toString() );
+            String destinationDir = path.toString() + File.separator + Project.SRC_PATH + File.separator + FORM_PATH
+                + File.separator + description.formInnerDescription.md.ffmd.v8mn.name + File.separator;
 
-            moveToFolder( tree, form.toString(),
-                          path.toString() + File.separator + Project.SRC_PATH + File.separator + "Forms"
-                              + File.separator + description.formInnerDescription.md.ffmd.v8mn.name + File.separator
-                              + form.toString() );
-
+            moveToFolder( tree, form.toString(), destinationDir + METADATA_FILE );
+            moveLinkedContainerToFolder( tree, form.toString(), destinationDir );
         }
+    }
+
+    private TemplateDescription getTemplateDescription( ProjectTree tree, String template )
+    {
+        TemplateDescription description = null;
+        try
+        {
+            description = V8Reader.read( TemplateDescription.class, getFileBuffer( tree, template.toString() ) );
+        }
+        catch ( Exception e )
+        {
+            logger.warn( "Error while parsing template {}", template );
+        }
+
+        return description;
     }
 
     private FormDescription getFormDescription( ProjectTree tree, String form )
@@ -120,6 +154,31 @@ public class MetadataProcessor
         }
 
         return description;
+    }
+
+    private void moveLinkedContainerToFolder( ProjectTree tree, String name, String dest )
+    {
+        String subName = name + ".0"; //TODO fix by metadata
+        ProjectTree pt = this.findFileByName( tree, subName );
+        if ( pt.type.equals( FileType.CONTAINER ) )
+        {
+            Path p = pt.getRawPath();
+            String destination = path.relativize( Paths.get( dest ) ).toString();
+            for ( ProjectTree child : pt.child )
+            {
+                Path simplename = p.relativize( child.getRawPath() );
+                Path abolute = Paths.get( this.path.toString() + File.separator + destination + File.separator
+                    + simplename.toString() );
+
+                moveToFolder( child, child.name, abolute.toString() );
+            }
+            Paths.get( path.toAbsolutePath() + File.separator + pt.getRawPath().toString() ).toFile().delete();
+            pt.setPath( destination );
+        }
+        else if ( pt.type.equals( FileType.FILE ) )
+        {
+            moveToFolder( tree, subName, dest + File.separator + pt.getName() );
+        }
     }
 
     private void moveToFolder( ProjectTree tree, String name, String dest )

@@ -6,6 +6,7 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.external.common.V8MetaFullName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
+import com.minimajack.v8.metadata.external.unknown.UnkObject;
 
 @V8Class
 public class TabularSectionDescription
@@ -28,9 +29,9 @@ public class TabularSectionDescription
     public FillChecking fillChecking;
 
     /**
-     * TODO: some object
+     * TODO: some object need to discover
      */
-    public V8Synonym unk2;
+    public UnkObject unksyn;
 
     /**
      * Подсказка
