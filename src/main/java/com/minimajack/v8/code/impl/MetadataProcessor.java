@@ -21,6 +21,8 @@ import com.minimajack.v8.metadata.external.template.TemplateDescription;
 import com.minimajack.v8.metadata.external.template.TemplateSections;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 import com.minimajack.v8.metadata.external.transformer.SectionTransformer;
+import com.minimajack.v8.metadata.external.type.Types;
+import com.minimajack.v8.metadata.external.type.TypesTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.Project;
@@ -53,6 +55,7 @@ public class MetadataProcessor
         V8Reader.init();
         V8Reader.registerTransformer( MetadataSection.class, new SectionTransformer() );
         V8Reader.registerTransformer( Qualifiers.class, new QualityTransformer() );
+        V8Reader.registerTransformer( Types.class, new TypesTransformer() );
 
     }
 

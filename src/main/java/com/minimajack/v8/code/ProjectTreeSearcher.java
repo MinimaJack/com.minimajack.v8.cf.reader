@@ -23,10 +23,9 @@ public abstract class ProjectTreeSearcher
     {
         ProjectTree file = findFileByName( tree, name );
         ByteBuffer bb = null;
-        try(FileInputStream fis = new FileInputStream( path + File.separator + file.getPath() ))
+        try (FileInputStream fis = new FileInputStream( path + File.separator + file.getPath() ))
         {
-            bb = ByteBuffer
-                .wrap( ByteStreams.toByteArray(fis) );
+            bb = ByteBuffer.wrap( ByteStreams.toByteArray( fis ) );
             bb.position( 3 );
         }
         catch ( IOException e )

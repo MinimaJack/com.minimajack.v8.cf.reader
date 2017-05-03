@@ -2,7 +2,6 @@ package com.minimajack.v8.metadata.external.qualifier;
 
 import java.lang.reflect.ParameterizedType;
 import java.nio.ByteBuffer;
-
 import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.impl.DBLinkQuality;
 import com.minimajack.v8.metadata.external.qualifier.impl.DateQualifiers;

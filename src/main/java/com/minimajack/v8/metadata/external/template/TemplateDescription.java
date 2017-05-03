@@ -6,6 +6,8 @@ import com.minimajack.v8.annotation.V8Class;
 public class TemplateDescription
 {
     public Integer unk1;
+
     public TemplateDescriptionInner templateInnerDescription;
+
     public Integer unk2;
 }

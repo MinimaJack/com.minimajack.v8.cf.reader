@@ -6,7 +6,7 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.external.common.V8MetaFullName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObject;
+import com.minimajack.v8.metadata.external.tabularsection.strange.StrangeObject;
 
 @V8Class
 public class TabularSectionDescription
@@ -31,7 +31,7 @@ public class TabularSectionDescription
     /**
      * TODO: some object need to discover
      */
-    public UnkObject unksyn;
+    public StrangeObject unksyn;
 
     /**
      * Подсказка

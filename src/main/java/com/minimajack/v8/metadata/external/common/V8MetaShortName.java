@@ -17,13 +17,13 @@ public class V8MetaShortName
     public V8Synonym synonym;
 
     public String comment;
-    
+
     @Required(required = false)
     public Integer und1;
 
     @Required(required = false)
     public Integer und2;
-    
+
     @Required(required = false)
     public UUID und3;
 

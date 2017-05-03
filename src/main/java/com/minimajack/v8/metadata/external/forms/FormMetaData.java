@@ -7,6 +7,8 @@ import com.minimajack.v8.metadata.external.unknown.UnkObject;
 public class FormMetaData
 {
     public Integer unk1;
+
     public FormFullMetaData ffmd;
+
     public UnkObject unk2;
 }
