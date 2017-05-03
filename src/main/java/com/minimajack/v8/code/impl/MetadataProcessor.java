@@ -5,10 +5,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.minimajack.v8.code.ProjectTreeSearcher;
 import com.minimajack.v8.metadata.external.V8MetaData;
 import com.minimajack.v8.metadata.external.V8MetaDataDescription;
 import com.minimajack.v8.metadata.external.attributes.AttributesSection;
+import com.minimajack.v8.metadata.external.forms.FormDescription;
 import com.minimajack.v8.metadata.external.forms.FormsSection;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
@@ -17,6 +21,7 @@ import com.minimajack.v8.metadata.external.template.V8MetaTamplateSection;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 import com.minimajack.v8.metadata.external.transformer.SectionTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
+import com.minimajack.v8.parser.impl.ContainerParserTask;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.project.ProjectTree;
 import com.minimajack.v8.utility.V8Reader;
@@ -26,7 +31,9 @@ public class MetadataProcessor
 {
     private Path path;
 
-    private static final UUID External_DP = UUID.fromString( "c3831ec8-d8d5-4f93-8a22-f9bfae07327f" );
+    final Logger logger = LoggerFactory.getLogger( ContainerParserTask.class );
+
+    private static final UUID EXTERNAL_DATA_PROCESSOR = UUID.fromString( "c3831ec8-d8d5-4f93-8a22-f9bfae07327f" );
 
     public MetadataProcessor( Path path )
     {
@@ -50,7 +57,7 @@ public class MetadataProcessor
         V8MetaData md = V8Reader.read( V8MetaData.class, getFileBuffer( tree, root.guid.toString() ) );
         for ( V8MetaDataDescription v8MD : md.mdd )
         {
-            if ( v8MD.type.equals( External_DP ) )
+            if ( v8MD.type.equals( EXTERNAL_DATA_PROCESSOR ) )
             {
                 processExternalDataProcessor( tree, v8MD );
             }
@@ -64,26 +71,55 @@ public class MetadataProcessor
         {
             if ( section instanceof FormsSection )
             {
-                for ( UUID form : ( (FormsSection) section ).forms )
-                {
-                    System.out.println( "Form: " + form );
-                    moveToFolder( tree, form.toString(), path.toString() + File.separator + Project.SRC_PATH
-                        + File.separator + "Forms" + File.separator + form );
-                }
-            }else if(section instanceof TabularSections){
-                System.out.println("TabularSections: " +
-            ((TabularSections)section).tabularSections.size());
-            }else if(section instanceof V8MetaTamplateSection){
-                System.out.println("TamplateSection: " +
-            ((V8MetaTamplateSection)section).templates.size());
-            }else if(section instanceof AttributesSection){
-                System.out.println("Attributes: " +
-                    ((AttributesSection)section).descr.size()); 
+                processForms( tree, (FormsSection) section );
+
             }
-            else{
-                System.out.println("UNKNOWN" + section);
+            else if ( section instanceof TabularSections )
+            {
+                logger.debug( "TabularSections size: {}", ( (TabularSections) section ).tabularSections.size() );
+            }
+            else if ( section instanceof V8MetaTamplateSection )
+            {
+                logger.debug( "TamplateSection size: {}", ( (V8MetaTamplateSection) section ).templates.size() );
+            }
+            else if ( section instanceof AttributesSection )
+            {
+                logger.debug( "Attributes size: {}", ( (AttributesSection) section ).descr.size() );
+            }
+            else
+            {
+                logger.warn( "Not implement section {}", section.getClass() );
             }
         }
+    }
+
+    private void processForms( ProjectTree tree, FormsSection formSection )
+    {
+        for ( UUID form : formSection.forms )
+        {
+            FormDescription description = getFormDescription( tree, form.toString() );
+
+            moveToFolder( tree, form.toString(),
+                          path.toString() + File.separator + Project.SRC_PATH + File.separator + "Forms"
+                              + File.separator + description.formInnerDescription.md.ffmd.v8mn.name + File.separator
+                              + form.toString() );
+
+        }
+    }
+
+    private FormDescription getFormDescription( ProjectTree tree, String form )
+    {
+        FormDescription description = null;
+        try
+        {
+            description = V8Reader.read( FormDescription.class, getFileBuffer( tree, form.toString() ) );
+        }
+        catch ( Exception e )
+        {
+            logger.warn( "Error while parsing form {}", form );
+        }
+
+        return description;
     }
 
     private void moveToFolder( ProjectTree tree, String name, String dest )
@@ -93,9 +129,17 @@ public class MetadataProcessor
         File file = p.toFile();
         File destName = new File( dest );
         destName.getParentFile().mkdirs();
+        if ( destName.exists() )
+        {
+            destName.delete();
+        }
         if ( file.renameTo( destName ) )
         {
             pt.setPath( path.relativize( destName.toPath().toAbsolutePath() ).toString() );
+        }
+        else
+        {
+            logger.warn( "Can't move {} to {} ", p, dest );
         }
     }
 }

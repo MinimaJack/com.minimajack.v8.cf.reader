@@ -23,12 +23,11 @@ public abstract class ProjectTreeSearcher
     {
         ProjectTree file = findFileByName( tree, name );
         ByteBuffer bb = null;
-        try
+        try(FileInputStream fis = new FileInputStream( path + File.separator + file.getPath() ))
         {
             bb = ByteBuffer
-                .wrap( ByteStreams.toByteArray( new FileInputStream( path + File.separator + file.getPath() ) ) );
+                .wrap( ByteStreams.toByteArray(fis) );
             bb.position( 3 );
-            return bb;
         }
         catch ( IOException e )
         {

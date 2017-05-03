@@ -10,5 +10,5 @@ public class TabularMetadata
 {
     public TabularSectionFullDescription tabularSectionFullDescription;
 
-    public List<AttributesSection> fields;
+    public List<AttributesSection> attributes;
 }
