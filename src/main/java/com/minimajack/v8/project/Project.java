@@ -74,7 +74,10 @@ public class Project
 
         CodeProcessor codeProcessor = new CodeProcessor();
         codeProcessor.addProcessor( new RelativizeProcessor( location.toPath().toAbsolutePath() ) );
-        codeProcessor.addProcessor( new MetadataProcessor( location.toPath().toAbsolutePath() ) );
+        if ( packedFile.getName().endsWith( ".epf" ) )
+        {
+            codeProcessor.addProcessor( new MetadataProcessor( location.toPath().toAbsolutePath() ) );
+        }
         codeProcessor.process( result );
 
         JAXBContext jaxbContext = JAXBContext.newInstance( ProjectTree.class );
