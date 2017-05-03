@@ -8,9 +8,12 @@ import java.util.UUID;
 import com.minimajack.v8.code.ProjectTreeSearcher;
 import com.minimajack.v8.metadata.external.V8MetaData;
 import com.minimajack.v8.metadata.external.V8MetaDataDescription;
-import com.minimajack.v8.metadata.external.forms.V8MetaFormsSection;
+import com.minimajack.v8.metadata.external.attributes.AttributesSection;
+import com.minimajack.v8.metadata.external.forms.FormsSection;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
+import com.minimajack.v8.metadata.external.tabularsection.TabularSections;
+import com.minimajack.v8.metadata.external.template.V8MetaTamplateSection;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 import com.minimajack.v8.metadata.external.transformer.SectionTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
@@ -59,14 +62,26 @@ public class MetadataProcessor
     {
         for ( MetadataSection section : v8MD.innerType.sections )
         {
-            if ( section instanceof V8MetaFormsSection )
+            if ( section instanceof FormsSection )
             {
-                for ( UUID form : ( (V8MetaFormsSection) section ).forms )
+                for ( UUID form : ( (FormsSection) section ).forms )
                 {
                     System.out.println( "Form: " + form );
                     moveToFolder( tree, form.toString(), path.toString() + File.separator + Project.SRC_PATH
                         + File.separator + "Forms" + File.separator + form );
                 }
+            }else if(section instanceof TabularSections){
+                System.out.println("TabularSections: " +
+            ((TabularSections)section).tabularSections.size());
+            }else if(section instanceof V8MetaTamplateSection){
+                System.out.println("TamplateSection: " +
+            ((V8MetaTamplateSection)section).templates.size());
+            }else if(section instanceof AttributesSection){
+                System.out.println("Attributes: " +
+                    ((AttributesSection)section).descr.size()); 
+            }
+            else{
+                System.out.println("UNKNOWN" + section);
             }
         }
     }
@@ -78,7 +93,6 @@ public class MetadataProcessor
         File file = p.toFile();
         File destName = new File( dest );
         destName.getParentFile().mkdirs();
-        System.out.println( dest );
         if ( file.renameTo( destName ) )
         {
             pt.setPath( path.relativize( destName.toPath().toAbsolutePath() ).toString() );

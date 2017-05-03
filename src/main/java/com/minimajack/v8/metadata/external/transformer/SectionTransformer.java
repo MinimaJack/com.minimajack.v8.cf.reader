@@ -4,9 +4,9 @@ import java.lang.reflect.ParameterizedType;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 
-import com.minimajack.v8.metadata.external.fields.V8MetaTypesSection;
-import com.minimajack.v8.metadata.external.forms.V8MetaFormsSection;
-import com.minimajack.v8.metadata.external.tabularsection.V8MetaTabularSection;
+import com.minimajack.v8.metadata.external.attributes.AttributesSection;
+import com.minimajack.v8.metadata.external.forms.FormsSection;
+import com.minimajack.v8.metadata.external.tabularsection.TabularSections;
 import com.minimajack.v8.metadata.external.template.V8MetaTamplateSection;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
@@ -34,7 +34,7 @@ public class SectionTransformer
         buffer.reset();
         if ( guid.equals( FORMS_SECTION ) )
         {
-            section = V8Reader.read( V8MetaFormsSection.class, buffer );
+            section = V8Reader.read( FormsSection.class, buffer );
         }
         else if ( guid.equals( TEMPLATE_SECTION ) )
         {
@@ -42,11 +42,11 @@ public class SectionTransformer
         }
         else if ( guid.equals( FIELD_SECTION ) )
         {
-            section = V8Reader.read( V8MetaTypesSection.class, buffer );
+            section = V8Reader.read( AttributesSection.class, buffer );
         }
         else if ( guid.equals( TABULAR_SECTION ) )
         {
-            section = V8Reader.read( V8MetaTabularSection.class, buffer );
+            section = V8Reader.read( TabularSections.class, buffer );
         }
         else
         {
