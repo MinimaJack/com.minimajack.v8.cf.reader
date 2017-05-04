@@ -6,11 +6,13 @@ import java.util.UUID;
 
 import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.type.impl.DBLinkType;
+import com.minimajack.v8.metadata.external.type.impl.DateType;
 import com.minimajack.v8.metadata.external.type.impl.StringType;
 import com.minimajack.v8.metadata.external.type.impl.UndefinedType;
 import com.minimajack.v8.metadata.external.type.impl.UniqueType;
 import com.minimajack.v8.metadata.external.unknown.UnkObject;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUUID;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUUIDUUID;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUUIDInt;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown2;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
@@ -41,6 +43,8 @@ public class TypesTransformer
 
     private static final UUID PREDEFINED_TYPE_10 = UUID.fromString( "f2eaae14-91a7-47b9-9d69-097877f41580" );
 
+    private static final UUID PREDEFINED_TYPE_11 = UUID.fromString( "5c14e26f-099b-4d37-84a6-b433d87400da" );
+    
     @Override
     public Types read( ParameterizedType type, ByteBuffer buffer )
     {
@@ -98,7 +102,11 @@ public class TypesTransformer
                 else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_10 ) )
                 {
                     V8Reader.read( V8Unknown2.class, buffer );
+                }else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_11 ) )
+                {
+                    V8Reader.read( UnkObjectIntUUIDUUID.class, buffer );
                 }
+                
                 ClassTransformer.readCloseBracket( buffer );
                 readedType = null;
                 break;
@@ -108,8 +116,11 @@ public class TypesTransformer
             case U:
                 readedType = V8Reader.read( UndefinedType.class, buffer );
                 break;
+            case D:
+                readedType = V8Reader.read( DateType.class, buffer );
+                break;
             default:
-                throw new RuntimeException( "Unknown type: " + type );
+                throw new RuntimeException( "Unknown type: " + enums );
         }
         return readedType;
     }

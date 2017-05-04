@@ -13,5 +13,12 @@ public class V8Synonym
     {
         return sinonyms.get( language );
     }
-
+    @Override
+    public String toString()
+    {
+        if(sinonyms.isEmpty()){
+            return super.toString();
+        }
+        return "Synonym " + getForLanguage( "ru" );
+    }
 }

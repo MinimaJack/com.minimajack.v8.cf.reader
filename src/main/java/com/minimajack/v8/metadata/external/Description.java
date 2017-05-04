@@ -13,6 +13,7 @@ import com.minimajack.v8.metadata.external.common.TypeValue;
 import com.minimajack.v8.metadata.external.common.V8InnerVersion;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.common.V8TypeLinkDescription;
+import com.minimajack.v8.metadata.external.type.Types;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown2;
 
 @V8Class
@@ -98,7 +99,7 @@ public class Description
      */
     public V8Synonym formatEditing;
 
-    public TypeValue unk12;
+    public Types unk12;
 
     public Integer unk13;
 
