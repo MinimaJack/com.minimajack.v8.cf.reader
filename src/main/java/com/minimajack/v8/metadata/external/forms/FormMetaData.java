@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.external.forms;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.unknown.UnkObject;
+import com.minimajack.v8.metadata.external.common.V8Synonym;
 
 @V8Class
 public class FormMetaData
@@ -10,5 +10,5 @@ public class FormMetaData
 
     public FormFullMetaData ffmd;
 
-    public UnkObject unk2;
+    public V8Synonym extendedView;
 }

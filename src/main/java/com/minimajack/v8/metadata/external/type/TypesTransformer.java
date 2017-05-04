@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.type.impl.DBLinkType;
 import com.minimajack.v8.metadata.external.type.impl.DateType;
+import com.minimajack.v8.metadata.external.type.impl.NumberType;
 import com.minimajack.v8.metadata.external.type.impl.StringType;
 import com.minimajack.v8.metadata.external.type.impl.UndefinedType;
 import com.minimajack.v8.metadata.external.type.impl.UniqueType;
@@ -44,7 +45,9 @@ public class TypesTransformer
     private static final UUID PREDEFINED_TYPE_10 = UUID.fromString( "f2eaae14-91a7-47b9-9d69-097877f41580" );
 
     private static final UUID PREDEFINED_TYPE_11 = UUID.fromString( "5c14e26f-099b-4d37-84a6-b433d87400da" );
-    
+
+    private static final UUID PREDEFINED_TYPE_12 = UUID.fromString( "4500381b-db30-4a10-9db4-990038032acf" );
+
     @Override
     public Types read( ParameterizedType type, ByteBuffer buffer )
     {
@@ -60,55 +63,59 @@ public class TypesTransformer
                 break;
             case L:
                 ClassTransformer.readBracket( buffer );
-                DBLinkType dbQuality = V8Reader.read( DBLinkType.class, buffer );
+                DBLinkType dbType = V8Reader.read( DBLinkType.class, buffer );
                 // Each data has additional info
                 V8Reader.readChar( buffer, ',' );
-                if ( dbQuality.uuid.equals( PREDEFINED_TYPE_1 ) )
+                if ( dbType.uuid.equals( PREDEFINED_TYPE_1 ) )
                 {
                     V8Reader.read( Integer.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_2 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_2 ) )
                 {
                     V8Reader.read( V8Unknown3.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_3 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_3 ) )
                 {
                     V8Reader.read( UnkObjectUUIDInt.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_4 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_4 ) )
                 {
                     V8Reader.read( UnkObject.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_5 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_5 ) )
                 {
                     V8Reader.read( UnkObjectIntUUID.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_6 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_6 ) )
                 {
                     V8Reader.read( UnkObjectUUIDInt.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_7 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_7 ) )
                 {
                     V8Reader.read( Integer.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_8 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_8 ) )
                 {
                     V8Reader.read( UnkObjectUUIDInt.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_9 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_9 ) )
                 {
                     V8Reader.read( V8Unknown2.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_10 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_10 ) )
                 {
                     V8Reader.read( V8Unknown2.class, buffer );
-                }else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_11 ) )
+                }
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_11 ) )
                 {
                     V8Reader.read( UnkObjectIntUUIDUUID.class, buffer );
                 }
-                
+                if ( dbType.uuid.equals( PREDEFINED_TYPE_12 ) )
+                {
+                    V8Reader.read( ListTypes.class, buffer );
+                }
+                readedType = dbType;
                 ClassTransformer.readCloseBracket( buffer );
-                readedType = null;
                 break;
             case B:
                 readedType = V8Reader.read( UniqueType.class, buffer );
@@ -118,6 +125,9 @@ public class TypesTransformer
                 break;
             case D:
                 readedType = V8Reader.read( DateType.class, buffer );
+                break;
+            case N:
+                readedType = V8Reader.read( NumberType.class, buffer );
                 break;
             default:
                 throw new RuntimeException( "Unknown type: " + enums );

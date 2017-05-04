@@ -115,6 +115,7 @@ public class MetadataProcessor
                 + TEMPLATES_PATH + File.separator + description.templateInnerDescription.msn.name + File.separator;
             moveToFolder( tree, templateUUID, destinationDir + METADATA_FILE );
             moveLinkedContainerToFolder( tree, templateUUID + ".0", destinationDir );
+            moveLinkedContainerToFolder( tree, templateUUID + ".1", destinationDir );
         }
     }
 
@@ -129,6 +130,7 @@ public class MetadataProcessor
 
             moveToFolder( tree, formUUID, destinationDir + METADATA_FILE );
             moveLinkedContainerToFolder( tree, formUUID + ".0", destinationDir );
+            moveLinkedContainerToFolder( tree, formUUID + ".1", destinationDir );
         }
     }
 
