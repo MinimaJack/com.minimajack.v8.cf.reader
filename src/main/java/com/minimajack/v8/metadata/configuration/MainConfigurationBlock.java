@@ -1,4 +1,5 @@
-package com.minimajack.v8.metadata.external;
+package com.minimajack.v8.metadata.configuration;
+
 
 import java.util.List;
 
@@ -6,12 +7,11 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 
 @V8Class
-public class V8MetaDataInnerType
+public class MainConfigurationBlock
 {
     public Integer version;
 
-    public V8MetaDataSimpleDescription sd;
+    public ConfigurationSimpleDescription sd;
 
     public List<MetadataSection> sections;
-
 }

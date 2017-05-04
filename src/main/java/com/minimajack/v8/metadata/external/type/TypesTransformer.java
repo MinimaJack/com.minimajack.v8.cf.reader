@@ -15,7 +15,7 @@ import com.minimajack.v8.metadata.external.unknown.UnkObject;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUUID;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUUIDUUID;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUUIDInt;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown2;
+import com.minimajack.v8.metadata.external.unknown.V8Unknown2TypeLink;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
@@ -100,11 +100,11 @@ public class TypesTransformer
                 }
                 else if ( dbType.uuid.equals( PREDEFINED_TYPE_9 ) )
                 {
-                    V8Reader.read( V8Unknown2.class, buffer );
+                    V8Reader.read( V8Unknown2TypeLink.class, buffer );
                 }
                 else if ( dbType.uuid.equals( PREDEFINED_TYPE_10 ) )
                 {
-                    V8Reader.read( V8Unknown2.class, buffer );
+                    V8Reader.read( V8Unknown2TypeLink.class, buffer );
                 }
                 else if ( dbType.uuid.equals( PREDEFINED_TYPE_11 ) )
                 {

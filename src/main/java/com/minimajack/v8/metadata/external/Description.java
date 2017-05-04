@@ -14,7 +14,7 @@ import com.minimajack.v8.metadata.external.common.V8InnerVersion;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.common.V8TypeLinkDescription;
 import com.minimajack.v8.metadata.external.type.Types;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown2;
+import com.minimajack.v8.metadata.external.unknown.V8Unknown2TypeLink;
 
 @V8Class
 public class Description
@@ -87,7 +87,7 @@ public class Description
      */
     public V8TypeLinkDescription linkDescription;
 
-    public V8Unknown2 unk10;
+    public V8Unknown2TypeLink unk10;
 
     /**
      *  Выделять отрицательное

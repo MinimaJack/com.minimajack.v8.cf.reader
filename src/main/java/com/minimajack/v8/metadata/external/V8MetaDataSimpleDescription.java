@@ -16,11 +16,11 @@ public class V8MetaDataSimpleDescription
 
     public V8MetaFullName name;
 
-    public UUID mainForm;
+    public UUID defaultForm;
 
     public String unk;
 
-    public UUID secondForm;
+    public UUID auxiliaryForm;
 
     public void afterUnmarshal()
     {
