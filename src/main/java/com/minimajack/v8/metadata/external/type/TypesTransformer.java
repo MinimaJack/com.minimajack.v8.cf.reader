@@ -21,6 +21,25 @@ import com.minimajack.v8.utility.V8Reader;
 public class TypesTransformer
     extends AbstractTransformer<Types>
 {
+    private static final UUID PREDEFINED_TYPE_1 = UUID.fromString( "98ea8e5a-b586-442b-b944-6e3447734aa7" );
+
+    private static final UUID PREDEFINED_TYPE_2 = UUID.fromString( "9ad557b1-249e-48dc-824b-3e149ecf10a6" );
+
+    private static final UUID PREDEFINED_TYPE_3 = UUID.fromString( "ad3615c5-aae6-4725-89be-91827523abd9" );
+
+    private static final UUID PREDEFINED_TYPE_4 = UUID.fromString( "87024738-fc2a-4436-ada1-df79d395c424" );
+
+    private static final UUID PREDEFINED_TYPE_5 = UUID.fromString( "157fa490-4ce9-11d4-9415-008048da11f9" );
+
+    private static final UUID PREDEFINED_TYPE_6 = UUID.fromString( "ace3fd07-11b2-477e-ab7f-36f0ea37c8dd" );
+
+    private static final UUID PREDEFINED_TYPE_7 = UUID.fromString( "12ca4003-ac70-450e-b897-37faf86bd313" );
+
+    private static final UUID PREDEFINED_TYPE_8 = UUID.fromString( "3b8e6bdd-d648-49d5-af2f-d46d84f87dd5" );
+
+    private static final UUID PREDEFINED_TYPE_9 = UUID.fromString( "b76a58b9-2a56-4e46-bb31-8e04ad9f31ae" );
+
+    private static final UUID PREDEFINED_TYPE_10 = UUID.fromString( "f2eaae14-91a7-47b9-9d69-097877f41580" );
 
     @Override
     public Types read( ParameterizedType type, ByteBuffer buffer )
@@ -38,54 +57,46 @@ public class TypesTransformer
             case L:
                 ClassTransformer.readBracket( buffer );
                 DBLinkType dbQuality = V8Reader.read( DBLinkType.class, buffer );
-                if ( dbQuality.uuid.equals( UUID.fromString( "98ea8e5a-b586-442b-b944-6e3447734aa7" ) ) )
+                // Each data has additional info
+                V8Reader.readChar( buffer, ',' );
+                if ( dbQuality.uuid.equals( PREDEFINED_TYPE_1 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( Integer.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "9ad557b1-249e-48dc-824b-3e149ecf10a6" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_2 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( V8Unknown3.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "ad3615c5-aae6-4725-89be-91827523abd9" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_3 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( UnkObjectUUIDInt.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "87024738-fc2a-4436-ada1-df79d395c424" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_4 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( UnkObject.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "157fa490-4ce9-11d4-9415-008048da11f9" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_5 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( UnkObjectIntUUID.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "ace3fd07-11b2-477e-ab7f-36f0ea37c8dd" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_6 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( UnkObjectUUIDInt.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "12ca4003-ac70-450e-b897-37faf86bd313" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_7 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( Integer.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "3b8e6bdd-d648-49d5-af2f-d46d84f87dd5" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_8 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( UnkObjectUUIDInt.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "b76a58b9-2a56-4e46-bb31-8e04ad9f31ae" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_9 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( V8Unknown2.class, buffer );
                 }
-                else if ( dbQuality.uuid.equals( UUID.fromString( "f2eaae14-91a7-47b9-9d69-097877f41580" ) ) )
+                else if ( dbQuality.uuid.equals( PREDEFINED_TYPE_10 ) )
                 {
-                    V8Reader.readChar( buffer, ',' );
                     V8Reader.read( V8Unknown2.class, buffer );
                 }
                 ClassTransformer.readCloseBracket( buffer );
