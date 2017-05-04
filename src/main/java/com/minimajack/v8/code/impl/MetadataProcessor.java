@@ -81,6 +81,7 @@ public class MetadataProcessor
         {
             if ( section instanceof FormsSection )
             {
+                logger.debug( "FormSections size: {}", ( (FormsSection) section ).forms.size() );
                 processForms( tree, (FormsSection) section );
 
             }
@@ -108,11 +109,12 @@ public class MetadataProcessor
     {
         for ( UUID template : templateSection.templates )
         {
-            TemplateDescription description = getTemplateDescription( tree, template.toString() );
+            String templateUUID = template.toString();
+            TemplateDescription description = getTemplateDescription( tree, templateUUID );
             String destinationDir = path.toString() + File.separator + Project.SRC_PATH + File.separator
                 + TEMPLATES_PATH + File.separator + description.templateInnerDescription.msn.name + File.separator;
-            moveToFolder( tree, template.toString(), destinationDir + METADATA_FILE );
-            moveLinkedContainerToFolder( tree, template.toString(), destinationDir );
+            moveToFolder( tree, templateUUID, destinationDir + METADATA_FILE );
+            moveLinkedContainerToFolder( tree, templateUUID + ".0", destinationDir );
         }
     }
 
@@ -120,12 +122,13 @@ public class MetadataProcessor
     {
         for ( UUID form : formSection.forms )
         {
-            FormDescription description = getFormDescription( tree, form.toString() );
+            String formUUID = form.toString();
+            FormDescription description = getFormDescription( tree, formUUID );
             String destinationDir = path.toString() + File.separator + Project.SRC_PATH + File.separator + FORM_PATH
                 + File.separator + description.formInnerDescription.md.ffmd.v8mn.name + File.separator;
 
-            moveToFolder( tree, form.toString(), destinationDir + METADATA_FILE );
-            moveLinkedContainerToFolder( tree, form.toString(), destinationDir );
+            moveToFolder( tree, formUUID, destinationDir + METADATA_FILE );
+            moveLinkedContainerToFolder( tree, formUUID + ".0", destinationDir );
         }
     }
 
@@ -161,26 +164,28 @@ public class MetadataProcessor
 
     private void moveLinkedContainerToFolder( ProjectTree tree, String name, String dest )
     {
-        String subName = name + ".0"; //TODO fix by metadata
-        ProjectTree pt = this.findFileByName( tree, subName );
-        if ( pt.type.equals( FileType.CONTAINER ) )
+        ProjectTree pt = this.findFileByName( tree, name );
+        if ( pt != null && pt.type != FileType.ERROR )
         {
-            Path p = pt.getRawPath();
-            String destination = path.relativize( Paths.get( dest ) ).toString();
-            for ( ProjectTree child : pt.child )
+            if ( pt.type.equals( FileType.CONTAINER ) )
             {
-                Path simplename = p.relativize( child.getRawPath() );
-                Path abolute = Paths.get( this.path.toString() + File.separator + destination + File.separator
-                    + simplename.toString() );
+                Path p = pt.getRawPath();
+                String destination = path.relativize( Paths.get( dest ) ).toString();
+                for ( ProjectTree child : pt.child )
+                {
+                    Path simplename = p.relativize( child.getRawPath() );
+                    Path abolute = Paths.get( this.path.toString() + File.separator + destination + File.separator
+                        + simplename.toString() );
 
-                moveToFolder( child, child.name, abolute.toString() );
+                    moveToFolder( child, child.name, abolute.toString() );
+                }
+                Paths.get( path.toAbsolutePath() + File.separator + pt.getRawPath().toString() ).toFile().delete();
+                pt.setPath( destination );
             }
-            Paths.get( path.toAbsolutePath() + File.separator + pt.getRawPath().toString() ).toFile().delete();
-            pt.setPath( destination );
-        }
-        else if ( pt.type.equals( FileType.FILE ) )
-        {
-            moveToFolder( tree, subName, dest + File.separator + pt.getName() );
+            else if ( pt.type.equals( FileType.FILE ) )
+            {
+                moveToFolder( tree, name, dest + File.separator + pt.getName() );
+            }
         }
     }
 
