@@ -1,9 +1,10 @@
 package com.minimajack.v8.metadata.external.common;
 
-import java.util.UUID;
+import java.util.List;
 
 import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
+import com.minimajack.v8.metadata.external.unknown.UnkUUIDInt;
 
 @V8Class
 public class V8MetaShortName
@@ -22,11 +23,6 @@ public class V8MetaShortName
     public Integer und1;
 
     @Required(required = false)
-    public Integer und2;
+    public List<UnkUUIDInt> und2;
 
-    @Required(required = false)
-    public UUID und3;
-
-    @Required(required = false)
-    public Integer und4;
 }

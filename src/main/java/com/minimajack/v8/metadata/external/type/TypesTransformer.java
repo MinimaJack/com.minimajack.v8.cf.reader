@@ -48,6 +48,10 @@ public class TypesTransformer
 
     private static final UUID PREDEFINED_TYPE_12 = UUID.fromString( "4500381b-db30-4a10-9db4-990038032acf" );
 
+    private static final UUID PREDEFINED_TYPE_13 = UUID.fromString( "1708fdaa-cbce-4289-b373-07a5a74bee91" );
+
+    private static final UUID PREDEFINED_TYPE_14 = UUID.fromString( "e4c53f94-e5f7-4a34-8c10-218bd811cae1" );
+
     @Override
     public Types read( ParameterizedType type, ByteBuffer buffer )
     {
@@ -110,10 +114,23 @@ public class TypesTransformer
                 {
                     V8Reader.read( UnkObjectIntUUIDUUID.class, buffer );
                 }
-                if ( dbType.uuid.equals( PREDEFINED_TYPE_12 ) )
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_12 ) )
                 {
                     V8Reader.read( ListTypes.class, buffer );
                 }
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_13 ) )
+                {
+                    V8Reader.read( Integer.class, buffer );
+                }
+                else if ( dbType.uuid.equals( PREDEFINED_TYPE_14 ) )
+                {
+                    V8Reader.read( Integer.class, buffer );
+                }
+                else
+                {
+                    throw new RuntimeException( "Undefined uuid: " + dbType.uuid );
+                }
+
                 readedType = dbType;
                 ClassTransformer.readCloseBracket( buffer );
                 break;
