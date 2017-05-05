@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.configuration.sections.common;
+package com.minimajack.v8.metadata.configuration.sections.main;
 
 import java.util.List;
 import java.util.UUID;
@@ -7,7 +7,10 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 
 @V8Class
-public class FuctionalOptionParams extends MetadataSection {
-	public UUID type;
-	public List<UUID> uuids;
+public class DocumentJournals
+    extends MetadataSection
+{
+    public UUID type;
+
+    public List<UUID> uuids;
 }

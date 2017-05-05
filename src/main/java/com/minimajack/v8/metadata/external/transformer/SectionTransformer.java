@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 import com.minimajack.v8.metadata.configuration.sections.common.*;
+import com.minimajack.v8.metadata.configuration.sections.main.*;
 import com.minimajack.v8.metadata.external.attributes.AttributesSection;
 import com.minimajack.v8.metadata.external.forms.FormsSection;
 import com.minimajack.v8.metadata.external.tabularsection.TabularSections;
@@ -71,36 +72,36 @@ public class SectionTransformer
 
     public static final UUID WS_REFERENCES_SECTION = UUID.fromString( "d26096fb-7a5d-4df9-af63-47d04771fa9b" );
 
-    public static final UUID Constants_SECTION = UUID.fromString( "0195e80c-b157-11d4-9435-004095e12fc7" );
+    public static final UUID CONSTANTS_SECTION = UUID.fromString( "0195e80c-b157-11d4-9435-004095e12fc7" );
 
-    public static final UUID Documents_SECTION = UUID.fromString( "061d872a-5787-460e-95ac-ed74ea3a3e84" );
+    public static final UUID DOCUMENTS_SECTION = UUID.fromString( "061d872a-5787-460e-95ac-ed74ea3a3e84" );
 
-    public static final UUID CommonForms_SECTION = UUID.fromString( "07ee8426-87f1-11d5-b99c-0050bae0a95d" );
+    public static final UUID COMMON_FORMS_SECTION = UUID.fromString( "07ee8426-87f1-11d5-b99c-0050bae0a95d" );
 
-    public static final UUID InformationRegisters_SECTION = UUID.fromString( "13134201-f60b-11d5-a3c7-0050bae0a776" );
+    public static final UUID INFORMATION_REGISTERS_SECTION = UUID.fromString( "13134201-f60b-11d5-a3c7-0050bae0a776" );
 
-    public static final UUID CommandGroups_SECTION = UUID.fromString( "1c57eabe-7349-44b3-b1de-ebfeab67b47d" );
+    public static final UUID COMMAND_GROUPS_SECTION = UUID.fromString( "1c57eabe-7349-44b3-b1de-ebfeab67b47d" );
 
-    public static final UUID CommonCommands_SECTION = UUID.fromString( "2f1a5187-fb0e-4b05-9489-dc5dd6412348" );
+    public static final UUID COMMON_COMMANDS_SECTION = UUID.fromString( "2f1a5187-fb0e-4b05-9489-dc5dd6412348" );
 
-    public static final UUID DocumentNumerators_SECTION = UUID.fromString( "36a8e346-9aaa-4af9-bdbd-83be3c177977" );
+    public static final UUID DOCUMENT_NUMERATORS_SECTION = UUID.fromString( "36a8e346-9aaa-4af9-bdbd-83be3c177977" );
 
-    public static final UUID DocumentJournals_SECTION = UUID.fromString( "4612bd75-71b7-4a5c-8cc5-2b0b65f9fa0d" );
+    public static final UUID DOCUMENT_JOURNALS_SECTION = UUID.fromString( "4612bd75-71b7-4a5c-8cc5-2b0b65f9fa0d" );
 
-    public static final UUID Reports_SECTION = UUID.fromString( "631b75a0-29e2-11d6-a3c7-0050bae0a776" );
+    public static final UUID REPORTS_SECTION = UUID.fromString( "631b75a0-29e2-11d6-a3c7-0050bae0a776" );
 
-    public static final UUID ChartsOfCharacteristicTypes_SECTION = UUID
+    public static final UUID CHARTS_OF_CHARACTERISTIC_TYPES_SECTION = UUID
         .fromString( "82a1b659-b220-4d94-a9bd-14d757b95a48" );
 
-    public static final UUID AccumulationRegisters_SECTION = UUID.fromString( "b64d9a40-1642-11d6-a3c7-0050bae0a776" );
+    public static final UUID ACCUMULATION_REGISTERS_SECTION = UUID.fromString( "b64d9a40-1642-11d6-a3c7-0050bae0a776" );
 
-    public static final UUID Sequences_SECTION = UUID.fromString( "bc587f20-35d9-11d6-a3c7-0050bae0a776" );
+    public static final UUID SEQUENCES_SECTION = UUID.fromString( "bc587f20-35d9-11d6-a3c7-0050bae0a776" );
 
-    public static final UUID DataProcessors_SECTION = UUID.fromString( "bf845118-327b-4682-b5c6-285d2a0eb296" );
+    public static final UUID DATA_PROCESSORS_SECTION = UUID.fromString( "bf845118-327b-4682-b5c6-285d2a0eb296" );
 
-    public static final UUID Catalogs_SECTION = UUID.fromString( "cf4abea6-37b2-11d4-940f-008048da11f9" );
+    public static final UUID CATALOGS_SECTION = UUID.fromString( "cf4abea6-37b2-11d4-940f-008048da11f9" );
 
-    public static final UUID Enums_SECTION = UUID.fromString( "f6a80749-5ad7-400b-8519-39dc5dff2542" );
+    public static final UUID ENUMS_SECTION = UUID.fromString( "f6a80749-5ad7-400b-8519-39dc5dff2542" );
 
     public static final UUID ChartsOfAccounts_SECTION = UUID.fromString( "238e7e88-3c5f-48b2-8a3b-81ebbecb20ed" );
 
@@ -167,7 +168,7 @@ public class SectionTransformer
         }
         else if ( guid.equals( FUNC_OPTIONS_PARAMS_SECTION ) )
         {
-            section = V8Reader.read( FuctionalOptionParams.class, buffer );
+            section = V8Reader.read( FunctionalOptionParams.class, buffer );
         }
         else if ( guid.equals( HTTP_SERVICES_SECTION ) )
         {
@@ -233,65 +234,65 @@ public class SectionTransformer
         {
             section = V8Reader.read( WSReferences.class, buffer );
         }
-        else if ( guid.equals( Constants_SECTION ) )
+        else if ( guid.equals( CONSTANTS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( Constants.class, buffer );
         }
-        else if ( guid.equals( Documents_SECTION ) )
+        else if ( guid.equals( DOCUMENTS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( Documents.class, buffer );
         }
-        else if ( guid.equals( CommonForms_SECTION ) )
+        else if ( guid.equals( COMMON_FORMS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( CommonForms.class, buffer );
         }
-        else if ( guid.equals( InformationRegisters_SECTION ) )
+        else if ( guid.equals( INFORMATION_REGISTERS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( InformationRegisters.class, buffer );
         }
-        else if ( guid.equals( CommandGroups_SECTION ) )
+        else if ( guid.equals( COMMAND_GROUPS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( CommandGroups.class, buffer );
         }
-        else if ( guid.equals( CommonCommands_SECTION ) )
+        else if ( guid.equals( COMMON_COMMANDS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( CommonCommands.class, buffer );
         }
-        else if ( guid.equals( DocumentNumerators_SECTION ) )
+        else if ( guid.equals( DOCUMENT_NUMERATORS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( DocumentNumerators.class, buffer );
         }
-        else if ( guid.equals( DocumentJournals_SECTION ) )
+        else if ( guid.equals( DOCUMENT_JOURNALS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( DocumentJournals.class, buffer );
         }
-        else if ( guid.equals( Reports_SECTION ) )
+        else if ( guid.equals( REPORTS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( Reports.class, buffer );
         }
-        else if ( guid.equals( ChartsOfCharacteristicTypes_SECTION ) )
+        else if ( guid.equals( CHARTS_OF_CHARACTERISTIC_TYPES_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( ChartsOfCharacteristicTypes.class, buffer );
         }
-        else if ( guid.equals( AccumulationRegisters_SECTION ) )
+        else if ( guid.equals( ACCUMULATION_REGISTERS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( AccumulationRegisters.class, buffer );
         }
-        else if ( guid.equals( Sequences_SECTION ) )
+        else if ( guid.equals( SEQUENCES_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( Sequences.class, buffer );
         }
-        else if ( guid.equals( DataProcessors_SECTION ) )
+        else if ( guid.equals( DATA_PROCESSORS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( DataProcessors.class, buffer );
         }
-        else if ( guid.equals( Catalogs_SECTION ) )
+        else if ( guid.equals( CATALOGS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( Catalogs.class, buffer );
         }
-        else if ( guid.equals( Enums_SECTION ) )
+        else if ( guid.equals( ENUMS_SECTION ) )
         {
-            section = V8Reader.read( Styles.class, buffer );
+            section = V8Reader.read( Enums.class, buffer );
         }
         else if ( guid.equals( ChartsOfAccounts_SECTION ) )
         {
