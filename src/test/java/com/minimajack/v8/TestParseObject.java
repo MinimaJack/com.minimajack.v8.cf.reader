@@ -59,7 +59,7 @@ public class TestParseObject
         }
 
     }
-
+/*
     @Test
     public void testMetadata()
         throws InstantiationException, IllegalAccessException, IOException
@@ -133,5 +133,5 @@ public class TestParseObject
 
         }
 
-    }
+    }*/
 }
