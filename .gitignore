@@ -9,7 +9,7 @@
 *.ear
 
 # 1C8 Files #
-*.cf
+/*.cf
 *.cfu
 *.epf
 
