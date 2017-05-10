@@ -42,6 +42,7 @@ public class MainApp {
       project.setPackedFile(fileInput);
       project.setLocation(fileOutput);
       project.setStrategy(defaultStrategy);
+      project.setForceRecompile(true);
       project.unpackProject();
     } else {
       final Project project = new Project();

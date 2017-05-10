@@ -10,6 +10,7 @@ import com.minimajack.v8.metadata.external.type.impl.UniqueType;
 import com.minimajack.v8.metadata.external.unknown.UnkObject;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown2TypeLink;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
@@ -35,8 +36,11 @@ public class TypesTransformer extends AbstractTransformer<Types> {
   private static final UUID PREDEFINED_TYPE_4 = UUID
       .fromString("87024738-fc2a-4436-ada1-df79d395c424");
 
-  private static final UUID PREDEFINED_TYPE_5 = UUID
+  private static final UUID CONFIGURATION_METADATA = UUID
       .fromString("157fa490-4ce9-11d4-9415-008048da11f9");
+
+  private static final UUID FUNCTIONAL_OPTION_VALUE = UUID
+      .fromString("3ea29ea5-66f6-4e3b-8595-d8940db766a2");
 
   private static final UUID PREDEFINED_TYPE_6 = UUID
       .fromString("ace3fd07-11b2-477e-ab7f-36f0ea37c8dd");
@@ -90,7 +94,7 @@ public class TypesTransformer extends AbstractTransformer<Types> {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (dbType.uuid.equals(PREDEFINED_TYPE_4)) {
           V8Reader.read(UnkObject.class, buffer);
-        } else if (dbType.uuid.equals(PREDEFINED_TYPE_5)) {
+        } else if (dbType.uuid.equals(CONFIGURATION_METADATA)) {
           V8Reader.read(UnkObjectIntUuid.class, buffer);
         } else if (dbType.uuid.equals(PREDEFINED_TYPE_6)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
@@ -110,7 +114,9 @@ public class TypesTransformer extends AbstractTransformer<Types> {
           V8Reader.read(Integer.class, buffer);
         } else if (dbType.uuid.equals(PREDEFINED_TYPE_14)) {
           V8Reader.read(Integer.class, buffer);
-        } else {
+        } else if (dbType.uuid.equals(FUNCTIONAL_OPTION_VALUE)) { // TODO: test value
+          V8Reader.read(UnkObjectListTypes.class, buffer);
+        }else {
           throw new RuntimeException("Undefined uuid: " + dbType.uuid);
         }
 

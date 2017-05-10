@@ -6,6 +6,7 @@ import com.minimajack.v8.metadata.external.common.V8MetaFullName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.ListArrayTypes;
 import com.minimajack.v8.metadata.external.type.ListTypes;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown2;
 
 import java.util.UUID;
@@ -98,7 +99,7 @@ public class ConfigurationSimpleDescription {
   public Integer unk37;
 
   @Required(required = false)
-  public V8Unknown2 unk38;
+  public UnkObjectListTypes unk38;
 
   @Required(required = false)
   public ListArrayTypes unk39;

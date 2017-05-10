@@ -233,7 +233,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
         }
       }
     } else {
-      logger.warn("Can't find root file {}" , this.path);
+      logger.warn("Can't find root file {}", this.path);
     }
     return tree;
   }
@@ -535,6 +535,10 @@ public class MetadataProcessor extends ProjectTreeSearcher {
               + File.separator;
 
       moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+      moveLinkedContainerToFolder(tree, path2.toString() + ".0", destinationDir
+          + path2.toString()
+          + ".0");
+      moveToFolder(tree, path2.toString() + ".1", destinationDir + path2.toString() + ".1");
 
     }
   }
@@ -1195,17 +1199,19 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void moveToFolder(final ProjectTree tree, final String name, final String dest) {
     final ProjectTree pt = findFileByName(tree, name);
-    final Path p = Paths.get(this.path.toString() + File.separator + pt.getPath());
-    final File file = p.toFile();
-    final File destName = new File(dest);
-    destName.getParentFile().mkdirs();
-    if (destName.exists() && !destName.delete()) {
-        throw new RuntimeException("Can't delete previous file");
-    }
-    if (file.renameTo(destName)) {
-      pt.setPath(this.path.relativize(destName.toPath().toAbsolutePath()).toString());
-    } else {
-      this.logger.warn("Can't move {} to {} ", p, dest);
+    if (pt != null) {
+      final Path p = Paths.get(this.path.toString() + File.separator + pt.getPath());
+      final File file = p.toFile();
+      final File destName = new File(dest);
+      destName.getParentFile().mkdirs();
+      if (destName.exists() && !destName.delete()) {
+        throw new RuntimeException("Can't delete previous file:" + dest);
+      }
+      if (file.renameTo(destName)) {
+        pt.setPath(this.path.relativize(destName.toPath().toAbsolutePath()).toString());
+      } else {
+        this.logger.warn("Can't move {} to {} ", p, dest);
+      }
     }
   }
 }
