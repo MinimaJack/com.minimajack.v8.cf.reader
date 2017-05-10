@@ -49,7 +49,7 @@ public class MainApp {
       project.setLocation(fileInput);
       project.packProject();
     }
-    logger.info("Time: {}", TimeUnit.MINUTES.toSeconds((System.currentTimeMillis() - times)));
+    logger.info("Time: {}", TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis() - times)));
   }
 
 }
