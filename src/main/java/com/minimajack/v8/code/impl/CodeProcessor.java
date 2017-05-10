@@ -12,14 +12,12 @@ public class CodeProcessor implements Processor<ProjectTree> {
   @Override
   public ProjectTree process(ProjectTree tree) {
     for (final Processor<ProjectTree> processor : this.processors) {
-      tree = processor
-          .process(tree);
+      tree = processor.process(tree);
     }
     return tree;
   }
 
   public void addProcessor(final Processor<ProjectTree> processor) {
-    this.processors
-        .add(processor);
+    this.processors.add(processor);
   }
 }
