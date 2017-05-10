@@ -111,7 +111,7 @@ public class SimpleFileContainerWriter extends ContainerWriter {
       try (FileInputStream fis = new FileInputStream(currentFile)) {
         data = ByteStreams.toByteArray(fis);
       } catch (final IOException e) {
-        e.printStackTrace();
+        throw new RuntimeException("Can't read file data" + currentFile); 
       }
     }
     if (this.packed) {

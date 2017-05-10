@@ -116,7 +116,7 @@ public class TypesTransformer extends AbstractTransformer<Types> {
           V8Reader.read(Integer.class, buffer);
         } else if (dbType.uuid.equals(FUNCTIONAL_OPTION_VALUE)) { // TODO: test value
           V8Reader.read(UnkObjectListTypes.class, buffer);
-        }else {
+        } else {
           throw new RuntimeException("Undefined uuid: " + dbType.uuid);
         }
 
