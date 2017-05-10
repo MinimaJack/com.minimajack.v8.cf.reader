@@ -54,7 +54,8 @@ public class TestParseObject {
   }
 
   @Test
-  public void testSimpleConfiguration() throws JAXBException, InterruptedException, ExecutionException {
+  public void testSimpleConfiguration() throws JAXBException, InterruptedException,
+      ExecutionException {
     Project project = new Project();
     project.setPackedFile(new File("./src/test/resources/cf.cf"));
     project.setLocation(new File("./unpacked/cf.cf/"));
@@ -70,17 +71,19 @@ public class TestParseObject {
   @Test
   public void testAll() throws InstantiationException, IllegalAccessException, IOException,
       JAXBException {
-    for (File file : new File("./unpacked/testsupp/").listFiles()) {
-      Project project = new Project();
-      project.setPackedFile(file);
-      project.setLocation(new File("./unpacked/testsupp_out/" + file.getName() + "/"));
-      project.setStrategy(Strategy.MODIFYDATE);
-      try {
-        project.unpackProject();
-      } catch (Exception e) {
-        throw new RuntimeException("ERROR WHILE UNPACK PROJECT" + file.getName());
+    File fileWIthExternalDataProcessors = new File("./unpacked/testsupp/");
+    if (fileWIthExternalDataProcessors.exists()) {
+      for (File file : fileWIthExternalDataProcessors.listFiles()) {
+        Project project = new Project();
+        project.setPackedFile(file);
+        project.setLocation(new File("./unpacked/testsupp_out/" + file.getName() + "/"));
+        project.setStrategy(Strategy.MODIFYDATE);
+        try {
+          project.unpackProject();
+        } catch (Exception e) {
+          throw new RuntimeException("ERROR WHILE UNPACK PROJECT" + file.getName());
+        }
       }
-
     }
 
   }
@@ -88,17 +91,20 @@ public class TestParseObject {
   @Test
   public void testAllErp() throws InstantiationException, IllegalAccessException, IOException,
       JAXBException {
-    for (File file : new File("./unpacked/tests/").listFiles()) {
-      Project project = new Project();
-      project.setPackedFile(file);
-      project.setLocation(new File("./unpacked/tests_out/" + file.getName() + "/"));
-      project.setStrategy(Strategy.MODIFYDATE);
-      try {
-        project.unpackProject();
-      } catch (Exception e) {
-        throw new RuntimeException("ERROR WHILE UNPACK PROJECT" + file.getName());
-      }
+    File fileWIthExternalDataProcessors = new File("./unpacked/tests/");
+    if (fileWIthExternalDataProcessors.exists()) {
+      for (File file : fileWIthExternalDataProcessors.listFiles()) {
+        Project project = new Project();
+        project.setPackedFile(file);
+        project.setLocation(new File("./unpacked/tests_out/" + file.getName() + "/"));
+        project.setStrategy(Strategy.MODIFYDATE);
+        try {
+          project.unpackProject();
+        } catch (Exception e) {
+          throw new RuntimeException("ERROR WHILE UNPACK PROJECT" + file.getName());
+        }
 
+      }
     }
 
   }
