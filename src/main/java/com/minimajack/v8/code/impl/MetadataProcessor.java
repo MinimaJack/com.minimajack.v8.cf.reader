@@ -2,6 +2,12 @@ package com.minimajack.v8.code.impl;
 
 import com.minimajack.v8.code.ProjectTreeSearcher;
 import com.minimajack.v8.metadata.V8MetaData;
+import com.minimajack.v8.metadata.configuration.sections.accounting.AccountingRegisters;
+import com.minimajack.v8.metadata.configuration.sections.accounting.ChartsOfAccounts;
+import com.minimajack.v8.metadata.configuration.sections.businessprocesses.BusinessProcesses;
+import com.minimajack.v8.metadata.configuration.sections.businessprocesses.Tasks;
+import com.minimajack.v8.metadata.configuration.sections.calculation.CalculationRegisters;
+import com.minimajack.v8.metadata.configuration.sections.calculation.ChartsOfCalculation;
 import com.minimajack.v8.metadata.configuration.sections.common.CommonAttributes;
 import com.minimajack.v8.metadata.configuration.sections.common.CommonModules;
 import com.minimajack.v8.metadata.configuration.sections.common.CommonPictures;
@@ -25,6 +31,7 @@ import com.minimajack.v8.metadata.configuration.sections.common.Subsystems;
 import com.minimajack.v8.metadata.configuration.sections.common.WebServices;
 import com.minimajack.v8.metadata.configuration.sections.common.WsReferences;
 import com.minimajack.v8.metadata.configuration.sections.common.XdtoPackages;
+import com.minimajack.v8.metadata.configuration.sections.externaldatasources.ExternalDataSources;
 import com.minimajack.v8.metadata.configuration.sections.main.AccumulationRegisters;
 import com.minimajack.v8.metadata.configuration.sections.main.Catalogs;
 import com.minimajack.v8.metadata.configuration.sections.main.ChartsOfCharacteristicTypes;
@@ -55,8 +62,12 @@ import com.minimajack.v8.metadata.external.type.TypesTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
 import com.minimajack.v8.metadata.transformer.MetaDataDescription;
 import com.minimajack.v8.metadata.transformer.V8MetaDataDescriptionTransformer;
+import com.minimajack.v8.metadata.transformer.impl.AccountingConfiguraionMetaData;
+import com.minimajack.v8.metadata.transformer.impl.BusinessProcessesConfiguraionMetaData;
+import com.minimajack.v8.metadata.transformer.impl.CalculationConfiguraionMetaData;
 import com.minimajack.v8.metadata.transformer.impl.CommonConfiguraionMetaData;
 import com.minimajack.v8.metadata.transformer.impl.ExternalDataProcessorMetaData;
+import com.minimajack.v8.metadata.transformer.impl.ExternalDataSourcesConfiguraionMetaData;
 import com.minimajack.v8.metadata.transformer.impl.MainConfiguraionMetaData;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.Project;
@@ -159,6 +170,20 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private static final String ENUMS_PATH = "Enums";
 
+  private static final String CHART_OF_ACCOUNTS_PATH = "ChartsOfAccounts";
+
+  private static final String ACCOUNTING_REGISTERS_PATH = "AccountingRegisters";
+
+  private static final String CHART_OF_CALCULATION_PATH = "ChartsOfCalculation";
+
+  private static final String CALCULATION_REGISTERS_PATH = "CalculationRegisters";
+
+  private static final String TASKS_PATH = "Tasks";
+
+  private static final String BUSINESS_PROCESSES_PATH = "BusinessProcesses";
+
+  private static final String EXTERNAL_DATA_SOURCES_PATH = "ExternalDataSources";
+
   public MetadataProcessor(final Path path) {
     super(path);
     this.path = path;
@@ -190,9 +215,176 @@ public class MetadataProcessor extends ProjectTreeSearcher {
       } else if (v8Metadata.getType()
           .equals(V8MetaDataDescriptionTransformer.MAIN_CONFIGURATION_BLOCK)) {
         processMainConfigurationMetaData(tree, (MainConfiguraionMetaData) v8Metadata);
+      } else if (v8Metadata.getType()
+          .equals(V8MetaDataDescriptionTransformer.ACCOUNTING_CONFIGURATION_BLOCK)) {
+        processAccountingConfiguraionMetaData(tree, (AccountingConfiguraionMetaData) v8Metadata);
+      } else if (v8Metadata.getType()
+          .equals(V8MetaDataDescriptionTransformer.CALCULATION_CONFIGURATION_BLOCK)) {
+        processCalculationConfiguraionMetaData(tree, (CalculationConfiguraionMetaData) v8Metadata);
+      } else if (v8Metadata.getType()
+          .equals(V8MetaDataDescriptionTransformer.BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
+        processBusinessProcessesConfiguraionMetaData(tree, (BusinessProcessesConfiguraionMetaData) v8Metadata);
+      } else if (v8Metadata.getType()
+          .equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
+        processExternalDataSourcesConfiguraionMetaData(tree, (ExternalDataSourcesConfiguraionMetaData) v8Metadata);
       }
     }
     return tree;
+  }
+
+  private void processExternalDataSourcesConfiguraionMetaData(final ProjectTree tree,
+      final ExternalDataSourcesConfiguraionMetaData v8MetaData) {
+    for (final MetadataSection section : v8MetaData.innerType.sections) {
+      if (section instanceof ExternalDataSources) {
+        processExternalDataSources(tree, (ExternalDataSources) section);
+      } else {
+        throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
+      }
+    }
+  }
+
+  private void processExternalDataSources(final ProjectTree tree,
+      final ExternalDataSources v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + EXTERNAL_DATA_SOURCES_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+    }
+  }
+
+  private void processBusinessProcessesConfiguraionMetaData(final ProjectTree tree,
+      final BusinessProcessesConfiguraionMetaData v8MetaData) {
+    for (final MetadataSection section : v8MetaData.innerType.sections) {
+      if (section instanceof Tasks) {
+        processTasks(tree, (Tasks) section);
+      } else if (section instanceof BusinessProcesses) {
+        processBusinessProcesses(tree, (BusinessProcesses) section);
+      } else {
+        throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
+      }
+    }
+  }
+
+  private void processBusinessProcesses(final ProjectTree tree,
+      final BusinessProcesses v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + BUSINESS_PROCESSES_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+    }
+  }
+
+  private void processTasks(final ProjectTree tree, final Tasks v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + TASKS_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+    }
+  }
+
+  private void processCalculationConfiguraionMetaData(final ProjectTree tree,
+      final CalculationConfiguraionMetaData v8MetaData) {
+    for (final MetadataSection section : v8MetaData.innerType.sections) {
+      if (section instanceof ChartsOfCalculation) {
+        processChartsOfCalculation(tree, (ChartsOfCalculation) section);
+      } else if (section instanceof CalculationRegisters) {
+        processCalculationRegisters(tree, (CalculationRegisters) section);
+      } else {
+        throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
+      }
+    }
+  }
+
+  private void processCalculationRegisters(final ProjectTree tree,
+      final CalculationRegisters v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + CALCULATION_REGISTERS_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+    }
+  }
+
+  private void processChartsOfCalculation(final ProjectTree tree,
+      final ChartsOfCalculation v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + CHART_OF_CALCULATION_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+    }
+  }
+
+  private void processAccountingConfiguraionMetaData(final ProjectTree tree,
+      final AccountingConfiguraionMetaData v8MetaData) {
+    for (final MetadataSection section : v8MetaData.innerType.sections) {
+      if (section instanceof ChartsOfAccounts) {
+        processChartsOfAccounts(tree, (ChartsOfAccounts) section);
+      } else if (section instanceof AccountingRegisters) {
+        processAccountingRegisters(tree, (AccountingRegisters) section);
+      } else {
+        throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
+      }
+    }
+  }
+
+  private void processAccountingRegisters(final ProjectTree tree,
+      final AccountingRegisters v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + ACCOUNTING_REGISTERS_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+
+    }
+  }
+
+  private void processChartsOfAccounts(final ProjectTree tree, final ChartsOfAccounts v8MetaData) {
+    for (final UUID path2 : v8MetaData.uuids) {
+      final String destinationDir =
+          this.path.toString()
+              + File.separator
+              + Project.SRC_PATH
+              + File.separator
+              + CHART_OF_ACCOUNTS_PATH
+              + File.separator;
+
+      moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
+
+    }
   }
 
   private void processMainConfigurationMetaData(final ProjectTree tree,

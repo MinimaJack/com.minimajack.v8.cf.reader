@@ -1,5 +1,11 @@
 package com.minimajack.v8.metadata.external.transformer;
 
+import com.minimajack.v8.metadata.configuration.sections.accounting.AccountingRegisters;
+import com.minimajack.v8.metadata.configuration.sections.accounting.ChartsOfAccounts;
+import com.minimajack.v8.metadata.configuration.sections.businessprocesses.BusinessProcesses;
+import com.minimajack.v8.metadata.configuration.sections.businessprocesses.Tasks;
+import com.minimajack.v8.metadata.configuration.sections.calculation.CalculationRegisters;
+import com.minimajack.v8.metadata.configuration.sections.calculation.ChartsOfCalculation;
 import com.minimajack.v8.metadata.configuration.sections.common.CommonAttributes;
 import com.minimajack.v8.metadata.configuration.sections.common.CommonModules;
 import com.minimajack.v8.metadata.configuration.sections.common.CommonPictures;
@@ -23,6 +29,7 @@ import com.minimajack.v8.metadata.configuration.sections.common.Subsystems;
 import com.minimajack.v8.metadata.configuration.sections.common.WebServices;
 import com.minimajack.v8.metadata.configuration.sections.common.WsReferences;
 import com.minimajack.v8.metadata.configuration.sections.common.XdtoPackages;
+import com.minimajack.v8.metadata.configuration.sections.externaldatasources.ExternalDataSources;
 import com.minimajack.v8.metadata.configuration.sections.main.AccumulationRegisters;
 import com.minimajack.v8.metadata.configuration.sections.main.Catalogs;
 import com.minimajack.v8.metadata.configuration.sections.main.ChartsOfCharacteristicTypes;
@@ -52,17 +59,20 @@ import java.util.UUID;
 
 public class SectionTransformer extends AbstractTransformer<MetadataSection> {
 
-  public static final UUID FORMS_SECTION = UUID.fromString("d5b0e5ed-256d-401c-9c36-f630cafd8a62");
+  public static final UUID FORMS_SECTION = UUID
+      .fromString("d5b0e5ed-256d-401c-9c36-f630cafd8a62");
 
   public static final UUID TEMPLATE_SECTION = UUID
       .fromString("3daea016-69b7-4ed4-9453-127911372fe6");
 
-  public static final UUID FIELD_SECTION = UUID.fromString("ec6bb5e5-b7a8-4d75-bec9-658107a699cf");
+  public static final UUID FIELD_SECTION = UUID
+      .fromString("ec6bb5e5-b7a8-4d75-bec9-658107a699cf");
 
   public static final UUID TABULAR_SECTION = UUID
       .fromString("2bcef0d1-0981-11d6-b9b8-0050bae0a95d");
 
-  public static final UUID ROLE_SECTION = UUID.fromString("09736b02-9cac-4e3f-b4f7-d3e9576ab948");
+  public static final UUID ROLE_SECTION = UUID
+      .fromString("09736b02-9cac-4e3f-b4f7-d3e9576ab948");
 
   public static final UUID COMMON_TEMPLATES_SECTION = UUID
       .fromString("0c89c792-16c3-11d5-b96b-0050bae0a95d");
@@ -91,7 +101,8 @@ public class SectionTransformer extends AbstractTransformer<MetadataSection> {
   public static final UUID INTERFACES_SECTION = UUID
       .fromString("39bddf6a-0c3c-452b-921c-d99cfa1c2f1b");
 
-  public static final UUID STYLES_SECTION = UUID.fromString("3e5404af-6ef8-4c73-ad11-91bd2dfac4c8");
+  public static final UUID STYLES_SECTION = UUID
+      .fromString("3e5404af-6ef8-4c73-ad11-91bd2dfac4c8");
 
   public static final UUID FILTER_CRITERIA_SECTION = UUID
       .fromString("3e7bfcc0-067d-11d6-a3c7-0050bae0a776");
@@ -171,26 +182,28 @@ public class SectionTransformer extends AbstractTransformer<MetadataSection> {
   public static final UUID CATALOGS_SECTION = UUID
       .fromString("cf4abea6-37b2-11d4-940f-008048da11f9");
 
-  public static final UUID ENUMS_SECTION = UUID.fromString("f6a80749-5ad7-400b-8519-39dc5dff2542");
+  public static final UUID ENUMS_SECTION = UUID
+      .fromString("f6a80749-5ad7-400b-8519-39dc5dff2542");
 
-  public static final UUID ChartsOfAccounts_SECTION = UUID
+  public static final UUID CHARTS_OF_ACCOUNTS_SECTION = UUID
       .fromString("238e7e88-3c5f-48b2-8a3b-81ebbecb20ed");
 
-  public static final UUID AccountingRegisters_SECTION = UUID
+  public static final UUID ACCOUNTING_REGISTERS_SECTION = UUID
       .fromString("2deed9b8-0056-4ffe-a473-c20a6c32a0bc");
 
-  public static final UUID ChartsOfCalculationTypes_SECTION = UUID
+  public static final UUID CHARTS_OF_CALCULATION_TYPES_SECTION = UUID
       .fromString("30b100d6-b29f-47ac-aec7-cb8ca8a54767");
 
-  public static final UUID CalculationRegisters_SECTION = UUID
+  public static final UUID CALCULATION_REGISTERS_SECTION = UUID
       .fromString("f2de87a8-64e5-45eb-a22d-b3aedab050e7");
 
-  public static final UUID Tasks_SECTION = UUID.fromString("3e63355c-1378-4953-be9b-1deb5fb6bec5");
+  public static final UUID TASKS_SECTION = UUID
+      .fromString("3e63355c-1378-4953-be9b-1deb5fb6bec5");
 
-  public static final UUID BusinessProcesses_SECTION = UUID
+  public static final UUID BUSINESS_PROCESSES_SECTION = UUID
       .fromString("fcd3404e-1523-48ce-9bc0-ecdb822684a1");
 
-  public static final UUID ExternalDataSources_SECTION = UUID
+  public static final UUID EXTERNAL_DATA_SOURCES_SECTION = UUID
       .fromString("5274d9fc-9c3a-4a71-8f5e-a0db8ab23de5");
 
   @Override
@@ -284,20 +297,20 @@ public class SectionTransformer extends AbstractTransformer<MetadataSection> {
       section = V8Reader.read(Catalogs.class, buffer);
     } else if (guid.equals(ENUMS_SECTION)) {
       section = V8Reader.read(Enums.class, buffer);
-    } else if (guid.equals(ChartsOfAccounts_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(AccountingRegisters_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(ChartsOfCalculationTypes_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(CalculationRegisters_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(Tasks_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(BusinessProcesses_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(ExternalDataSources_SECTION)) {
-      section = V8Reader.read(Styles.class, buffer);
+    } else if (guid.equals(CHARTS_OF_ACCOUNTS_SECTION)) {
+      section = V8Reader.read(ChartsOfAccounts.class, buffer);
+    } else if (guid.equals(ACCOUNTING_REGISTERS_SECTION)) {
+      section = V8Reader.read(AccountingRegisters.class, buffer);
+    } else if (guid.equals(CHARTS_OF_CALCULATION_TYPES_SECTION)) {
+      section = V8Reader.read(ChartsOfCalculation.class, buffer);
+    } else if (guid.equals(CALCULATION_REGISTERS_SECTION)) {
+      section = V8Reader.read(CalculationRegisters.class, buffer);
+    } else if (guid.equals(TASKS_SECTION)) {
+      section = V8Reader.read(Tasks.class, buffer);
+    } else if (guid.equals(BUSINESS_PROCESSES_SECTION)) {
+      section = V8Reader.read(BusinessProcesses.class, buffer);
+    } else if (guid.equals(EXTERNAL_DATA_SOURCES_SECTION)) {
+      section = V8Reader.read(ExternalDataSources.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
