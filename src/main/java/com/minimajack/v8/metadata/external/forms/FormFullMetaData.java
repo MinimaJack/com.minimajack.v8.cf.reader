@@ -6,17 +6,17 @@ import com.minimajack.v8.metadata.enums.FormType;
 import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 
 @V8Class
-public class FormFullMetaData
-{
-    public Integer version;
+public class FormFullMetaData {
 
-    public V8MetaShortName v8mn;
+  public Integer version;
 
-    public Integer unk1;
+  public V8MetaShortName v8mn;
 
-    public FormType type;
+  public Integer unk1;
 
-    @Required(required = false)
-    public UnknownFormLists unk2;
+  public FormType type;
+
+  @Required(required = false)
+  public UnknownFormLists unk2;
 
 }

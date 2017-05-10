@@ -6,14 +6,13 @@ import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 
 @V8Class
-public class NumberQualifiers
-    extends Qualifiers
-{
-    public V8Type type;
+public class NumberQualifiers extends Qualifiers {
 
-    public Integer digits;
+  public V8Type type;
 
-    public Integer fractionDigits;
+  public Integer digits;
 
-    public AllowedSign allowedSign;
+  public Integer fractionDigits;
+
+  public AllowedSign allowedSign;
 }

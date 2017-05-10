@@ -1,20 +1,20 @@
 package com.minimajack.v8.metadata.external.tabularsection.strange;
 
-import java.util.UUID;
-
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.unknown.UnkObject;
 
+import java.util.UUID;
+
 @V8Class
-public class StrObj2
-{
-    public Integer unk1;
+public class StrObj2 {
 
-    public Integer unk2;
+  public Integer unk1;
 
-    public UnkObject unk3;
+  public Integer unk2;
 
-    public UUID unk4;
+  public UnkObject unk3;
 
-    public StrObj3 unk5;
+  public UUID unk4;
+
+  public StrObj3 unk5;
 }

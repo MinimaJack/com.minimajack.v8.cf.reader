@@ -1,28 +1,28 @@
 package com.minimajack.v8.metadata.external.common;
 
-import java.util.List;
-
 import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.unknown.UnkUUIDInt;
+import com.minimajack.v8.metadata.external.unknown.UnkUuidInt;
+
+import java.util.List;
 
 @V8Class
-public class V8MetaShortName
-{
-    public Integer type;
+public class V8MetaShortName {
 
-    public V8InnerInfo sno;
+  public Integer type;
 
-    public String name;
+  public V8InnerInfo sno;
 
-    public V8Synonym synonym;
+  public String name;
 
-    public String comment;
+  public V8Synonym synonym;
 
-    @Required(required = false)
-    public Integer und1;
+  public String comment;
 
-    @Required(required = false)
-    public List<UnkUUIDInt> und2;
+  @Required(required = false)
+  public Integer und1;
+
+  @Required(required = false)
+  public List<UnkUuidInt> und2;
 
 }

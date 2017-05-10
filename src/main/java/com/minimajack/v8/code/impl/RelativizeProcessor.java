@@ -1,30 +1,26 @@
 package com.minimajack.v8.code.impl;
 
-import java.nio.file.Path;
-
 import com.minimajack.v8.code.Processor;
 import com.minimajack.v8.project.ProjectTree;
 
-public class RelativizeProcessor
-    implements Processor<ProjectTree>
-{
-    private Path path;
+import java.nio.file.Path;
 
-    public RelativizeProcessor( Path path )
-    {
-        this.path = path;
-    }
+public class RelativizeProcessor implements Processor<ProjectTree> {
 
-    @Override
-    public ProjectTree process( ProjectTree t )
-    {
-        ProjectTree current = t;
-        current.setPath( path.relativize( current.getRawPath().toAbsolutePath() ).toString() );
-        for ( ProjectTree pt : current.getChild() )
-        {
-            this.process( pt );
-        }
-        return t;
+  private final Path path;
+
+  public RelativizeProcessor(final Path path) {
+    this.path = path;
+  }
+
+  @Override
+  public ProjectTree process(final ProjectTree tree) {
+    final ProjectTree current = tree;
+    current.setPath(this.path.relativize(current.getRawPath().toAbsolutePath()).toString());
+    for (final ProjectTree pt : current.getChild()) {
+      process(pt);
     }
+    return tree;
+  }
 
 }

@@ -4,9 +4,9 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.utility.AnyData;
 
 @V8Class
-public class V8Unknown2Any
-{
-    public AnyData un1;
+public class V8Unknown2Any {
 
-    public AnyData un2;
+  public AnyData un1;
+
+  public AnyData un2;
 }

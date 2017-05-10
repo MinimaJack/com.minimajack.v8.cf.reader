@@ -6,11 +6,10 @@ import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.type.Types;
 
 @V8Class
-public class StringType
-    extends Types
-{
-    public V8Type type;
+public class StringType extends Types {
 
-    @Required(required = false)
-    public String def;
+  public V8Type type;
+
+  @Required(required = false)
+  public String def;
 }

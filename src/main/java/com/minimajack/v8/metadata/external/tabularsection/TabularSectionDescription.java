@@ -1,40 +1,41 @@
 package com.minimajack.v8.metadata.external.tabularsection;
 
-import java.util.UUID;
-
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.external.common.V8MetaFullName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.tabularsection.strange.StrangeObject;
 
+import java.util.UUID;
+
 @V8Class
-public class TabularSectionDescription
-{
-    public Integer version;
+public class TabularSectionDescription {
 
-    public UUID g1;
+  public Integer version;
 
-    public UUID g2;
+  public UUID g1;
 
-    public UUID g3;
+  public UUID g2;
 
-    public UUID g4;
+  public UUID g3;
 
-    public V8MetaFullName name;
+  public UUID g4;
 
-    /**
-     * Проверка заполнения
-     */
-    public FillChecking fillChecking;
+  public V8MetaFullName name;
 
-    /**
-     * TODO: some object need to discover
-     */
-    public StrangeObject unksyn;
+  /**
+   * Проверка заполнения.
+   */
+  public FillChecking fillChecking;
 
-    /**
-     * Подсказка
-     */
-    public V8Synonym toolTip;
+  /**
+   * Странный объект - возможно конфигурация или версии классов.
+   * TODO: some object need to discover
+   */
+  public StrangeObject unksyn;
+
+  /**
+   * Подсказка.
+   */
+  public V8Synonym toolTip;
 }

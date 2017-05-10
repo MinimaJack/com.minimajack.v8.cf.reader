@@ -2,11 +2,11 @@ package com.minimajack.v8.metadata.external.common;
 
 import java.util.List;
 
-public class V8TypeLinkDescriptionFilter
-{
-    public String filter;
+public class V8TypeLinkDescriptionFilter {
 
-    public List<V8TypeLink> links;
+  public String filter;
 
-    public Integer numberElement;
+  public List<V8TypeLink> links;
+
+  public Integer numberElement;
 }

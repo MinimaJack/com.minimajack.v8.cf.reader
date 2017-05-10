@@ -1,16 +1,16 @@
 package com.minimajack.v8.metadata.configuration;
 
-import java.util.List;
-
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 
+import java.util.List;
+
 @V8Class
-public class BusinessProcessesConfigurationBlock
-{
-    public Integer version;
+public class BusinessProcessesConfigurationBlock {
 
-    public BusinessProcessesConfigurationBlockInfo info;
+  public Integer version;
 
-    public List<MetadataSection> sections;
+  public BusinessProcessesConfigurationBlockInfo info;
+
+  public List<MetadataSection> sections;
 }

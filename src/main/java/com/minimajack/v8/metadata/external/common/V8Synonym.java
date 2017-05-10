@@ -1,26 +1,23 @@
 package com.minimajack.v8.metadata.external.common;
 
-import java.util.Map;
-
 import com.minimajack.v8.annotation.V8Class;
 
+import java.util.Map;
+
 @V8Class
-public class V8Synonym
-{
-    public Map<String, String> sinonyms;
+public class V8Synonym {
 
-    public String getForLanguage( String language )
-    {
-        return sinonyms.get( language );
-    }
+  public Map<String, String> sinonyms;
 
-    @Override
-    public String toString()
-    {
-        if ( sinonyms.isEmpty() )
-        {
-            return super.toString();
-        }
-        return "Synonym " + getForLanguage( "ru" );
+  public String getForLanguage(final String language) {
+    return this.sinonyms.get(language);
+  }
+
+  @Override
+  public String toString() {
+    if (this.sinonyms.isEmpty()) {
+      return super.toString();
     }
+    return "Synonym " + getForLanguage("ru");
+  }
 }

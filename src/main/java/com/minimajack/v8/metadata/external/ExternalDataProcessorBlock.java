@@ -1,17 +1,17 @@
 package com.minimajack.v8.metadata.external;
 
-import java.util.List;
-
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 
+import java.util.List;
+
 @V8Class
-public class ExternalDataProcessorBlock
-{
-    public Integer version;
+public class ExternalDataProcessorBlock {
 
-    public V8MetaDataSimpleDescription sd;
+  public Integer version;
 
-    public List<MetadataSection> sections;
+  public V8MetaDataSimpleDescription sd;
+
+  public List<MetadataSection> sections;
 
 }

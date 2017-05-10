@@ -1,7 +1,5 @@
 package com.minimajack.v8.metadata.external;
 
-import java.util.UUID;
-
 import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
@@ -16,107 +14,108 @@ import com.minimajack.v8.metadata.external.common.V8TypeLinkDescription;
 import com.minimajack.v8.metadata.external.type.Types;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown2TypeLink;
 
+import java.util.UUID;
+
 @V8Class
-public class Description
-{
-    public Integer version;
+public class Description {
 
-    public V8MetaFullNameDescr fullname;
+  public Integer version;
 
-    /**
-     * Режим пароля
-     */
-    public Boolean passwordMode;
+  public V8MetaFullNameDescr fullname;
 
-    /**
-     * Форматная строка
-     */
-    public V8Synonym format;
+  /**
+   * Режим пароля.
+   */
+  public Boolean passwordMode;
 
-    /**
-     * Подсказка
-     */
-    public V8Synonym tooltip;
+  /**
+   * Форматная строка.
+   */
+  public V8Synonym format;
 
-    /**
-     * Выделять отрицательные
-     */
-    public Boolean markNegatives;
+  /**
+   * Подсказка.
+   */
+  public V8Synonym tooltip;
 
-    /**
-     * Маска
-     */
-    public String mask;
+  /**
+   * Выделять отрицательные.
+   */
+  public Boolean markNegatives;
 
-    /**
-     * Многострочный режим
-     */
-    public Boolean multiLine;
+  /**
+   * Маска.
+   */
+  public String mask;
 
-    /**
-     * Минимальное значение
-     */
-    public TypeValue minValue;
+  /**
+   * Многострочный режим.
+   */
+  public Boolean multiLine;
 
-    /**
-     * Максимальное значение
-     */
-    public TypeValue maxValue;
+  /**
+   * Минимальное значение.
+   */
+  public TypeValue minValue;
 
-    /**
-     * Выбор групп и элементов
-     */
-    public FoldersAndItemsUse foldersAndItemsUse;
+  /**
+   * Максимальное значение.
+   */
+  public TypeValue maxValue;
 
-    public UUID g1;
+  /**
+   * Выбор групп и элементов.
+   */
+  public FoldersAndItemsUse foldersAndItemsUse;
 
-    /**
-     * Быстрый выбор 
-     */
-    public UseQuickChoice quickChoice;
+  public UUID g1;
 
-    /**
-     * Проверка заполнения 
-     */
-    public FillChecking fillChecking;
+  /**
+   * Быстрый выбор.
+   */
+  public UseQuickChoice quickChoice;
 
-    public V8InnerVersion innerVersion;
+  /**
+   * Проверка заполнения.
+   */
+  public FillChecking fillChecking;
 
-    /**
-     * Связь по типу
-     */
-    public V8TypeLinkDescription linkDescription;
+  public V8InnerVersion innerVersion;
 
-    public V8Unknown2TypeLink unk10;
+  /**
+   * Связь по типу.
+   */
+  public V8TypeLinkDescription linkDescription;
 
-    /**
-     *  Выделять отрицательное
-     */
-    public Boolean extendedEdit;
+  public V8Unknown2TypeLink unk10;
 
-    /**
-     * Формат редактирования
-     */
-    public V8Synonym formatEditing;
+  /**
+   * Выделять отрицательное.
+   */
+  public Boolean extendedEdit;
 
-    public Types unk12;
+  /**
+   * Формат редактирования.
+   */
+  public V8Synonym formatEditing;
 
-    public Integer unk13;
+  public Types unk12;
 
-    /**
-     * Создание при вводе
-     */
-    @Required(required = false)
-    public CreateOnInput сreateOnInput;
+  public Integer unk13;
 
-    /**
-     * Ведение истории выбора при вводе
-     */
-    @Required(required = false)
-    public ChoiceHistoryOnInput choiceHistoryOnInput;
+  /**
+   * Создание при вводе.
+   */
+  @Required(required = false)
+  public CreateOnInput createOnInput;
 
-    public void afterUnmarshal()
-    {
-        // System.out.println( formatEditing.getForLanguage( "ru" ) );
-    }
+  /**
+   * Ведение истории выбора при вводе.
+   */
+  @Required(required = false)
+  public ChoiceHistoryOnInput choiceHistoryOnInput;
+
+  public void afterUnmarshal() {
+    // System.out.println( formatEditing.getForLanguage( "ru" ) );
+  }
 }

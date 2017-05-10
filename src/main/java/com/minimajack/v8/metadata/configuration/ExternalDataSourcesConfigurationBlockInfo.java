@@ -4,9 +4,9 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.common.V8InnerInfo;
 
 @V8Class
-public class ExternalDataSourcesConfigurationBlockInfo
-{
-    public Integer version;
+public class ExternalDataSourcesConfigurationBlockInfo {
 
-    public V8InnerInfo sno;
+  public Integer version;
+
+  public V8InnerInfo sno;
 }

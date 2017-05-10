@@ -5,11 +5,11 @@ import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 import com.minimajack.v8.metadata.external.qualifier.TypeDescription;
 
 @V8Class
-public class V8MetaFullNameDescr
-{
-    public Integer type;
+public class V8MetaFullNameDescr {
 
-    public V8MetaShortName shortName;
+  public Integer type;
 
-    public TypeDescription typeDescription;
+  public V8MetaShortName shortName;
+
+  public TypeDescription typeDescription;
 }

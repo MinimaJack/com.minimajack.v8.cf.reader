@@ -1,13 +1,13 @@
 package com.minimajack.v8.metadata.external.unknown;
 
-import java.util.UUID;
-
 import com.minimajack.v8.annotation.V8Class;
 
-@V8Class
-public class UnkObjectUUIDInt
-{
-    public UUID unk1;
+import java.util.UUID;
 
-    public Integer unk2;
+@V8Class
+public class UnkObjectIntUuid {
+
+  public Integer unk1;
+
+  public UUID unk2;
 }

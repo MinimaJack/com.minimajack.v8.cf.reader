@@ -1,15 +1,15 @@
 package com.minimajack.v8.metadata.external.common;
 
-import java.util.UUID;
-
 import com.minimajack.v8.annotation.V8Class;
 
+import java.util.UUID;
+
 @V8Class
-public class V8InnerInfo
-{
-    public Integer n1;
+public class V8InnerInfo {
 
-    public Integer n2;
+  public Integer n1;
 
-    public UUID code;
+  public Integer n2;
+
+  public UUID code;
 }

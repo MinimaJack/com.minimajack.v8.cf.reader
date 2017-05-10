@@ -1,12 +1,7 @@
 package com.minimajack.v8.parser.impl;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.io.ByteStreams;
+
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.factory.CachedStreamFactory;
 import com.minimajack.v8.io.factory.impl.FileCachedStreamFactory;
@@ -15,58 +10,49 @@ import com.minimajack.v8.parser.ParserTask;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.ProjectTree;
 
-public class VirtualCachedFileParserTask
-    extends ParserTask
-{
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 6050931028538206418L;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    final transient Logger logger = LoggerFactory.getLogger( VirtualCachedFileParserTask.class );
+import java.io.IOException;
+import java.io.InputStream;
 
-    private transient CachedStreamFactory streamFactory = new FileCachedStreamFactory();
+public class VirtualCachedFileParserTask extends ParserTask {
 
-    private transient V8File file;
+  private static final long serialVersionUID = 6050931028538206418L;
 
-    public VirtualCachedFileParserTask( V8File file )
-    {
-        this.file = file;
-    }
+  final transient Logger logger = LoggerFactory.getLogger(VirtualCachedFileParserTask.class);
 
-    @Override
-    protected ProjectTree compute()
-    {
-        ProjectTree result = null;
+  private transient CachedStreamFactory streamFactory = new FileCachedStreamFactory();
 
-        try (CacheOutput fos = streamFactory.createStream( file ))
-        {
-            if ( fos.isInCache() )
-            {
-                result = new ProjectTree( fos.getPath(), FileType.FILE );
-            }
-            else
-            {
+  private transient V8File file;
 
-                try (InputStream dataStream = file.getBody().getDataStream();)
-                {
-                    ByteStreams.copy( dataStream, fos );
-                    result = new ProjectTree( fos.getPath(), FileType.FILE );
-                }
-                catch ( Exception e )
-                {
-                    logger.error( "Error while saving data to disk", e );
-                    return new ProjectTree( fos.getPath(), FileType.ERROR );
-                }
+  public VirtualCachedFileParserTask(final V8File file) {
+    this.file = file;
+  }
 
-            }
-            result.setName( file.getAttributes().getName() );
-        }
-        catch ( IOException e )
-        {
-            logger.error( "Error while creating stream", e );
+  @Override
+  protected ProjectTree compute() {
+    ProjectTree result = null;
+
+    try (CacheOutput fos = this.streamFactory.createStream(this.file)) {
+      if (fos.isInCache()) {
+        result = new ProjectTree(fos.getPath(), FileType.FILE);
+      } else {
+
+        try (InputStream dataStream = this.file.getBody().getDataStream();) {
+          ByteStreams.copy(dataStream, fos);
+          result = new ProjectTree(fos.getPath(), FileType.FILE);
+        } catch (final Exception e) {
+          this.logger.error("Error while saving data to disk", e);
+          return new ProjectTree(fos.getPath(), FileType.ERROR);
         }
 
-        return result;
+      }
+      result.setName(this.file.getAttributes().getName());
+    } catch (final IOException e) {
+      this.logger.error("Error while creating stream", e);
     }
+
+    return result;
+  }
 }

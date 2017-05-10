@@ -6,14 +6,13 @@ import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 
 @V8Class
-public class StringQualifiers
-    extends Qualifiers
-{
-    public V8Type type;
+public class StringQualifiers extends Qualifiers {
 
-    @Required(required = false)
-    public Integer required;
+  public V8Type type;
 
-    @Required(required = false)
-    public Integer q2;
+  @Required(required = false)
+  public Integer required;
+
+  @Required(required = false)
+  public Integer q2;
 }

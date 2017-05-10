@@ -4,11 +4,11 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 
 @V8Class
-public class TemplateDescriptionInner
-{
-    public Integer unk1;
+public class TemplateDescriptionInner {
 
-    public Integer templateType;
+  public Integer unk1;
 
-    public V8MetaShortName msn;
+  public Integer templateType;
+
+  public V8MetaShortName msn;
 }

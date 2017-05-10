@@ -1,16 +1,15 @@
 package com.minimajack.v8.metadata.external.qualifier.impl;
 
-import java.util.UUID;
-
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 
-@V8Class
-public class DBLinkQuality
-    extends Qualifiers
-{
-    public V8Type type;
+import java.util.UUID;
 
-    public UUID uuid;
+@V8Class
+public class DbLinkQuality extends Qualifiers {
+
+  public V8Type type;
+
+  public UUID uuid;
 }

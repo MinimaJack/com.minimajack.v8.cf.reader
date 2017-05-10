@@ -7,12 +7,11 @@ import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 
 @V8Class
-public class DateQualifiers
-    extends Qualifiers
-{
-    public V8Type type;
+public class DateQualifiers extends Qualifiers {
 
-    @Required(required = false)
-    public DateFractions date = DateFractions.ANY;
+  public V8Type type;
+
+  @Required(required = false)
+  public DateFractions date = DateFractions.ANY;
 
 }

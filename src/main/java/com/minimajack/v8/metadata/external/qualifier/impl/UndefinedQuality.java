@@ -5,9 +5,8 @@ import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 
 @V8Class
-public class UndefinedQuality
-    extends Qualifiers
-{
-    public V8Type type;
+public class UndefinedQuality extends Qualifiers {
+
+  public V8Type type;
 
 }

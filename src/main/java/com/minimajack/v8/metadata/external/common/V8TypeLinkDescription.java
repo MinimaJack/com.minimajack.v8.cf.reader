@@ -1,15 +1,15 @@
 package com.minimajack.v8.metadata.external.common;
 
-import java.util.List;
-
 import com.minimajack.v8.annotation.V8Class;
 
+import java.util.List;
+
 @V8Class
-public class V8TypeLinkDescription
-{
-    public Integer version;
+public class V8TypeLinkDescription {
 
-    public List<V8TypeLink> links;
+  public Integer version;
 
-    public Integer numberElement;
+  public List<V8TypeLink> links;
+
+  public Integer numberElement;
 }

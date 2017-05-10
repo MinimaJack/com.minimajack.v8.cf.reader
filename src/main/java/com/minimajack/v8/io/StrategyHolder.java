@@ -1,8 +1,8 @@
 package com.minimajack.v8.io;
 
-public interface StrategyHolder
-{
-    Strategy getStrategy();
+public interface StrategyHolder {
 
-    void setStrategy( Strategy strategy );
+  Strategy getStrategy();
+
+  void setStrategy(Strategy strategy);
 }

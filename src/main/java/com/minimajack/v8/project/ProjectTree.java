@@ -14,80 +14,69 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(propOrder = { "type", "name", "path", "child" })
-public class ProjectTree
-{
-    @XmlTransient
-    private Path path;
+public class ProjectTree {
 
-    @XmlElement
-    public FileType type;
+  @XmlTransient
+  private Path path;
 
-    @XmlElement
-    public String name;
+  @XmlElement
+  public FileType type;
 
-    @XmlTransient
-    public ArrayList<ProjectTree> child = new ArrayList<ProjectTree>();
+  @XmlElement
+  public String name;
 
-    public ProjectTree()
-    {
+  @XmlTransient
+  public ArrayList<ProjectTree> child = new ArrayList<ProjectTree>();
 
-    }
+  public ProjectTree() {
 
-    public ProjectTree( Path path, FileType type )
-    {
-        super();
-        this.path = path;
-        this.type = type;
-    }
+  }
 
-    @XmlElement
-    public String getPath()
-    {
-        return path.toString();
-    }
+  public ProjectTree(final Path path, final FileType type) {
+    super();
+    this.path = path;
+    this.type = type;
+  }
 
-    @XmlTransient
-    public Path getRawPath()
-    {
-        return path;
-    }
+  @XmlElement
+  public String getPath() {
+    return this.path.toString();
+  }
 
-    public void setPath( String path )
-    {
-        this.path = Paths.get( path );
-    }
+  @XmlTransient
+  public Path getRawPath() {
+    return this.path;
+  }
 
-    @XmlTransient
-    public FileType getType()
-    {
-        return type;
-    }
+  public void setPath(final String path) {
+    this.path = Paths.get(path);
+  }
 
-    public void setType( FileType type )
-    {
-        this.type = type;
-    }
+  @XmlTransient
+  public FileType getType() {
+    return this.type;
+  }
 
-    @XmlElement
-    public ArrayList<ProjectTree> getChild()
-    {
-        return child;
-    }
+  public void setType(final FileType type) {
+    this.type = type;
+  }
 
-    public void addChild( ProjectTree child )
-    {
-        this.child.add( child );
-    }
+  @XmlElement
+  public ArrayList<ProjectTree> getChild() {
+    return this.child;
+  }
 
-    @XmlTransient
-    public String getName()
-    {
-        return name;
-    }
+  public void addChild(final ProjectTree child) {
+    this.child.add(child);
+  }
 
-    public void setName( String name )
-    {
-        this.name = name;
-    }
+  @XmlTransient
+  public String getName() {
+    return this.name;
+  }
+
+  public void setName(final String name) {
+    this.name = name;
+  }
 
 }

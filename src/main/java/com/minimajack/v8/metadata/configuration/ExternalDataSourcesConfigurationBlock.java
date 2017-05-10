@@ -1,16 +1,16 @@
 package com.minimajack.v8.metadata.configuration;
 
-import java.util.List;
-
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.transformer.MetadataSection;
 
+import java.util.List;
+
 @V8Class
-public class ExternalDataSourcesConfigurationBlock
-{
-    public Integer version;
+public class ExternalDataSourcesConfigurationBlock {
 
-    public ExternalDataSourcesConfigurationBlockInfo info;
+  public Integer version;
 
-    public List<MetadataSection> sections;
+  public ExternalDataSourcesConfigurationBlockInfo info;
+
+  public List<MetadataSection> sections;
 }
