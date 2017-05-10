@@ -78,6 +78,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -202,32 +203,37 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   @Override
   public ProjectTree process(final ProjectTree tree) {
-
-    final V8Root root = V8Reader.read(V8Root.class, getFileBuffer(tree, "root"));
-    final V8MetaData md =
-        V8Reader.read(V8MetaData.class, getFileBuffer(tree, root.guid.toString()));
-    for (final MetaDataDescription v8Metadata : md.mdd) {
-      if (v8Metadata.getType().equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_PROCESSOR)) {
-        processExternalDataProcessor(tree, (ExternalDataProcessorMetaData) v8Metadata);
-      } else if (v8Metadata.getType()
-          .equals(V8MetaDataDescriptionTransformer.COMMON_CONFIGURATION_BLOCK)) {
-        processCommonConfigurationMetaData(tree, (CommonConfiguraionMetaData) v8Metadata);
-      } else if (v8Metadata.getType()
-          .equals(V8MetaDataDescriptionTransformer.MAIN_CONFIGURATION_BLOCK)) {
-        processMainConfigurationMetaData(tree, (MainConfiguraionMetaData) v8Metadata);
-      } else if (v8Metadata.getType()
-          .equals(V8MetaDataDescriptionTransformer.ACCOUNTING_CONFIGURATION_BLOCK)) {
-        processAccountingConfiguraionMetaData(tree, (AccountingConfiguraionMetaData) v8Metadata);
-      } else if (v8Metadata.getType()
-          .equals(V8MetaDataDescriptionTransformer.CALCULATION_CONFIGURATION_BLOCK)) {
-        processCalculationConfiguraionMetaData(tree, (CalculationConfiguraionMetaData) v8Metadata);
-      } else if (v8Metadata.getType()
-          .equals(V8MetaDataDescriptionTransformer.BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
-        processBusinessProcessesConfiguraionMetaData(tree, (BusinessProcessesConfiguraionMetaData) v8Metadata);
-      } else if (v8Metadata.getType()
-          .equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
-        processExternalDataSourcesConfiguraionMetaData(tree, (ExternalDataSourcesConfiguraionMetaData) v8Metadata);
+    ByteBuffer rootBuffer = getFileBuffer(tree, "root");
+    if (rootBuffer != null) {
+      final V8Root root = V8Reader.read(V8Root.class, getFileBuffer(tree, "root"));
+      final V8MetaData md =
+          V8Reader.read(V8MetaData.class, getFileBuffer(tree, root.guid.toString()));
+      for (final MetaDataDescription v8Metadata : md.mdd) {
+        if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_PROCESSOR)) {
+          processExternalDataProcessor(tree, (ExternalDataProcessorMetaData) v8Metadata);
+        } else if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.COMMON_CONFIGURATION_BLOCK)) {
+          processCommonConfigurationMetaData(tree, (CommonConfiguraionMetaData) v8Metadata);
+        } else if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.MAIN_CONFIGURATION_BLOCK)) {
+          processMainConfigurationMetaData(tree, (MainConfiguraionMetaData) v8Metadata);
+        } else if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.ACCOUNTING_CONFIGURATION_BLOCK)) {
+          processAccountingConfiguraionMetaData(tree, (AccountingConfiguraionMetaData) v8Metadata);
+        } else if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.CALCULATION_CONFIGURATION_BLOCK)) {
+          processCalculationConfiguraionMetaData(tree, (CalculationConfiguraionMetaData) v8Metadata);
+        } else if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
+          processBusinessProcessesConfiguraionMetaData(tree, (BusinessProcessesConfiguraionMetaData) v8Metadata);
+        } else if (v8Metadata.getType()
+            .equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
+          processExternalDataSourcesConfiguraionMetaData(tree, (ExternalDataSourcesConfiguraionMetaData) v8Metadata);
+        }
       }
+    } else {
+      logger.warn("Can't find root file {}" , this.path);
     }
     return tree;
   }
@@ -1193,10 +1199,8 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     final File file = p.toFile();
     final File destName = new File(dest);
     destName.getParentFile().mkdirs();
-    if (destName.exists()) {
-      if (!destName.delete()) {
+    if (destName.exists() && !destName.delete()) {
         throw new RuntimeException("Can't delete previous file");
-      }
     }
     if (file.renameTo(destName)) {
       pt.setPath(this.path.relativize(destName.toPath().toAbsolutePath()).toString());

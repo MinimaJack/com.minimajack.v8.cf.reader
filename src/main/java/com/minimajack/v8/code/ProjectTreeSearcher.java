@@ -20,14 +20,18 @@ public abstract class ProjectTreeSearcher implements Processor<ProjectTree> {
 
   public ByteBuffer getFileBuffer(final ProjectTree tree, final String name) {
     final ProjectTree file = findFileByName(tree, name);
-    ByteBuffer bb = null;
-    try (FileInputStream fis = new FileInputStream(this.path + File.separator + file.getPath())) {
-      bb = ByteBuffer.wrap(ByteStreams.toByteArray(fis));
-      bb.position(3);
-    } catch (final IOException e) {
-      e.printStackTrace();
+    if (file != null) {
+      ByteBuffer bb = null;
+      try (
+          FileInputStream fis = new FileInputStream(this.path + File.separator + file.getPath())) {
+        bb = ByteBuffer.wrap(ByteStreams.toByteArray(fis));
+        bb.position(3);
+      } catch (final IOException e) {
+        e.printStackTrace();
+      }
+      return bb;
     }
-    return bb;
+    return null;
   }
 
   public ProjectTree findFileByName(final ProjectTree tree, final String name) {

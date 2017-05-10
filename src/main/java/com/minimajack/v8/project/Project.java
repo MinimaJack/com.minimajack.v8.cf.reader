@@ -36,6 +36,8 @@ public class Project {
 
   private Strategy strategy;
 
+  private boolean forceRecompile;
+
   public boolean packProject() throws JAXBException {
 
     final JAXBContext jaxbContext = JAXBContext.newInstance(ProjectTree.class);
@@ -66,12 +68,13 @@ public class Project {
             + SRC_PATH
             + File.separator, this.strategy);
     final ProjectTree result = reader.compute();
-    final String projectFile = this.location.getPath() + File.separator + BASE_NAME;
-    this.logger.debug("Project path {}", projectFile);
+    final File projectFile = new File(this.location.getPath() + File.separator + BASE_NAME);
+    projectFile.getParentFile().mkdirs();
+    this.logger.debug("Project path {}", projectFile.getAbsoluteFile());
 
     final CodeProcessor codeProcessor = new CodeProcessor();
     codeProcessor.addProcessor(new RelativizeProcessor(this.location.toPath().toAbsolutePath()));
-    if (this.packedFile.getName().endsWith(".epf")) {
+    if (this.forceRecompile || this.packedFile.getName().endsWith(".epf")) {
       codeProcessor.addProcessor(new MetadataProcessor(this.location.toPath().toAbsolutePath()));
     }
     codeProcessor.process(result);
@@ -81,7 +84,7 @@ public class Project {
 
     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-    jaxbMarshaller.marshal(result, new File(projectFile));
+    jaxbMarshaller.marshal(result, projectFile);
     return true;
   }
 
@@ -107,5 +110,15 @@ public class Project {
 
   public void setStrategy(final Strategy strategy) {
     this.strategy = strategy;
+  }
+
+  
+  public boolean isForceRecompile() {
+    return forceRecompile;
+  }
+
+  
+  public void setForceRecompile(boolean forceRecompile) {
+    this.forceRecompile = forceRecompile;
   }
 }

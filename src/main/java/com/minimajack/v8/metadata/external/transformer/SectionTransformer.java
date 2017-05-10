@@ -65,7 +65,7 @@ public class SectionTransformer extends AbstractTransformer<MetadataSection> {
   public static final UUID TEMPLATE_SECTION = UUID
       .fromString("3daea016-69b7-4ed4-9453-127911372fe6");
 
-  public static final UUID FIELD_SECTION = UUID
+  public static final UUID ATTRIBUTES_SECTION = UUID
       .fromString("ec6bb5e5-b7a8-4d75-bec9-658107a699cf");
 
   public static final UUID TABULAR_SECTION = UUID
@@ -217,7 +217,7 @@ public class SectionTransformer extends AbstractTransformer<MetadataSection> {
       section = V8Reader.read(FormsSection.class, buffer);
     } else if (guid.equals(TEMPLATE_SECTION)) {
       section = V8Reader.read(TemplateSections.class, buffer);
-    } else if (guid.equals(FIELD_SECTION)) {
+    } else if (guid.equals(ATTRIBUTES_SECTION)) {
       section = V8Reader.read(AttributesSection.class, buffer);
     } else if (guid.equals(TABULAR_SECTION)) {
       section = V8Reader.read(TabularSections.class, buffer);
