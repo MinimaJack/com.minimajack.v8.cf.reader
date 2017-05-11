@@ -100,7 +100,7 @@ public class Description {
 
   public Types unk12;
 
-  public Integer unk13;
+  public Integer unk13; // some flag
 
   /**
    * Создание при вводе.

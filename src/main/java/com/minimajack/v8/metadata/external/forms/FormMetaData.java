@@ -6,9 +6,10 @@ import com.minimajack.v8.metadata.external.common.V8Synonym;
 @V8Class
 public class FormMetaData {
 
-  public Integer unk1;
+  public Integer version; // or list of objects
 
   public FormFullMetaData ffmd;
 
   public V8Synonym extendedView;
+  
 }

@@ -68,6 +68,9 @@ public class TypesTransformer extends AbstractTransformer<Types> {
 
   private static final UUID PREDEFINED_TYPE_14 = UUID
       .fromString("e4c53f94-e5f7-4a34-8c10-218bd811cae1");
+  
+  private static final UUID PREDEFINED_TYPE_15 = UUID
+      .fromString("1708fdaa-cbce-4289-b373-07a5a74bee91");
 
   @Override
   public Types read(final ParameterizedType type, final ByteBuffer buffer) {
@@ -116,6 +119,8 @@ public class TypesTransformer extends AbstractTransformer<Types> {
           V8Reader.read(Integer.class, buffer);
         } else if (dbType.uuid.equals(FUNCTIONAL_OPTION_VALUE)) { // TODO: test value
           V8Reader.read(UnkObjectListTypes.class, buffer);
+        } else if (dbType.uuid.equals(PREDEFINED_TYPE_15)) { // TODO: find in form description
+          V8Reader.read(Integer.class, buffer);
         } else {
           throw new RuntimeException("Undefined uuid: " + dbType.uuid);
         }

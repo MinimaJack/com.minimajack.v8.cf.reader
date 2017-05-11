@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @V8Class
-public class AttributesSection extends V8InnerClass {
+public class AttributesList extends V8InnerClass {
 
   public UUID type;
 

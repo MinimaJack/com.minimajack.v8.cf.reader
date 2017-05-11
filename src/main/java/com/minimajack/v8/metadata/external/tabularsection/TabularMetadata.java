@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.external.tabularsection;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.innerclass.attributes.AttributesSection;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesList;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ public class TabularMetadata {
 
   public TabularSectionFullDescription tabularSectionFullDescription;
 
-  public List<AttributesSection> attributes;
+  public List<AttributesList> attributes;
 }

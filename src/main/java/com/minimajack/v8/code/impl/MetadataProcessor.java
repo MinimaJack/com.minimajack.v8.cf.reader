@@ -9,7 +9,7 @@ import com.minimajack.v8.metadata.external.template.TemplateDescription;
 import com.minimajack.v8.metadata.external.type.Types;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
-import com.minimajack.v8.metadata.innerclass.attributes.AttributesSection;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesList;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingConfiguraionMetaData;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingRegisters;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.ChartsOfAccounts;
@@ -62,9 +62,9 @@ import com.minimajack.v8.metadata.innerclass.configuration.main.MainConfiguraion
 import com.minimajack.v8.metadata.innerclass.configuration.main.Reports;
 import com.minimajack.v8.metadata.innerclass.configuration.main.Sequences;
 import com.minimajack.v8.metadata.innerclass.externaldataprocessor.ExternalDataProcessorMetaData;
-import com.minimajack.v8.metadata.innerclass.forms.FormsSection;
-import com.minimajack.v8.metadata.innerclass.tabular.TabularSections;
-import com.minimajack.v8.metadata.innerclass.template.TemplateSections;
+import com.minimajack.v8.metadata.innerclass.forms.FormList;
+import com.minimajack.v8.metadata.innerclass.tabular.TabularList;
+import com.minimajack.v8.metadata.innerclass.template.TemplateList;
 import com.minimajack.v8.metadata.innerclass.transformer.InnerClassTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
 import com.minimajack.v8.project.FileType;
@@ -1076,27 +1076,27 @@ public class MetadataProcessor extends ProjectTreeSearcher {
   private void processExternalDataProcessor(final ProjectTree tree,
       final ExternalDataProcessorMetaData v8MetaData) {
     for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof FormsSection) {
-        this.logger.debug("FormSections size: {}", ((FormsSection) section).forms.size());
-        processForms(tree, (FormsSection) section);
+      if (section instanceof FormList) {
+        this.logger.debug("FormSections size: {}", ((FormList) section).forms.size());
+        processForms(tree, (FormList) section);
 
-      } else if (section instanceof TabularSections) {
+      } else if (section instanceof TabularList) {
         this.logger
-            .debug("TabularSections size: {}", ((TabularSections) section).tabularSections
+            .debug("TabularSections size: {}", ((TabularList) section).tabularSections
                 .size());
-      } else if (section instanceof TemplateSections) {
-        this.logger.debug("TemplateSection size: {}", ((TemplateSections) section).templates
+      } else if (section instanceof TemplateList) {
+        this.logger.debug("TemplateSection size: {}", ((TemplateList) section).templates
             .size());
-        processTemplates(tree, (TemplateSections) section);
-      } else if (section instanceof AttributesSection) {
-        this.logger.debug("Attributes size: {}", ((AttributesSection) section).descr.size());
+        processTemplates(tree, (TemplateList) section);
+      } else if (section instanceof AttributesList) {
+        this.logger.debug("Attributes size: {}", ((AttributesList) section).descr.size());
       } else {
         this.logger.warn("Not implement section {}", section.getClass());
       }
     }
   }
 
-  private void processTemplates(final ProjectTree tree, final TemplateSections templateSection) {
+  private void processTemplates(final ProjectTree tree, final TemplateList templateSection) {
     for (final UUID template : templateSection.templates) {
       final String templateUuid = template.toString();
       final TemplateDescription description = getTemplateDescription(tree, templateUuid);
@@ -1115,7 +1115,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     }
   }
 
-  private void processForms(final ProjectTree tree, final FormsSection formSection) {
+  private void processForms(final ProjectTree tree, final FormList formSection) {
     for (final UUID form : formSection.forms) {
       final String formUuid = form.toString();
       final FormDescription description = getFormDescription(tree, formUuid);

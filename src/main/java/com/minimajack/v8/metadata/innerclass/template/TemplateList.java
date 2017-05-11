@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 @V8Class
-public class TemplateSections extends V8InnerClass {
+public class TemplateList extends V8InnerClass {
 
   public UUID type;
 

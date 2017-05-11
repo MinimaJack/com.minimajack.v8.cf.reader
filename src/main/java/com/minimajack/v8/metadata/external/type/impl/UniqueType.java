@@ -10,4 +10,5 @@ public class UniqueType extends Types {
   public V8Type type;
 
   public Integer unk2;
+  
 }

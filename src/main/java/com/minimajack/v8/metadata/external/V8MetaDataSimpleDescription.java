@@ -8,9 +8,9 @@ import java.util.UUID;
 @V8Class
 public class V8MetaDataSimpleDescription {
 
-  public Integer type;
+  public Integer version;
 
-  public UUID g1;
+  public UUID objectUuid;
 
   public UUID g2;
 
@@ -22,5 +22,4 @@ public class V8MetaDataSimpleDescription {
 
   public UUID auxiliaryForm;
 
-  public void afterUnmarshal() {}
 }

@@ -11,4 +11,5 @@ public class V8Unknown2TypeLink {
   public Integer un1;
 
   public List<V8TypeLinkDescriptionFilter2> un2;
+  
 }

@@ -20,9 +20,9 @@ public class V8MetaShortName {
   public String comment;
 
   @Required(required = false)
-  public Integer und1;
+  public Integer und1; // if type == 1 und1 present
 
   @Required(required = false)
-  public List<UnkUuidInt> und2;
+  public List<UnkUuidInt> und2; // if type == 1 und2 present
 
 }

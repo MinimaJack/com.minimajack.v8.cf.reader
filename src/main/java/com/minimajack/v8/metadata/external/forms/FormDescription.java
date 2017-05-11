@@ -5,10 +5,10 @@ import com.minimajack.v8.annotation.V8Class;
 @V8Class
 public class FormDescription {
 
-  public Integer unk1;
+  public Integer version;
 
   public FormDescriptionInner formInnerDescription;
 
-  public Integer unk2;
+  public Integer unk2; // or list of objects
 
 }

@@ -6,9 +6,10 @@ import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 @V8Class
 public class TemplateDescriptionInner {
 
-  public Integer unk1;
+  public Integer version;
 
   public Integer templateType;
 
   public V8MetaShortName msn;
+  
 }

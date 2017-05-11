@@ -9,4 +9,5 @@ public class V8TypeLinkDescriptionFilter {
   public List<V8TypeLink> links;
 
   public Integer numberElement;
+  
 }

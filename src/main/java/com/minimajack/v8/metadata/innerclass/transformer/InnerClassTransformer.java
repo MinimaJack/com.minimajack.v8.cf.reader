@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.innerclass.transformer;
 
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
-import com.minimajack.v8.metadata.innerclass.attributes.AttributesSection;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesList;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingConfiguraionMetaData;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingRegisters;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.ChartsOfAccounts;
@@ -54,9 +54,9 @@ import com.minimajack.v8.metadata.innerclass.configuration.main.MainConfiguraion
 import com.minimajack.v8.metadata.innerclass.configuration.main.Reports;
 import com.minimajack.v8.metadata.innerclass.configuration.main.Sequences;
 import com.minimajack.v8.metadata.innerclass.externaldataprocessor.ExternalDataProcessorMetaData;
-import com.minimajack.v8.metadata.innerclass.forms.FormsSection;
-import com.minimajack.v8.metadata.innerclass.tabular.TabularSections;
-import com.minimajack.v8.metadata.innerclass.template.TemplateSections;
+import com.minimajack.v8.metadata.innerclass.forms.FormList;
+import com.minimajack.v8.metadata.innerclass.tabular.TabularList;
+import com.minimajack.v8.metadata.innerclass.template.TemplateList;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;
@@ -243,13 +243,13 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
     final UUID guid = V8Reader.read(UUID.class, buffer);
     buffer.reset();
     if (guid.equals(FORMS_SECTION)) {
-      section = V8Reader.read(FormsSection.class, buffer);
+      section = V8Reader.read(FormList.class, buffer);
     } else if (guid.equals(TEMPLATE_SECTION)) {
-      section = V8Reader.read(TemplateSections.class, buffer);
+      section = V8Reader.read(TemplateList.class, buffer);
     } else if (guid.equals(ATTRIBUTES_SECTION)) {
-      section = V8Reader.read(AttributesSection.class, buffer);
+      section = V8Reader.read(AttributesList.class, buffer);
     } else if (guid.equals(TABULAR_SECTION)) {
-      section = V8Reader.read(TabularSections.class, buffer);
+      section = V8Reader.read(TabularList.class, buffer);
     } else if (guid.equals(ROLE_SECTION)) {
       section = V8Reader.read(Roles.class, buffer);
     } else if (guid.equals(COMMON_TEMPLATES_SECTION)) {

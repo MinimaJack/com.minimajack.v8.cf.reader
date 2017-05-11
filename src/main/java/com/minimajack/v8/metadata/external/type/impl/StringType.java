@@ -1,6 +1,5 @@
 package com.minimajack.v8.metadata.external.type.impl;
 
-import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.type.Types;
@@ -10,6 +9,6 @@ public class StringType extends Types {
 
   public V8Type type;
 
-  @Required(required = false)
-  public String def;
+  public String value;
+  
 }
