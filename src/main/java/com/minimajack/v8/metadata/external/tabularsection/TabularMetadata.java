@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.external.tabularsection;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.attributes.AttributesSection;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesSection;
 
 import java.util.List;
 

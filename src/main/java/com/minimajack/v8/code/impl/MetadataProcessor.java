@@ -2,73 +2,71 @@ package com.minimajack.v8.code.impl;
 
 import com.minimajack.v8.code.ProjectTreeSearcher;
 import com.minimajack.v8.metadata.V8MetaData;
-import com.minimajack.v8.metadata.configuration.sections.accounting.AccountingRegisters;
-import com.minimajack.v8.metadata.configuration.sections.accounting.ChartsOfAccounts;
-import com.minimajack.v8.metadata.configuration.sections.businessprocesses.BusinessProcesses;
-import com.minimajack.v8.metadata.configuration.sections.businessprocesses.Tasks;
-import com.minimajack.v8.metadata.configuration.sections.calculation.CalculationRegisters;
-import com.minimajack.v8.metadata.configuration.sections.calculation.ChartsOfCalculation;
-import com.minimajack.v8.metadata.configuration.sections.common.CommonAttributes;
-import com.minimajack.v8.metadata.configuration.sections.common.CommonModules;
-import com.minimajack.v8.metadata.configuration.sections.common.CommonPictures;
-import com.minimajack.v8.metadata.configuration.sections.common.CommonTemplates;
-import com.minimajack.v8.metadata.configuration.sections.common.DefinedTypes;
-import com.minimajack.v8.metadata.configuration.sections.common.EventSubscriptions;
-import com.minimajack.v8.metadata.configuration.sections.common.ExchangePlans;
-import com.minimajack.v8.metadata.configuration.sections.common.FilterCriteria;
-import com.minimajack.v8.metadata.configuration.sections.common.FunctionalOptionParams;
-import com.minimajack.v8.metadata.configuration.sections.common.FunctionalOptions;
-import com.minimajack.v8.metadata.configuration.sections.common.HttpServices;
-import com.minimajack.v8.metadata.configuration.sections.common.Interfaces;
-import com.minimajack.v8.metadata.configuration.sections.common.Languages;
-import com.minimajack.v8.metadata.configuration.sections.common.Roles;
-import com.minimajack.v8.metadata.configuration.sections.common.ScheduledJobs;
-import com.minimajack.v8.metadata.configuration.sections.common.SessionParams;
-import com.minimajack.v8.metadata.configuration.sections.common.SettingsStorages;
-import com.minimajack.v8.metadata.configuration.sections.common.StyleItems;
-import com.minimajack.v8.metadata.configuration.sections.common.Styles;
-import com.minimajack.v8.metadata.configuration.sections.common.Subsystems;
-import com.minimajack.v8.metadata.configuration.sections.common.WebServices;
-import com.minimajack.v8.metadata.configuration.sections.common.WsReferences;
-import com.minimajack.v8.metadata.configuration.sections.common.XdtoPackages;
-import com.minimajack.v8.metadata.configuration.sections.externaldatasources.ExternalDataSources;
-import com.minimajack.v8.metadata.configuration.sections.main.AccumulationRegisters;
-import com.minimajack.v8.metadata.configuration.sections.main.Catalogs;
-import com.minimajack.v8.metadata.configuration.sections.main.ChartsOfCharacteristicTypes;
-import com.minimajack.v8.metadata.configuration.sections.main.CommandGroups;
-import com.minimajack.v8.metadata.configuration.sections.main.CommonCommands;
-import com.minimajack.v8.metadata.configuration.sections.main.CommonForms;
-import com.minimajack.v8.metadata.configuration.sections.main.Constants;
-import com.minimajack.v8.metadata.configuration.sections.main.DataProcessors;
-import com.minimajack.v8.metadata.configuration.sections.main.DocumentJournals;
-import com.minimajack.v8.metadata.configuration.sections.main.DocumentNumerators;
-import com.minimajack.v8.metadata.configuration.sections.main.Documents;
-import com.minimajack.v8.metadata.configuration.sections.main.Enums;
-import com.minimajack.v8.metadata.configuration.sections.main.InformationRegisters;
-import com.minimajack.v8.metadata.configuration.sections.main.Reports;
-import com.minimajack.v8.metadata.configuration.sections.main.Sequences;
-import com.minimajack.v8.metadata.external.attributes.AttributesSection;
 import com.minimajack.v8.metadata.external.forms.FormDescription;
-import com.minimajack.v8.metadata.external.forms.FormsSection;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
-import com.minimajack.v8.metadata.external.tabularsection.TabularSections;
 import com.minimajack.v8.metadata.external.template.TemplateDescription;
-import com.minimajack.v8.metadata.external.template.TemplateSections;
-import com.minimajack.v8.metadata.external.transformer.MetadataSection;
-import com.minimajack.v8.metadata.external.transformer.SectionTransformer;
 import com.minimajack.v8.metadata.external.type.Types;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
+import com.minimajack.v8.metadata.innerclass.V8InnerClass;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesSection;
+import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingConfiguraionMetaData;
+import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingRegisters;
+import com.minimajack.v8.metadata.innerclass.configuration.accounting.ChartsOfAccounts;
+import com.minimajack.v8.metadata.innerclass.configuration.businessprocesses.BusinessProcesses;
+import com.minimajack.v8.metadata.innerclass.configuration.businessprocesses.BusinessProcessesConfiguraionMetaData;
+import com.minimajack.v8.metadata.innerclass.configuration.businessprocesses.Tasks;
+import com.minimajack.v8.metadata.innerclass.configuration.calculation.CalculationConfiguraionMetaData;
+import com.minimajack.v8.metadata.innerclass.configuration.calculation.CalculationRegisters;
+import com.minimajack.v8.metadata.innerclass.configuration.calculation.ChartsOfCalculation;
+import com.minimajack.v8.metadata.innerclass.configuration.common.CommonAttributes;
+import com.minimajack.v8.metadata.innerclass.configuration.common.CommonConfiguraionMetaData;
+import com.minimajack.v8.metadata.innerclass.configuration.common.CommonModules;
+import com.minimajack.v8.metadata.innerclass.configuration.common.CommonPictures;
+import com.minimajack.v8.metadata.innerclass.configuration.common.CommonTemplates;
+import com.minimajack.v8.metadata.innerclass.configuration.common.DefinedTypes;
+import com.minimajack.v8.metadata.innerclass.configuration.common.EventSubscriptions;
+import com.minimajack.v8.metadata.innerclass.configuration.common.ExchangePlans;
+import com.minimajack.v8.metadata.innerclass.configuration.common.FilterCriteria;
+import com.minimajack.v8.metadata.innerclass.configuration.common.FunctionalOptionParams;
+import com.minimajack.v8.metadata.innerclass.configuration.common.FunctionalOptions;
+import com.minimajack.v8.metadata.innerclass.configuration.common.HttpServices;
+import com.minimajack.v8.metadata.innerclass.configuration.common.Interfaces;
+import com.minimajack.v8.metadata.innerclass.configuration.common.Languages;
+import com.minimajack.v8.metadata.innerclass.configuration.common.Roles;
+import com.minimajack.v8.metadata.innerclass.configuration.common.ScheduledJobs;
+import com.minimajack.v8.metadata.innerclass.configuration.common.SessionParams;
+import com.minimajack.v8.metadata.innerclass.configuration.common.SettingsStorages;
+import com.minimajack.v8.metadata.innerclass.configuration.common.StyleItems;
+import com.minimajack.v8.metadata.innerclass.configuration.common.Styles;
+import com.minimajack.v8.metadata.innerclass.configuration.common.Subsystems;
+import com.minimajack.v8.metadata.innerclass.configuration.common.WebServices;
+import com.minimajack.v8.metadata.innerclass.configuration.common.WsReferences;
+import com.minimajack.v8.metadata.innerclass.configuration.common.XdtoPackages;
+import com.minimajack.v8.metadata.innerclass.configuration.externaldatasources.ExternalDataSources;
+import com.minimajack.v8.metadata.innerclass.configuration.externaldatasources.ExternalDataSourcesConfiguraionMetaData;
+import com.minimajack.v8.metadata.innerclass.configuration.main.AccumulationRegisters;
+import com.minimajack.v8.metadata.innerclass.configuration.main.Catalogs;
+import com.minimajack.v8.metadata.innerclass.configuration.main.ChartsOfCharacteristicTypes;
+import com.minimajack.v8.metadata.innerclass.configuration.main.CommandGroups;
+import com.minimajack.v8.metadata.innerclass.configuration.main.CommonCommands;
+import com.minimajack.v8.metadata.innerclass.configuration.main.CommonForms;
+import com.minimajack.v8.metadata.innerclass.configuration.main.Constants;
+import com.minimajack.v8.metadata.innerclass.configuration.main.DataProcessors;
+import com.minimajack.v8.metadata.innerclass.configuration.main.DocumentJournals;
+import com.minimajack.v8.metadata.innerclass.configuration.main.DocumentNumerators;
+import com.minimajack.v8.metadata.innerclass.configuration.main.Documents;
+import com.minimajack.v8.metadata.innerclass.configuration.main.Enums;
+import com.minimajack.v8.metadata.innerclass.configuration.main.InformationRegisters;
+import com.minimajack.v8.metadata.innerclass.configuration.main.MainConfiguraionMetaData;
+import com.minimajack.v8.metadata.innerclass.configuration.main.Reports;
+import com.minimajack.v8.metadata.innerclass.configuration.main.Sequences;
+import com.minimajack.v8.metadata.innerclass.externaldataprocessor.ExternalDataProcessorMetaData;
+import com.minimajack.v8.metadata.innerclass.forms.FormsSection;
+import com.minimajack.v8.metadata.innerclass.tabular.TabularSections;
+import com.minimajack.v8.metadata.innerclass.template.TemplateSections;
+import com.minimajack.v8.metadata.innerclass.transformer.InnerClassTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
-import com.minimajack.v8.metadata.transformer.MetaDataDescription;
-import com.minimajack.v8.metadata.transformer.V8MetaDataDescriptionTransformer;
-import com.minimajack.v8.metadata.transformer.impl.AccountingConfiguraionMetaData;
-import com.minimajack.v8.metadata.transformer.impl.BusinessProcessesConfiguraionMetaData;
-import com.minimajack.v8.metadata.transformer.impl.CalculationConfiguraionMetaData;
-import com.minimajack.v8.metadata.transformer.impl.CommonConfiguraionMetaData;
-import com.minimajack.v8.metadata.transformer.impl.ExternalDataProcessorMetaData;
-import com.minimajack.v8.metadata.transformer.impl.ExternalDataSourcesConfiguraionMetaData;
-import com.minimajack.v8.metadata.transformer.impl.MainConfiguraionMetaData;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.project.ProjectTree;
@@ -193,9 +191,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
   {
     new V8Reader();
     V8Reader.init();
-    V8Reader.registerTransformer(MetadataSection.class, new SectionTransformer());
-    V8Reader
-        .registerTransformer(MetaDataDescription.class, new V8MetaDataDescriptionTransformer());
+    V8Reader.registerTransformer(V8InnerClass.class, new InnerClassTransformer());
     V8Reader.registerTransformer(Qualifiers.class, new QualityTransformer());
     V8Reader.registerTransformer(Types.class, new TypesTransformer());
 
@@ -208,27 +204,20 @@ public class MetadataProcessor extends ProjectTreeSearcher {
       final V8Root root = V8Reader.read(V8Root.class, getFileBuffer(tree, "root"));
       final V8MetaData md =
           V8Reader.read(V8MetaData.class, getFileBuffer(tree, root.guid.toString()));
-      for (final MetaDataDescription v8Metadata : md.mdd) {
-        if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_PROCESSOR)) {
+      for (final V8InnerClass v8Metadata : md.mdd) {
+        if (v8Metadata instanceof ExternalDataProcessorMetaData) {
           processExternalDataProcessor(tree, (ExternalDataProcessorMetaData) v8Metadata);
-        } else if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.COMMON_CONFIGURATION_BLOCK)) {
+        } else if (v8Metadata instanceof CommonConfiguraionMetaData) {
           processCommonConfigurationMetaData(tree, (CommonConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.MAIN_CONFIGURATION_BLOCK)) {
+        } else if (v8Metadata instanceof MainConfiguraionMetaData) {
           processMainConfigurationMetaData(tree, (MainConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.ACCOUNTING_CONFIGURATION_BLOCK)) {
+        } else if (v8Metadata instanceof AccountingConfiguraionMetaData) {
           processAccountingConfiguraionMetaData(tree, (AccountingConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.CALCULATION_CONFIGURATION_BLOCK)) {
+        } else if (v8Metadata instanceof CalculationConfiguraionMetaData) {
           processCalculationConfiguraionMetaData(tree, (CalculationConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
+        } else if (v8Metadata instanceof BusinessProcessesConfiguraionMetaData) {
           processBusinessProcessesConfiguraionMetaData(tree, (BusinessProcessesConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata.getType()
-            .equals(V8MetaDataDescriptionTransformer.EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
+        } else if (v8Metadata instanceof ExternalDataSourcesConfiguraionMetaData) {
           processExternalDataSourcesConfiguraionMetaData(tree, (ExternalDataSourcesConfiguraionMetaData) v8Metadata);
         }
       }
@@ -240,7 +229,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processExternalDataSourcesConfiguraionMetaData(final ProjectTree tree,
       final ExternalDataSourcesConfiguraionMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.sections) {
       if (section instanceof ExternalDataSources) {
         processExternalDataSources(tree, (ExternalDataSources) section);
       } else {
@@ -266,7 +255,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processBusinessProcessesConfiguraionMetaData(final ProjectTree tree,
       final BusinessProcessesConfiguraionMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.sections) {
       if (section instanceof Tasks) {
         processTasks(tree, (Tasks) section);
       } else if (section instanceof BusinessProcesses) {
@@ -308,7 +297,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processCalculationConfiguraionMetaData(final ProjectTree tree,
       final CalculationConfiguraionMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.sections) {
       if (section instanceof ChartsOfCalculation) {
         processChartsOfCalculation(tree, (ChartsOfCalculation) section);
       } else if (section instanceof CalculationRegisters) {
@@ -351,7 +340,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processAccountingConfiguraionMetaData(final ProjectTree tree,
       final AccountingConfiguraionMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.sections) {
       if (section instanceof ChartsOfAccounts) {
         processChartsOfAccounts(tree, (ChartsOfAccounts) section);
       } else if (section instanceof AccountingRegisters) {
@@ -395,7 +384,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processMainConfigurationMetaData(final ProjectTree tree,
       final MainConfiguraionMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.mcbi.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.mcbi.sections) {
       if (section instanceof Constants) {
         processConstants(tree, (Constants) section);
       } else if (section instanceof Documents) {
@@ -671,7 +660,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processCommonConfigurationMetaData(final ProjectTree tree,
       final CommonConfiguraionMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.sections) {
       if (section instanceof Languages) {
         processLanguages(tree, (Languages) section);
       } else if (section instanceof Subsystems) {
@@ -1086,7 +1075,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processExternalDataProcessor(final ProjectTree tree,
       final ExternalDataProcessorMetaData v8MetaData) {
-    for (final MetadataSection section : v8MetaData.innerType.sections) {
+    for (final V8InnerClass section : v8MetaData.innerType.sections) {
       if (section instanceof FormsSection) {
         this.logger.debug("FormSections size: {}", ((FormsSection) section).forms.size());
         processForms(tree, (FormsSection) section);

@@ -18,12 +18,10 @@ import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
 import com.minimajack.v8.metadata.external.tabularsection.strange.StrangeObject;
-import com.minimajack.v8.metadata.external.transformer.MetadataSection;
-import com.minimajack.v8.metadata.external.transformer.SectionTransformer;
 import com.minimajack.v8.metadata.external.type.Types;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
-import com.minimajack.v8.metadata.transformer.MetaDataDescription;
-import com.minimajack.v8.metadata.transformer.V8MetaDataDescriptionTransformer;
+import com.minimajack.v8.metadata.innerclass.V8InnerClass;
+import com.minimajack.v8.metadata.innerclass.transformer.InnerClassTransformer;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.utility.V8Reader;
 
@@ -33,9 +31,7 @@ public class TestParseObject {
   public static void initReader() {
     new V8Reader();
     V8Reader.init();
-    V8Reader.registerTransformer(MetadataSection.class, new SectionTransformer());
-    V8Reader
-        .registerTransformer(MetaDataDescription.class, new V8MetaDataDescriptionTransformer());
+    V8Reader.registerTransformer(V8InnerClass.class, new InnerClassTransformer());
     V8Reader.registerTransformer(Qualifiers.class, new QualityTransformer());
     V8Reader.registerTransformer(Types.class, new TypesTransformer());
   }
@@ -105,8 +101,9 @@ public class TestParseObject {
         }
 
       }
-    }
+ 
 
+    }
   }
 
 }

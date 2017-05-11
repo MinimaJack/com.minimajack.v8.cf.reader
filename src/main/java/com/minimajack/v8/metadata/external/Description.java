@@ -1,6 +1,5 @@
 package com.minimajack.v8.metadata.external;
 
-import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.enums.CreateOnInput;
@@ -106,16 +105,13 @@ public class Description {
   /**
    * Создание при вводе.
    */
-  @Required(required = false)
+  //@Required(required = false) TODO check better
   public CreateOnInput createOnInput;
 
   /**
    * Ведение истории выбора при вводе.
    */
-  @Required(required = false)
+  //@Required(required = false) TODO check better
   public ChoiceHistoryOnInput choiceHistoryOnInput;
 
-  public void afterUnmarshal() {
-    // System.out.println( formatEditing.getForLanguage( "ru" ) );
-  }
 }

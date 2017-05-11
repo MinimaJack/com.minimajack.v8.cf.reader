@@ -10,4 +10,5 @@ public class TemplateDescription {
   public TemplateDescriptionInner templateInnerDescription;
 
   public Integer unk2;
+
 }

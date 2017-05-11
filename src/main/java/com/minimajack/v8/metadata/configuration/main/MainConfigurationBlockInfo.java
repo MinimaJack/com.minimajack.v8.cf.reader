@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.external;
+package com.minimajack.v8.metadata.configuration.main;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
@@ -6,12 +6,11 @@ import com.minimajack.v8.metadata.innerclass.V8InnerClass;
 import java.util.List;
 
 @V8Class
-public class ExternalDataProcessorBlock {
+public class MainConfigurationBlockInfo {
 
-  public Integer version;
+  public Integer type;
 
-  public V8MetaDataSimpleDescription sd;
+  public MainConfigurationBlockInnerInfo sno;
 
   public List<V8InnerClass> sections;
-
 }
