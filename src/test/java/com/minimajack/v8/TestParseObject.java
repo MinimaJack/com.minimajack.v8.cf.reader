@@ -18,7 +18,7 @@ import com.minimajack.v8.io.Strategy;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
 import com.minimajack.v8.metadata.external.tabularsection.strange.StrangeObject;
-import com.minimajack.v8.metadata.external.type.Types;
+import com.minimajack.v8.metadata.external.type.TypeValue;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
 import com.minimajack.v8.metadata.innerclass.transformer.InnerClassTransformer;
@@ -33,7 +33,7 @@ public class TestParseObject {
     V8Reader.init();
     V8Reader.registerTransformer(V8InnerClass.class, new InnerClassTransformer());
     V8Reader.registerTransformer(Qualifiers.class, new QualityTransformer());
-    V8Reader.registerTransformer(Types.class, new TypesTransformer());
+    V8Reader.registerTransformer(TypeValue.class, new TypesTransformer());
   }
 
   @Test

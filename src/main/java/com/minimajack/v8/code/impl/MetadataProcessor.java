@@ -6,7 +6,7 @@ import com.minimajack.v8.metadata.external.forms.FormDescription;
 import com.minimajack.v8.metadata.external.qualifier.Qualifiers;
 import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
 import com.minimajack.v8.metadata.external.template.TemplateDescription;
-import com.minimajack.v8.metadata.external.type.Types;
+import com.minimajack.v8.metadata.external.type.TypeValue;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
 import com.minimajack.v8.metadata.innerclass.attributes.AttributesList;
@@ -193,7 +193,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     V8Reader.init();
     V8Reader.registerTransformer(V8InnerClass.class, new InnerClassTransformer());
     V8Reader.registerTransformer(Qualifiers.class, new QualityTransformer());
-    V8Reader.registerTransformer(Types.class, new TypesTransformer());
+    V8Reader.registerTransformer(TypeValue.class, new TypesTransformer());
 
   }
 

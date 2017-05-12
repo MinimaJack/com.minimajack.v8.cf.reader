@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.external.unknown;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.type.Types;
+import com.minimajack.v8.metadata.external.type.TypeValue;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
 public class UnkObjectListTypes {
 
   public Integer version;
-  public List<Types> unk2;
+  public List<TypeValue> unk2;
 }

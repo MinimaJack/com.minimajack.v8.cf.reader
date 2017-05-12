@@ -5,5 +5,5 @@ import com.minimajack.v8.annotation.V8Class;
 @V8Class
 public class ArrayTypes {
 
-  public Types[] types;
+  public TypeValue[] types;
 }

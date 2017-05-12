@@ -7,5 +7,5 @@ import java.util.List;
 @V8Class
 public class ListTypes {
 
-  public List<Types> types;
+  public List<TypeValue> types;
 }

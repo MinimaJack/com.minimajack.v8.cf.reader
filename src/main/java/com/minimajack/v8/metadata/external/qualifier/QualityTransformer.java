@@ -6,7 +6,7 @@ import com.minimajack.v8.metadata.external.qualifier.impl.DbLinkQuality;
 import com.minimajack.v8.metadata.external.qualifier.impl.NumberQualifiers;
 import com.minimajack.v8.metadata.external.qualifier.impl.StringQualifiers;
 import com.minimajack.v8.metadata.external.qualifier.impl.UndefinedQuality;
-import com.minimajack.v8.metadata.external.qualifier.impl.UniqueQuality;
+import com.minimajack.v8.metadata.external.qualifier.impl.BooleanQuality;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;
@@ -41,7 +41,7 @@ public class QualityTransformer extends AbstractTransformer<Qualifiers> {
         break;
       }
       case B: {
-        readedQuality = V8Reader.read(UniqueQuality.class, buffer);
+        readedQuality = V8Reader.read(BooleanQuality.class, buffer);
         break;
       }
       case U: {
