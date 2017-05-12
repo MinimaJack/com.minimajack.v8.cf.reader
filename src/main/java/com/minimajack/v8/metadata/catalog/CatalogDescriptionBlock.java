@@ -1,16 +1,12 @@
 package com.minimajack.v8.metadata.catalog;
 
-import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObject;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown2;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
 
-import java.util.List;
 import java.util.UUID;
 
 @V8Class

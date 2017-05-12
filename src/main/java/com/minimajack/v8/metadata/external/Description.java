@@ -109,7 +109,10 @@ public class Description {
    */
   public V8Synonym formatEditing;
 
-  public TypeValue unk12;
+  /**
+   * Значение заполнения.
+   */
+  public TypeValue defaultValue;
 
   public Integer unk13; // some flag
 

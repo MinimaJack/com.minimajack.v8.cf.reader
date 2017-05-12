@@ -3,7 +3,6 @@ package com.minimajack.v8.metadata.commands;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
-import com.minimajack.v8.metadata.external.unknown.UnkObject;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntNotReqUuid;
 
 @V8Class
