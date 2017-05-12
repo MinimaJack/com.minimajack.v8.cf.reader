@@ -2,10 +2,10 @@ package com.minimajack.v8.metadata.external.common;
 
 import com.minimajack.v8.metadata.external.type.TypeValue;
 
-public class V8TypeLinkDescriptionFilter2 {
+public class ChoiceParameter {
 
-  public String filter;
+  public String name;
 
-  public TypeValue links;
+  public TypeValue value;
 
 }

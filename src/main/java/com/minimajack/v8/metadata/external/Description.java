@@ -6,11 +6,11 @@ import com.minimajack.v8.metadata.enums.CreateOnInput;
 import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.enums.FoldersAndItemsUse;
 import com.minimajack.v8.metadata.enums.UseQuickChoice;
-import com.minimajack.v8.metadata.external.common.V8InnerVersion;
+import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
+import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.common.V8TypeLinkDescription;
+import com.minimajack.v8.metadata.external.common.TypeLinks;
 import com.minimajack.v8.metadata.external.type.TypeValue;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown2TypeLink;
 
 import java.util.UUID;
 
@@ -66,7 +66,10 @@ public class Description {
    */
   public FoldersAndItemsUse foldersAndItemsUse;
 
-  public UUID g1;
+  /**
+   * Форма выбора.
+   */
+  public UUID choiceForm;
 
   /**
    * Быстрый выбор.
@@ -78,14 +81,20 @@ public class Description {
    */
   public FillChecking fillChecking;
 
-  public V8InnerVersion innerVersion;
+  /**
+   * Связи параметров выбора.
+   */
+  public ChoiceParameterLinks choiceParameterLinks;
 
   /**
    * Связь по типу.
    */
-  public V8TypeLinkDescription linkDescription;
+  public TypeLinks typeLinks;
 
-  public V8Unknown2TypeLink unk10;
+  /**
+   * Параметры выбора.
+   */
+  public ChoiceParameters choiceParameters;
 
   /**
    * Выделять отрицательное.
@@ -112,5 +121,5 @@ public class Description {
    */
   //@Required(required = false) TODO check better
   public ChoiceHistoryOnInput choiceHistoryOnInput;
-
+  
 }

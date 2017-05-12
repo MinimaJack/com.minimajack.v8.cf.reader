@@ -5,9 +5,11 @@ import com.minimajack.v8.annotation.V8Class;
 import java.util.List;
 
 @V8Class
-public class V8InnerVersion {
+public class TypeLinks {
 
-  public Integer hi;
+  public Integer version;
 
-  public List<V8TypeLinkDescriptionFilter> filters;
+  public List<TypeLink> links;
+
+  public Integer numberElement;
 }

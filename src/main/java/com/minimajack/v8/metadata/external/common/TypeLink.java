@@ -5,7 +5,7 @@ import com.minimajack.v8.annotation.V8Class;
 import java.util.UUID;
 
 @V8Class
-public class V8TypeLink {
+public class TypeLink {
 
   public Integer type; // if type -8 -3 -5 then linkedField not present
 

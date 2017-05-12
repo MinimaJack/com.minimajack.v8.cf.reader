@@ -4,6 +4,8 @@ import com.minimajack.v8.metadata.enums.ApplicationUsePurpose;
 import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.enums.V8Type;
+import com.minimajack.v8.metadata.external.common.ChoiceParameters;
+import com.minimajack.v8.metadata.external.common.MetaLink;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.impl.DateType;
 import com.minimajack.v8.metadata.external.type.impl.InnerClassType;
@@ -11,11 +13,9 @@ import com.minimajack.v8.metadata.external.type.impl.NumberType;
 import com.minimajack.v8.metadata.external.type.impl.StringType;
 import com.minimajack.v8.metadata.external.type.impl.UndefinedType;
 import com.minimajack.v8.metadata.external.type.impl.BooleanType;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown2TypeLink;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
@@ -98,7 +98,7 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
         } else if (innerClass.uuid.equals(MULTILANGUAGE_STRING)) {
           V8Reader.read(V8Synonym.class, buffer);
         } else if (innerClass.uuid.equals(CONFIGURATION_METADATA)) {
-          V8Reader.read(UnkObjectIntUuid.class, buffer);
+          V8Reader.read(MetaLink.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_USE_QUICK_CHOICE)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_CHOICE_HISTORY_ON_INPUT)) {
@@ -106,9 +106,9 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
         } else if (innerClass.uuid.equals(ENUM_FULL_TEXT_SEARCH)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(CHOICE_PARAMETER_LINKS)) {
-          V8Reader.read(V8Unknown2TypeLink.class, buffer);
+          V8Reader.read(ChoiceParameters.class, buffer);
         } else if (innerClass.uuid.equals(CHOICE_PARAMETERS)) {
-          V8Reader.read(V8Unknown2TypeLink.class, buffer);
+          V8Reader.read(ChoiceParameters.class, buffer);
         } else if (innerClass.uuid.equals(PREDEFINED_TYPE_11)) {
           V8Reader.read(UnkObjectIntUuidUuid.class, buffer);
         } else if (innerClass.uuid.equals(FIXED_ARRAY)) {

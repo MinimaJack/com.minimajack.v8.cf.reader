@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.external.tabularsection.strange;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.unknown.UnkObject;
+import com.minimajack.v8.metadata.external.common.TypeLink;
 
 import java.util.UUID;
 
@@ -12,7 +12,7 @@ public class StrObj2 {
 
   public Integer unk2;
 
-  public UnkObject unk3;
+  public TypeLink unk3;
 
   public UUID unk4;
 
