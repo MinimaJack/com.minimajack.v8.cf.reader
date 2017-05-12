@@ -435,7 +435,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
     }
   }
-
+  
   private void processCatalogs(final ProjectTree tree, final Catalogs v8MetaData) {
     for (final UUID path2 : v8MetaData.uuids) {
       final String destinationDir =
@@ -445,7 +445,6 @@ public class MetadataProcessor extends ProjectTreeSearcher {
               + File.separator
               + CATALOGS_PATH
               + File.separator;
-
       moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
 
     }

@@ -1,6 +1,8 @@
 package com.minimajack.v8.metadata.external;
 
 import com.minimajack.v8.annotation.V8Class;
+import com.minimajack.v8.annotation.V8Since;
+import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.enums.CreateOnInput;
 import com.minimajack.v8.metadata.enums.FillChecking;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @V8Class
 public class Description {
 
+  @V8Version
   public Integer version;
 
   public V8MetaFullNameDescr fullname;
@@ -113,13 +116,13 @@ public class Description {
   /**
    * Создание при вводе.
    */
-  //@Required(required = false) TODO check better
+  @V8Since(version = 27)
   public CreateOnInput createOnInput;
 
   /**
    * Ведение истории выбора при вводе.
    */
-  //@Required(required = false) TODO check better
+  @V8Since(version = 27)
   public ChoiceHistoryOnInput choiceHistoryOnInput;
-  
+
 }

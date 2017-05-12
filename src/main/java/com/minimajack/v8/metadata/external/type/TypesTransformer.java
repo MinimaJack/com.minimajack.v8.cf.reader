@@ -1,9 +1,12 @@
 package com.minimajack.v8.metadata.external.type;
 
+import com.minimajack.v8.metadata.catalog.CharacteristicsDescription;
 import com.minimajack.v8.metadata.enums.ApplicationUsePurpose;
 import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.enums.FillChecking;
+import com.minimajack.v8.metadata.enums.RequiredMobileApplicationPermissions;
 import com.minimajack.v8.metadata.enums.V8Type;
+import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.MetaLink;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
@@ -13,10 +16,12 @@ import com.minimajack.v8.metadata.external.type.impl.NumberType;
 import com.minimajack.v8.metadata.external.type.impl.StringType;
 import com.minimajack.v8.metadata.external.type.impl.UndefinedType;
 import com.minimajack.v8.metadata.external.type.impl.BooleanType;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectIntNotReqUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.innerclass.collection.FixedArray;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;
@@ -71,7 +76,13 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
 
   private static final UUID ENUM_REQUIRED_MOBILE_APPLICATION_PERMISSIONS = UUID
       .fromString("e4c53f94-e5f7-4a34-8c10-218bd811cae1");
-  
+
+  private static final UUID COMPOSITE_ID = UUID
+      .fromString("60ea359f-3a6e-48bb-8e71-d2a457572918");
+
+  private static final UUID CHARACTERISTICS_DESCRIPTION = UUID
+      .fromString("fe839d42-d094-40ba-b903-75bccc21ba30");
+
   @Override
   public TypeValue read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -106,19 +117,23 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
         } else if (innerClass.uuid.equals(ENUM_FULL_TEXT_SEARCH)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(CHOICE_PARAMETER_LINKS)) {
-          V8Reader.read(ChoiceParameters.class, buffer);
+          V8Reader.read(ChoiceParameterLinks.class, buffer);
         } else if (innerClass.uuid.equals(CHOICE_PARAMETERS)) {
           V8Reader.read(ChoiceParameters.class, buffer);
         } else if (innerClass.uuid.equals(PREDEFINED_TYPE_11)) {
           V8Reader.read(UnkObjectIntUuidUuid.class, buffer);
         } else if (innerClass.uuid.equals(FIXED_ARRAY)) {
-          V8Reader.read(ListTypes.class, buffer);
+          V8Reader.read(FixedArray.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_APPLICATION_USE_PURPOSE)) {
           V8Reader.read(ApplicationUsePurpose.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_REQUIRED_MOBILE_APPLICATION_PERMISSIONS)) {
-          V8Reader.read(Integer.class, buffer);
+          V8Reader.read(RequiredMobileApplicationPermissions.class, buffer);
         } else if (innerClass.uuid.equals(FUNCTIONAL_OPTION_VALUE)) { // TODO: test value
           V8Reader.read(UnkObjectListTypes.class, buffer);
+        } else if (innerClass.uuid.equals(COMPOSITE_ID)) { // TODO: test value
+          V8Reader.read(UnkObjectIntNotReqUuid.class, buffer);
+        } else if (innerClass.uuid.equals(CHARACTERISTICS_DESCRIPTION)) { // TODO: test value
+          V8Reader.read(CharacteristicsDescription.class, buffer);
         } else {
           throw new RuntimeException("Undefined uuid: " + innerClass.uuid);
         }

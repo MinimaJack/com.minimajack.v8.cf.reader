@@ -2,6 +2,7 @@ package com.minimajack.v8.metadata.innerclass.transformer;
 
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
 import com.minimajack.v8.metadata.innerclass.attributes.AttributesList;
+import com.minimajack.v8.metadata.innerclass.commands.CommandList;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingConfiguraionMetaData;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingRegisters;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.ChartsOfAccounts;
@@ -70,14 +71,20 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID FORMS_SECTION = UUID
       .fromString("d5b0e5ed-256d-401c-9c36-f630cafd8a62");
 
+  public static final UUID FORMS = UUID.fromString("fdf816d2-1ead-11d5-b975-0050bae0a95d");
+
   public static final UUID TEMPLATE_SECTION = UUID
       .fromString("3daea016-69b7-4ed4-9453-127911372fe6");
 
   public static final UUID ATTRIBUTES_SECTION = UUID
       .fromString("ec6bb5e5-b7a8-4d75-bec9-658107a699cf");
 
+  public static final UUID ATTRIBUTES = UUID.fromString("cf4abea7-37b2-11d4-940f-008048da11f9");
+
   public static final UUID TABULAR_SECTION = UUID
       .fromString("2bcef0d1-0981-11d6-b9b8-0050bae0a95d");
+
+  public static final UUID TABULARS = UUID.fromString("932159f9-95b2-4e76-a8dd-8849fe5c5ded");
 
   public static final UUID ROLE_SECTION = UUID
       .fromString("09736b02-9cac-4e3f-b4f7-d3e9576ab948");
@@ -213,7 +220,7 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
 
   public static final UUID EXTERNAL_DATA_SOURCES_SECTION = UUID
       .fromString("5274d9fc-9c3a-4a71-8f5e-a0db8ab23de5");
-  
+
   public static final UUID EXTERNAL_DATA_PROCESSOR = UUID
       .fromString("c3831ec8-d8d5-4f93-8a22-f9bfae07327f");
 
@@ -234,6 +241,9 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
 
   public static final UUID EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK = UUID
       .fromString("e68182ea-4237-4383-967f-90c1e3370bc7");
+
+  public static final UUID COMMAND_LIST = UUID
+      .fromString("4fe87c89-9ad4-43f6-9fdb-9dc83b3879c6");
 
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
@@ -354,6 +364,14 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(BusinessProcessesConfiguraionMetaData.class, buffer);
     } else if (guid.equals(EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(ExternalDataSourcesConfiguraionMetaData.class, buffer);
+    } else if (guid.equals(COMMAND_LIST)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(TABULARS)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES)) {
+      innerClass = V8Reader.read(AttributesList.class, buffer);
+    } else if (guid.equals(FORMS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
