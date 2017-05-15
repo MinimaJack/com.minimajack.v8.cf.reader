@@ -1,10 +1,10 @@
 package com.minimajack.v8.metadata.external.tabularsection;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.external.common.V8MetaFullName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.tabularsection.strange.StrangeObject;
+import com.minimajack.v8.metadata.inner.enums.FillChecking;
 
 import java.util.UUID;
 

@@ -1,11 +1,6 @@
 package com.minimajack.v8.metadata.external.type;
 
 import com.minimajack.v8.metadata.catalog.CharacteristicsDescription;
-import com.minimajack.v8.metadata.enums.ApplicationUsePurpose;
-import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
-import com.minimajack.v8.metadata.enums.FillChecking;
-import com.minimajack.v8.metadata.enums.RequiredMobileApplicationPermissions;
-import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.MetaLink;
@@ -21,8 +16,13 @@ import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
-import com.minimajack.v8.metadata.innerclass.collection.FixedArray;
-import com.minimajack.v8.metadata.innerclass.enums.StandartPeriod;
+import com.minimajack.v8.metadata.inner.classes.collection.FixedArray;
+import com.minimajack.v8.metadata.inner.classes.enums.StandartPeriod;
+import com.minimajack.v8.metadata.inner.enums.ApplicationUsePurpose;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.FillChecking;
+import com.minimajack.v8.metadata.inner.enums.RequiredMobileApplicationPermissions;
+import com.minimajack.v8.metadata.inner.enums.V8Type;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;

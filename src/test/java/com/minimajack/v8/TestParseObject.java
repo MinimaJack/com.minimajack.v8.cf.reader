@@ -20,8 +20,8 @@ import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
 import com.minimajack.v8.metadata.external.tabularsection.strange.StrangeObject;
 import com.minimajack.v8.metadata.external.type.TypeValue;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
-import com.minimajack.v8.metadata.innerclass.V8InnerClass;
-import com.minimajack.v8.metadata.innerclass.transformer.InnerClassTransformer;
+import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
+import com.minimajack.v8.metadata.inner.classes.transformer.InnerClassTransformer;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.utility.V8Reader;
 

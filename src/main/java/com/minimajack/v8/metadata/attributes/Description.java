@@ -3,17 +3,17 @@ package com.minimajack.v8.metadata.attributes;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
-import com.minimajack.v8.metadata.enums.ChoiceHistoryOnInput;
-import com.minimajack.v8.metadata.enums.CreateOnInput;
-import com.minimajack.v8.metadata.enums.FillChecking;
-import com.minimajack.v8.metadata.enums.FoldersAndItemsUse;
-import com.minimajack.v8.metadata.enums.UseQuickChoice;
 import com.minimajack.v8.metadata.external.V8MetaFullNameDescr;
 import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.common.TypeLinks;
 import com.minimajack.v8.metadata.external.type.TypeValue;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
+import com.minimajack.v8.metadata.inner.enums.FillChecking;
+import com.minimajack.v8.metadata.inner.enums.FoldersAndItemsUse;
+import com.minimajack.v8.metadata.inner.enums.UseQuickChoice;
 
 import java.util.UUID;
 

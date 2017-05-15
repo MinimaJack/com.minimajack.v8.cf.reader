@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.external.type.impl;
 
-import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.type.TypeValue;
+import com.minimajack.v8.metadata.inner.enums.V8Type;
 
 import java.util.UUID;
 

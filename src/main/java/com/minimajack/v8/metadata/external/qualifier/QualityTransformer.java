@@ -1,12 +1,12 @@
 package com.minimajack.v8.metadata.external.qualifier;
 
-import com.minimajack.v8.metadata.enums.V8Type;
 import com.minimajack.v8.metadata.external.qualifier.impl.DateQualifiers;
 import com.minimajack.v8.metadata.external.qualifier.impl.DbLinkQuality;
 import com.minimajack.v8.metadata.external.qualifier.impl.NumberQualifiers;
 import com.minimajack.v8.metadata.external.qualifier.impl.StringQualifiers;
 import com.minimajack.v8.metadata.external.qualifier.impl.UndefinedQuality;
 import com.minimajack.v8.metadata.external.qualifier.impl.BooleanQuality;
+import com.minimajack.v8.metadata.inner.enums.V8Type;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;

@@ -1,6 +1,6 @@
 package com.minimajack.v8.metadata.external.common;
 
-import com.minimajack.v8.metadata.enums.LinkedValueChangeMode;
+import com.minimajack.v8.metadata.inner.enums.LinkedValueChangeMode;
 
 import java.util.List;
 
