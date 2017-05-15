@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.attributes.resource;
+package com.minimajack.v8.metadata.attributes.resource.accumulation;
 
 import com.minimajack.v8.annotation.V8Class;
 

@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.attributes.dimension;
+package com.minimajack.v8.metadata.attributes.dimension.accumulation;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;

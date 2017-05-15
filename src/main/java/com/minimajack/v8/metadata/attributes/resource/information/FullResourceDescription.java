@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.attributes.resource;
+package com.minimajack.v8.metadata.attributes.resource.information;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
@@ -15,5 +15,7 @@ public class FullResourceDescription {
 
   @V8Since(version = 2)
   public Integer unk;
+  @V8Since(version = 2)
+  public Integer unk2;
 
 }

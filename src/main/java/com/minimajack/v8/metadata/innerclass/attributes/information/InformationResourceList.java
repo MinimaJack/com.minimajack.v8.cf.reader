@@ -1,14 +1,14 @@
-package com.minimajack.v8.metadata.innerclass.attributes;
+package com.minimajack.v8.metadata.innerclass.attributes.information;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.attributes.resource.accumulation.ResourceDescription;
+import com.minimajack.v8.metadata.attributes.resource.information.ResourceDescription;
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
 
 import java.util.List;
 import java.util.UUID;
 
 @V8Class
-public class ResourceList extends V8InnerClass {
+public class InformationResourceList extends V8InnerClass {
 
   public UUID type;
 
