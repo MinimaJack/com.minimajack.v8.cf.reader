@@ -22,6 +22,7 @@ import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
 import com.minimajack.v8.metadata.innerclass.collection.FixedArray;
+import com.minimajack.v8.metadata.innerclass.enums.StandartPeriod;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;
@@ -83,6 +84,9 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
   private static final UUID CHARACTERISTICS_DESCRIPTION = UUID
       .fromString("fe839d42-d094-40ba-b903-75bccc21ba30");
 
+  private static final UUID STANDART_PERIOD = UUID
+      .fromString("2fdc88ec-7c9b-43cd-8ba5-873f043bdd88");
+
   @Override
   public TypeValue read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -134,6 +138,8 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
           V8Reader.read(UnkObjectIntNotReqUuid.class, buffer);
         } else if (innerClass.uuid.equals(CHARACTERISTICS_DESCRIPTION)) { // TODO: test value
           V8Reader.read(CharacteristicsDescription.class, buffer);
+        } else if (innerClass.uuid.equals(STANDART_PERIOD)) { // TODO: test value
+          V8Reader.read(StandartPeriod.class, buffer);
         } else {
           throw new RuntimeException("Undefined uuid: " + innerClass.uuid);
         }
