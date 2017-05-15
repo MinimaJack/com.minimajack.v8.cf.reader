@@ -31,7 +31,9 @@ public class EnumDescriptionBlock {
   public V8Synonym unk14;
   public V8Synonym unk15;
   public V8Synonym unk16;
+  @V8Since(version = 17)
   public PersistanceDescriptionInner unk17;
+  @V8Since(version = 19)
   public UnkPersistObject unk18;
   @V8Since(version = 20)
   public Integer unk19;
