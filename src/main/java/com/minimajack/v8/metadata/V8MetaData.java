@@ -19,5 +19,5 @@ public class V8MetaData {
 
   @Required(required = false)
   public Version version;
-  
+
 }

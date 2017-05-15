@@ -245,6 +245,18 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID COMMAND_LIST = UUID
       .fromString("4fe87c89-9ad4-43f6-9fdb-9dc83b3879c6");
 
+  public static final UUID TABULAR_DOCUMENTS = UUID
+      .fromString("21c53e09-8950-4b5e-a6a0-1054f1bbc274");
+
+  public static final UUID ATTRIBUTES_DOCUMENTS = UUID
+      .fromString("45e46cbc-3e24-4165-8b7b-cc98a6f80211");
+
+  public static final UUID COMMAND_LIST_DOCUMENTS = UUID
+      .fromString("b544fc6a-2ba3-4885-8fb2-cb289fb6d65e");
+
+  public static final UUID TEMPLATES_SECTION_DOCUMENTS = UUID
+      .fromString("fb880e93-47d7-4127-9357-a20e69c17545");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -372,6 +384,14 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(AttributesList.class, buffer);
     } else if (guid.equals(FORMS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(TABULAR_DOCUMENTS)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_DOCUMENTS)) {
+      innerClass = V8Reader.read(AttributesList.class, buffer);
+    } else if (guid.equals(COMMAND_LIST_DOCUMENTS)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(TEMPLATES_SECTION_DOCUMENTS)) {
+      innerClass = V8Reader.read(TemplateList.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
     }

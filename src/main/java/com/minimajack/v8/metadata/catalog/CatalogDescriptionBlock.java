@@ -6,6 +6,10 @@ import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.persist.CompositeIDInfo;
+import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
+import com.minimajack.v8.metadata.persist.UnkPersistObject;
+import com.minimajack.v8.metadata.persist.UnkPersistObject2;
 
 import java.util.UUID;
 
@@ -58,7 +62,7 @@ public class CatalogDescriptionBlock {
   public CompositeIDInfo compositeIDInfo;
   public Integer unk39;
   public Integer unk40;
-  public CatalogDescriptionInner catalogDescriptionInner;
+  public PersistanceDescriptionInner catalogDescriptionInner;
   public V8Synonym unk41;
   public V8Synonym unk42;
   public V8Synonym unk43;
@@ -66,11 +70,11 @@ public class CatalogDescriptionBlock {
   public V8Synonym unk45;
   public Integer unk46;
   @V8Since(version = 46)
-  public UnkCatalogObject unk47;
+  public UnkPersistObject unk47;
   @V8Since(version = 52)
   public Integer unk48;
   @V8Since(version = 52)
-  public UnkCatalogObject2 unk49;
+  public UnkPersistObject2 unk49;
   @V8Since(version = 52)
   public Integer unk50;
   @V8Since(version = 52)
