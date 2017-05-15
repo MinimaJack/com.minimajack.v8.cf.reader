@@ -1,7 +1,11 @@
 package com.minimajack.v8.metadata.innerclass.transformer;
 
 import com.minimajack.v8.metadata.innerclass.V8InnerClass;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesDocumentList;
 import com.minimajack.v8.metadata.innerclass.attributes.AttributesList;
+import com.minimajack.v8.metadata.innerclass.attributes.AttributesRegistersList;
+import com.minimajack.v8.metadata.innerclass.attributes.DimensionList;
+import com.minimajack.v8.metadata.innerclass.attributes.ResourceList;
 import com.minimajack.v8.metadata.innerclass.commands.CommandList;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingConfiguraionMetaData;
 import com.minimajack.v8.metadata.innerclass.configuration.accounting.AccountingRegisters;
@@ -257,6 +261,21 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID TEMPLATES_SECTION_DOCUMENTS = UUID
       .fromString("fb880e93-47d7-4127-9357-a20e69c17545");
 
+  public static final UUID UNK_REGISTERS = UUID
+      .fromString("99f328af-a77f-4572-a2d8-80ed20c81890");
+
+  public static final UUID RESOURCE_REGISTERS = UUID
+      .fromString("b64d9a41-1642-11d6-a3c7-0050bae0a776");
+
+  public static final UUID DIMENSION_REGISTERS = UUID
+      .fromString("b64d9a42-1642-11d6-a3c7-0050bae0a776");
+
+  public static final UUID ATTRIBUTES_REGISTERS = UUID
+      .fromString("b64d9a43-1642-11d6-a3c7-0050bae0a776");
+
+  public static final UUID FORMS_REGISTERS = UUID
+      .fromString("b64d9a44-1642-11d6-a3c7-0050bae0a776");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -387,16 +406,25 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
     } else if (guid.equals(TABULAR_DOCUMENTS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
     } else if (guid.equals(ATTRIBUTES_DOCUMENTS)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
+      innerClass = V8Reader.read(AttributesDocumentList.class, buffer);
     } else if (guid.equals(COMMAND_LIST_DOCUMENTS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
     } else if (guid.equals(TEMPLATES_SECTION_DOCUMENTS)) {
       innerClass = V8Reader.read(TemplateList.class, buffer);
+    } else if (guid.equals(UNK_REGISTERS)) { // may be aggregates
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(RESOURCE_REGISTERS)) {
+      innerClass = V8Reader.read(ResourceList.class, buffer);
+    } else if (guid.equals(DIMENSION_REGISTERS)) {
+      innerClass = V8Reader.read(DimensionList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_REGISTERS)) {
+      innerClass = V8Reader.read(AttributesRegistersList.class, buffer);
+    } else if (guid.equals(FORMS_REGISTERS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
     return innerClass;
   }
-
 }

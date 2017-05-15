@@ -22,7 +22,7 @@ public class MainApp {
 
     Strategy defaultStrategy = Strategy.MODIFYDATE;
 
-    if (args.length < 2 || args.length > STRATEGY_PARAM) {
+    if ((args.length < 2) || (args.length > STRATEGY_PARAM)) {
       logger.info("Usage %file% %path%");
       return;
     }
@@ -50,7 +50,8 @@ public class MainApp {
       project.setLocation(fileInput);
       project.packProject();
     }
-    logger.info("Time: {}", TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis() - times)));
+    logger
+        .info("Time: {}", TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis() - times)));
   }
 
 }

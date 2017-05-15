@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.external;
+package com.minimajack.v8.metadata.attributes.attributedocument;
 
 import com.minimajack.v8.annotation.V8Class;
 

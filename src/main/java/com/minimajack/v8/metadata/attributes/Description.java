@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.external;
+package com.minimajack.v8.metadata.attributes;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
@@ -8,6 +8,7 @@ import com.minimajack.v8.metadata.enums.CreateOnInput;
 import com.minimajack.v8.metadata.enums.FillChecking;
 import com.minimajack.v8.metadata.enums.FoldersAndItemsUse;
 import com.minimajack.v8.metadata.enums.UseQuickChoice;
+import com.minimajack.v8.metadata.external.V8MetaFullNameDescr;
 import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.V8Synonym;

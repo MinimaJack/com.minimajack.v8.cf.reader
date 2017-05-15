@@ -1,9 +1,9 @@
-package com.minimajack.v8.metadata.external;
+package com.minimajack.v8.metadata.attributes.attributeregister;
 
-import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
+import com.minimajack.v8.metadata.attributes.Description;
 
 @V8Class
 public class FullDescription {
@@ -19,8 +19,9 @@ public class FullDescription {
   @V8Since(version = 3)
   public Integer unk2;
 
-  @V8Since(version = 3, removed = 6)
-  @Required(required=false)
+  @V8Since(version = 6)
   public Integer unk3;
-
+  
+  @V8Since(version = 6)
+  public Integer unk4;
 }
