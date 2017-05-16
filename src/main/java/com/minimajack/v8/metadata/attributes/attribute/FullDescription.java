@@ -14,10 +14,10 @@ public class FullDescription {
 
   public Description descr;
 
-  @V8Since(version = 3)
+  @V8Since(version = 1)
   public Integer unk;
 
-  @V8Since(version = 3)
+  @V8Since(version = 1)
   public Integer unk2;
 
   @V8Since(version = 3, removed=6)

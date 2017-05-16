@@ -313,8 +313,20 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID UNK1_ENUM = UUID.fromString("33f2e54b-37ce-4a7a-a569-b648d7aa4634");
 
   public static final UUID UNK2_ENUM = UUID.fromString("6d8d73a7-ba29-401d-9032-3872ec2d6433");
-  
+
   public static final UUID VALUES_ENUM = UUID.fromString("bee0a08c-07eb-40c0-8544-5c364c171465");
+
+  public static final UUID ATTRIBUTES_EXCHANGE_PLANS = UUID
+      .fromString("1a1b4fea-e093-470d-94ff-1d2f16cda2ab");
+
+  public static final UUID TABULARS_EXCHANGE_PLANS = UUID
+      .fromString("52293f4b-f98c-43ea-a80f-41047ae7ab58");
+
+  public static final UUID FORMS_EXCHANGE_PLANS = UUID
+      .fromString("87c509ab-3d38-4d67-b379-aca796298578");
+
+  public static final UUID COMMANDS_EXCHANGE_PLANS = UUID
+      .fromString("d5207c64-11d5-4d46-bba2-55b7b07ff4eb");
 
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
@@ -485,11 +497,17 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(FormList.class, buffer);
     } else if (guid.equals(UNK2_ENUM)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    }else if (guid.equals(VALUES_ENUM)) {
+    } else if (guid.equals(VALUES_ENUM)) {
       innerClass = V8Reader.read(EnumList.class, buffer);
-    }
-    
-    else {
+    } else if (guid.equals(ATTRIBUTES_EXCHANGE_PLANS)) {
+      innerClass = V8Reader.read(AttributesList.class, buffer);
+    } else if (guid.equals(TABULARS_EXCHANGE_PLANS)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    } else if (guid.equals(FORMS_EXCHANGE_PLANS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(COMMANDS_EXCHANGE_PLANS)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
