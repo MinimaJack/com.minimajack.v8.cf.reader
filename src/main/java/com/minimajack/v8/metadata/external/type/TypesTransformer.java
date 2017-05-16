@@ -13,9 +13,9 @@ import com.minimajack.v8.metadata.external.type.impl.UndefinedType;
 import com.minimajack.v8.metadata.external.type.impl.BooleanType;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntNotReqUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
 import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.functionaloption.FunctionalOptionContentItem;
 import com.minimajack.v8.metadata.inner.classes.collection.FixedArray;
 import com.minimajack.v8.metadata.inner.classes.enums.StandartPeriod;
 import com.minimajack.v8.metadata.inner.enums.ApplicationUsePurpose;
@@ -133,7 +133,7 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
         } else if (innerClass.uuid.equals(ENUM_REQUIRED_MOBILE_APPLICATION_PERMISSIONS)) {
           V8Reader.read(RequiredMobileApplicationPermissions.class, buffer);
         } else if (innerClass.uuid.equals(FUNCTIONAL_OPTION_VALUE)) { // TODO: test value
-          V8Reader.read(UnkObjectListTypes.class, buffer);
+          V8Reader.read(FunctionalOptionContentItem.class, buffer);
         } else if (innerClass.uuid.equals(COMPOSITE_ID)) { // TODO: test value
           V8Reader.read(UnkObjectIntNotReqUuid.class, buffer);
         } else if (innerClass.uuid.equals(CHARACTERISTICS_DESCRIPTION)) { // TODO: test value

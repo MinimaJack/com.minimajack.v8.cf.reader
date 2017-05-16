@@ -1,4 +1,4 @@
-package com.minimajack.v8.metadata.functionaloptionparams;
+package com.minimajack.v8.metadata.functionaloption.params;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Version;
