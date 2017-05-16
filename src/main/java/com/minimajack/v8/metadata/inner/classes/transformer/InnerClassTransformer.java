@@ -1,6 +1,7 @@
 package com.minimajack.v8.metadata.inner.classes.transformer;
 
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
+import com.minimajack.v8.metadata.inner.classes.attributes.AttributesAddressList;
 import com.minimajack.v8.metadata.inner.classes.attributes.AttributesDocumentList;
 import com.minimajack.v8.metadata.inner.classes.attributes.AttributesList;
 import com.minimajack.v8.metadata.inner.classes.attributes.AttributesRegistersList;
@@ -341,6 +342,20 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID FORMS_SETTING_STORAGES = UUID
       .fromString("b8533c0c-2342-4db3-91a2-c2b08cbf6b23");
 
+  public static final UUID FORMS_TASKS = UUID.fromString("3f58cbfb-4172-4e54-be49-561a579bb38b");
+
+  public static final UUID ATTRIBUTES_TASKS = UUID
+      .fromString("8ddfb495-c5fc-46b9-bdc5-bcf58341bff0");
+
+  public static final UUID ATTRIBUTES_ADDRESS_TASKS = UUID
+      .fromString("e97c0570-251c-4566-b0f1-10686820f143");
+
+  public static final UUID TABULARS_TASKS = UUID
+      .fromString("ee865d4b-a458-48a0-b38f-5a26898feeb0");
+
+  public static final UUID COMMANDS_TASKS = UUID
+      .fromString("f27c2152-a2c9-4c30-adb1-130f5eb2590f");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -528,6 +543,16 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(SequencesDataList.class, buffer);
     } else if (guid.equals(FORMS_SETTING_STORAGES)) {
       innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(FORMS_TASKS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_TASKS)) {
+      innerClass = V8Reader.read(AttributesList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_ADDRESS_TASKS)) {
+      innerClass = V8Reader.read(AttributesAddressList.class, buffer);
+    } else if (guid.equals(TABULARS_TASKS)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    } else if (guid.equals(COMMANDS_TASKS)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
