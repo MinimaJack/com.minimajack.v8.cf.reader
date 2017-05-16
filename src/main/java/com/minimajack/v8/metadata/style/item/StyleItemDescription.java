@@ -6,11 +6,11 @@ import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 import java.util.List;
 
 @V8Class
-public class StileItemDescription {
+public class StyleItemDescription {
 
   public Integer version;
 
-  public StileItemDescriptionBlock v8mn;
+  public StyleItemDescriptionBlock v8mn;
 
   public List<V8InnerClass> sections;
 }

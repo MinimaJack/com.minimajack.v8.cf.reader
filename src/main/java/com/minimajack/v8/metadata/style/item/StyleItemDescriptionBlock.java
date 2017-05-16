@@ -5,7 +5,7 @@ import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 import com.minimajack.v8.metadata.external.type.TypeValue;
 
 @V8Class
-public class StileItemDescriptionBlock {
+public class StyleItemDescriptionBlock {
 
   public Integer version;
   public Integer unk1;
