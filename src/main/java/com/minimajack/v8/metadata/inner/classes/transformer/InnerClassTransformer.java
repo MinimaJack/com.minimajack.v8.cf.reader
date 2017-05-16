@@ -64,6 +64,7 @@ import com.minimajack.v8.metadata.inner.classes.configuration.main.Sequences;
 import com.minimajack.v8.metadata.inner.classes.enums.EnumList;
 import com.minimajack.v8.metadata.inner.classes.externaldataprocessor.ExternalDataProcessorMetaData;
 import com.minimajack.v8.metadata.inner.classes.forms.FormList;
+import com.minimajack.v8.metadata.inner.classes.sequences.SequencesDataList;
 import com.minimajack.v8.metadata.inner.classes.tabular.TabularList;
 import com.minimajack.v8.metadata.inner.classes.template.TemplateList;
 import com.minimajack.v8.transformers.AbstractTransformer;
@@ -333,6 +334,9 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
 
   public static final UUID COMMANDS_FILTER_CRITERIA = UUID
       .fromString("23fa3b84-220a-40e9-8331-e588bed87f7d");
+  
+  public static final UUID DATA_SEQUENCES = UUID
+      .fromString("437488c0-35e2-11d6-a3c7-0050bae0a776");
 
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
@@ -517,7 +521,10 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(FormList.class, buffer);
     } else if (guid.equals(COMMANDS_FILTER_CRITERIA)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else {
+    }else if (guid.equals(DATA_SEQUENCES)) {
+      innerClass = V8Reader.read(SequencesDataList.class, buffer);
+    }
+    else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
