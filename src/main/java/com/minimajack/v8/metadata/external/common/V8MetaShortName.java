@@ -25,6 +25,6 @@ public class V8MetaShortName {
   public Integer und1;
 
   @V8Since(version = 1)
-  public List<UnkUuidInt> und2; // if type == 1 und2 present
+  public List<UnkUuidInt> und2;
 
 }
