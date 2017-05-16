@@ -328,6 +328,12 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID COMMANDS_EXCHANGE_PLANS = UUID
       .fromString("d5207c64-11d5-4d46-bba2-55b7b07ff4eb");
 
+  public static final UUID FORMS_FILTER_CRITERIA = UUID
+      .fromString("00867c40-06b1-11d6-a3c7-0050bae0a776");
+
+  public static final UUID COMMANDS_FILTER_CRITERIA = UUID
+      .fromString("23fa3b84-220a-40e9-8331-e588bed87f7d");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -506,6 +512,10 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
     } else if (guid.equals(FORMS_EXCHANGE_PLANS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
     } else if (guid.equals(COMMANDS_EXCHANGE_PLANS)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(FORMS_FILTER_CRITERIA)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(COMMANDS_FILTER_CRITERIA)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
