@@ -1,7 +1,8 @@
 package com.minimajack.v8.metadata.external.common;
 
-import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
+import com.minimajack.v8.annotation.V8Since;
+import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.unknown.UnkUuidInt;
 
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @V8Class
 public class V8MetaShortName {
 
-  public Integer type;
+  @V8Version
+  public Integer version;
 
   public V8InnerInfo sno;
 
@@ -19,10 +21,10 @@ public class V8MetaShortName {
 
   public String comment;
 
-  @Required(required = false)
-  public Integer und1; // if type == 1 und1 present
+  @V8Since(version = 1)
+  public Integer und1;
 
-  @Required(required = false)
+  @V8Since(version = 1)
   public List<UnkUuidInt> und2; // if type == 1 und2 present
 
 }
