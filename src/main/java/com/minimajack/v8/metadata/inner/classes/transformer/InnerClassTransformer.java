@@ -68,6 +68,8 @@ import com.minimajack.v8.metadata.inner.classes.forms.FormList;
 import com.minimajack.v8.metadata.inner.classes.sequences.SequencesDataList;
 import com.minimajack.v8.metadata.inner.classes.tabular.TabularList;
 import com.minimajack.v8.metadata.inner.classes.template.TemplateList;
+import com.minimajack.v8.metadata.inner.classes.webservices.OperationParams;
+import com.minimajack.v8.metadata.inner.classes.webservices.WebServiceList;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.transformers.impl.ClassTransformer;
 import com.minimajack.v8.utility.V8Reader;
@@ -356,6 +358,12 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID COMMANDS_TASKS = UUID
       .fromString("f27c2152-a2c9-4c30-adb1-130f5eb2590f");
 
+  public static final UUID OPERATION_WEB_SERVICE = UUID
+      .fromString("36186084-c23a-43bd-876c-a3a8ba1a9622");
+
+  public static final UUID OPERATION_PARAMS_WEB_SERVICE = UUID
+      .fromString("b78a00b2-2260-4ef5-a70c-17889cfee695");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -553,6 +561,10 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(TabularList.class, buffer);
     } else if (guid.equals(COMMANDS_TASKS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(OPERATION_WEB_SERVICE)) {
+      innerClass = V8Reader.read(WebServiceList.class, buffer);
+    } else if (guid.equals(OPERATION_PARAMS_WEB_SERVICE)) {
+      innerClass = V8Reader.read(OperationParams.class, buffer);
     } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
