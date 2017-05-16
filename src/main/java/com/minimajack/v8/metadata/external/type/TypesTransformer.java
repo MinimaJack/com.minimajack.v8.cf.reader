@@ -18,6 +18,9 @@ import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
 import com.minimajack.v8.metadata.functionaloption.FunctionalOptionContentItem;
 import com.minimajack.v8.metadata.inner.classes.collection.FixedArray;
 import com.minimajack.v8.metadata.inner.classes.enums.StandartPeriod;
+import com.minimajack.v8.metadata.inner.classes.style.border.Border;
+import com.minimajack.v8.metadata.inner.classes.style.color.Color;
+import com.minimajack.v8.metadata.inner.classes.style.font.Font;
 import com.minimajack.v8.metadata.inner.enums.ApplicationUsePurpose;
 import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.inner.enums.FillChecking;
@@ -87,6 +90,12 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
   private static final UUID STANDART_PERIOD = UUID
       .fromString("2fdc88ec-7c9b-43cd-8ba5-873f043bdd88");
 
+  private static final UUID COLOR = UUID.fromString("9cd510c7-abfc-11d4-9434-004095e12fc7");
+
+  private static final UUID FONT = UUID.fromString("9cd510c8-abfc-11d4-9434-004095e12fc7");
+
+  private static final UUID BORDER = UUID.fromString("4d10ca00-111a-4d43-9c96-92cd773716de");
+
   @Override
   public TypeValue read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -132,14 +141,20 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
           V8Reader.read(ApplicationUsePurpose.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_REQUIRED_MOBILE_APPLICATION_PERMISSIONS)) {
           V8Reader.read(RequiredMobileApplicationPermissions.class, buffer);
-        } else if (innerClass.uuid.equals(FUNCTIONAL_OPTION_VALUE)) { // TODO: test value
+        } else if (innerClass.uuid.equals(FUNCTIONAL_OPTION_VALUE)) {
           V8Reader.read(FunctionalOptionContentItem.class, buffer);
-        } else if (innerClass.uuid.equals(COMPOSITE_ID)) { // TODO: test value
+        } else if (innerClass.uuid.equals(COMPOSITE_ID)) {
           V8Reader.read(UnkObjectIntNotReqUuid.class, buffer);
-        } else if (innerClass.uuid.equals(CHARACTERISTICS_DESCRIPTION)) { // TODO: test value
+        } else if (innerClass.uuid.equals(CHARACTERISTICS_DESCRIPTION)) {
           V8Reader.read(CharacteristicsDescription.class, buffer);
-        } else if (innerClass.uuid.equals(STANDART_PERIOD)) { // TODO: test value
+        } else if (innerClass.uuid.equals(STANDART_PERIOD)) {
           V8Reader.read(StandartPeriod.class, buffer);
+        } else if (innerClass.uuid.equals(COLOR)) {
+          V8Reader.read(Color.class, buffer);
+        } else if (innerClass.uuid.equals(FONT)) {
+          V8Reader.read(Font.class, buffer);
+        } else if (innerClass.uuid.equals(BORDER)) {
+          V8Reader.read(Border.class, buffer);
         } else {
           throw new RuntimeException("Undefined uuid: " + innerClass.uuid);
         }

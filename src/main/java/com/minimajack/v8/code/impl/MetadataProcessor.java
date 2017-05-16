@@ -67,6 +67,8 @@ import com.minimajack.v8.metadata.inner.classes.tabular.TabularList;
 import com.minimajack.v8.metadata.inner.classes.template.TemplateList;
 import com.minimajack.v8.metadata.inner.classes.transformer.InnerClassTransformer;
 import com.minimajack.v8.metadata.root.V8Root;
+import com.minimajack.v8.metadata.style.item.font.FontDescription;
+import com.minimajack.v8.metadata.style.item.font.FontTransformer;
 import com.minimajack.v8.project.FileType;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.project.ProjectTree;
@@ -194,6 +196,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     V8Reader.registerTransformer(V8InnerClass.class, new InnerClassTransformer());
     V8Reader.registerTransformer(Qualifiers.class, new QualityTransformer());
     V8Reader.registerTransformer(TypeValue.class, new TypesTransformer());
+    V8Reader.registerTransformer(FontDescription.class, new FontTransformer());
 
   }
 
@@ -435,7 +438,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
     }
   }
-  
+
   private void processCatalogs(final ProjectTree tree, final Catalogs v8MetaData) {
     for (final UUID path2 : v8MetaData.uuids) {
       final String destinationDir =
@@ -1080,12 +1083,10 @@ public class MetadataProcessor extends ProjectTreeSearcher {
         processForms(tree, (FormList) section);
 
       } else if (section instanceof TabularList) {
-        this.logger
-            .debug("TabularSections size: {}", ((TabularList) section).tabularSections
-                .size());
-      } else if (section instanceof TemplateList) {
-        this.logger.debug("TemplateSection size: {}", ((TemplateList) section).templates
+        this.logger.debug("TabularSections size: {}", ((TabularList) section).tabularSections
             .size());
+      } else if (section instanceof TemplateList) {
+        this.logger.debug("TemplateSection size: {}", ((TemplateList) section).templates.size());
         processTemplates(tree, (TemplateList) section);
       } else if (section instanceof AttributesList) {
         this.logger.debug("Attributes size: {}", ((AttributesList) section).descr.size());
