@@ -13,6 +13,7 @@ import com.minimajack.v8.metadata.inner.classes.attributes.calculation.Calculati
 import com.minimajack.v8.metadata.inner.classes.attributes.calculation.CalculationResourceList;
 import com.minimajack.v8.metadata.inner.classes.attributes.charts.accounting.extdimention.ExtDimensionAccountingFlags;
 import com.minimajack.v8.metadata.inner.classes.attributes.charts.accounting.flag.AccountingFlags;
+import com.minimajack.v8.metadata.inner.classes.attributes.charts.characteristics.ChartsOfCharacteristicTypesAttributesList;
 import com.minimajack.v8.metadata.inner.classes.attributes.information.InformationDimensionList;
 import com.minimajack.v8.metadata.inner.classes.attributes.information.InformationResourceList;
 import com.minimajack.v8.metadata.inner.classes.commands.CommandList;
@@ -433,6 +434,17 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID FORMS_CHART_CALCULATION = UUID
       .fromString("a7f8f92a-7a4b-484b-937e-42d242e64144");
 
+  public static final UUID ATTRIBUTES_CHART_CHARACTERISTICS = UUID
+      .fromString("31182525-9346-4595-81f8-6f91a72ebe06");
+
+  public static final UUID TABULAR_CHART_CHARACTERISTICS = UUID
+      .fromString("54e36536-7863-42fd-bea3-c5edd3122fdc");
+
+  public static final UUID COMMANDS_CHART_CHARACTERISTICS = UUID
+      .fromString("95b5e1d4-abfa-4a16-818d-a5b07b7d3f73");
+
+  public static final UUID FORMS_CHART_CHARACTERISTICS = UUID
+      .fromString("eb2b78a8-40a6-4b7e-b1b3-6ca9966cbc94");
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -675,6 +687,14 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
     } else if (guid.equals(COMMANDS_CHART_CALCULATION)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
     } else if (guid.equals(FORMS_CHART_CALCULATION)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(TABULAR_CHART_CHARACTERISTICS)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_CHART_CHARACTERISTICS)) {
+      innerClass = V8Reader.read(ChartsOfCharacteristicTypesAttributesList.class, buffer);
+    } else if (guid.equals(COMMANDS_CHART_CHARACTERISTICS)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(FORMS_CHART_CHARACTERISTICS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
     }
 

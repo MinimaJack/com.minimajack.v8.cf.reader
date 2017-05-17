@@ -1,6 +1,7 @@
 package com.minimajack.v8.metadata.external.type;
 
 import com.minimajack.v8.metadata.catalog.CharacteristicsDescription;
+import com.minimajack.v8.metadata.external.PatternDescription;
 import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.MetaLink;
@@ -100,6 +101,9 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
   private static final UUID ACCOUNT_TYPE = UUID
       .fromString("872f7198-7083-4e3e-b57e-a2a9802c769e");
 
+  private static final UUID TYPE_DESCRIPTION = UUID
+      .fromString("f5c65050-3bbb-11d5-b988-0050bae0a95d");
+
   @Override
   public TypeValue read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -161,6 +165,8 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
           V8Reader.read(Border.class, buffer);
         } else if (innerClass.uuid.equals(ACCOUNT_TYPE)) {
           V8Reader.read(AccountType.class, buffer);
+        } else if (innerClass.uuid.equals(TYPE_DESCRIPTION)) {
+          V8Reader.read(PatternDescription.class, buffer);
         } else {
           throw new RuntimeException("Undefined uuid: " + innerClass.uuid);
         }
