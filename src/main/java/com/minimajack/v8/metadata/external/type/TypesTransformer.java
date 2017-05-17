@@ -21,6 +21,7 @@ import com.minimajack.v8.metadata.inner.classes.enums.StandartPeriod;
 import com.minimajack.v8.metadata.inner.classes.style.border.Border;
 import com.minimajack.v8.metadata.inner.classes.style.color.Color;
 import com.minimajack.v8.metadata.inner.classes.style.font.Font;
+import com.minimajack.v8.metadata.inner.enums.AccountType;
 import com.minimajack.v8.metadata.inner.enums.ApplicationUsePurpose;
 import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.inner.enums.FillChecking;
@@ -96,6 +97,9 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
 
   private static final UUID BORDER = UUID.fromString("4d10ca00-111a-4d43-9c96-92cd773716de");
 
+  private static final UUID ACCOUNT_TYPE = UUID
+      .fromString("872f7198-7083-4e3e-b57e-a2a9802c769e");
+
   @Override
   public TypeValue read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -155,6 +159,8 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
           V8Reader.read(Font.class, buffer);
         } else if (innerClass.uuid.equals(BORDER)) {
           V8Reader.read(Border.class, buffer);
+        } else if (innerClass.uuid.equals(ACCOUNT_TYPE)) {
+          V8Reader.read(AccountType.class, buffer);
         } else {
           throw new RuntimeException("Undefined uuid: " + innerClass.uuid);
         }
