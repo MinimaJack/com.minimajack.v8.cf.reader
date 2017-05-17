@@ -11,10 +11,10 @@ import com.minimajack.v8.metadata.external.type.impl.NumberType;
 import com.minimajack.v8.metadata.external.type.impl.StringType;
 import com.minimajack.v8.metadata.external.type.impl.UndefinedType;
 import com.minimajack.v8.metadata.external.type.impl.BooleanType;
+import com.minimajack.v8.metadata.external.unknown.LinkByType;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntNotReqUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
 import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
 import com.minimajack.v8.metadata.functionaloption.FunctionalOptionContentItem;
 import com.minimajack.v8.metadata.inner.classes.collection.FixedArray;
 import com.minimajack.v8.metadata.inner.classes.enums.StandartPeriod;
@@ -116,7 +116,7 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
         if (innerClass.uuid.equals(ENUM_FILL_CHEKING)) {
           V8Reader.read(FillChecking.class, buffer);
         } else if (innerClass.uuid.equals(LINK_BY_TYPE)) {
-          V8Reader.read(V8Unknown3.class, buffer);
+          V8Reader.read(LinkByType.class, buffer);
         } else if (innerClass.uuid.equals(CREATE_ON_INPUT)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(MULTILANGUAGE_STRING)) {
