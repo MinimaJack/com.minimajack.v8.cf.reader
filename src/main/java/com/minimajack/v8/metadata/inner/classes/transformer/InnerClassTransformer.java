@@ -8,6 +8,9 @@ import com.minimajack.v8.metadata.inner.classes.attributes.AttributesRegistersLi
 import com.minimajack.v8.metadata.inner.classes.attributes.DimensionList;
 import com.minimajack.v8.metadata.inner.classes.attributes.ResourceList;
 import com.minimajack.v8.metadata.inner.classes.attributes.accounting.AccountingResourceList;
+import com.minimajack.v8.metadata.inner.classes.attributes.calculation.CalculationAttributesList;
+import com.minimajack.v8.metadata.inner.classes.attributes.calculation.CalculationDimensionList;
+import com.minimajack.v8.metadata.inner.classes.attributes.calculation.CalculationResourceList;
 import com.minimajack.v8.metadata.inner.classes.attributes.information.InformationDimensionList;
 import com.minimajack.v8.metadata.inner.classes.attributes.information.InformationResourceList;
 import com.minimajack.v8.metadata.inner.classes.commands.CommandList;
@@ -380,6 +383,24 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID FORMS_ACCOUNTING_REGISTERS = UUID
       .fromString("d3b5d6eb-4ea2-4610-a3e2-624d4e815934");
 
+  public static final UUID DIMENSION_CALCULATION_REGISTERS = UUID
+      .fromString("1b304502-2216-440b-960f-60decd04bb5d");
+
+  public static final UUID UNK1_CALCULATION_REGISTERS = UUID
+      .fromString("274bf899-db0e-4df6-8ab5-67bf6371ec0b");
+
+  public static final UUID RESOURCE_CALCULATION_REGISTERS = UUID
+      .fromString("702b33ad-843e-41aa-8064-112cd38cc92c");
+
+  public static final UUID UNK2_CALCULATION_REGISTERS = UUID
+      .fromString("a2cb086c-db98-43e4-a1a9-0760ab048f8d");
+
+  public static final UUID UNK3_CALCULATION_REGISTERS = UUID
+      .fromString("acdf0f11-2d59-4e37-9945-c6721871a8fe");
+
+  public static final UUID ATTRIBUTES_CALCULATION_REGISTERS = UUID
+      .fromString("b12fc850-8210-43c8-ae05-89567e698fbb");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -591,7 +612,21 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(DimensionList.class, buffer);
     } else if (guid.equals(FORMS_ACCOUNTING_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else {
+    } else if (guid.equals(DIMENSION_CALCULATION_REGISTERS)) {
+      innerClass = V8Reader.read(CalculationDimensionList.class, buffer);
+    } else if (guid.equals(UNK1_CALCULATION_REGISTERS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(RESOURCE_CALCULATION_REGISTERS)) {
+      innerClass = V8Reader.read(CalculationResourceList.class, buffer);
+    } else if (guid.equals(UNK2_CALCULATION_REGISTERS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(UNK3_CALCULATION_REGISTERS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_CALCULATION_REGISTERS)) {
+      innerClass = V8Reader.read(CalculationAttributesList.class, buffer);
+    }
+    
+    else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
