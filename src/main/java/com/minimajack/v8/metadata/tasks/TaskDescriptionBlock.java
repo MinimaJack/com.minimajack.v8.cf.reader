@@ -36,7 +36,6 @@ public class TaskDescriptionBlock {
   public UUID unk14;
   public UUID unk15;
   public UUID unk16;
-  // 1,14,1,1,150,1,1,440d115d-a769-427e-891a-88d65fba2057,88f44c9b-216d-4d7e-bc88-1e6b253ed01e,1,
   public Integer unk17;
   public Integer unk18;
   public Integer unk19;
