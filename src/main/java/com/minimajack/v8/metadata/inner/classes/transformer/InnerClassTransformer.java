@@ -69,6 +69,7 @@ import com.minimajack.v8.metadata.inner.classes.configuration.main.InformationRe
 import com.minimajack.v8.metadata.inner.classes.configuration.main.MainConfiguraionMetaData;
 import com.minimajack.v8.metadata.inner.classes.configuration.main.Reports;
 import com.minimajack.v8.metadata.inner.classes.configuration.main.Sequences;
+import com.minimajack.v8.metadata.inner.classes.documentjournal.ColumnList;
 import com.minimajack.v8.metadata.inner.classes.enums.EnumList;
 import com.minimajack.v8.metadata.inner.classes.externaldataprocessor.ExternalDataProcessorMetaData;
 import com.minimajack.v8.metadata.inner.classes.forms.FormList;
@@ -445,6 +446,16 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
 
   public static final UUID FORMS_CHART_CHARACTERISTICS = UUID
       .fromString("eb2b78a8-40a6-4b7e-b1b3-6ca9966cbc94");
+
+  public static final UUID COLUMNS_DOCUMENT_JOURNAL = UUID
+      .fromString("5aee69df-0513-4c6c-9815-103102471712");
+
+  public static final UUID COMMANDS_DOCUMENT_JOURNAL = UUID
+      .fromString("a49a35ce-120a-4c80-8eea-b0618479cd70");
+
+  public static final UUID FORMS_DOCUMENT_JOURNAL = UUID
+      .fromString("ec81ad10-ca07-11d5-b9a5-0050bae0a95d");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -696,9 +707,13 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(CommandList.class, buffer);
     } else if (guid.equals(FORMS_CHART_CHARACTERISTICS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    }
-
-    else {
+    } else if (guid.equals(COLUMNS_DOCUMENT_JOURNAL)) {
+      innerClass = V8Reader.read(ColumnList.class, buffer);
+    } else if (guid.equals(COMMANDS_DOCUMENT_JOURNAL)) {
+      innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
+    } else if (guid.equals(FORMS_DOCUMENT_JOURNAL)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
