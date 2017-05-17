@@ -421,6 +421,18 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID EXT_DIMENTION_FLAGS_CHART_ACCOUNT = UUID // признаки учета
       .fromString("c70ca527-5042-4cad-a315-dcb4007e32a3");
 
+  public static final UUID TABULAR_CHART_CALCULATION = UUID
+      .fromString("054aa8cf-faa6-4634-aef4-1087ca0d88fc");
+
+  public static final UUID ATTRIBUTES_CHART_CALCULATION = UUID
+      .fromString("0dc22ad2-476a-4794-afae-cfa7ed251752");
+
+  public static final UUID COMMANDS_CHART_CALCULATION = UUID
+      .fromString("2e90c75b-2f0c-4899-a7d4-5426eaefc96e");
+
+  public static final UUID FORMS_CHART_CALCULATION = UUID
+      .fromString("a7f8f92a-7a4b-484b-937e-42d242e64144");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -656,7 +668,17 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(AccountingFlags.class, buffer);
     } else if (guid.equals(EXT_DIMENTION_FLAGS_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(ExtDimensionAccountingFlags.class, buffer);
-    } else {
+    } else if (guid.equals(TABULAR_CHART_CALCULATION)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_CHART_CALCULATION)) {
+      innerClass = V8Reader.read(AttributesList.class, buffer);
+    } else if (guid.equals(COMMANDS_CHART_CALCULATION)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(FORMS_CHART_CALCULATION)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    }
+
+    else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
