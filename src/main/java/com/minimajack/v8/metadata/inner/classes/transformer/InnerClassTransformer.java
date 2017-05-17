@@ -456,6 +456,18 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID FORMS_DOCUMENT_JOURNAL = UUID
       .fromString("ec81ad10-ca07-11d5-b9a5-0050bae0a95d");
 
+  public static final UUID FORMS_BUSINESS_PROCESS = UUID
+      .fromString("3f7a8120-b71a-4265-98bf-4d9bc09b7719");
+
+  public static final UUID COMMANDS_BUSINESS_PROCESS = UUID
+      .fromString("7a3e533c-f232-40d5-a932-6a311d2480bf");
+
+  public static final UUID ATTRIBUTES_BUSINESS_PROCESS = UUID
+      .fromString("87c988de-ecbf-413b-87b0-b9516df05e28");
+
+  public static final UUID TABULARS_BUSINESS_PROCESS = UUID
+      .fromString("a3fe6537-d787-40f7-8a06-419d2f0c1cfd");
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
@@ -713,7 +725,17 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
       innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
     } else if (guid.equals(FORMS_DOCUMENT_JOURNAL)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else {
+    } else if (guid.equals(FORMS_BUSINESS_PROCESS)) {
+      innerClass = V8Reader.read(FormList.class, buffer);
+    } else if (guid.equals(COMMANDS_BUSINESS_PROCESS)) {
+      innerClass = V8Reader.read(CommandList.class, buffer);
+    } else if (guid.equals(ATTRIBUTES_BUSINESS_PROCESS)) {
+      innerClass = V8Reader.read(AttributesList.class, buffer);
+    } else if (guid.equals(TABULARS_BUSINESS_PROCESS)) {
+      innerClass = V8Reader.read(TabularList.class, buffer);
+    }
+
+    else {
       throw new RuntimeException("Unknown section: " + guid);
     }
 
