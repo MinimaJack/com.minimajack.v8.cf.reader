@@ -11,12 +11,16 @@ import java.nio.ByteBuffer;
 
 public class FontTransformer extends AbstractTransformer<FontDescription> {
 
-  private static final Integer FONT_WEIGHT = 1 << 5;
-  private static final Integer FONT_UNK1 = 1 << 4;
-  private static final Integer FONT_UNK2 = 1 << 3;
-  private static final Integer FONT_UNK3 = 1 << 2;
-  private static final Integer FONT_UNK4 = 1 << 1;
-  private static final Integer FONT_UNK5 = 1;
+  private static final int FONT_WEIGHT = 1 << 5;
+  private static final int FONT_UNK1 = 1 << 4;
+  private static final int FONT_UNK2 = 1 << 3;
+  private static final int FONT_UNK3 = 1 << 2;
+  private static final int FONT_UNK4 = 1 << 1;
+  private static final int FONT_UNK5 = 1;
+
+  private static final int FONT_TYPE_0 = 0;
+  private static final int FONT_TYPE_1 = 1;
+  private static final int FONT_TYPE_2 = 2;
 
   @Override
   public FontDescription read(ParameterizedType type, ByteBuffer buffer) {
@@ -25,10 +29,10 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
     final Integer typeFont = V8Reader.read(Integer.class, buffer);
     buffer.reset();
     switch (typeFont) {
-      case 0:
+      case FONT_TYPE_0:
         innerFont = V8Reader.read(FontDesc.class, buffer);
       break;
-      case 2:
+      case FONT_TYPE_2:
         FontDesc2 readedFont = new FontDesc2();
         readedFont.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
@@ -57,7 +61,7 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
         }
         innerFont = readedFont;
       break;
-      case 1:
+      case FONT_TYPE_1:
         FontDesc2 readedFont1 = new FontDesc2();
         readedFont1.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
