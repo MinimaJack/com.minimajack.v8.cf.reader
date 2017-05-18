@@ -4,8 +4,8 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.inner.enums.ChoiceMode;
 import com.minimajack.v8.metadata.inner.enums.CodeAllowedLength;
@@ -14,13 +14,14 @@ import com.minimajack.v8.metadata.inner.enums.CodeType;
 import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
 import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
 import com.minimajack.v8.metadata.inner.enums.DefaultPresentation;
+import com.minimajack.v8.metadata.inner.enums.EditType;
 import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
 import com.minimajack.v8.metadata.inner.enums.HierarchyType;
 import com.minimajack.v8.metadata.inner.enums.PredefinedDataUpdate;
 import com.minimajack.v8.metadata.inner.enums.SubordinationUse;
-import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
 import com.minimajack.v8.metadata.persist.FieldList;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -39,7 +40,7 @@ public class CatalogDescriptionBlock {
   public UUID unk8;
   public CatalogMetaData cmd;
   public Integer levelCount;
-  public Integer unk54;
+  public EditType.Values editType;
   public MetadataObjectPropertyValueCollection owners;
   public Boolean foldersOnTop;
   public Boolean checkUnique;
@@ -49,16 +50,16 @@ public class CatalogDescriptionBlock {
   public CodeType.Values codeType;
   public Integer descriptionLength;
   public DefaultPresentation.Values defaultPresentation;
-  public UUID unk19;
-  public UUID unk20;
-  public UUID unk21;
-  public UUID unk22;
-  public UUID unk23;
-  public UUID unk24;
-  public UUID unk25;
-  public UUID unk26;
-  public UUID unk27;
-  public UUID unk28;
+  public UUID defaultObjectForm;
+  public UUID defaultFolderForm;
+  public UUID defaultListForm;
+  public UUID defaultChoiceForm;
+  public UUID defaultFolderChoiceForm;
+  public UUID auxiliaryObjectForm;
+  public UUID auxiliaryFolderForm;
+  public UUID auxiliaryListForm;
+  public UUID auxiliaryChoiceForm;
+  public UUID auxiliaryFolderChoiceForm;
   public Boolean useStandardCommands;
   public MetadataObjectPropertyValueCollection basedOn;
   public Boolean includeHelpInContents;
@@ -92,5 +93,4 @@ public class CatalogDescriptionBlock {
   public CompactFlags compactFlags;
   @V8Since(version = 52)
   public CreateOnInput.Values createOnInput;
-
 }
