@@ -8,7 +8,8 @@ public class SearchStringModeOnInputByString {
   public enum Values {
     NONE,
     BEGINNING,
-    ANY_PART;
+    ANY_PART,
+    SOME_UNK;
   }
 
 }
