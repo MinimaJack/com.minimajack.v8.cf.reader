@@ -3,7 +3,7 @@ package com.minimajack.v8.metadata.exchangeplans;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
-import com.minimajack.v8.metadata.external.common.V8MetaShortName;
+import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
@@ -30,7 +30,7 @@ public class ExchangePlansBlock {
   public UUID unk9;
   public UUID unk10;
   public UUID unk11;
-  public V8MetaShortName v8mn;
+  public MetadataMainInfo v8mn;
   public Integer unk12;
   public UUID unk13;
   public Integer unk14;

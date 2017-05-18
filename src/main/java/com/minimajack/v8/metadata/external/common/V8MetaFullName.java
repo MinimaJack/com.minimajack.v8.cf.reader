@@ -7,6 +7,6 @@ public class V8MetaFullName {
 
   public Integer type;
 
-  public V8MetaShortName shortName;
+  public MetadataMainInfo shortName;
 
 }

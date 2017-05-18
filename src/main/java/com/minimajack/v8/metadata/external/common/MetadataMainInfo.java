@@ -8,7 +8,7 @@ import com.minimajack.v8.metadata.external.unknown.UnkUuidInt;
 import java.util.List;
 
 @V8Class
-public class V8MetaShortName {
+public class MetadataMainInfo {
 
   @V8Version
   public Integer version;

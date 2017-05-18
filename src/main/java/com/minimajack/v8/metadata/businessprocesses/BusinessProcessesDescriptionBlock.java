@@ -3,7 +3,7 @@ package com.minimajack.v8.metadata.businessprocesses;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
-import com.minimajack.v8.metadata.external.common.V8MetaShortName;
+import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
@@ -21,7 +21,7 @@ public class BusinessProcessesDescriptionBlock {
   @V8Version
   public Integer version;
 
-  public V8MetaShortName dmd;
+  public MetadataMainInfo dmd;
   public Integer unk1;
   public UUID unk2;
   public UUID unk3;

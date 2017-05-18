@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.subsystems;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.common.V8MetaShortName;
+import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 
@@ -9,7 +9,7 @@ import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCo
 public class SubsystemsDescriptionBlock {
 
   public Integer version;
-  public V8MetaShortName v8mn;
+  public MetadataMainInfo v8mn;
   public Integer unk1;
   public MetadataObjectPropertyValueCollection unk2;
   public Integer unk3;

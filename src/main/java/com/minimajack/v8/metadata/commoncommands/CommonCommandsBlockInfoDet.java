@@ -3,7 +3,7 @@ package com.minimajack.v8.metadata.commoncommands;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.commandgroups.CommandGroupInfo;
 import com.minimajack.v8.metadata.external.PatternDescription;
-import com.minimajack.v8.metadata.external.common.V8MetaShortName;
+import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.UnkIntUuid;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
@@ -20,7 +20,7 @@ public class CommonCommandsBlockInfoDet {
   public Integer unk5;
   public UnkIntUuid unk6;
   public PatternDescription pd;
-  public V8MetaShortName v8mn;
+  public MetadataMainInfo v8mn;
   public Integer unk7;
   public Integer unk8;
 }

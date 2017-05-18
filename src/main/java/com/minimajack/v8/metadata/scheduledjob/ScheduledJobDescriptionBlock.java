@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.scheduledjob;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.external.common.V8MetaShortName;
+import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 
 import java.util.UUID;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 public class ScheduledJobDescriptionBlock {
 
   public Integer version;
-  public V8MetaShortName vmn;
+  public MetadataMainInfo vmn;
   public String unk1;
   public String unk2;
   public Integer unk3;
