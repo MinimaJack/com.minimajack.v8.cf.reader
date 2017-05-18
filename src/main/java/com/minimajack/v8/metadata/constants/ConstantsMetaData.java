@@ -7,7 +7,7 @@ import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.TypeValue;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 
 import java.util.UUID;
 
@@ -31,7 +31,7 @@ public class ConstantsMetaData {
   public Integer unk9;
   public Integer unk10;
   public ChoiceParameterLinks unk11;
-  public V8Unknown3 unk12;
+  public CompactFlags unk12;
   public ChoiceParameters unk13;
   public Integer unk14;
   public V8Synonym unk15;

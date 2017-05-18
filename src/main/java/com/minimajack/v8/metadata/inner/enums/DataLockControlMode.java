@@ -3,11 +3,12 @@ package com.minimajack.v8.metadata.inner.enums;
 import com.minimajack.v8.metadata.inner.classes.V8ClassUUID;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
-@V8ClassUUID(uuid = "3b8e6bdd-d648-49d5-af2f-d46d84f87dd5")
-public final class FullTextSearch extends V8InnerClass {
+@V8ClassUUID(uuid = "b7b7d7f8-11dc-4e0b-9d72-7ec6cc040eef")
+public final class DataLockControlMode extends V8InnerClass {
 
   public enum Values {
-    DontUse,
-    Use;
+    AUTOMATIC,
+    MANAGED,
+    AUTOMATIC_AND_MANAGED;
   }
 }

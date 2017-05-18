@@ -5,12 +5,12 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
-import com.minimajack.v8.metadata.persist.UnkPersistObject2;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.FieldList;
 
 import java.util.UUID;
 
@@ -42,13 +42,13 @@ public class ExchangePlansBlock {
   public Integer unk20;
   public Integer unk21;
   public Integer unk22;
-  public UnkObjectListTypes unk23;
+  public MetadataObjectPropertyValueCollection unk23;
   public Integer unk24;
   public Integer unk25;
   public CompositeIDInfo unk26;
   public Integer unk27;
   public Integer unk28;
-  public PersistanceDescriptionInner unk29;
+  public StandardAttributeDescriptions unk29;
   public UUID unk30;
   public UUID unk31;
   public UUID unk32;
@@ -59,13 +59,13 @@ public class ExchangePlansBlock {
   public V8Synonym unk37;
   public Integer unk38;
   @V8Since(version = 27)
-  public UnkPersistObject unk39;
+  public CharacteristicsDescriptions unk39;
   @V8Since(version = 29)
   public Integer unk40;
   @V8Since(version = 29)
-  public UnkPersistObject2 unk41;
+  public FieldList unk41;
   @V8Since(version = 29)
-  public V8Unknown3 unk42;
+  public CompactFlags unk42;
   @V8Since(version = 29)
   public Integer unk43;
 

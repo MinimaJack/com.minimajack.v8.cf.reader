@@ -4,7 +4,7 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.UnkObject;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -40,7 +40,7 @@ public class CalculationRegistersBlock {
   public Integer unk30;
   public Integer unk31;
   public Integer unk32;
-  public PersistanceDescriptionInner unk23;
+  public StandardAttributeDescriptions unk23;
   public UUID unk24;
   public UnkObject unk25;
   public UnkObject unk26;

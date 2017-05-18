@@ -4,7 +4,7 @@ import com.minimajack.v8.annotation.V8Class;
 import java.util.UUID;
 
 @V8Class
-public class MetaLink {
+public class MetaDataObjectLink {
 
   public Integer version;
 

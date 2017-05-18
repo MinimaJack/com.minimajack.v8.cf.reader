@@ -3,11 +3,11 @@ package com.minimajack.v8.metadata.inner.enums;
 import com.minimajack.v8.metadata.inner.classes.V8ClassUUID;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
-@V8ClassUUID(uuid = "3b8e6bdd-d648-49d5-af2f-d46d84f87dd5")
-public final class FullTextSearch extends V8InnerClass {
+@V8ClassUUID(uuid = "0b9c9926-41c9-4b37-be77-6ccc6d073f8b")
+public final class ChoiceDataGetModeOnInputByString extends V8InnerClass {
 
   public enum Values {
-    DontUse,
-    Use;
+    Directly,
+    BACKGROUND;
   }
 }

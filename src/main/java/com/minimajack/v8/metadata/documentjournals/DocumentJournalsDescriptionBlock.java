@@ -3,8 +3,8 @@ package com.minimajack.v8.metadata.documentjournals;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -18,13 +18,13 @@ public class DocumentJournalsDescriptionBlock {
   public DocumentJournalsMetaData dmd;
   public UUID unk3;
   public Integer unk4;
-  public UnkObjectListTypes unk5;
+  public MetadataObjectPropertyValueCollection unk5;
   public Integer unk6;
   public UUID unk7;
   public UUID unk8;
   public UUID unk9;
   public UUID unk10;
-  public PersistanceDescriptionInner unk11;
+  public StandardAttributeDescriptions unk11;
   public UUID unk12;
   public V8Synonym unk13;
   public V8Synonym unk14;

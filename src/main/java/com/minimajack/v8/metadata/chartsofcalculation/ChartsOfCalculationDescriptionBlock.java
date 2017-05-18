@@ -5,12 +5,12 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.chartsofaccounts.SomeChartsDimentionObject;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
-import com.minimajack.v8.metadata.persist.UnkPersistObject2;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.FieldList;
 
 import java.util.UUID;
 
@@ -46,7 +46,7 @@ public class ChartsOfCalculationDescriptionBlock {
   public Integer unk24;
   public Integer unk25;
   public Integer unk26;
-  public UnkObjectListTypes unk27;
+  public MetadataObjectPropertyValueCollection unk27;
   public Integer unk28;
   public Integer unk29;
   public Integer unk30;
@@ -54,14 +54,14 @@ public class ChartsOfCalculationDescriptionBlock {
   public UUID unk32;
   public UUID unk33;
   public Integer unk34;
-  public UnkObjectListTypes unk35;
+  public MetadataObjectPropertyValueCollection unk35;
   public Integer unk36;
   public Integer unk37;
   public Integer unk38;
   public CompositeIDInfo unk39;
   public Integer unk40;
   public Integer unk41;
-  public PersistanceDescriptionInner unk42;
+  public StandardAttributeDescriptions unk42;
   public SomeChartsDimentionObject unk43;
   public UUID unk44;
   public UUID unk45;
@@ -72,15 +72,15 @@ public class ChartsOfCalculationDescriptionBlock {
   public V8Synonym unk50;
   public V8Synonym unk51;
   public Integer unk52;
-  public UnkPersistObject unk53;
+  public CharacteristicsDescriptions unk53;
   @V8Since(version = 29)
   public Integer unk54;
   @V8Since(version = 29)
-  public UnkPersistObject2 unk55;
+  public FieldList unk55;
   @V8Since(version = 29)
   public Integer unk56;
   @V8Since(version = 29)
-  public V8Unknown3 unk57;
+  public CompactFlags unk57;
   @V8Since(version = 29)
   public Integer unk58;
 

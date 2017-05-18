@@ -6,6 +6,6 @@ import com.minimajack.v8.metadata.external.type.TypeValue;
 import java.util.List;
 
 @V8Class
-public class UnkPersistObject3 {
+public class CharacteristicsDescriptionsValues {
   public List<TypeValue> lists;
 }

@@ -4,12 +4,12 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
-import com.minimajack.v8.metadata.persist.UnkPersistObject2;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.FieldList;
 
 import java.util.UUID;
 
@@ -35,7 +35,7 @@ public class ChartsOfAccountsDescriptionBlock {
   public ChartsOfAccountsDescriptionBlockInfo coadbi;
   public Integer unk15;
   public Integer unk16;
-  public UnkObjectListTypes unk17;
+  public MetadataObjectPropertyValueCollection unk17;
   public UUID unk18;
   public Integer maxDimention;
   public String codeMask;
@@ -55,7 +55,7 @@ public class ChartsOfAccountsDescriptionBlock {
   public Integer unk33;
   public Integer unk34;
   public Integer unk35;
-  public PersistanceDescriptionInner unk36;
+  public StandardAttributeDescriptions unk36;
   public SomeChartsDimentionObject unk37;
   public UUID unk38;
   public UUID unk39;
@@ -66,15 +66,15 @@ public class ChartsOfAccountsDescriptionBlock {
   public V8Synonym unk44;
   public V8Synonym unk45;
   @V8Since(version = 25)
-  public UnkPersistObject unk46;
+  public CharacteristicsDescriptions unk46;
   @V8Since(version = 26)
   public Integer unk47;
   @V8Since(version = 26)
-  public UnkPersistObject2 unk48;
+  public FieldList unk48;
   @V8Since(version = 26)
   public Integer unk49;
   @V8Since(version = 26)
-  public V8Unknown3 unk50;
+  public CompactFlags unk50;
   @V8Since(version = 26)
   public Integer unk51;
 

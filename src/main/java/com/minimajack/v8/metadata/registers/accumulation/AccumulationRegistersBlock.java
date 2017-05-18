@@ -4,7 +4,7 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.unknown.UnkObject;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -33,7 +33,7 @@ public class AccumulationRegistersBlock {
   public Integer unk17;
   public Integer unk18;
   public Integer unk19;
-  public PersistanceDescriptionInner unk20;
+  public StandardAttributeDescriptions unk20;
   public UUID unk21;
   public UnkObject unk22; 
   public UnkObject unk23; 

@@ -4,8 +4,8 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
 
 import java.util.UUID;
 
@@ -32,9 +32,9 @@ public class EnumDescriptionBlock {
   public V8Synonym unk15;
   public V8Synonym unk16;
   @V8Since(version = 17)
-  public PersistanceDescriptionInner unk17;
+  public StandardAttributeDescriptions unk17;
   @V8Since(version = 19)
-  public UnkPersistObject unk18;
+  public CharacteristicsDescriptions unk18;
   @V8Since(version = 20)
   public Integer unk19;
 }

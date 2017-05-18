@@ -6,9 +6,9 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.type.TypeValue;
 
 @V8Class
-public class V8Unknown2 {
+public class Fields {
 
-  public Integer un1;
+  public Integer version;
 
-  public List<TypeValue> un2;
+  public List<TypeValue> field;
 }

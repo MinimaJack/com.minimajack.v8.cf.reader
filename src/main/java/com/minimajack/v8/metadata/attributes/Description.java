@@ -121,12 +121,12 @@ public class Description {
    * Создание при вводе.
    */
   @V8Since(version = 27)
-  public CreateOnInput createOnInput;
+  public CreateOnInput.Values createOnInput;
 
   /**
    * Ведение истории выбора при вводе.
    */
   @V8Since(version = 27)
-  public ChoiceHistoryOnInput choiceHistoryOnInput;
+  public ChoiceHistoryOnInput.Values choiceHistoryOnInput;
 
 }

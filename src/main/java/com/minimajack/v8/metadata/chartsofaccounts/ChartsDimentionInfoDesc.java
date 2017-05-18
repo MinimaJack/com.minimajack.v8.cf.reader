@@ -2,7 +2,7 @@ package com.minimajack.v8.metadata.chartsofaccounts;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInnerFull;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescription;
 
 @V8Class
 public class ChartsDimentionInfoDesc {
@@ -12,6 +12,6 @@ public class ChartsDimentionInfoDesc {
   public String maybecomment;
   public Integer unk1;
   public Integer unk2;
-  public PersistanceDescriptionInnerFull ci;
+  public StandardAttributeDescription ci;
   public V8Synonym unk3;
 }

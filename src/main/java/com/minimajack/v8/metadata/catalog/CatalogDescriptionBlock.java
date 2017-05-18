@@ -4,12 +4,23 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
-import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
-import com.minimajack.v8.metadata.persist.UnkPersistObject2;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.ChoiceMode;
+import com.minimajack.v8.metadata.inner.enums.CodeAllowedLength;
+import com.minimajack.v8.metadata.inner.enums.CodeSeries;
+import com.minimajack.v8.metadata.inner.enums.CodeType;
+import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
+import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
+import com.minimajack.v8.metadata.inner.enums.DefaultPresentation;
+import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
+import com.minimajack.v8.metadata.inner.enums.HierarchyType;
+import com.minimajack.v8.metadata.inner.enums.PredefinedDataUpdate;
+import com.minimajack.v8.metadata.inner.enums.SubordinationUse;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.FieldList;
 
 import java.util.UUID;
 
@@ -27,17 +38,17 @@ public class CatalogDescriptionBlock {
   public UUID unk7;
   public UUID unk8;
   public CatalogMetaData cmd;
-  public Integer unk9;
+  public Integer levelCount;
   public Integer unk54;
-  public UnkObjectListTypes unk10;
-  public Integer unk11;
-  public Integer unk12;
-  public Integer unk13;
-  public Integer unk14;
-  public Integer unk15;
-  public Integer unk16;
-  public Integer unk17;
-  public Integer unk18;
+  public MetadataObjectPropertyValueCollection owners;
+  public Boolean foldersOnTop;
+  public Boolean checkUnique;
+  public Boolean autonumbering;
+  public CodeSeries.Values codeSeries;
+  public Integer codeLength;
+  public CodeType.Values codeType;
+  public Integer descriptionLength;
+  public DefaultPresentation.Values defaultPresentation;
   public UUID unk19;
   public UUID unk20;
   public UUID unk21;
@@ -48,38 +59,38 @@ public class CatalogDescriptionBlock {
   public UUID unk26;
   public UUID unk27;
   public UUID unk28;
-  public Integer unk53;
-  public UnkObjectListTypes unk29;
-  public Integer unk30;
+  public Boolean useStandardCommands;
+  public MetadataObjectPropertyValueCollection basedOn;
+  public Boolean includeHelpInContents;
   public UUID unk31;
   public UUID unk32;
-  public Integer unk33;
-  public Integer unk34;
-  public Integer unk35;
-  public Integer unk36;
-  public Integer unk37;
-  public Integer unk38;
-  public CompositeIDInfo compositeIDInfo;
-  public Integer unk39;
-  public Integer unk40;
-  public PersistanceDescriptionInner catalogDescriptionInner;
-  public V8Synonym unk41;
-  public V8Synonym unk42;
-  public V8Synonym unk43;
-  public V8Synonym unk44;
-  public V8Synonym unk45;
-  public Integer unk46;
+  public HierarchyType.Values hierarchyType;
+  public Boolean hierarchy;
+  public Boolean limitLevelCount;
+  public SubordinationUse.Values subordinationUse;
+  public ChoiceMode.Values choiceMode;
+  public Boolean quickChoice;
+  public FieldList inputByString;
+  public DataLockControlMode.Values dataLockControlMode;
+  public FullTextSearch.Values fullTextSearch;
+  public StandardAttributeDescriptions standardAttributes;
+  public V8Synonym objectPresentation;
+  public V8Synonym extendedObjectPresentation;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
+  public CodeAllowedLength.Values codeAllowedLength;
   @V8Since(version = 46)
-  public UnkPersistObject unk47;
+  public CharacteristicsDescriptions characteristics;
   @V8Since(version = 52)
-  public Integer unk48;
+  public ChoiceHistoryOnInput.Values choiceHistoryOnInput;
   @V8Since(version = 52)
-  public UnkPersistObject2 unk49;
+  public FieldList dataLockFields;
   @V8Since(version = 52)
-  public Integer unk50;
+  public PredefinedDataUpdate.Values predefinedDataUpdate;
   @V8Since(version = 52)
-  public V8Unknown3 unk51;
+  public CompactFlags compactFlags;
   @V8Since(version = 52)
-  public Integer unk52;
+  public CreateOnInput.Values createOnInput;
 
 }

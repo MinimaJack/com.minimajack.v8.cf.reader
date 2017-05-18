@@ -4,7 +4,7 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -38,7 +38,7 @@ public class InformationRegistersBlock {
   public Integer unk22;
   public Integer unk23;
   public Integer unk24;
-  public PersistanceDescriptionInner unk25;
+  public StandardAttributeDescriptions unk25;
   public UUID unk26;
   public UUID unk27;
   public V8Synonym unk28;

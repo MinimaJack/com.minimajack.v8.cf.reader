@@ -3,8 +3,8 @@ package com.minimajack.v8.metadata.commonattributes;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.TypeValue;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 
 import java.util.UUID;
 
@@ -25,9 +25,9 @@ public class CommonAttributesBlockInfo {
   public UUID unk10;
   public Integer unk11;
   public Integer unk12;
-  public UnkObjectListTypes unk13;
-  public V8Unknown3 unk14;
-  public UnkObjectListTypes unk15;
+  public MetadataObjectPropertyValueCollection unk13;
+  public CompactFlags unk14;
+  public MetadataObjectPropertyValueCollection unk15;
   public Integer unk16;
   public V8Synonym unk17;
   public TypeValue unk18;

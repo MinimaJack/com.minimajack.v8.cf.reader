@@ -5,12 +5,12 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
-import com.minimajack.v8.metadata.persist.UnkPersistObject2;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.FieldList;
 
 import java.util.UUID;
 
@@ -35,7 +35,7 @@ public class BusinessProcessesDescriptionBlock {
   public UUID unk11;
   public UUID unk12;
   public UUID unk14;
-  public UnkObjectListTypes unktl;
+  public MetadataObjectPropertyValueCollection unktl;
   public Integer unk15;
   public Integer unk16;
   public Integer unk17;
@@ -50,7 +50,7 @@ public class BusinessProcessesDescriptionBlock {
   public CompositeIDInfo cids;
   public Integer unk26;
   public Integer unk27;
-  public PersistanceDescriptionInner unk28;
+  public StandardAttributeDescriptions unk28;
   public Integer unk29;
   public UUID unk30;
   public UUID unk31;
@@ -62,13 +62,13 @@ public class BusinessProcessesDescriptionBlock {
   public V8Synonym unk37;
   public Integer unk38;
   @V8Since(version = 25)
-  public UnkPersistObject unk39;
+  public CharacteristicsDescriptions unk39;
   @V8Since(version = 26)
   public Integer unk40;
   @V8Since(version = 26)
-  public UnkPersistObject2 unk41;
+  public FieldList unk41;
   @V8Since(version = 26)
-  public V8Unknown3 unk42;
+  public CompactFlags unk42;
   @V8Since(version = 26)
   public Integer unk43;
 

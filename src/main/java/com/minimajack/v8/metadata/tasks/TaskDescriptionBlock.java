@@ -5,12 +5,12 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8MetaShortName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
-import com.minimajack.v8.metadata.external.unknown.V8Unknown3;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.external.unknown.CompactFlags;
 import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.PersistanceDescriptionInner;
-import com.minimajack.v8.metadata.persist.UnkPersistObject;
-import com.minimajack.v8.metadata.persist.UnkPersistObject2;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.FieldList;
 
 import java.util.UUID;
 
@@ -48,11 +48,11 @@ public class TaskDescriptionBlock {
   public Integer unk26;
   public CompositeIDInfo cid;
   public UUID unk27;
-  public UnkObjectListTypes unk28;
+  public MetadataObjectPropertyValueCollection unk28;
   public Integer unk29;
   public Integer unk30;
   public Integer unk31;
-  public PersistanceDescriptionInner unk32;
+  public StandardAttributeDescriptions unk32;
   public UUID unk33;
   public UUID unk34;
   public UUID unk35;
@@ -62,13 +62,13 @@ public class TaskDescriptionBlock {
   public V8Synonym unk39;
   public V8Synonym unk40;
   public Integer unk42;
-  public UnkPersistObject unk43;
+  public CharacteristicsDescriptions unk43;
   @V8Since(version = 29)
   public Integer unk44;
   @V8Since(version = 29)
-  public UnkPersistObject2 unk45;
+  public FieldList unk45;
   @V8Since(version = 29)
-  public V8Unknown3 unk46;
+  public CompactFlags unk46;
   @V8Since(version = 29)
   public Integer unk47;
 

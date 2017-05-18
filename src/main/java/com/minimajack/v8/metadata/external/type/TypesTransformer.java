@@ -4,7 +4,7 @@ import com.minimajack.v8.metadata.catalog.CharacteristicsDescription;
 import com.minimajack.v8.metadata.external.PatternDescription;
 import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
 import com.minimajack.v8.metadata.external.common.ChoiceParameters;
-import com.minimajack.v8.metadata.external.common.MetaLink;
+import com.minimajack.v8.metadata.external.common.MetaDataObjectLink;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.impl.DateType;
 import com.minimajack.v8.metadata.external.type.impl.InnerClassType;
@@ -50,7 +50,7 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
   private static final UUID MULTILANGUAGE_STRING = UUID
       .fromString("87024738-fc2a-4436-ada1-df79d395c424");
 
-  private static final UUID CONFIGURATION_METADATA = UUID
+  private static final UUID METADATA_OBJECT = UUID
       .fromString("157fa490-4ce9-11d4-9415-008048da11f9");
 
   private static final UUID FUNCTIONAL_OPTION_VALUE = UUID
@@ -129,12 +129,12 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(MULTILANGUAGE_STRING)) {
           V8Reader.read(V8Synonym.class, buffer);
-        } else if (innerClass.uuid.equals(CONFIGURATION_METADATA)) {
-          V8Reader.read(MetaLink.class, buffer);
+        } else if (innerClass.uuid.equals(METADATA_OBJECT)) {
+          V8Reader.read(MetaDataObjectLink.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_USE_QUICK_CHOICE)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_CHOICE_HISTORY_ON_INPUT)) {
-          V8Reader.read(ChoiceHistoryOnInput.class, buffer);
+          V8Reader.read(ChoiceHistoryOnInput.Values.class, buffer);
         } else if (innerClass.uuid.equals(ENUM_FULL_TEXT_SEARCH)) {
           V8Reader.read(UnkObjectUuidInt.class, buffer);
         } else if (innerClass.uuid.equals(CHOICE_PARAMETER_LINKS)) {

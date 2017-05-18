@@ -3,7 +3,7 @@ package com.minimajack.v8.metadata.filtercriteria;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.UnkObjectListTypes;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 
 import java.util.UUID;
 
@@ -17,7 +17,7 @@ public class FilterCriteriaBlock {
   public UUID unk3;
   public UUID unk4;
   public FilterCriteriaDesciptionBlock fcdb;
-  public UnkObjectListTypes unk5;
+  public MetadataObjectPropertyValueCollection unk5;
   public Integer unk6;
   public UUID unk7;
   public UUID unk8;
