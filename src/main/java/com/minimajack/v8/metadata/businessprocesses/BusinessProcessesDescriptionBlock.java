@@ -15,6 +15,7 @@ import com.minimajack.v8.metadata.persist.UnkPersistObject2;
 import java.util.UUID;
 
 @V8Class
+@V8Version
 public class BusinessProcessesDescriptionBlock {
 
   @V8Version
