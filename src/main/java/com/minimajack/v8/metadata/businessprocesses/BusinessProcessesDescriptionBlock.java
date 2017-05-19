@@ -5,12 +5,19 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
-import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.CodeAllowedLength;
+import com.minimajack.v8.metadata.inner.enums.CodeType;
+import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
+import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
+import com.minimajack.v8.metadata.inner.enums.EditType;
+import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
+import com.minimajack.v8.metadata.inner.enums.NumberPeriodicity;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
 import com.minimajack.v8.metadata.persist.FieldList;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -22,7 +29,7 @@ public class BusinessProcessesDescriptionBlock {
   public Integer version;
 
   public MetadataMainInfo dmd;
-  public Integer unk1;
+  public Boolean useStandardCommands;
   public UUID unk2;
   public UUID unk3;
   public UUID unk4;
@@ -35,41 +42,41 @@ public class BusinessProcessesDescriptionBlock {
   public UUID unk11;
   public UUID unk12;
   public UUID unk14;
-  public MetadataObjectPropertyValueCollection unktl;
-  public Integer unk15;
-  public Integer unk16;
-  public Integer unk17;
-  public Integer unk18;
-  public Integer unk19;
-  public Integer unk20;
-  public UUID unk21;
-  public UUID unk22;
-  public UUID unk23;
-  public UUID unk24;
-  public Integer unk25;
-  public CompositeIDInfo cids;
-  public Integer unk26;
-  public Integer unk27;
-  public StandardAttributeDescriptions unk28;
-  public Integer unk29;
-  public UUID unk30;
-  public UUID unk31;
-  public UUID unk32;
-  public V8Synonym unk33;
-  public V8Synonym unk34;
-  public V8Synonym unk35;
-  public V8Synonym unk36;
-  public V8Synonym unk37;
-  public Integer unk38;
+  public MetadataObjectPropertyValueCollection basedOn;
+  public CodeType.Values codeType;
+  public NumberPeriodicity.Values numberPeriodicity;
+  public Integer codeLength;
+  public Boolean checkUnique;
+  public Boolean autonumbering;
+  public EditType.Values editType;
+  public UUID defaultObjectForm;
+  public UUID defaultListForm;
+  public UUID defaultChoiceForm;
+  public UUID task;
+  public Boolean includeHelpInContents;
+  public FieldList inputByString;
+  public DataLockControlMode.Values dataLockControlMode;
+  public FullTextSearch.Values fullTextSearch;
+  public StandardAttributeDescriptions standardAttributes;
+  public Boolean taskCreatingPrivilegedMode;
+  public UUID auxiliaryObjectForm;
+  public UUID auxiliaryListForm;
+  public UUID auxiliaryChoiceForm;
+  public V8Synonym objectPresentation;
+  public V8Synonym extendedObjectPresentation;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
+  public CodeAllowedLength.Values codeAllowedLength;
   @V8Since(version = 25)
-  public CharacteristicsDescriptions unk39;
+  public CharacteristicsDescriptions characteristics;
   @V8Since(version = 26)
-  public Integer unk40;
+  public CreateOnInput.Values createOnInput;
   @V8Since(version = 26)
-  public FieldList unk41;
+  public FieldList dataLockFields;
   @V8Since(version = 26)
-  public CompactFlags unk42;
+  public CompactFlags compactFlags;
   @V8Since(version = 26)
-  public Integer unk43;
+  public ChoiceHistoryOnInput.Values choiceHistoryOnInput;
 
 }

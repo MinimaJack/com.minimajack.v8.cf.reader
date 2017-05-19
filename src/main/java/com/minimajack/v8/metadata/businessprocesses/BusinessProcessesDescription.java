@@ -11,6 +11,6 @@ import java.util.List;
 public class BusinessProcessesDescription {
 
   public Integer version;
-  public BusinessProcessesDescriptionBlock dd;
+  public BusinessProcessesDescriptionBlock info;
   public List<V8InnerClass> sections;
 }
