@@ -1,5 +1,6 @@
 package com.minimajack.v8.metadata.registers.accounting;
 
+import com.minimajack.v8.annotation.Required;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
@@ -43,6 +44,7 @@ public class AccountingRegistersBlock {
   public UnkObject unk26; 
   public V8Synonym unk27;
   @V8Since(version=21)
+  @Required(required=false)
   public Integer unk28;
 
 }
