@@ -9,7 +9,7 @@ import java.util.List;
 public class CalculationRegistersDescription {
 
   public Integer version;
-  public CalculationRegistersBlock arb;
+  public CalculationRegistersBlock info;
   public List<V8InnerClass> sections;
 
 }
