@@ -8,7 +8,7 @@ public final class ChoiceHistoryOnInput extends V8InnerClass {
 
   public enum Values {
     Auto,
-    DontUse,
+    DONT_USE,
     None;
   }
 }

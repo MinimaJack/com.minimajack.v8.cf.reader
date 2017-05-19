@@ -3,11 +3,11 @@ package com.minimajack.v8.metadata.inner.enums;
 import com.minimajack.v8.metadata.inner.classes.V8ClassUUID;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
-@V8ClassUUID(uuid = "0b9c9926-41c9-4b37-be77-6ccc6d073f8b")
-public final class ChoiceDataGetModeOnInputByString extends V8InnerClass {
+@V8ClassUUID(uuid = "bef65c81-c58b-482d-9267-e7a26f1f96e3")
+public final class SequenceFilling extends V8InnerClass {
 
   public enum Values {
-    DIRECTLY,
-    BACKGROUND;
+    AutoFill,
+    AutoFillOff
   }
 }

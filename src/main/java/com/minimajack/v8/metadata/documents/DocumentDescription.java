@@ -9,6 +9,6 @@ import java.util.List;
 public class DocumentDescription {
 
   public Integer version;
-  public DocumentDescriptionBlock dd;
+  public DocumentDescriptionBlock info;
   public List<V8InnerClass> sections;
 }
