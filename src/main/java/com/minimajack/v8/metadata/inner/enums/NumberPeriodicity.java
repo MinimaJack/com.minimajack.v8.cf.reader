@@ -8,7 +8,7 @@ public final class NumberPeriodicity extends V8InnerClass {
 
   public enum Values {
     Nonperiodical,
-    Year,
+    YEAR,
     Quarter,
     Month,
     Day;

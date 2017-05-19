@@ -10,7 +10,7 @@ public class DocumentNumeratorsDescription {
 
   public Integer version;
 
-  public DocumentNumeratorsDescriptionBlock v8mn;
+  public DocumentNumeratorsDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
