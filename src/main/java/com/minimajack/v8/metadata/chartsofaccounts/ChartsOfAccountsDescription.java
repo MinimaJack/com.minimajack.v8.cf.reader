@@ -10,7 +10,7 @@ public class ChartsOfAccountsDescription {
 
   public Integer version;
 
-  public ChartsOfAccountsDescriptionBlock v8mn;
+  public ChartsOfAccountsDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }

@@ -4,12 +4,19 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
-import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
+import com.minimajack.v8.metadata.inner.enums.CharOfAccountCodeSeries;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.ChoiceMode;
+import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
+import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
+import com.minimajack.v8.metadata.inner.enums.DefaultPresentation;
+import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
+import com.minimajack.v8.metadata.inner.enums.PredefinedDataUpdate;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
 import com.minimajack.v8.metadata.persist.FieldList;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 
@@ -32,50 +39,50 @@ public class ChartsOfAccountsDescriptionBlock {
   public UUID unk12;
   public UUID unk13;
   public UUID unk14;
-  public ChartsOfAccountsDescriptionBlockInfo coadbi;
-  public Integer unk15;
-  public Integer unk16;
-  public MetadataObjectPropertyValueCollection unk17;
-  public UUID unk18;
-  public Integer maxDimention;
+  public ChartsOfAccountsDescriptionBlockInfo coamd;
+  public Boolean useStandardCommands;
+  public Boolean includeHelpInContents;
+  public MetadataObjectPropertyValueCollection basedOn;
+  public UUID extDimensionTypes;
+  public Integer maxExtDimensionCount;
   public String codeMask;
-  public Integer unk19;
-  public Integer unk21;
-  public Integer unk22;
-  public Integer unk23;
-  public Integer unk24;
+  public Integer codeLength;
+  public Integer descriptionLength;
+  public Boolean autoOrderByCode;
+  public Integer orderLength;
+  public DefaultPresentation.Values defaultPresentation;
   public Integer unk25;
-  public UUID unk26;
-  public UUID unk27;
-  public UUID unk28;
-  public Integer unk29;
-  public Integer unk30;
-  public CompositeIDInfo unk31;
-  public Integer unk32;
-  public Integer unk33;
-  public Integer unk34;
-  public Integer unk35;
+  public UUID defaultObjectForm;
+  public UUID defaultListForm;
+  public UUID defaultChoiceForm;
+  public ChoiceMode.Values choiceMode;
+  public Boolean quickChoice;
+  public FieldList inputByString;
+  public Boolean checkUnique;
+  public CharOfAccountCodeSeries.Values codeSeries;
+  public DataLockControlMode.Values dataLockControlMode;
+  public FullTextSearch.Values fullTextSearch;
   public StandardAttributeDescriptions unk36;
   public SomeChartsDimentionObject unk37;
-  public UUID unk38;
-  public UUID unk39;
-  public UUID unk40;
-  public V8Synonym unk41;
-  public V8Synonym unk42;
-  public V8Synonym unk43;
-  public V8Synonym unk44;
-  public V8Synonym unk45;
+  public UUID auxiliaryObjectForm;
+  public UUID auxiliaryListForm;
+  public UUID auxiliaryChoiceForm;
+  public V8Synonym objectPresentation;
+  public V8Synonym extendedObjectPresentation;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
   @V8Since(version = 25)
-  public CharacteristicsDescriptions unk46;
+  public CharacteristicsDescriptions characteristics;
   @V8Since(version = 26)
-  public Integer unk47;
+  public CreateOnInput.Values createOnInput;
   @V8Since(version = 26)
-  public FieldList unk48;
+  public FieldList dataLockFields;
   @V8Since(version = 26)
-  public Integer unk49;
+  public PredefinedDataUpdate.Values predefinedDataUpdate;
   @V8Since(version = 26)
-  public CompactFlags unk50;
+  public CompactFlags compactFlags;
   @V8Since(version = 26)
-  public Integer unk51;
+  public ChoiceHistoryOnInput.Values choiceHistoryOnInput;
 
 }
