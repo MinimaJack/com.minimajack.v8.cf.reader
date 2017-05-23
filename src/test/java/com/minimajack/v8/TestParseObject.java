@@ -22,6 +22,8 @@ import com.minimajack.v8.metadata.external.type.TypeValue;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 import com.minimajack.v8.metadata.inner.classes.transformer.InnerClassTransformer;
+import com.minimajack.v8.metadata.style.item.font.FontDescription;
+import com.minimajack.v8.metadata.style.item.font.FontTransformer;
 import com.minimajack.v8.project.Project;
 import com.minimajack.v8.utility.V8Reader;
 
@@ -34,7 +36,8 @@ public class TestParseObject {
     V8Reader.registerTransformer(V8InnerClass.class, new InnerClassTransformer());
     V8Reader.registerTransformer(Qualifiers.class, new QualityTransformer());
     V8Reader.registerTransformer(TypeValue.class, new TypesTransformer());
-  }
+    V8Reader.registerTransformer(FontDescription.class, new FontTransformer());
+ }
 
   @Test
   public void testStange() throws InstantiationException, IllegalAccessException, IOException {

@@ -1118,6 +1118,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     for (final UUID form : formSection.forms) {
       final String formUuid = form.toString();
       final FormDescription description = getFormDescription(tree, formUuid);
+      System.out.println(description);
       final String destinationDir =
           this.path.toString()
               + File.separator
@@ -1125,7 +1126,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
               + File.separator
               + FORM_PATH
               + File.separator
-              + description.formInnerDescription.md.ffmd.v8mn.name
+              + description.formInnerDescription.md.md.ffmd.name
               + File.separator;
 
       moveToFolder(tree, formUuid, destinationDir + METADATA_FILE);
@@ -1152,7 +1153,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     try {
       description = V8Reader.read(FormDescription.class, getFileBuffer(tree, form.toString()));
     } catch (final Exception e) {
-      this.logger.warn("Error while parsing form {}", form);
+      this.logger.warn("Error while parsing form {}", form, e);
     }
 
     return description;
