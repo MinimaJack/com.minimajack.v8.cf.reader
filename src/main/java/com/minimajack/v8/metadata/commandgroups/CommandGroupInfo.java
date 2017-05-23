@@ -11,7 +11,7 @@ public class CommandGroupInfo {
   @V8Version
   public Integer version;
   public Integer unk1;
-  public UnkObjectIntNotReqUuid unk2;
+  public UnkObjectIntNotReqUuid picture;
   public String unk3;
   public Integer unk4;
   public Integer unk5;
