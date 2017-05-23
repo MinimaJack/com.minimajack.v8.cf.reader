@@ -12,7 +12,7 @@ public class CommandInfoDet0 {
   public Integer unk1;
   public V8Synonym tooltip;
   public Integer unk2;
-  public KeyBinding kb;
+  public Shortcut kb;
   public Integer unk3;
   public CommandGroup cg;
   public PatternDescription cp;
