@@ -122,7 +122,7 @@ public class TypesTransformer extends AbstractTransformer<TypeValue> {
         // Each data has additional info
         V8Reader.readChar(buffer, ',');
         if (innerClass.uuid.equals(ENUM_FILL_CHEKING)) {
-          V8Reader.read(FillChecking.class, buffer);
+          V8Reader.read(FillChecking.Values.class, buffer);
         } else if (innerClass.uuid.equals(LINK_BY_TYPE)) {
           V8Reader.read(LinkByType.class, buffer);
         } else if (innerClass.uuid.equals(CREATE_ON_INPUT)) {

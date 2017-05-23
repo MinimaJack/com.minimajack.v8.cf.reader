@@ -1,10 +1,16 @@
 package com.minimajack.v8.metadata.commonattributes;
 
 import com.minimajack.v8.annotation.V8Class;
+import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
+import com.minimajack.v8.metadata.external.common.ChoiceParameters;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.TypeValue;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
+import com.minimajack.v8.metadata.inner.enums.FillChecking;
+import com.minimajack.v8.metadata.inner.enums.FoldersAndItemsUse;
+import com.minimajack.v8.metadata.inner.enums.UseQuickChoice;
 
 import java.util.UUID;
 
@@ -13,26 +19,26 @@ public class CommonAttributesBlockInfo {
 
   public Integer version;
   public CommonAttributesBlockInfoDet v8mn;
-  public Integer unk1;
-  public V8Synonym unk2;
-  public V8Synonym unk3;
-  public Integer unk4;
-  public String unk5;
-  public Integer unk6;
-  public TypeValue unk7;
-  public TypeValue unk8;
-  public Integer unk9;
-  public UUID unk10;
-  public Integer unk11;
-  public Integer unk12;
-  public MetadataObjectPropertyValueCollection unk13;
-  public CompactFlags unk14;
-  public MetadataObjectPropertyValueCollection unk15;
-  public Integer unk16;
-  public V8Synonym unk17;
-  public TypeValue unk18;
-  public Integer unk19;
-  public Integer unk20;
-  public Integer unk21;
+  public Boolean passwordMode;
+  public V8Synonym format;
+  public V8Synonym tooltip;
+  public Boolean markNegatives;
+  public String mask;
+  public Boolean multiLine;
+  public TypeValue minValue;
+  public TypeValue maxValue;
+  public FoldersAndItemsUse foldersAndItemsUse;
+  public UUID choiceForm;
+  public UseQuickChoice.Values quickChoice;
+  public FillChecking.Values fillChecking;
+  public ChoiceParameterLinks choiceParameterLinks;
+  public CompactFlags compactFlags;
+  public ChoiceParameters choiceParameters;
+  public Boolean extendedEdit;
+  public V8Synonym editFormat;
+  public TypeValue fillingValue;
+  public Boolean fillFromFillingValue;
+  public CreateOnInput.Values createOnInput;
+  public ChoiceHistoryOnInput.Values choiceHistoryOnInput;
 
 }

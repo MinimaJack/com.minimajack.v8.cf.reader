@@ -26,7 +26,7 @@ public class TabularSectionDescription {
   /**
    * Проверка заполнения.
    */
-  public FillChecking fillChecking;
+  public FillChecking.Values fillChecking;
 
   /**
    * Странный объект - возможно конфигурация или версии классов.

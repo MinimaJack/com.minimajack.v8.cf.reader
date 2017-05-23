@@ -3,12 +3,11 @@ package com.minimajack.v8.metadata.inner.enums;
 import com.minimajack.v8.metadata.inner.classes.V8ClassUUID;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
-@V8ClassUUID(uuid = "ace3fd07-11b2-477e-ab7f-36f0ea37c8dd")
-public final class UseQuickChoice extends V8InnerClass {
+@V8ClassUUID(uuid = "8e2af494-8b1d-437b-ad0e-7f5155ceee34")
+public final class CommonAttributeAuthenticationSeparation extends V8InnerClass {
 
   public enum Values {
     DontUse,
-    Use,
-    Auto;
+    Separate
   }
 }

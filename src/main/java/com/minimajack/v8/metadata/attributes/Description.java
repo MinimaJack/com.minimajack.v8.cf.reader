@@ -78,12 +78,12 @@ public class Description {
   /**
    * Быстрый выбор.
    */
-  public UseQuickChoice quickChoice;
+  public UseQuickChoice.Values quickChoice;
 
   /**
    * Проверка заполнения.
    */
-  public FillChecking fillChecking;
+  public FillChecking.Values fillChecking;
 
   /**
    * Связи параметров выбора.

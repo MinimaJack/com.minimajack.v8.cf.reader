@@ -3,7 +3,13 @@ package com.minimajack.v8.metadata.commonattributes;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
-import com.minimajack.v8.metadata.external.unknown.UnkIntUuid;
+import com.minimajack.v8.metadata.external.common.MetaDataObjectLink;
+import com.minimajack.v8.metadata.inner.enums.CommonAttributeAuthenticationSeparation;
+import com.minimajack.v8.metadata.inner.enums.CommonAttributeAutoUse;
+import com.minimajack.v8.metadata.inner.enums.CommonAttributeSeparatedDataUse;
+import com.minimajack.v8.metadata.inner.enums.CommonAttributeUsersSeparation;
+import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
+import com.minimajack.v8.metadata.inner.enums.Indexing;
 
 @V8Class
 public class CommonAttributesBlock {
@@ -11,17 +17,17 @@ public class CommonAttributesBlock {
   @V8Version
   public Integer version;
   public CommonAttributesBlockInfo info;
-  public CommonAttributesList cal;
-  public Integer unk1;
-  public Integer unk2;
+  public CommonAttributeContent content;
+  public Indexing.Values indexing;
+  public FullTextSearch.Values fullTextSearch;
   public Integer unk3;
-  public Integer unk4;
-  public UnkIntUuid unk5;
-  public UnkIntUuid unk6;
-  public UnkIntUuid unk7;
-  public Integer unk8;
-  public Integer unk9;
-  public Integer unk10;
+  public CommonAttributeAutoUse.Values autoUse;
+  public MetaDataObjectLink dataSeparationValue;
+  public MetaDataObjectLink dataSeparationUse;
+  public MetaDataObjectLink conditionalSeparation;
+  public CommonAttributeUsersSeparation.Values usersSeparation;
+  public CommonAttributeAuthenticationSeparation.Values authenticationSeparation;
+  public CommonAttributeSeparatedDataUse.Values separatedDataUse;
   @V8Since(version=4)
   public Integer unk11;
 }
