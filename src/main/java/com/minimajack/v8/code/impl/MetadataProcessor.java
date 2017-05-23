@@ -1118,7 +1118,6 @@ public class MetadataProcessor extends ProjectTreeSearcher {
     for (final UUID form : formSection.forms) {
       final String formUuid = form.toString();
       final FormDescription description = getFormDescription(tree, formUuid);
-      System.out.println(description);
       final String destinationDir =
           this.path.toString()
               + File.separator
