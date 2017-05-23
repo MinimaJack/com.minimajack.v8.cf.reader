@@ -625,7 +625,6 @@ public class MetadataProcessor extends ProjectTreeSearcher {
               + File.separator;
 
       moveToFolder(tree, path2.toString(), destinationDir + path2.toString());
-      moveToFolder(tree, path2.toString() + ".0", destinationDir + path2.toString() + ".0");
 
     }
   }

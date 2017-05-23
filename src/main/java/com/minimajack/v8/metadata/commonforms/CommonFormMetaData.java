@@ -5,6 +5,7 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.type.ListTypes;
+import com.minimajack.v8.metadata.inner.enums.FormType;
 
 @V8Class
 public class CommonFormMetaData {
@@ -14,9 +15,9 @@ public class CommonFormMetaData {
 
   public MetadataMainInfo ffmd;
 
-  public Integer unk1;
-  public Integer unk2;
+  public Boolean includeHelpInContents;
+  public FormType.Values formType;
   @V8Since(version = 10)
-  public ListTypes unk3;
+  public ListTypes usePurposes;
 
 }

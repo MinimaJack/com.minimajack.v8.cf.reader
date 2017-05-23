@@ -8,7 +8,7 @@ public class CommonFormDescriptionInner {
 
   public Integer version;
   public CommonFormMetaData md;
-  public V8Synonym unk1;
-  public V8Synonym unk2;
-  public Integer unk3;
+  public V8Synonym extendedPresentation;
+  public V8Synonym explanation;
+  public Boolean useStandardCommands;
 }

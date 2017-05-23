@@ -14,7 +14,7 @@ public class FormFullMetaData {
 
   public Integer unk1;
 
-  public FormType type;
+  public FormType.Values formType;
 
   public ListTypes unk2;
   
