@@ -3,6 +3,7 @@ package com.minimajack.v8.metadata.commonattributes;
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
+import com.minimajack.v8.metadata.attributes.Description;
 import com.minimajack.v8.metadata.external.common.MetaDataObjectLink;
 import com.minimajack.v8.metadata.inner.enums.CommonAttributeAuthenticationSeparation;
 import com.minimajack.v8.metadata.inner.enums.CommonAttributeAutoUse;
@@ -16,7 +17,7 @@ public class CommonAttributesBlock {
 
   @V8Version
   public Integer version;
-  public CommonAttributesBlockInfo info;
+  public Description info;
   public CommonAttributeContent content;
   public Indexing.Values indexing;
   public FullTextSearch.Values fullTextSearch;

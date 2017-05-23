@@ -115,7 +115,7 @@ public class Description {
    */
   public TypeValue defaultValue;
 
-  public Integer unk13; // some flag
+  public Boolean fillFromFillingValue;
 
   /**
    * Создание при вводе.
