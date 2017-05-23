@@ -10,7 +10,7 @@ public class ChartsOfCharacteristicTypesDescription {
 
   public Integer version;
 
-  public ChartsOfCharacteristicTypesDescriptionBlock v8mn;
+  public ChartsOfCharacteristicTypesDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
