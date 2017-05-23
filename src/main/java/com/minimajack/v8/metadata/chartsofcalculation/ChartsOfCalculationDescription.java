@@ -10,7 +10,7 @@ public class ChartsOfCalculationDescription {
 
   public Integer version;
 
-  public ChartsOfCalculationDescriptionBlock v8mn;
+  public ChartsOfCalculationDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
