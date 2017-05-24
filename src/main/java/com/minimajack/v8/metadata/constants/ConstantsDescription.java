@@ -9,6 +9,6 @@ import java.util.List;
 public class ConstantsDescription {
 
   public Integer version;
-  public ConstantsDescriptionBlock dd;
+  public ConstantsDescriptionBlock info;
   public List<V8InnerClass> sections;
 }
