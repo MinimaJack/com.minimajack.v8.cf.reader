@@ -6,6 +6,6 @@ import com.minimajack.v8.metadata.external.type.TypeValue;
 @V8Class
 public class FunctionalOptionContentItem {
 
-  public Integer unk1;
-  public TypeValue unk2;
+  public Integer version;
+  public TypeValue object;
 }

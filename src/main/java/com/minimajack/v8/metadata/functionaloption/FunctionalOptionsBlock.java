@@ -13,8 +13,8 @@ public class FunctionalOptionsBlock {
   @V8Version
   public Integer version;
   public MetadataMainInfo v8mn;
-  public UUID unk1;
-  public FunctionalOptionContentItems unk2;
+  public UUID location;
+  public FunctionalOptionContent content;
   @V8Since(version = 2)
-  public Integer unk3;
+  public Boolean privilegedGetMode;
 }

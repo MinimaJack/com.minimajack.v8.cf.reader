@@ -9,6 +9,6 @@ import java.util.List;
 public class FunctionalOptionParamsDescription {
 
   public Integer version;
-  public FunctionalOptionParamsBlock fopb;
+  public FunctionalOptionParamsBlock info;
   public List<V8InnerClass> sections;
 }

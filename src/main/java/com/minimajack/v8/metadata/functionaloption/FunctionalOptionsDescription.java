@@ -11,6 +11,6 @@ public class FunctionalOptionsDescription {
 
   @V8Version
   public Integer version;
-  public FunctionalOptionsBlock fcb;
+  public FunctionalOptionsBlock info;
   public List<V8InnerClass> sections;
 }

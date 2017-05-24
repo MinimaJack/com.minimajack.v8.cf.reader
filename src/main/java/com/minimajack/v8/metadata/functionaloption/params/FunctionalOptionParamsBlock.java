@@ -11,6 +11,6 @@ public class FunctionalOptionParamsBlock {
   @V8Version
   public Integer version;
   public MetadataMainInfo v8mn;
-  public MetadataObjectPropertyValueCollection unk5;
+  public MetadataObjectPropertyValueCollection use;
 
 }
