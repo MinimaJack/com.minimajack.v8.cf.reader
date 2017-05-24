@@ -16,17 +16,17 @@ public class DocumentJournalsDescriptionBlock {
   public UUID unk1;
   public UUID unk2;
   public DocumentJournalsMetaData dmd;
-  public UUID unk3;
-  public Integer unk4;
-  public MetadataObjectPropertyValueCollection unk5;
-  public Integer unk6;
+  public UUID defaultForm;
+  public Boolean useStandardCommands;
+  public MetadataObjectPropertyValueCollection registeredDocuments;
+  public Boolean includeHelpInContents;
   public UUID unk7;
   public UUID unk8;
   public UUID unk9;
   public UUID unk10;
-  public StandardAttributeDescriptions unk11;
-  public UUID unk12;
-  public V8Synonym unk13;
-  public V8Synonym unk14;
-  public V8Synonym unk15;
+  public StandardAttributeDescriptions standardAttributes;
+  public UUID auxiliaryForm;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
 }
