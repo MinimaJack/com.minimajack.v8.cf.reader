@@ -17,12 +17,12 @@ public class FilterCriteriaBlock {
   public UUID unk3;
   public UUID unk4;
   public FilterCriteriaDesciptionBlock fcdb;
-  public MetadataObjectPropertyValueCollection unk5;
-  public Integer unk6;
-  public UUID unk7;
-  public UUID unk8;
-  public V8Synonym unk33;
-  public V8Synonym unk34;
-  public V8Synonym unk35;
+  public MetadataObjectPropertyValueCollection content;
+  public Boolean useStandardCommands;
+  public UUID defaultForm;
+  public UUID auxiliaryForm;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
 
 }

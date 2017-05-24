@@ -9,6 +9,6 @@ import java.util.List;
 public class FilterCriteriaDescription {
 
   public Integer version;
-  public FilterCriteriaBlock fcb;
+  public FilterCriteriaBlock info;
   public List<V8InnerClass> sections;
 }
