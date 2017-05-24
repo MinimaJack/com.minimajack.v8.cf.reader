@@ -4,6 +4,11 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
+import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
+import com.minimajack.v8.metadata.inner.enums.EditType;
+import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
+import com.minimajack.v8.metadata.inner.enums.InformationRegisterPeriodicity;
+import com.minimajack.v8.metadata.inner.enums.RegisterWriteMode;
 import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
@@ -28,30 +33,27 @@ public class InformationRegistersBlock {
   public UUID unk13;
   public UUID unk14;
   public InformationRegistersMetaData armd;
-  public UUID unk15;
-  public UUID unk16;
-  public Integer unk17;
-  public Integer unk18;
-  public Integer unk19;
-  public Integer unk20;
-  public Integer unk21;
-  public Integer unk22;
-  public Integer unk23;
-  public Integer unk24;
-  public StandardAttributeDescriptions unk25;
-  public UUID unk26;
-  public UUID unk27;
-  public V8Synonym unk28;
-  public V8Synonym unk29;
-  public V8Synonym unk30;
-  public V8Synonym unk31;
-  public V8Synonym unk32;
+  public UUID defaultRecordForm;
+  public UUID defaultListForm;
+  public InformationRegisterPeriodicity.Values informationRegisterPeriodicity;
+  public RegisterWriteMode.Values writeMode;
+  public EditType.Values editType;
+  public Boolean useStandardCommands;
+  public Boolean includeHelpInContents;
+  public Boolean mainFilterOnPeriod;
+  public DataLockControlMode.Values dataLockControlMode;
+  public FullTextSearch.Values fullTextSearch;
+  public StandardAttributeDescriptions standardAttributes;
+  public UUID auxiliaryRecordForm;
+  public UUID auxiliaryListForm;
+  public V8Synonym recordPresentation;
+  public V8Synonym extendedRecordPresentation;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
   @V8Since(version=28)
-  public Integer unk33;
+  public Boolean enableTotalsSliceLast;
   @V8Since(version=28)
-  public Integer unk34;
-  /*public UnkObject unk24; 
-  public UnkObject unk25; 
-  public V8Synonym unk26; */
+  public Boolean enableTotalsSliceFirst;
 
 }

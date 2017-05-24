@@ -9,7 +9,7 @@ import java.util.List;
 public class InformationRegistersDescription {
 
   public Integer version;
-  public InformationRegistersBlock arb;
+  public InformationRegistersBlock info;
   public List<V8InnerClass> sections;
 
 }
