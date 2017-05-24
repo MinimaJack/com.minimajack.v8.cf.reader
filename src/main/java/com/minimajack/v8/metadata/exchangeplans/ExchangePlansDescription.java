@@ -9,6 +9,6 @@ import java.util.List;
 public class ExchangePlansDescription {
 
   public Integer version;
-  public ExchangePlansBlock epb;
+  public ExchangePlansBlock info;
   public List<V8InnerClass> sections;
 }
