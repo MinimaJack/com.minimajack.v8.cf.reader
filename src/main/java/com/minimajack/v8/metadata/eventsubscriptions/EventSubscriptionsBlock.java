@@ -9,8 +9,8 @@ import java.util.UUID;
 public class EventSubscriptionsBlock {
   public Integer version;
   public MetadataMainInfo v8mn;
-  public PatternDescription pd;
-  public String unk1;
-  public UUID unk2;
-  public String unk3;
+  public PatternDescription source;
+  public String event;
+  public UUID handlerModule;
+  public String handlerFunction;
 }

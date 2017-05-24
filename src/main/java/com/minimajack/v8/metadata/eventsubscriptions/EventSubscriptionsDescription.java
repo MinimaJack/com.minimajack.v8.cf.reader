@@ -9,6 +9,6 @@ import java.util.List;
 public class EventSubscriptionsDescription {
 
   public Integer version;
-  public EventSubscriptionsBlock esb;
+  public EventSubscriptionsBlock info;
   public List<V8InnerClass> sections;
 }
