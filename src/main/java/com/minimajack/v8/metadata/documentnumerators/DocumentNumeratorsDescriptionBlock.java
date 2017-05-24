@@ -5,7 +5,7 @@ import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.inner.enums.CodeAllowedLength;
 import com.minimajack.v8.metadata.inner.enums.CodeType;
-import com.minimajack.v8.metadata.inner.enums.NumberPeriodicity;
+import com.minimajack.v8.metadata.inner.enums.DocumentNumberPeriodicity;
 
 @V8Class
 public class DocumentNumeratorsDescriptionBlock {
@@ -15,7 +15,7 @@ public class DocumentNumeratorsDescriptionBlock {
   public MetadataMainInfo v8mn;
   public CodeType.Values codeType;
   public Integer codeLength;
-  public NumberPeriodicity.Values numberPeriodicity;
+  public DocumentNumberPeriodicity.Values numberPeriodicity;
   public Boolean checkUnique;
   public CodeAllowedLength.Values codeAllowedLength;
 }

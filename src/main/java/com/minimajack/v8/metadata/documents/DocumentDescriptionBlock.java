@@ -12,7 +12,7 @@ import com.minimajack.v8.metadata.inner.enums.CodeType;
 import com.minimajack.v8.metadata.inner.enums.CreateOnInput;
 import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
 import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
-import com.minimajack.v8.metadata.inner.enums.NumberPeriodicity;
+import com.minimajack.v8.metadata.inner.enums.DocumentNumberPeriodicity;
 import com.minimajack.v8.metadata.inner.enums.Posting;
 import com.minimajack.v8.metadata.inner.enums.RealTimePosting;
 import com.minimajack.v8.metadata.inner.enums.RegisterRecordsDeletion;
@@ -41,7 +41,7 @@ public class DocumentDescriptionBlock {
   public UUID numerator;
   public CodeType.Values codeType;
   public Integer codeLength;
-  public NumberPeriodicity.Values numberPeriodicity;
+  public DocumentNumberPeriodicity.Values numberPeriodicity;
   public Boolean checkUnique;
   public Boolean autonumbering;
   public UUID defaultObjectForm;
