@@ -9,6 +9,6 @@ import java.util.List;
 public class InterfacesDescription {
 
   public Integer version;
-  public InterfacesBlock epb;
+  public InterfacesBlock info;
   public List<V8InnerClass> sections;
 }

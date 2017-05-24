@@ -9,8 +9,8 @@ public class InterfacesBlock {
 
   @V8Version
   public Integer version;
-  public Integer unk1;
+  public Boolean notSwitchable;
   public MetadataMainInfo v8mn;
-  public Integer unk2;
+  public Integer unk;
 
 }
