@@ -7,16 +7,14 @@ import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 public final class CommandGroupCategory extends V8InnerClass {
 
   public enum Values {
+    Unknown,
     NavigationPanel,
     FormNavigationPanel,
-    Unknown,
-    Unknown2,
     ActionsPanel,
+    Unknown2,
     Unknown3,
     Unknown4,
     Unknown5,
     FormCommandBar
-    
-    
   }
 }
