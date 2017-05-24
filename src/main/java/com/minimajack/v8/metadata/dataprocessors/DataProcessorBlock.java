@@ -12,12 +12,12 @@ public class DataProcessorBlock {
   public UUID unk1;
   public UUID unk2;
   public DataProcessorMetaData dpmd;
-  public UUID unk3;
-  public Integer unk4;
-  public Integer unk5;
+  public UUID defaultForm;
+  public Boolean useStandardCommands;
+  public Boolean includeHelpInContents;
   public UUID unk6;
   public UUID unk7;
-  public UUID unk8;
-  public V8Synonym unk9;
-  public V8Synonym unk10;
+  public UUID auxiliaryForm;
+  public V8Synonym extendedPresentation;
+  public V8Synonym explanation;
 }
