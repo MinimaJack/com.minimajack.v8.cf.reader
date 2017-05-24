@@ -6,7 +6,7 @@ import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 import java.util.List;
 
 @V8Class
-public class DefinedTypesMetaData {
+public class DefinedTypesDescription {
 
   public Integer version;
 

@@ -13,5 +13,5 @@ public class DefinedTypesBlock {
   public UUID unk1;
   public UUID unk2;
   public MetadataMainInfo v8mn;
-  public PatternDescription pd;
+  public PatternDescription type;
 }
