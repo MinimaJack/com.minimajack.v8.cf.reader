@@ -4,6 +4,8 @@ import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.ChoiceMode;
 import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
 
@@ -19,22 +21,22 @@ public class EnumDescriptionBlock {
   public UUID unk3;
   public UUID unk4;
   public EnumMetaData v8mn;
-  public Integer unk5;
+  public Boolean useStandardCommands;
   public UUID unk6;
   public UUID unk7;
-  public UUID unk8;
-  public UUID unk9;
-  public Integer unk10;
-  public Integer unk11;
-  public UUID unk12;
-  public UUID unk13;
-  public V8Synonym unk14;
-  public V8Synonym unk15;
-  public V8Synonym unk16;
+  public UUID defaultListForm;
+  public UUID defaultChoiceForm;
+  public ChoiceMode.Values choiceMode;
+  public Boolean quickChoice;
+  public UUID auxiliaryListForm;
+  public UUID auxiliaryChoiceForm;
+  public V8Synonym listPresentation;
+  public V8Synonym extendedListPresentation;
+  public V8Synonym explanation;
   @V8Since(version = 17)
-  public StandardAttributeDescriptions unk17;
+  public StandardAttributeDescriptions standardAttributes;
   @V8Since(version = 19)
-  public CharacteristicsDescriptions unk18;
+  public CharacteristicsDescriptions characteristics;
   @V8Since(version = 20)
-  public Integer unk19;
+  public ChoiceHistoryOnInput.Values choiceHistoryOnInput;
 }

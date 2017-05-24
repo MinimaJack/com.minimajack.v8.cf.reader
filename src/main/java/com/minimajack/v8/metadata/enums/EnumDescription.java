@@ -10,7 +10,7 @@ public class EnumDescription {
 
   public Integer version;
 
-  public EnumDescriptionBlock edb;
+  public EnumDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
