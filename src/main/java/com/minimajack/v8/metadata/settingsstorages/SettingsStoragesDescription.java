@@ -10,7 +10,7 @@ public class SettingsStoragesDescription {
 
   public Integer version;
 
-  public SettingsStoragesDescriptionBlock v8mn;
+  public SettingsStoragesDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
