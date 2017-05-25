@@ -2,7 +2,7 @@ package com.minimajack.v8.metadata.style.item.font.impl;
 
 import com.minimajack.v8.metadata.style.item.font.FontDescription;
 
-public class FontDesc implements FontDescription {
+public class AbsoluteFont implements FontDescription {
 
   public Integer type;
   public Integer unk2;

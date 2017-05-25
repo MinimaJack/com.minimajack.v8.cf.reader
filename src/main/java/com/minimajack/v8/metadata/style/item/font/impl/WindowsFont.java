@@ -3,7 +3,7 @@ package com.minimajack.v8.metadata.style.item.font.impl;
 import com.minimajack.v8.metadata.style.item.color.IntObject;
 import com.minimajack.v8.metadata.style.item.font.FontDescription;
 
-public class FontDesc2 implements FontDescription{
+public class WindowsFont implements FontDescription {
 
   public Integer type;
   public Integer flag;

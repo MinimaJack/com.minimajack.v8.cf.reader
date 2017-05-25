@@ -1,8 +1,11 @@
 package com.minimajack.v8.metadata.style.item.font;
 
+import com.minimajack.v8.metadata.inner.enums.FontType;
+import com.minimajack.v8.metadata.inner.enums.FontType.Values;
 import com.minimajack.v8.metadata.style.item.color.IntObject;
-import com.minimajack.v8.metadata.style.item.font.impl.FontDesc;
-import com.minimajack.v8.metadata.style.item.font.impl.FontDesc2;
+import com.minimajack.v8.metadata.style.item.font.impl.AbsoluteFont;
+import com.minimajack.v8.metadata.style.item.font.impl.WindowsFont;
+import com.minimajack.v8.metadata.style.item.font.impl.StyleItemFont;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.utility.V8Reader;
 
@@ -18,22 +21,18 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
   private static final int FONT_UNK4 = 1 << 1;
   private static final int FONT_UNK5 = 1;
 
-  private static final int FONT_TYPE_0 = 0;
-  private static final int FONT_TYPE_1 = 1;
-  private static final int FONT_TYPE_2 = 2;
-
   @Override
   public FontDescription read(ParameterizedType type, ByteBuffer buffer) {
     buffer.mark();
     FontDescription innerFont = null;
-    final Integer typeFont = V8Reader.read(Integer.class, buffer);
+    Values typeFont = V8Reader.read(FontType.Values.class, buffer);
     buffer.reset();
     switch (typeFont) {
-      case FONT_TYPE_0:
-        innerFont = V8Reader.read(FontDesc.class, buffer);
+      case Absolute:
+        innerFont = V8Reader.read(AbsoluteFont.class, buffer);
       break;
-      case FONT_TYPE_2:
-        FontDesc2 readedFont = new FontDesc2();
+      case StyleItem:
+        StyleItemFont readedFont = new StyleItemFont();
         readedFont.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
         readedFont.flag = V8Reader.read(Integer.class, buffer);
@@ -61,8 +60,8 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
         }
         innerFont = readedFont;
       break;
-      case FONT_TYPE_1:
-        FontDesc2 readedFont1 = new FontDesc2();
+      case WindowsFont:
+        WindowsFont readedFont1 = new WindowsFont();
         readedFont1.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
         readedFont1.flag = V8Reader.read(Integer.class, buffer);

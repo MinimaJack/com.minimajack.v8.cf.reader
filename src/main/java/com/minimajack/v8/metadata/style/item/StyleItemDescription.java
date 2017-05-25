@@ -10,7 +10,7 @@ public class StyleItemDescription {
 
   public Integer version;
 
-  public StyleItemDescriptionBlock v8mn;
+  public StyleItemDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
