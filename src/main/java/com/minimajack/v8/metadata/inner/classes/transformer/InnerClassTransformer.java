@@ -1,5 +1,16 @@
 package com.minimajack.v8.metadata.inner.classes.transformer;
 
+import com.minimajack.v8.metadata.catalog.CharacteristicsDescription;
+import com.minimajack.v8.metadata.external.PatternDescription;
+import com.minimajack.v8.metadata.external.common.ChoiceParameterLinks;
+import com.minimajack.v8.metadata.external.common.ChoiceParameters;
+import com.minimajack.v8.metadata.external.common.MetaDataObjectLink;
+import com.minimajack.v8.metadata.external.common.V8Synonym;
+import com.minimajack.v8.metadata.external.unknown.LinkByType;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectIntNotReqUuid;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
+import com.minimajack.v8.metadata.external.unknown.UnkObjectUuidInt;
+import com.minimajack.v8.metadata.functionaloption.FunctionalOptionContentItem;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 import com.minimajack.v8.metadata.inner.classes.attributes.AttributesAddressList;
 import com.minimajack.v8.metadata.inner.classes.attributes.AttributesDocumentList;
@@ -16,6 +27,7 @@ import com.minimajack.v8.metadata.inner.classes.attributes.charts.accounting.fla
 import com.minimajack.v8.metadata.inner.classes.attributes.charts.characteristics.ChartsOfCharacteristicTypesAttributesList;
 import com.minimajack.v8.metadata.inner.classes.attributes.information.InformationDimensionList;
 import com.minimajack.v8.metadata.inner.classes.attributes.information.InformationResourceList;
+import com.minimajack.v8.metadata.inner.classes.collection.FixedArray;
 import com.minimajack.v8.metadata.inner.classes.commands.CommandList;
 import com.minimajack.v8.metadata.inner.classes.commands.CommandListMetaDataObject;
 import com.minimajack.v8.metadata.inner.classes.configuration.accounting.AccountingConfiguraionMetaData;
@@ -71,20 +83,31 @@ import com.minimajack.v8.metadata.inner.classes.configuration.main.Reports;
 import com.minimajack.v8.metadata.inner.classes.configuration.main.Sequences;
 import com.minimajack.v8.metadata.inner.classes.documentjournal.ColumnList;
 import com.minimajack.v8.metadata.inner.classes.enums.EnumList;
+import com.minimajack.v8.metadata.inner.classes.enums.StandartPeriod;
 import com.minimajack.v8.metadata.inner.classes.externaldataprocessor.ExternalDataProcessorMetaData;
 import com.minimajack.v8.metadata.inner.classes.forms.FormList;
 import com.minimajack.v8.metadata.inner.classes.httpservice.HttpMethods;
 import com.minimajack.v8.metadata.inner.classes.httpservice.UrlTemplates;
 import com.minimajack.v8.metadata.inner.classes.sequences.SequencesDataList;
+import com.minimajack.v8.metadata.inner.classes.style.border.Border;
+import com.minimajack.v8.metadata.inner.classes.style.color.Color;
+import com.minimajack.v8.metadata.inner.classes.style.font.Font;
 import com.minimajack.v8.metadata.inner.classes.tabular.TabularList;
 import com.minimajack.v8.metadata.inner.classes.template.TemplateList;
 import com.minimajack.v8.metadata.inner.classes.webservices.OperationParams;
 import com.minimajack.v8.metadata.inner.classes.webservices.WebServiceList;
+import com.minimajack.v8.metadata.inner.enums.AccountType;
+import com.minimajack.v8.metadata.inner.enums.ApplicationUsePurpose;
+import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
+import com.minimajack.v8.metadata.inner.enums.FillChecking;
+import com.minimajack.v8.metadata.inner.enums.RequiredMobileApplicationPermissions;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.utility.V8Reader;
 
 import java.lang.reflect.ParameterizedType;
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
@@ -484,286 +507,250 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public static final UUID METHODS_HTTP_SERVICE = UUID
       .fromString("21c96ea8-c8fc-424a-a0b4-e1ffb2fa1a73");
 
+  private static final UUID ENUM_FILL_CHEKING = UUID
+      .fromString("98ea8e5a-b586-442b-b944-6e3447734aa7");
+
+  private static final UUID LINK_BY_TYPE = UUID
+      .fromString("9ad557b1-249e-48dc-824b-3e149ecf10a6");
+
+  private static final UUID CREATE_ON_INPUT = UUID
+      .fromString("ad3615c5-aae6-4725-89be-91827523abd9");
+
+  private static final UUID MULTILANGUAGE_STRING = UUID
+      .fromString("87024738-fc2a-4436-ada1-df79d395c424");
+
+  private static final UUID METADATA_OBJECT = UUID
+      .fromString("157fa490-4ce9-11d4-9415-008048da11f9");
+
+  private static final UUID FUNCTIONAL_OPTION_VALUE = UUID
+      .fromString("3ea29ea5-66f6-4e3b-8595-d8940db766a2");
+
+  private static final UUID ENUM_USE_QUICK_CHOICE = UUID
+      .fromString("ace3fd07-11b2-477e-ab7f-36f0ea37c8dd");
+
+  private static final UUID ENUM_CHOICE_HISTORY_ON_INPUT = UUID
+      .fromString("12ca4003-ac70-450e-b897-37faf86bd313");
+
+  private static final UUID ENUM_FULL_TEXT_SEARCH = UUID
+      .fromString("3b8e6bdd-d648-49d5-af2f-d46d84f87dd5");
+
+  private static final UUID CHOICE_PARAMETER_LINKS = UUID
+      .fromString("b76a58b9-2a56-4e46-bb31-8e04ad9f31ae");
+
+  private static final UUID CHOICE_PARAMETERS = UUID
+      .fromString("f2eaae14-91a7-47b9-9d69-097877f41580");
+
+  private static final UUID PREDEFINED_TYPE_11 = UUID
+      .fromString("5c14e26f-099b-4d37-84a6-b433d87400da");
+
+  private static final UUID FIXED_ARRAY = UUID
+      .fromString("4500381b-db30-4a10-9db4-990038032acf");
+
+  private static final UUID ENUM_APPLICATION_USE_PURPOSE = UUID
+      .fromString("1708fdaa-cbce-4289-b373-07a5a74bee91");
+
+  private static final UUID REQUIRED_MOBILE_APPLICATION_PERMISSIONS = UUID
+      .fromString("e4c53f94-e5f7-4a34-8c10-218bd811cae1");
+
+  private static final UUID COMPOSITE_ID = UUID
+      .fromString("60ea359f-3a6e-48bb-8e71-d2a457572918");
+
+  private static final UUID CHARACTERISTICS_DESCRIPTION = UUID
+      .fromString("fe839d42-d094-40ba-b903-75bccc21ba30");
+
+  private static final UUID STANDART_PERIOD = UUID
+      .fromString("2fdc88ec-7c9b-43cd-8ba5-873f043bdd88");
+
+  private static final UUID COLOR = UUID.fromString("9cd510c7-abfc-11d4-9434-004095e12fc7");
+
+  private static final UUID FONT = UUID.fromString("9cd510c8-abfc-11d4-9434-004095e12fc7");
+
+  private static final UUID BORDER = UUID.fromString("4d10ca00-111a-4d43-9c96-92cd773716de");
+
+  private static final UUID ACCOUNT_TYPE = UUID
+      .fromString("872f7198-7083-4e3e-b57e-a2a9802c769e");
+
+  private static final UUID TYPE_DESCRIPTION = UUID
+      .fromString("f5c65050-3bbb-11d5-b988-0050bae0a95d");
+
+  private final Map<UUID, Class<? extends V8InnerClass>> classbyUUID =
+      new HashMap<UUID, Class<? extends V8InnerClass>>();
+  {
+    this.classbyUUID.put(FORMS_SECTION, FormList.class);
+    this.classbyUUID.put(TEMPLATE_SECTION, TemplateList.class);
+    this.classbyUUID.put(TABULAR_ATTRIBUTES_SECTION, AttributesList.class);
+    this.classbyUUID.put(DATAPROCESSOR_TABULAR_ATTRIBUTES_SECTION, AttributesList.class);
+    this.classbyUUID.put(REPORT_TABULAR_ATTRIBUTES_SECTION, AttributesList.class);
+    this.classbyUUID.put(ATTRIBUTES_SECTION, AttributesList.class);
+    this.classbyUUID.put(TABULAR_SECTION, TabularList.class);
+    this.classbyUUID.put(ROLE_SECTION, Roles.class);
+    this.classbyUUID.put(COMMON_TEMPLATES_SECTION, CommonTemplates.class);
+    this.classbyUUID.put(COMMON_MODULES_SECTION, CommonModules.class);
+    this.classbyUUID.put(SCHEDULED_JOBS_SECTION, ScheduledJobs.class);
+    this.classbyUUID.put(COMMON_ATTRIBUTES_SECTION, CommonAttributes.class);
+    this.classbyUUID.put(SESSION_PARAMS_SECTION, SessionParams.class);
+    this.classbyUUID.put(FUNC_OPTIONS_PARAMS_SECTION, FunctionalOptionParams.class);
+    this.classbyUUID.put(HTTP_SERVICES_SECTION, HttpServices.class);
+    this.classbyUUID.put(SUBSYSTEMS_SECTION, Subsystems.class);
+    this.classbyUUID.put(INTERFACES_SECTION, Interfaces.class);
+    this.classbyUUID.put(STYLES_SECTION, Styles.class);
+    this.classbyUUID.put(FILTER_CRITERIA_SECTION, FilterCriteria.class);
+    this.classbyUUID.put(SETTINGS_STORAGES_SECTION, SettingsStorages.class);
+    this.classbyUUID.put(EVENT_SUBSCRIPTIONS_SECTION, EventSubscriptions.class);
+    this.classbyUUID.put(STYLE_ITEMS_SECTION, StyleItems.class);
+    this.classbyUUID.put(COMMON_PICTURES_SECTION, CommonPictures.class);
+    this.classbyUUID.put(EXCHANGE_PLANS_SECTION, ExchangePlans.class);
+    this.classbyUUID.put(WEB_SERVICES_SECTION, WebServices.class);
+    this.classbyUUID.put(LANGUAGES_SECTION, Languages.class);
+    this.classbyUUID.put(FUNCTIONAL_OPTIONS_SECTION, FunctionalOptions.class);
+    this.classbyUUID.put(DEFINED_TYPES_SECTION, DefinedTypes.class);
+    this.classbyUUID.put(XDTO_PACKAGES_SECTION, XdtoPackages.class);
+    this.classbyUUID.put(WS_REFERENCES_SECTION, WsReferences.class);
+    this.classbyUUID.put(CONSTANTS_SECTION, Constants.class);
+    this.classbyUUID.put(DOCUMENTS_SECTION, Documents.class);
+    this.classbyUUID.put(COMMON_FORMS_SECTION, CommonForms.class);
+    this.classbyUUID.put(INFORMATION_REGISTERS_SECTION, InformationRegisters.class);
+    this.classbyUUID.put(COMMAND_GROUPS_SECTION, CommandGroups.class);
+    this.classbyUUID.put(COMMON_COMMANDS_SECTION, CommonCommands.class);
+    this.classbyUUID.put(DOCUMENT_NUMERATORS_SECTION, DocumentNumerators.class);
+    this.classbyUUID.put(DOCUMENT_JOURNALS_SECTION, DocumentJournals.class);
+    this.classbyUUID.put(REPORTS_SECTION, Reports.class);
+    this.classbyUUID
+        .put(CHARTS_OF_CHARACTERISTIC_TYPES_SECTION, ChartsOfCharacteristicTypes.class);
+    this.classbyUUID.put(ACCUMULATION_REGISTERS_SECTION, AccumulationRegisters.class);
+    this.classbyUUID.put(SEQUENCES_SECTION, Sequences.class);
+    this.classbyUUID.put(DATA_PROCESSORS_SECTION, DataProcessors.class);
+    this.classbyUUID.put(CATALOGS_SECTION, Catalogs.class);
+    this.classbyUUID.put(ENUMS_SECTION, Enums.class);
+    this.classbyUUID.put(CHARTS_OF_ACCOUNTS_SECTION, ChartsOfAccounts.class);
+    this.classbyUUID.put(ACCOUNTING_REGISTERS_SECTION, AccountingRegisters.class);
+    this.classbyUUID.put(CHARTS_OF_CALCULATION_TYPES_SECTION, ChartsOfCalculation.class);
+    this.classbyUUID.put(CALCULATION_REGISTERS_SECTION, CalculationRegisters.class);
+    this.classbyUUID.put(TASKS_SECTION, Tasks.class);
+    this.classbyUUID.put(BUSINESS_PROCESSES_SECTION, BusinessProcesses.class);
+    this.classbyUUID.put(EXTERNAL_DATA_SOURCES_SECTION, ExternalDataSources.class);
+    this.classbyUUID.put(EXTERNAL_DATA_PROCESSOR, ExternalDataProcessorMetaData.class);
+    this.classbyUUID.put(COMMON_CONFIGURATION_BLOCK, CommonConfiguraionMetaData.class);
+    this.classbyUUID.put(MAIN_CONFIGURATION_BLOCK, MainConfiguraionMetaData.class);
+    this.classbyUUID.put(ACCOUNTING_CONFIGURATION_BLOCK, AccountingConfiguraionMetaData.class);
+    this.classbyUUID.put(CALCULATION_CONFIGURATION_BLOCK, CalculationConfiguraionMetaData.class);
+    this.classbyUUID
+        .put(BUSINESS_PROCESSES_CONFIGURATION_BLOCK, BusinessProcessesConfiguraionMetaData.class);
+    this.classbyUUID
+        .put(EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK, ExternalDataSourcesConfiguraionMetaData.class);
+    this.classbyUUID.put(COMMAND_LIST, CommandList.class);
+    this.classbyUUID.put(TABULARS, TabularList.class);
+    this.classbyUUID.put(ATTRIBUTES, AttributesList.class);
+    this.classbyUUID.put(FORMS, FormList.class);
+    this.classbyUUID.put(TABULAR_DOCUMENTS, TabularList.class);
+    this.classbyUUID.put(ATTRIBUTES_DOCUMENTS, AttributesDocumentList.class);
+    this.classbyUUID.put(COMMAND_LIST_DOCUMENTS, CommandList.class);
+    this.classbyUUID.put(TEMPLATES_SECTION_DOCUMENTS, TemplateList.class);
+    this.classbyUUID.put(UNK_REGISTERS, FormList.class);
+    this.classbyUUID.put(RESOURCE_REGISTERS, ResourceList.class);
+    this.classbyUUID.put(DIMENSION_REGISTERS, DimensionList.class);
+    this.classbyUUID.put(ATTRIBUTES_REGISTERS, AttributesRegistersList.class);
+    this.classbyUUID.put(FORMS_REGISTERS, FormList.class);
+    this.classbyUUID.put(RESOURCE_INFORMATION_REGISTERS, InformationResourceList.class);
+    this.classbyUUID.put(DIMENSION_INFORMATION_REGISTERS, InformationDimensionList.class);
+    this.classbyUUID.put(FORMS_INFORMATION_REGISTERS, FormList.class);
+    this.classbyUUID.put(ATTRIBUTES_INFORMATION_REGISTERS, AttributesRegistersList.class);
+    this.classbyUUID.put(COMMANDS_INFORMATION_REGISTERS, CommandListMetaDataObject.class);
+    this.classbyUUID.put(ATTRIBUTES_REPORTS, AttributesList.class);
+    this.classbyUUID.put(FORM_REPORTS, FormList.class);
+    this.classbyUUID.put(TABULARS_REPORTS, TabularList.class);
+    this.classbyUUID.put(COMMANDS_REPORTS, CommandListMetaDataObject.class);
+    this.classbyUUID.put(COMMANDS_DATA_PROCESSORS, CommandListMetaDataObject.class);
+    this.classbyUUID.put(UNK1_ENUM, FormList.class);
+    this.classbyUUID.put(UNK2_ENUM, FormList.class);
+    this.classbyUUID.put(VALUES_ENUM, EnumList.class);
+    this.classbyUUID.put(ATTRIBUTES_EXCHANGE_PLANS, AttributesList.class);
+    this.classbyUUID.put(TABULARS_EXCHANGE_PLANS, TabularList.class);
+    this.classbyUUID.put(FORMS_EXCHANGE_PLANS, FormList.class);
+    this.classbyUUID.put(COMMANDS_EXCHANGE_PLANS, CommandList.class);
+    this.classbyUUID.put(FORMS_FILTER_CRITERIA, FormList.class);
+    this.classbyUUID.put(COMMANDS_FILTER_CRITERIA, CommandList.class);
+    this.classbyUUID.put(DATA_SEQUENCES, SequencesDataList.class);
+    this.classbyUUID.put(FORMS_SETTING_STORAGES, FormList.class);
+    this.classbyUUID.put(FORMS_TASKS, FormList.class);
+    this.classbyUUID.put(ATTRIBUTES_TASKS, AttributesList.class);
+    this.classbyUUID.put(ATTRIBUTES_ADDRESS_TASKS, AttributesAddressList.class);
+    this.classbyUUID.put(TABULARS_TASKS, TabularList.class);
+    this.classbyUUID.put(COMMANDS_TASKS, CommandList.class);
+    this.classbyUUID.put(OPERATION_WEB_SERVICE, WebServiceList.class);
+    this.classbyUUID.put(OPERATION_PARAMS_WEB_SERVICE, OperationParams.class);
+    this.classbyUUID.put(ATTRIBUTES_ACCOUNTING, AttributesAddressList.class);
+    this.classbyUUID.put(RESOURCE_ACCOUNTING, AccountingResourceList.class);
+    this.classbyUUID.put(COMMANDS_ACCOUNTING, CommandListMetaDataObject.class);
+    this.classbyUUID.put(DIMENSION_ACCOUNTING_REGISTERS, DimensionList.class);
+    this.classbyUUID.put(FORMS_ACCOUNTING_REGISTERS, FormList.class);
+    this.classbyUUID.put(DIMENSION_CALCULATION_REGISTERS, CalculationDimensionList.class);
+    this.classbyUUID.put(UNK1_CALCULATION_REGISTERS, FormList.class);
+    this.classbyUUID.put(RESOURCE_CALCULATION_REGISTERS, CalculationResourceList.class);
+    this.classbyUUID.put(UNK2_CALCULATION_REGISTERS, FormList.class);
+    this.classbyUUID.put(UNK3_CALCULATION_REGISTERS, FormList.class);
+    this.classbyUUID.put(ATTRIBUTES_CALCULATION_REGISTERS, CalculationAttributesList.class);
+    this.classbyUUID.put(TABULAR_CHART_ACCOUNT, TabularList.class);
+    this.classbyUUID.put(COMMANDS_CHART_ACCOUNT, CommandList.class);
+    this.classbyUUID.put(FORMS_CHART_ACCOUNT, FormList.class);
+    this.classbyUUID.put(ATTRIBUTES_CHART_ACCOUNT, AttributesList.class);
+    this.classbyUUID.put(FLAGS_CHART_ACCOUNT, AccountingFlags.class);
+    this.classbyUUID.put(EXT_DIMENTION_FLAGS_CHART_ACCOUNT, ExtDimensionAccountingFlags.class);
+    this.classbyUUID.put(TABULAR_CHART_CALCULATION, TabularList.class);
+    this.classbyUUID.put(ATTRIBUTES_CHART_CALCULATION, AttributesList.class);
+    this.classbyUUID.put(COMMANDS_CHART_CALCULATION, CommandList.class);
+    this.classbyUUID.put(FORMS_CHART_CALCULATION, FormList.class);
+    this.classbyUUID.put(TABULAR_CHART_CHARACTERISTICS, TabularList.class);
+    this.classbyUUID
+        .put(ATTRIBUTES_CHART_CHARACTERISTICS, ChartsOfCharacteristicTypesAttributesList.class);
+    this.classbyUUID.put(COMMANDS_CHART_CHARACTERISTICS, CommandList.class);
+    this.classbyUUID.put(FORMS_CHART_CHARACTERISTICS, FormList.class);
+    this.classbyUUID.put(COLUMNS_DOCUMENT_JOURNAL, ColumnList.class);
+    this.classbyUUID.put(COMMANDS_DOCUMENT_JOURNAL, CommandListMetaDataObject.class);
+    this.classbyUUID.put(FORMS_DOCUMENT_JOURNAL, FormList.class);
+    this.classbyUUID.put(FORMS_BUSINESS_PROCESS, FormList.class);
+    this.classbyUUID.put(COMMANDS_BUSINESS_PROCESS, CommandList.class);
+    this.classbyUUID.put(ATTRIBUTES_BUSINESS_PROCESS, AttributesList.class);
+    this.classbyUUID.put(TABULARS_BUSINESS_PROCESS, TabularList.class);
+    this.classbyUUID.put(URL_TEMPLATES_HTTP_SERVICE, UrlTemplates.class);
+    this.classbyUUID.put(METHODS_HTTP_SERVICE, HttpMethods.class);
+    this.classbyUUID.put(ENUM_FILL_CHEKING, FillChecking.class);
+    this.classbyUUID.put(LINK_BY_TYPE, LinkByType.class);
+    this.classbyUUID.put(CREATE_ON_INPUT, UnkObjectUuidInt.class);
+    this.classbyUUID.put(MULTILANGUAGE_STRING, V8Synonym.class);
+    this.classbyUUID.put(METADATA_OBJECT, MetaDataObjectLink.class);
+    this.classbyUUID.put(ENUM_USE_QUICK_CHOICE, UnkObjectUuidInt.class);
+    this.classbyUUID.put(ENUM_CHOICE_HISTORY_ON_INPUT, ChoiceHistoryOnInput.class);
+    this.classbyUUID.put(ENUM_FULL_TEXT_SEARCH, UnkObjectUuidInt.class);
+    this.classbyUUID.put(CHOICE_PARAMETER_LINKS, ChoiceParameterLinks.class);
+    this.classbyUUID.put(CHOICE_PARAMETERS, ChoiceParameters.class);
+    this.classbyUUID.put(PREDEFINED_TYPE_11, UnkObjectIntUuidUuid.class);
+    this.classbyUUID.put(FIXED_ARRAY, FixedArray.class);
+    this.classbyUUID.put(ENUM_APPLICATION_USE_PURPOSE, ApplicationUsePurpose.class);
+    this.classbyUUID
+        .put(REQUIRED_MOBILE_APPLICATION_PERMISSIONS, RequiredMobileApplicationPermissions.class);
+    this.classbyUUID.put(FUNCTIONAL_OPTION_VALUE, FunctionalOptionContentItem.class);
+    this.classbyUUID.put(COMPOSITE_ID, UnkObjectIntNotReqUuid.class);
+    this.classbyUUID.put(CHARACTERISTICS_DESCRIPTION, CharacteristicsDescription.class);
+    this.classbyUUID.put(STANDART_PERIOD, StandartPeriod.class);
+    this.classbyUUID.put(COLOR, Color.class);
+    this.classbyUUID.put(FONT, Font.class);
+    this.classbyUUID.put(BORDER, Border.class);
+    this.classbyUUID.put(ACCOUNT_TYPE, AccountType.class);
+    this.classbyUUID.put(TYPE_DESCRIPTION, PatternDescription.class);
+  }
+
   @Override
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
     V8InnerClass innerClass = null;
     final UUID classUUID = V8Reader.read(UUID.class, buffer);
-    V8Reader.readChar(buffer, ',');
-    if (classUUID.equals(FORMS_SECTION)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(TEMPLATE_SECTION)) {
-      innerClass = V8Reader.read(TemplateList.class, buffer);
-    } else if (classUUID.equals(TABULAR_ATTRIBUTES_SECTION)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(DATAPROCESSOR_TABULAR_ATTRIBUTES_SECTION)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(REPORT_TABULAR_ATTRIBUTES_SECTION)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_SECTION)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(TABULAR_SECTION)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(ROLE_SECTION)) {
-      innerClass = V8Reader.read(Roles.class, buffer);
-    } else if (classUUID.equals(COMMON_TEMPLATES_SECTION)) {
-      innerClass = V8Reader.read(CommonTemplates.class, buffer);
-    } else if (classUUID.equals(COMMON_MODULES_SECTION)) {
-      innerClass = V8Reader.read(CommonModules.class, buffer);
-    } else if (classUUID.equals(SCHEDULED_JOBS_SECTION)) {
-      innerClass = V8Reader.read(ScheduledJobs.class, buffer);
-    } else if (classUUID.equals(COMMON_ATTRIBUTES_SECTION)) {
-      innerClass = V8Reader.read(CommonAttributes.class, buffer);
-    } else if (classUUID.equals(SESSION_PARAMS_SECTION)) {
-      innerClass = V8Reader.read(SessionParams.class, buffer);
-    } else if (classUUID.equals(FUNC_OPTIONS_PARAMS_SECTION)) {
-      innerClass = V8Reader.read(FunctionalOptionParams.class, buffer);
-    } else if (classUUID.equals(HTTP_SERVICES_SECTION)) {
-      innerClass = V8Reader.read(HttpServices.class, buffer);
-    } else if (classUUID.equals(SUBSYSTEMS_SECTION)) {
-      innerClass = V8Reader.read(Subsystems.class, buffer);
-    } else if (classUUID.equals(INTERFACES_SECTION)) {
-      innerClass = V8Reader.read(Interfaces.class, buffer);
-    } else if (classUUID.equals(STYLES_SECTION)) {
-      innerClass = V8Reader.read(Styles.class, buffer);
-    } else if (classUUID.equals(FILTER_CRITERIA_SECTION)) {
-      innerClass = V8Reader.read(FilterCriteria.class, buffer);
-    } else if (classUUID.equals(SETTINGS_STORAGES_SECTION)) {
-      innerClass = V8Reader.read(SettingsStorages.class, buffer);
-    } else if (classUUID.equals(EVENT_SUBSCRIPTIONS_SECTION)) {
-      innerClass = V8Reader.read(EventSubscriptions.class, buffer);
-    } else if (classUUID.equals(STYLE_ITEMS_SECTION)) {
-      innerClass = V8Reader.read(StyleItems.class, buffer);
-    } else if (classUUID.equals(COMMON_PICTURES_SECTION)) {
-      innerClass = V8Reader.read(CommonPictures.class, buffer);
-    } else if (classUUID.equals(EXCHANGE_PLANS_SECTION)) {
-      innerClass = V8Reader.read(ExchangePlans.class, buffer);
-    } else if (classUUID.equals(WEB_SERVICES_SECTION)) {
-      innerClass = V8Reader.read(WebServices.class, buffer);
-    } else if (classUUID.equals(LANGUAGES_SECTION)) {
-      innerClass = V8Reader.read(Languages.class, buffer);
-    } else if (classUUID.equals(FUNCTIONAL_OPTIONS_SECTION)) {
-      innerClass = V8Reader.read(FunctionalOptions.class, buffer);
-    } else if (classUUID.equals(DEFINED_TYPES_SECTION)) {
-      innerClass = V8Reader.read(DefinedTypes.class, buffer);
-    } else if (classUUID.equals(XDTO_PACKAGES_SECTION)) {
-      innerClass = V8Reader.read(XdtoPackages.class, buffer);
-    } else if (classUUID.equals(WS_REFERENCES_SECTION)) {
-      innerClass = V8Reader.read(WsReferences.class, buffer);
-    } else if (classUUID.equals(CONSTANTS_SECTION)) {
-      innerClass = V8Reader.read(Constants.class, buffer);
-    } else if (classUUID.equals(DOCUMENTS_SECTION)) {
-      innerClass = V8Reader.read(Documents.class, buffer);
-    } else if (classUUID.equals(COMMON_FORMS_SECTION)) {
-      innerClass = V8Reader.read(CommonForms.class, buffer);
-    } else if (classUUID.equals(INFORMATION_REGISTERS_SECTION)) {
-      innerClass = V8Reader.read(InformationRegisters.class, buffer);
-    } else if (classUUID.equals(COMMAND_GROUPS_SECTION)) {
-      innerClass = V8Reader.read(CommandGroups.class, buffer);
-    } else if (classUUID.equals(COMMON_COMMANDS_SECTION)) {
-      innerClass = V8Reader.read(CommonCommands.class, buffer);
-    } else if (classUUID.equals(DOCUMENT_NUMERATORS_SECTION)) {
-      innerClass = V8Reader.read(DocumentNumerators.class, buffer);
-    } else if (classUUID.equals(DOCUMENT_JOURNALS_SECTION)) {
-      innerClass = V8Reader.read(DocumentJournals.class, buffer);
-    } else if (classUUID.equals(REPORTS_SECTION)) {
-      innerClass = V8Reader.read(Reports.class, buffer);
-    } else if (classUUID.equals(CHARTS_OF_CHARACTERISTIC_TYPES_SECTION)) {
-      innerClass = V8Reader.read(ChartsOfCharacteristicTypes.class, buffer);
-    } else if (classUUID.equals(ACCUMULATION_REGISTERS_SECTION)) {
-      innerClass = V8Reader.read(AccumulationRegisters.class, buffer);
-    } else if (classUUID.equals(SEQUENCES_SECTION)) {
-      innerClass = V8Reader.read(Sequences.class, buffer);
-    } else if (classUUID.equals(DATA_PROCESSORS_SECTION)) {
-      innerClass = V8Reader.read(DataProcessors.class, buffer);
-    } else if (classUUID.equals(CATALOGS_SECTION)) {
-      innerClass = V8Reader.read(Catalogs.class, buffer);
-    } else if (classUUID.equals(ENUMS_SECTION)) {
-      innerClass = V8Reader.read(Enums.class, buffer);
-    } else if (classUUID.equals(CHARTS_OF_ACCOUNTS_SECTION)) {
-      innerClass = V8Reader.read(ChartsOfAccounts.class, buffer);
-    } else if (classUUID.equals(ACCOUNTING_REGISTERS_SECTION)) {
-      innerClass = V8Reader.read(AccountingRegisters.class, buffer);
-    } else if (classUUID.equals(CHARTS_OF_CALCULATION_TYPES_SECTION)) {
-      innerClass = V8Reader.read(ChartsOfCalculation.class, buffer);
-    } else if (classUUID.equals(CALCULATION_REGISTERS_SECTION)) {
-      innerClass = V8Reader.read(CalculationRegisters.class, buffer);
-    } else if (classUUID.equals(TASKS_SECTION)) {
-      innerClass = V8Reader.read(Tasks.class, buffer);
-    } else if (classUUID.equals(BUSINESS_PROCESSES_SECTION)) {
-      innerClass = V8Reader.read(BusinessProcesses.class, buffer);
-    } else if (classUUID.equals(EXTERNAL_DATA_SOURCES_SECTION)) {
-      innerClass = V8Reader.read(ExternalDataSources.class, buffer);
-    } else if (classUUID.equals(EXTERNAL_DATA_PROCESSOR)) {
-      innerClass = V8Reader.read(ExternalDataProcessorMetaData.class, buffer); // another
-    } else if (classUUID.equals(COMMON_CONFIGURATION_BLOCK)) {
-      innerClass = V8Reader.read(CommonConfiguraionMetaData.class, buffer);
-    } else if (classUUID.equals(MAIN_CONFIGURATION_BLOCK)) {
-      innerClass = V8Reader.read(MainConfiguraionMetaData.class, buffer);
-    } else if (classUUID.equals(ACCOUNTING_CONFIGURATION_BLOCK)) {
-      innerClass = V8Reader.read(AccountingConfiguraionMetaData.class, buffer);
-    } else if (classUUID.equals(CALCULATION_CONFIGURATION_BLOCK)) {
-      innerClass = V8Reader.read(CalculationConfiguraionMetaData.class, buffer);
-    } else if (classUUID.equals(BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
-      innerClass = V8Reader.read(BusinessProcessesConfiguraionMetaData.class, buffer);
-    } else if (classUUID.equals(EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
-      innerClass = V8Reader.read(ExternalDataSourcesConfiguraionMetaData.class, buffer);
-    } else if (classUUID.equals(COMMAND_LIST)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(TABULARS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(FORMS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(TABULAR_DOCUMENTS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_DOCUMENTS)) {
-      innerClass = V8Reader.read(AttributesDocumentList.class, buffer);
-    } else if (classUUID.equals(COMMAND_LIST_DOCUMENTS)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(TEMPLATES_SECTION_DOCUMENTS)) {
-      innerClass = V8Reader.read(TemplateList.class, buffer);
-    } else if (classUUID.equals(UNK_REGISTERS)) { // may be aggregates
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(RESOURCE_REGISTERS)) {
-      innerClass = V8Reader.read(ResourceList.class, buffer);
-    } else if (classUUID.equals(DIMENSION_REGISTERS)) {
-      innerClass = V8Reader.read(DimensionList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_REGISTERS)) {
-      innerClass = V8Reader.read(AttributesRegistersList.class, buffer);
-    } else if (classUUID.equals(FORMS_REGISTERS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(RESOURCE_INFORMATION_REGISTERS)) {
-      innerClass = V8Reader.read(InformationResourceList.class, buffer);
-    } else if (classUUID.equals(DIMENSION_INFORMATION_REGISTERS)) {
-      innerClass = V8Reader.read(InformationDimensionList.class, buffer);
-    } else if (classUUID.equals(FORMS_INFORMATION_REGISTERS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_INFORMATION_REGISTERS)) {
-      innerClass = V8Reader.read(AttributesRegistersList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_INFORMATION_REGISTERS)) {
-      innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_REPORTS)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(FORM_REPORTS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(TABULARS_REPORTS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_REPORTS)) {
-      innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (classUUID.equals(COMMANDS_DATA_PROCESSORS)) {
-      innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (classUUID.equals(UNK1_ENUM)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(UNK2_ENUM)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(VALUES_ENUM)) {
-      innerClass = V8Reader.read(EnumList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_EXCHANGE_PLANS)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(TABULARS_EXCHANGE_PLANS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(FORMS_EXCHANGE_PLANS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_EXCHANGE_PLANS)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(FORMS_FILTER_CRITERIA)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_FILTER_CRITERIA)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(DATA_SEQUENCES)) {
-      innerClass = V8Reader.read(SequencesDataList.class, buffer);
-    } else if (classUUID.equals(FORMS_SETTING_STORAGES)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(FORMS_TASKS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_TASKS)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_ADDRESS_TASKS)) {
-      innerClass = V8Reader.read(AttributesAddressList.class, buffer);
-    } else if (classUUID.equals(TABULARS_TASKS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_TASKS)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(OPERATION_WEB_SERVICE)) {
-      innerClass = V8Reader.read(WebServiceList.class, buffer);
-    } else if (classUUID.equals(OPERATION_PARAMS_WEB_SERVICE)) {
-      innerClass = V8Reader.read(OperationParams.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_ACCOUNTING)) {
-      innerClass = V8Reader.read(AttributesAddressList.class, buffer);
-    } else if (classUUID.equals(RESOURCE_ACCOUNTING)) {
-      innerClass = V8Reader.read(AccountingResourceList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_ACCOUNTING)) {
-      innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (classUUID.equals(DIMENSION_ACCOUNTING_REGISTERS)) {
-      innerClass = V8Reader.read(DimensionList.class, buffer);
-    } else if (classUUID.equals(FORMS_ACCOUNTING_REGISTERS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(DIMENSION_CALCULATION_REGISTERS)) {
-      innerClass = V8Reader.read(CalculationDimensionList.class, buffer);
-    } else if (classUUID.equals(UNK1_CALCULATION_REGISTERS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(RESOURCE_CALCULATION_REGISTERS)) {
-      innerClass = V8Reader.read(CalculationResourceList.class, buffer);
-    } else if (classUUID.equals(UNK2_CALCULATION_REGISTERS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(UNK3_CALCULATION_REGISTERS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_CALCULATION_REGISTERS)) {
-      innerClass = V8Reader.read(CalculationAttributesList.class, buffer);
-    } else if (classUUID.equals(TABULAR_CHART_ACCOUNT)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_CHART_ACCOUNT)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(FORMS_CHART_ACCOUNT)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_CHART_ACCOUNT)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(FLAGS_CHART_ACCOUNT)) {
-      innerClass = V8Reader.read(AccountingFlags.class, buffer);
-    } else if (classUUID.equals(EXT_DIMENTION_FLAGS_CHART_ACCOUNT)) {
-      innerClass = V8Reader.read(ExtDimensionAccountingFlags.class, buffer);
-    } else if (classUUID.equals(TABULAR_CHART_CALCULATION)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_CHART_CALCULATION)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_CHART_CALCULATION)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(FORMS_CHART_CALCULATION)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(TABULAR_CHART_CHARACTERISTICS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_CHART_CHARACTERISTICS)) {
-      innerClass = V8Reader.read(ChartsOfCharacteristicTypesAttributesList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_CHART_CHARACTERISTICS)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(FORMS_CHART_CHARACTERISTICS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(COLUMNS_DOCUMENT_JOURNAL)) {
-      innerClass = V8Reader.read(ColumnList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_DOCUMENT_JOURNAL)) {
-      innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (classUUID.equals(FORMS_DOCUMENT_JOURNAL)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(FORMS_BUSINESS_PROCESS)) {
-      innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (classUUID.equals(COMMANDS_BUSINESS_PROCESS)) {
-      innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (classUUID.equals(ATTRIBUTES_BUSINESS_PROCESS)) {
-      innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (classUUID.equals(TABULARS_BUSINESS_PROCESS)) {
-      innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (classUUID.equals(URL_TEMPLATES_HTTP_SERVICE)) {
-      innerClass = V8Reader.read(UrlTemplates.class, buffer);
-    } else if (classUUID.equals(METHODS_HTTP_SERVICE)) {
-      innerClass = V8Reader.read(HttpMethods.class, buffer);
+    if (this.classbyUUID.containsKey(classUUID)) {
+      V8Reader.readChar(buffer, ',');
+      innerClass = V8Reader.read(this.classbyUUID.get(classUUID), buffer);
+    } else {
+      throw new RuntimeException("Undefined class uuid: " + classUUID);
     }
-
-    else {
-      throw new RuntimeException("Unknown section: " + classUUID);
-    }
-
     return innerClass;
   }
 }

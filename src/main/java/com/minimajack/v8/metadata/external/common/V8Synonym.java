@@ -1,11 +1,12 @@
 package com.minimajack.v8.metadata.external.common;
 
 import com.minimajack.v8.annotation.V8Class;
+import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
 import java.util.Map;
 
 @V8Class
-public class V8Synonym {
+public class V8Synonym extends V8InnerClass {
 
   public Map<String, String> sinonyms;
 
