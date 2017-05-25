@@ -488,280 +488,280 @@ public class InnerClassTransformer extends AbstractTransformer<V8InnerClass> {
   public V8InnerClass read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
     V8InnerClass innerClass = null;
-    final UUID guid = V8Reader.read(UUID.class, buffer);
-    buffer.reset();
-    if (guid.equals(FORMS_SECTION)) {
+    final UUID classUUID = V8Reader.read(UUID.class, buffer);
+    V8Reader.readChar(buffer, ',');
+    if (classUUID.equals(FORMS_SECTION)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(TEMPLATE_SECTION)) {
+    } else if (classUUID.equals(TEMPLATE_SECTION)) {
       innerClass = V8Reader.read(TemplateList.class, buffer);
-    } else if (guid.equals(TABULAR_ATTRIBUTES_SECTION)) {
+    } else if (classUUID.equals(TABULAR_ATTRIBUTES_SECTION)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(DATAPROCESSOR_TABULAR_ATTRIBUTES_SECTION)) {
+    } else if (classUUID.equals(DATAPROCESSOR_TABULAR_ATTRIBUTES_SECTION)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(REPORT_TABULAR_ATTRIBUTES_SECTION)) {
+    } else if (classUUID.equals(REPORT_TABULAR_ATTRIBUTES_SECTION)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_SECTION)) {
+    } else if (classUUID.equals(ATTRIBUTES_SECTION)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(TABULAR_SECTION)) {
+    } else if (classUUID.equals(TABULAR_SECTION)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(ROLE_SECTION)) {
+    } else if (classUUID.equals(ROLE_SECTION)) {
       innerClass = V8Reader.read(Roles.class, buffer);
-    } else if (guid.equals(COMMON_TEMPLATES_SECTION)) {
+    } else if (classUUID.equals(COMMON_TEMPLATES_SECTION)) {
       innerClass = V8Reader.read(CommonTemplates.class, buffer);
-    } else if (guid.equals(COMMON_MODULES_SECTION)) {
+    } else if (classUUID.equals(COMMON_MODULES_SECTION)) {
       innerClass = V8Reader.read(CommonModules.class, buffer);
-    } else if (guid.equals(SCHEDULED_JOBS_SECTION)) {
+    } else if (classUUID.equals(SCHEDULED_JOBS_SECTION)) {
       innerClass = V8Reader.read(ScheduledJobs.class, buffer);
-    } else if (guid.equals(COMMON_ATTRIBUTES_SECTION)) {
+    } else if (classUUID.equals(COMMON_ATTRIBUTES_SECTION)) {
       innerClass = V8Reader.read(CommonAttributes.class, buffer);
-    } else if (guid.equals(SESSION_PARAMS_SECTION)) {
+    } else if (classUUID.equals(SESSION_PARAMS_SECTION)) {
       innerClass = V8Reader.read(SessionParams.class, buffer);
-    } else if (guid.equals(FUNC_OPTIONS_PARAMS_SECTION)) {
+    } else if (classUUID.equals(FUNC_OPTIONS_PARAMS_SECTION)) {
       innerClass = V8Reader.read(FunctionalOptionParams.class, buffer);
-    } else if (guid.equals(HTTP_SERVICES_SECTION)) {
+    } else if (classUUID.equals(HTTP_SERVICES_SECTION)) {
       innerClass = V8Reader.read(HttpServices.class, buffer);
-    } else if (guid.equals(SUBSYSTEMS_SECTION)) {
+    } else if (classUUID.equals(SUBSYSTEMS_SECTION)) {
       innerClass = V8Reader.read(Subsystems.class, buffer);
-    } else if (guid.equals(INTERFACES_SECTION)) {
+    } else if (classUUID.equals(INTERFACES_SECTION)) {
       innerClass = V8Reader.read(Interfaces.class, buffer);
-    } else if (guid.equals(STYLES_SECTION)) {
+    } else if (classUUID.equals(STYLES_SECTION)) {
       innerClass = V8Reader.read(Styles.class, buffer);
-    } else if (guid.equals(FILTER_CRITERIA_SECTION)) {
+    } else if (classUUID.equals(FILTER_CRITERIA_SECTION)) {
       innerClass = V8Reader.read(FilterCriteria.class, buffer);
-    } else if (guid.equals(SETTINGS_STORAGES_SECTION)) {
+    } else if (classUUID.equals(SETTINGS_STORAGES_SECTION)) {
       innerClass = V8Reader.read(SettingsStorages.class, buffer);
-    } else if (guid.equals(EVENT_SUBSCRIPTIONS_SECTION)) {
+    } else if (classUUID.equals(EVENT_SUBSCRIPTIONS_SECTION)) {
       innerClass = V8Reader.read(EventSubscriptions.class, buffer);
-    } else if (guid.equals(STYLE_ITEMS_SECTION)) {
+    } else if (classUUID.equals(STYLE_ITEMS_SECTION)) {
       innerClass = V8Reader.read(StyleItems.class, buffer);
-    } else if (guid.equals(COMMON_PICTURES_SECTION)) {
+    } else if (classUUID.equals(COMMON_PICTURES_SECTION)) {
       innerClass = V8Reader.read(CommonPictures.class, buffer);
-    } else if (guid.equals(EXCHANGE_PLANS_SECTION)) {
+    } else if (classUUID.equals(EXCHANGE_PLANS_SECTION)) {
       innerClass = V8Reader.read(ExchangePlans.class, buffer);
-    } else if (guid.equals(WEB_SERVICES_SECTION)) {
+    } else if (classUUID.equals(WEB_SERVICES_SECTION)) {
       innerClass = V8Reader.read(WebServices.class, buffer);
-    } else if (guid.equals(LANGUAGES_SECTION)) {
+    } else if (classUUID.equals(LANGUAGES_SECTION)) {
       innerClass = V8Reader.read(Languages.class, buffer);
-    } else if (guid.equals(FUNCTIONAL_OPTIONS_SECTION)) {
+    } else if (classUUID.equals(FUNCTIONAL_OPTIONS_SECTION)) {
       innerClass = V8Reader.read(FunctionalOptions.class, buffer);
-    } else if (guid.equals(DEFINED_TYPES_SECTION)) {
+    } else if (classUUID.equals(DEFINED_TYPES_SECTION)) {
       innerClass = V8Reader.read(DefinedTypes.class, buffer);
-    } else if (guid.equals(XDTO_PACKAGES_SECTION)) {
+    } else if (classUUID.equals(XDTO_PACKAGES_SECTION)) {
       innerClass = V8Reader.read(XdtoPackages.class, buffer);
-    } else if (guid.equals(WS_REFERENCES_SECTION)) {
+    } else if (classUUID.equals(WS_REFERENCES_SECTION)) {
       innerClass = V8Reader.read(WsReferences.class, buffer);
-    } else if (guid.equals(CONSTANTS_SECTION)) {
+    } else if (classUUID.equals(CONSTANTS_SECTION)) {
       innerClass = V8Reader.read(Constants.class, buffer);
-    } else if (guid.equals(DOCUMENTS_SECTION)) {
+    } else if (classUUID.equals(DOCUMENTS_SECTION)) {
       innerClass = V8Reader.read(Documents.class, buffer);
-    } else if (guid.equals(COMMON_FORMS_SECTION)) {
+    } else if (classUUID.equals(COMMON_FORMS_SECTION)) {
       innerClass = V8Reader.read(CommonForms.class, buffer);
-    } else if (guid.equals(INFORMATION_REGISTERS_SECTION)) {
+    } else if (classUUID.equals(INFORMATION_REGISTERS_SECTION)) {
       innerClass = V8Reader.read(InformationRegisters.class, buffer);
-    } else if (guid.equals(COMMAND_GROUPS_SECTION)) {
+    } else if (classUUID.equals(COMMAND_GROUPS_SECTION)) {
       innerClass = V8Reader.read(CommandGroups.class, buffer);
-    } else if (guid.equals(COMMON_COMMANDS_SECTION)) {
+    } else if (classUUID.equals(COMMON_COMMANDS_SECTION)) {
       innerClass = V8Reader.read(CommonCommands.class, buffer);
-    } else if (guid.equals(DOCUMENT_NUMERATORS_SECTION)) {
+    } else if (classUUID.equals(DOCUMENT_NUMERATORS_SECTION)) {
       innerClass = V8Reader.read(DocumentNumerators.class, buffer);
-    } else if (guid.equals(DOCUMENT_JOURNALS_SECTION)) {
+    } else if (classUUID.equals(DOCUMENT_JOURNALS_SECTION)) {
       innerClass = V8Reader.read(DocumentJournals.class, buffer);
-    } else if (guid.equals(REPORTS_SECTION)) {
+    } else if (classUUID.equals(REPORTS_SECTION)) {
       innerClass = V8Reader.read(Reports.class, buffer);
-    } else if (guid.equals(CHARTS_OF_CHARACTERISTIC_TYPES_SECTION)) {
+    } else if (classUUID.equals(CHARTS_OF_CHARACTERISTIC_TYPES_SECTION)) {
       innerClass = V8Reader.read(ChartsOfCharacteristicTypes.class, buffer);
-    } else if (guid.equals(ACCUMULATION_REGISTERS_SECTION)) {
+    } else if (classUUID.equals(ACCUMULATION_REGISTERS_SECTION)) {
       innerClass = V8Reader.read(AccumulationRegisters.class, buffer);
-    } else if (guid.equals(SEQUENCES_SECTION)) {
+    } else if (classUUID.equals(SEQUENCES_SECTION)) {
       innerClass = V8Reader.read(Sequences.class, buffer);
-    } else if (guid.equals(DATA_PROCESSORS_SECTION)) {
+    } else if (classUUID.equals(DATA_PROCESSORS_SECTION)) {
       innerClass = V8Reader.read(DataProcessors.class, buffer);
-    } else if (guid.equals(CATALOGS_SECTION)) {
+    } else if (classUUID.equals(CATALOGS_SECTION)) {
       innerClass = V8Reader.read(Catalogs.class, buffer);
-    } else if (guid.equals(ENUMS_SECTION)) {
+    } else if (classUUID.equals(ENUMS_SECTION)) {
       innerClass = V8Reader.read(Enums.class, buffer);
-    } else if (guid.equals(CHARTS_OF_ACCOUNTS_SECTION)) {
+    } else if (classUUID.equals(CHARTS_OF_ACCOUNTS_SECTION)) {
       innerClass = V8Reader.read(ChartsOfAccounts.class, buffer);
-    } else if (guid.equals(ACCOUNTING_REGISTERS_SECTION)) {
+    } else if (classUUID.equals(ACCOUNTING_REGISTERS_SECTION)) {
       innerClass = V8Reader.read(AccountingRegisters.class, buffer);
-    } else if (guid.equals(CHARTS_OF_CALCULATION_TYPES_SECTION)) {
+    } else if (classUUID.equals(CHARTS_OF_CALCULATION_TYPES_SECTION)) {
       innerClass = V8Reader.read(ChartsOfCalculation.class, buffer);
-    } else if (guid.equals(CALCULATION_REGISTERS_SECTION)) {
+    } else if (classUUID.equals(CALCULATION_REGISTERS_SECTION)) {
       innerClass = V8Reader.read(CalculationRegisters.class, buffer);
-    } else if (guid.equals(TASKS_SECTION)) {
+    } else if (classUUID.equals(TASKS_SECTION)) {
       innerClass = V8Reader.read(Tasks.class, buffer);
-    } else if (guid.equals(BUSINESS_PROCESSES_SECTION)) {
+    } else if (classUUID.equals(BUSINESS_PROCESSES_SECTION)) {
       innerClass = V8Reader.read(BusinessProcesses.class, buffer);
-    } else if (guid.equals(EXTERNAL_DATA_SOURCES_SECTION)) {
+    } else if (classUUID.equals(EXTERNAL_DATA_SOURCES_SECTION)) {
       innerClass = V8Reader.read(ExternalDataSources.class, buffer);
-    } else if (guid.equals(EXTERNAL_DATA_PROCESSOR)) {
+    } else if (classUUID.equals(EXTERNAL_DATA_PROCESSOR)) {
       innerClass = V8Reader.read(ExternalDataProcessorMetaData.class, buffer); // another
-    } else if (guid.equals(COMMON_CONFIGURATION_BLOCK)) {
+    } else if (classUUID.equals(COMMON_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(CommonConfiguraionMetaData.class, buffer);
-    } else if (guid.equals(MAIN_CONFIGURATION_BLOCK)) {
+    } else if (classUUID.equals(MAIN_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(MainConfiguraionMetaData.class, buffer);
-    } else if (guid.equals(ACCOUNTING_CONFIGURATION_BLOCK)) {
+    } else if (classUUID.equals(ACCOUNTING_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(AccountingConfiguraionMetaData.class, buffer);
-    } else if (guid.equals(CALCULATION_CONFIGURATION_BLOCK)) {
+    } else if (classUUID.equals(CALCULATION_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(CalculationConfiguraionMetaData.class, buffer);
-    } else if (guid.equals(BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
+    } else if (classUUID.equals(BUSINESS_PROCESSES_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(BusinessProcessesConfiguraionMetaData.class, buffer);
-    } else if (guid.equals(EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
+    } else if (classUUID.equals(EXTERNAL_DATA_SOURCES_CONFIGURATION_BLOCK)) {
       innerClass = V8Reader.read(ExternalDataSourcesConfiguraionMetaData.class, buffer);
-    } else if (guid.equals(COMMAND_LIST)) {
+    } else if (classUUID.equals(COMMAND_LIST)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(TABULARS)) {
+    } else if (classUUID.equals(TABULARS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES)) {
+    } else if (classUUID.equals(ATTRIBUTES)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(FORMS)) {
+    } else if (classUUID.equals(FORMS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(TABULAR_DOCUMENTS)) {
+    } else if (classUUID.equals(TABULAR_DOCUMENTS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_DOCUMENTS)) {
+    } else if (classUUID.equals(ATTRIBUTES_DOCUMENTS)) {
       innerClass = V8Reader.read(AttributesDocumentList.class, buffer);
-    } else if (guid.equals(COMMAND_LIST_DOCUMENTS)) {
+    } else if (classUUID.equals(COMMAND_LIST_DOCUMENTS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(TEMPLATES_SECTION_DOCUMENTS)) {
+    } else if (classUUID.equals(TEMPLATES_SECTION_DOCUMENTS)) {
       innerClass = V8Reader.read(TemplateList.class, buffer);
-    } else if (guid.equals(UNK_REGISTERS)) { // may be aggregates
+    } else if (classUUID.equals(UNK_REGISTERS)) { // may be aggregates
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(RESOURCE_REGISTERS)) {
+    } else if (classUUID.equals(RESOURCE_REGISTERS)) {
       innerClass = V8Reader.read(ResourceList.class, buffer);
-    } else if (guid.equals(DIMENSION_REGISTERS)) {
+    } else if (classUUID.equals(DIMENSION_REGISTERS)) {
       innerClass = V8Reader.read(DimensionList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_REGISTERS)) {
+    } else if (classUUID.equals(ATTRIBUTES_REGISTERS)) {
       innerClass = V8Reader.read(AttributesRegistersList.class, buffer);
-    } else if (guid.equals(FORMS_REGISTERS)) {
+    } else if (classUUID.equals(FORMS_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(RESOURCE_INFORMATION_REGISTERS)) {
+    } else if (classUUID.equals(RESOURCE_INFORMATION_REGISTERS)) {
       innerClass = V8Reader.read(InformationResourceList.class, buffer);
-    } else if (guid.equals(DIMENSION_INFORMATION_REGISTERS)) {
+    } else if (classUUID.equals(DIMENSION_INFORMATION_REGISTERS)) {
       innerClass = V8Reader.read(InformationDimensionList.class, buffer);
-    } else if (guid.equals(FORMS_INFORMATION_REGISTERS)) {
+    } else if (classUUID.equals(FORMS_INFORMATION_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_INFORMATION_REGISTERS)) {
+    } else if (classUUID.equals(ATTRIBUTES_INFORMATION_REGISTERS)) {
       innerClass = V8Reader.read(AttributesRegistersList.class, buffer);
-    } else if (guid.equals(COMMANDS_INFORMATION_REGISTERS)) {
+    } else if (classUUID.equals(COMMANDS_INFORMATION_REGISTERS)) {
       innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_REPORTS)) {
+    } else if (classUUID.equals(ATTRIBUTES_REPORTS)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(FORM_REPORTS)) {
+    } else if (classUUID.equals(FORM_REPORTS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(TABULARS_REPORTS)) {
+    } else if (classUUID.equals(TABULARS_REPORTS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(COMMANDS_REPORTS)) {
+    } else if (classUUID.equals(COMMANDS_REPORTS)) {
       innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (guid.equals(COMMANDS_DATA_PROCESSORS)) {
+    } else if (classUUID.equals(COMMANDS_DATA_PROCESSORS)) {
       innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (guid.equals(UNK1_ENUM)) {
+    } else if (classUUID.equals(UNK1_ENUM)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(UNK2_ENUM)) {
+    } else if (classUUID.equals(UNK2_ENUM)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(VALUES_ENUM)) {
+    } else if (classUUID.equals(VALUES_ENUM)) {
       innerClass = V8Reader.read(EnumList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_EXCHANGE_PLANS)) {
+    } else if (classUUID.equals(ATTRIBUTES_EXCHANGE_PLANS)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(TABULARS_EXCHANGE_PLANS)) {
+    } else if (classUUID.equals(TABULARS_EXCHANGE_PLANS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(FORMS_EXCHANGE_PLANS)) {
+    } else if (classUUID.equals(FORMS_EXCHANGE_PLANS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(COMMANDS_EXCHANGE_PLANS)) {
+    } else if (classUUID.equals(COMMANDS_EXCHANGE_PLANS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(FORMS_FILTER_CRITERIA)) {
+    } else if (classUUID.equals(FORMS_FILTER_CRITERIA)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(COMMANDS_FILTER_CRITERIA)) {
+    } else if (classUUID.equals(COMMANDS_FILTER_CRITERIA)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(DATA_SEQUENCES)) {
+    } else if (classUUID.equals(DATA_SEQUENCES)) {
       innerClass = V8Reader.read(SequencesDataList.class, buffer);
-    } else if (guid.equals(FORMS_SETTING_STORAGES)) {
+    } else if (classUUID.equals(FORMS_SETTING_STORAGES)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(FORMS_TASKS)) {
+    } else if (classUUID.equals(FORMS_TASKS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_TASKS)) {
+    } else if (classUUID.equals(ATTRIBUTES_TASKS)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_ADDRESS_TASKS)) {
+    } else if (classUUID.equals(ATTRIBUTES_ADDRESS_TASKS)) {
       innerClass = V8Reader.read(AttributesAddressList.class, buffer);
-    } else if (guid.equals(TABULARS_TASKS)) {
+    } else if (classUUID.equals(TABULARS_TASKS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(COMMANDS_TASKS)) {
+    } else if (classUUID.equals(COMMANDS_TASKS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(OPERATION_WEB_SERVICE)) {
+    } else if (classUUID.equals(OPERATION_WEB_SERVICE)) {
       innerClass = V8Reader.read(WebServiceList.class, buffer);
-    } else if (guid.equals(OPERATION_PARAMS_WEB_SERVICE)) {
+    } else if (classUUID.equals(OPERATION_PARAMS_WEB_SERVICE)) {
       innerClass = V8Reader.read(OperationParams.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_ACCOUNTING)) {
+    } else if (classUUID.equals(ATTRIBUTES_ACCOUNTING)) {
       innerClass = V8Reader.read(AttributesAddressList.class, buffer);
-    } else if (guid.equals(RESOURCE_ACCOUNTING)) {
+    } else if (classUUID.equals(RESOURCE_ACCOUNTING)) {
       innerClass = V8Reader.read(AccountingResourceList.class, buffer);
-    } else if (guid.equals(COMMANDS_ACCOUNTING)) {
+    } else if (classUUID.equals(COMMANDS_ACCOUNTING)) {
       innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (guid.equals(DIMENSION_ACCOUNTING_REGISTERS)) {
+    } else if (classUUID.equals(DIMENSION_ACCOUNTING_REGISTERS)) {
       innerClass = V8Reader.read(DimensionList.class, buffer);
-    } else if (guid.equals(FORMS_ACCOUNTING_REGISTERS)) {
+    } else if (classUUID.equals(FORMS_ACCOUNTING_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(DIMENSION_CALCULATION_REGISTERS)) {
+    } else if (classUUID.equals(DIMENSION_CALCULATION_REGISTERS)) {
       innerClass = V8Reader.read(CalculationDimensionList.class, buffer);
-    } else if (guid.equals(UNK1_CALCULATION_REGISTERS)) {
+    } else if (classUUID.equals(UNK1_CALCULATION_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(RESOURCE_CALCULATION_REGISTERS)) {
+    } else if (classUUID.equals(RESOURCE_CALCULATION_REGISTERS)) {
       innerClass = V8Reader.read(CalculationResourceList.class, buffer);
-    } else if (guid.equals(UNK2_CALCULATION_REGISTERS)) {
+    } else if (classUUID.equals(UNK2_CALCULATION_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(UNK3_CALCULATION_REGISTERS)) {
+    } else if (classUUID.equals(UNK3_CALCULATION_REGISTERS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_CALCULATION_REGISTERS)) {
+    } else if (classUUID.equals(ATTRIBUTES_CALCULATION_REGISTERS)) {
       innerClass = V8Reader.read(CalculationAttributesList.class, buffer);
-    } else if (guid.equals(TABULAR_CHART_ACCOUNT)) {
+    } else if (classUUID.equals(TABULAR_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(COMMANDS_CHART_ACCOUNT)) {
+    } else if (classUUID.equals(COMMANDS_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(FORMS_CHART_ACCOUNT)) {
+    } else if (classUUID.equals(FORMS_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_CHART_ACCOUNT)) {
+    } else if (classUUID.equals(ATTRIBUTES_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(FLAGS_CHART_ACCOUNT)) {
+    } else if (classUUID.equals(FLAGS_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(AccountingFlags.class, buffer);
-    } else if (guid.equals(EXT_DIMENTION_FLAGS_CHART_ACCOUNT)) {
+    } else if (classUUID.equals(EXT_DIMENTION_FLAGS_CHART_ACCOUNT)) {
       innerClass = V8Reader.read(ExtDimensionAccountingFlags.class, buffer);
-    } else if (guid.equals(TABULAR_CHART_CALCULATION)) {
+    } else if (classUUID.equals(TABULAR_CHART_CALCULATION)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_CHART_CALCULATION)) {
+    } else if (classUUID.equals(ATTRIBUTES_CHART_CALCULATION)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(COMMANDS_CHART_CALCULATION)) {
+    } else if (classUUID.equals(COMMANDS_CHART_CALCULATION)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(FORMS_CHART_CALCULATION)) {
+    } else if (classUUID.equals(FORMS_CHART_CALCULATION)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(TABULAR_CHART_CHARACTERISTICS)) {
+    } else if (classUUID.equals(TABULAR_CHART_CHARACTERISTICS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_CHART_CHARACTERISTICS)) {
+    } else if (classUUID.equals(ATTRIBUTES_CHART_CHARACTERISTICS)) {
       innerClass = V8Reader.read(ChartsOfCharacteristicTypesAttributesList.class, buffer);
-    } else if (guid.equals(COMMANDS_CHART_CHARACTERISTICS)) {
+    } else if (classUUID.equals(COMMANDS_CHART_CHARACTERISTICS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(FORMS_CHART_CHARACTERISTICS)) {
+    } else if (classUUID.equals(FORMS_CHART_CHARACTERISTICS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(COLUMNS_DOCUMENT_JOURNAL)) {
+    } else if (classUUID.equals(COLUMNS_DOCUMENT_JOURNAL)) {
       innerClass = V8Reader.read(ColumnList.class, buffer);
-    } else if (guid.equals(COMMANDS_DOCUMENT_JOURNAL)) {
+    } else if (classUUID.equals(COMMANDS_DOCUMENT_JOURNAL)) {
       innerClass = V8Reader.read(CommandListMetaDataObject.class, buffer);
-    } else if (guid.equals(FORMS_DOCUMENT_JOURNAL)) {
+    } else if (classUUID.equals(FORMS_DOCUMENT_JOURNAL)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(FORMS_BUSINESS_PROCESS)) {
+    } else if (classUUID.equals(FORMS_BUSINESS_PROCESS)) {
       innerClass = V8Reader.read(FormList.class, buffer);
-    } else if (guid.equals(COMMANDS_BUSINESS_PROCESS)) {
+    } else if (classUUID.equals(COMMANDS_BUSINESS_PROCESS)) {
       innerClass = V8Reader.read(CommandList.class, buffer);
-    } else if (guid.equals(ATTRIBUTES_BUSINESS_PROCESS)) {
+    } else if (classUUID.equals(ATTRIBUTES_BUSINESS_PROCESS)) {
       innerClass = V8Reader.read(AttributesList.class, buffer);
-    } else if (guid.equals(TABULARS_BUSINESS_PROCESS)) {
+    } else if (classUUID.equals(TABULARS_BUSINESS_PROCESS)) {
       innerClass = V8Reader.read(TabularList.class, buffer);
-    } else if (guid.equals(URL_TEMPLATES_HTTP_SERVICE)) {
+    } else if (classUUID.equals(URL_TEMPLATES_HTTP_SERVICE)) {
       innerClass = V8Reader.read(UrlTemplates.class, buffer);
-    } else if (guid.equals(METHODS_HTTP_SERVICE)) {
+    } else if (classUUID.equals(METHODS_HTTP_SERVICE)) {
       innerClass = V8Reader.read(HttpMethods.class, buffer);
     }
 
     else {
-      throw new RuntimeException("Unknown section: " + guid);
+      throw new RuntimeException("Unknown section: " + classUUID);
     }
 
     return innerClass;

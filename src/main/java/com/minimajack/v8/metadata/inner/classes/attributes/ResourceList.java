@@ -4,11 +4,8 @@ import com.minimajack.v8.metadata.attributes.resource.accumulation.ResourceDescr
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
 import java.util.List;
-import java.util.UUID;
 
 public class ResourceList extends V8InnerClass {
-
-  public UUID type;
 
   public List<ResourceDescription> descr;
 

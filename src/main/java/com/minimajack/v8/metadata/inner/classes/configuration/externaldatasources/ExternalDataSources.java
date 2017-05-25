@@ -7,6 +7,5 @@ import java.util.UUID;
 
 public class ExternalDataSources extends V8InnerClass {
 
-  public UUID type;
   public List<UUID> uuids;
 }

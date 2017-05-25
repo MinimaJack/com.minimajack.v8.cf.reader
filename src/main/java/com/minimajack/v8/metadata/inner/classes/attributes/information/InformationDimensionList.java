@@ -4,11 +4,8 @@ import com.minimajack.v8.metadata.attributes.dimension.information.DimentionDesc
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 
 import java.util.List;
-import java.util.UUID;
 
 public class InformationDimensionList extends V8InnerClass {
-
-  public UUID type;
 
   public List<DimentionDescription> descr;
 

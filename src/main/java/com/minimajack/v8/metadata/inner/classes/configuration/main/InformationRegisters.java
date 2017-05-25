@@ -7,7 +7,5 @@ import java.util.UUID;
 
 public class InformationRegisters extends V8InnerClass {
 
-  public UUID type;
-
   public List<UUID> uuids;
 }
