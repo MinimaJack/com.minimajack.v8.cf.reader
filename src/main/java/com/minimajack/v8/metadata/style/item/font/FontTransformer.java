@@ -23,17 +23,15 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
 
   @Override
   public FontDescription read(final ParameterizedType type, final ByteBuffer buffer) {
-    buffer.mark();
     FontDescription innerFont = null;
     final Values typeFont = V8Reader.read(FontType.Values.class, buffer);
-    buffer.reset();
     switch (typeFont) {
       case Absolute:
+        V8Reader.readChar(buffer, ',');
         innerFont = V8Reader.read(AbsoluteFont.class, buffer);
       break;
       case StyleItem:
         final StyleItemFont readedFont = new StyleItemFont();
-        readedFont.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
         readedFont.flag = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
@@ -62,7 +60,6 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
       break;
       case WindowsFont:
         final WindowsFont readedFont1 = new WindowsFont();
-        readedFont1.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
         readedFont1.flag = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');

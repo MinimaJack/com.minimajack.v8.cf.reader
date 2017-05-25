@@ -5,7 +5,6 @@ import com.minimajack.v8.metadata.style.item.font.FontDescription;
 
 public class WindowsFont implements FontDescription {
 
-  public Integer type;
   public Integer flag;
   public IntObject types;
   public Integer weight;

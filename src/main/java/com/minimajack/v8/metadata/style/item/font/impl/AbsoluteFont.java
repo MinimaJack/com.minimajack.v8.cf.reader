@@ -4,7 +4,6 @@ import com.minimajack.v8.metadata.style.item.font.FontDescription;
 
 public class AbsoluteFont implements FontDescription {
 
-  public Integer type;
   public Integer unk2;
   public Integer unk3;
   public Integer unk4;

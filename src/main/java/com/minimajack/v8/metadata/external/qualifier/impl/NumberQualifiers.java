@@ -9,7 +9,7 @@ import com.minimajack.v8.metadata.inner.enums.V8Type;
 public class NumberQualifiers extends Qualifiers {
 
   public V8Type type;
-
+  
   public Integer digits;
 
   public Integer fractionDigits;
