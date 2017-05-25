@@ -12,7 +12,7 @@
 		<github.global.server>github</github.global.server>
 		<github.repo>com.minimajack.v8.format</github.repo>
 		<github.owner>MinimaJack</github.owner>
-		<v8.format.version>0.0.19</v8.format.version>
+		<v8.format.version>0.0.20</v8.format.version>
 	</properties>
 
 	<issueManagement>
@@ -98,7 +98,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.minimajack.v8.format</groupId>
-			<artifactId>com.minimajack.v8.format.bs</artifactId>
+			<artifactId>com.minimajack.v8.format.metadata</artifactId>
 			<version>${v8.format.version}</version>
 		</dependency>
 		<dependency>
