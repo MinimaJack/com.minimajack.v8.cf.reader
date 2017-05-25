@@ -10,7 +10,7 @@ public class SessionParamDescription {
 
   public Integer version;
 
-  public SessionParamDescriptionBlock v8mn;
+  public SessionParamDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }

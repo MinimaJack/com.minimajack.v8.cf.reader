@@ -9,5 +9,5 @@ public class SessionParamDescriptionBlockInfo {
 
   public Integer version;
   public MetadataMainInfo vmn;
-  public PatternDescription pd;
+  public PatternDescription type;
 }
