@@ -1,7 +1,6 @@
 package com.minimajack.v8.packer;
 
 import com.google.common.io.ByteStreams;
-
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.format.V8FileAttribute;
@@ -99,7 +98,8 @@ public class ProjectWriter extends ContainerWriter {
     if (this.packed) {
       final ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-      try (DeflaterOutputStream defStream = new DeflaterOutputStream(baos, new Deflater(6, true))) {
+      try (
+          DeflaterOutputStream defStream = new DeflaterOutputStream(baos, new Deflater(6, true))) {
         ByteStreams.copy(new ByteArrayInputStream(data), defStream);
       } catch (final IOException e1) {
         e1.printStackTrace();
@@ -130,7 +130,7 @@ public class ProjectWriter extends ContainerWriter {
 
   @Override
   public boolean hasData() {
-    return super.hasData() || this.fileList.size() > 0;
+    return super.hasData() || (this.fileList.size() > 0);
   }
 
 }

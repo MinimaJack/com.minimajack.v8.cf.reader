@@ -7,5 +7,6 @@ import java.io.IOException;
 
 public interface CachedStreamFactory extends StreamFactory {
 
+  @Override
   CacheOutput createStream(V8File file) throws IOException;
 }

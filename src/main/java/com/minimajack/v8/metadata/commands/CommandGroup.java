@@ -6,6 +6,7 @@ import java.util.UUID;
 
 @V8Class
 public class CommandGroup {
+
   public Integer version;
   public UUID uuid;
 }

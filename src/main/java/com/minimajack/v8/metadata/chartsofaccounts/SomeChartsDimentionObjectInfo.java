@@ -8,6 +8,6 @@ import java.util.List;
 public class SomeChartsDimentionObjectInfo {
 
   public Integer version;
-  
+
   public List<SomeChartsDimentionObjectInfoBlock> unk1;
 }

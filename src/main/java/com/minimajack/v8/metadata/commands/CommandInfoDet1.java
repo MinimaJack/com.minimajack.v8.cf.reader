@@ -7,6 +7,7 @@ import com.minimajack.v8.metadata.external.unknown.UnkObjectIntNotReqUuid;
 
 @V8Class
 public class CommandInfoDet1 {
+
   @V8Version
   public Integer version;
   public Integer unk1;
@@ -16,6 +17,6 @@ public class CommandInfoDet1 {
   public Integer unk5;
   public Integer unk6;
   public Integer unk7;
-  @V8Since(version=4)
+  @V8Since(version = 4)
   public String unk8;
 }

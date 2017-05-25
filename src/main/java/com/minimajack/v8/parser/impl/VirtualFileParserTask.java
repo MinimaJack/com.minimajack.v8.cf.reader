@@ -1,7 +1,6 @@
 package com.minimajack.v8.parser.impl;
 
 import com.google.common.io.ByteStreams;
-
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.io.factory.StreamFactory;
 import com.minimajack.v8.io.factory.impl.FileStreamFactory;

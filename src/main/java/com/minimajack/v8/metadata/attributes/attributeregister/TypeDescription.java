@@ -8,5 +8,5 @@ public class TypeDescription {
   public FullDescription description;
 
   public Integer unk; // zero or list of objects
-  
+
 }

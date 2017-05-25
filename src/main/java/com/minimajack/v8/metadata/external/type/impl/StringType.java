@@ -10,5 +10,5 @@ public class StringType extends TypeValue {
   public V8Type type;
 
   public String value;
-  
+
 }

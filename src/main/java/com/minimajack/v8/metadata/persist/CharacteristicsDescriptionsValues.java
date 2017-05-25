@@ -7,5 +7,6 @@ import java.util.List;
 
 @V8Class
 public class CharacteristicsDescriptionsValues {
+
   public List<TypeValue> lists;
 }

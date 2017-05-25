@@ -10,6 +10,6 @@ public class StandardAttributeDescriptions {
   public List<StandardAttributeDescription> items;
 
   public int count() {
-    return items.size();
+    return this.items.size();
   }
 }

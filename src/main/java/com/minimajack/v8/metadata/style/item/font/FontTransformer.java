@@ -4,8 +4,8 @@ import com.minimajack.v8.metadata.inner.enums.FontType;
 import com.minimajack.v8.metadata.inner.enums.FontType.Values;
 import com.minimajack.v8.metadata.style.item.color.IntObject;
 import com.minimajack.v8.metadata.style.item.font.impl.AbsoluteFont;
-import com.minimajack.v8.metadata.style.item.font.impl.WindowsFont;
 import com.minimajack.v8.metadata.style.item.font.impl.StyleItemFont;
+import com.minimajack.v8.metadata.style.item.font.impl.WindowsFont;
 import com.minimajack.v8.transformers.AbstractTransformer;
 import com.minimajack.v8.utility.V8Reader;
 
@@ -22,17 +22,17 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
   private static final int FONT_UNK5 = 1;
 
   @Override
-  public FontDescription read(ParameterizedType type, ByteBuffer buffer) {
+  public FontDescription read(final ParameterizedType type, final ByteBuffer buffer) {
     buffer.mark();
     FontDescription innerFont = null;
-    Values typeFont = V8Reader.read(FontType.Values.class, buffer);
+    final Values typeFont = V8Reader.read(FontType.Values.class, buffer);
     buffer.reset();
     switch (typeFont) {
       case Absolute:
         innerFont = V8Reader.read(AbsoluteFont.class, buffer);
       break;
       case StyleItem:
-        StyleItemFont readedFont = new StyleItemFont();
+        final StyleItemFont readedFont = new StyleItemFont();
         readedFont.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
         readedFont.flag = V8Reader.read(Integer.class, buffer);
@@ -61,7 +61,7 @@ public class FontTransformer extends AbstractTransformer<FontDescription> {
         innerFont = readedFont;
       break;
       case WindowsFont:
-        WindowsFont readedFont1 = new WindowsFont();
+        final WindowsFont readedFont1 = new WindowsFont();
         readedFont1.type = V8Reader.read(Integer.class, buffer);
         V8Reader.readChar(buffer, ',');
         readedFont1.flag = V8Reader.read(Integer.class, buffer);

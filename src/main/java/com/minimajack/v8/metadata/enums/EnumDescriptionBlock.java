@@ -6,8 +6,8 @@ import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.inner.enums.ChoiceMode;
-import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 

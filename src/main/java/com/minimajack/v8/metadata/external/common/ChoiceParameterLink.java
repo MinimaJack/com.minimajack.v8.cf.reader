@@ -11,5 +11,5 @@ public class ChoiceParameterLink {
   public List<TypeLink> links;
 
   public LinkedValueChangeMode valueChange;
- 
+
 }

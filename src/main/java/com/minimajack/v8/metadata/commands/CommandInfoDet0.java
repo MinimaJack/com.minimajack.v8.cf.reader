@@ -7,6 +7,7 @@ import com.minimajack.v8.metadata.external.common.V8Synonym;
 
 @V8Class
 public class CommandInfoDet0 {
+
   public Integer version;
   public CommandInfoDet1 cid1;
   public Integer unk1;

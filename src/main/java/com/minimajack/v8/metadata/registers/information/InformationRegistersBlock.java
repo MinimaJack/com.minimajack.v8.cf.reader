@@ -51,9 +51,9 @@ public class InformationRegistersBlock {
   public V8Synonym listPresentation;
   public V8Synonym extendedListPresentation;
   public V8Synonym explanation;
-  @V8Since(version=28)
+  @V8Since(version = 28)
   public Boolean enableTotalsSliceLast;
-  @V8Since(version=28)
+  @V8Since(version = 28)
   public Boolean enableTotalsSliceFirst;
 
 }

@@ -29,6 +29,6 @@ public class CommonAttributesBlock {
   public CommonAttributeUsersSeparation.Values usersSeparation;
   public CommonAttributeAuthenticationSeparation.Values authenticationSeparation;
   public CommonAttributeSeparatedDataUse.Values separatedDataUse;
-  @V8Since(version=4)
+  @V8Since(version = 4)
   public Integer unk11;
 }

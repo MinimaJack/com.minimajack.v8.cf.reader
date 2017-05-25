@@ -1,7 +1,6 @@
 package com.minimajack.v8.project;
 
 import com.google.common.io.ByteStreams;
-
 import com.minimajack.v8.code.impl.CodeProcessor;
 import com.minimajack.v8.code.impl.MetadataProcessor;
 import com.minimajack.v8.code.impl.RelativizeProcessor;
@@ -112,13 +111,11 @@ public class Project {
     this.strategy = strategy;
   }
 
-  
   public boolean isForceRecompile() {
-    return forceRecompile;
+    return this.forceRecompile;
   }
 
-  
-  public void setForceRecompile(boolean forceRecompile) {
+  public void setForceRecompile(final boolean forceRecompile) {
     this.forceRecompile = forceRecompile;
   }
 }

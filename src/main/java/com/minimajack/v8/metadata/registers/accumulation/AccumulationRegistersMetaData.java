@@ -5,6 +5,7 @@ import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 
 @V8Class
 public class AccumulationRegistersMetaData {
+
   public Integer version;
 
   public MetadataMainInfo v8mn;

@@ -2,7 +2,7 @@ package com.minimajack.v8.metadata.businessprocesses;
 
 import com.minimajack.v8.annotation.V8Class;
 import com.minimajack.v8.annotation.V8Version;
-import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
+import com.minimajack.v8.metadata.inner.classes.V8ClassObject;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public class BusinessProcessesDescription {
 
   public Integer version;
   public BusinessProcessesDescriptionBlock info;
-  public List<V8InnerClass> sections;
+  public List<V8ClassObject> sections;
 }

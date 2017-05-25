@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.exchangeplans;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
+import com.minimajack.v8.metadata.inner.classes.V8ClassObject;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ public class ExchangePlansDescription {
 
   public Integer version;
   public ExchangePlansBlock info;
-  public List<V8InnerClass> sections;
+  public List<V8ClassObject> sections;
 }

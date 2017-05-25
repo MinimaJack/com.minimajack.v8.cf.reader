@@ -10,5 +10,5 @@ public class ChoiceParameters {
   public Integer version;
 
   public List<ChoiceParameter> parameters;
-  
+
 }

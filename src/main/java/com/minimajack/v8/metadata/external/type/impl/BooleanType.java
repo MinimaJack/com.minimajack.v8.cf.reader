@@ -10,5 +10,5 @@ public class BooleanType extends TypeValue {
   public V8Type type;
 
   public Integer unk2;
-  
+
 }

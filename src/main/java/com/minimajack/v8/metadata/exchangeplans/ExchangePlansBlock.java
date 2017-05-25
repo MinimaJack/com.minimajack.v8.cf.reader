@@ -5,8 +5,8 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.inner.enums.ChoiceHistoryOnInput;
 import com.minimajack.v8.metadata.inner.enums.ChoiceMode;
 import com.minimajack.v8.metadata.inner.enums.CodeAllowedLength;
@@ -15,9 +15,9 @@ import com.minimajack.v8.metadata.inner.enums.DataExchangeMainPresentation;
 import com.minimajack.v8.metadata.inner.enums.DataLockControlMode;
 import com.minimajack.v8.metadata.inner.enums.EditType;
 import com.minimajack.v8.metadata.inner.enums.FullTextSearch;
-import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
 import com.minimajack.v8.metadata.persist.FieldList;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 

@@ -12,10 +12,10 @@ public class MetadataObjectPropertyValueCollection {
   public List<TypeValue> items;
 
   public int count() {
-    return items.size();
+    return this.items.size();
   }
 
-  public boolean Contains(TypeValue object) {
-    return items.contains(object);
+  public boolean Contains(final TypeValue object) {
+    return this.items.contains(object);
   }
 }

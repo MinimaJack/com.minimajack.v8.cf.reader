@@ -8,5 +8,5 @@ public class AccountingFlagDescription {
   public AccountingFlagFullDescription description;
 
   public Integer unk; // zero or list of objects
-  
+
 }

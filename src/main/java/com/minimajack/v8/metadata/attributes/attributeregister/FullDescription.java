@@ -18,7 +18,7 @@ public class FullDescription {
 
   @V8Since(version = 2)
   public Integer unk2;
-  
+
   @V8Since(version = 6)
   public Integer unk3;
 

@@ -8,6 +8,7 @@ import com.minimajack.v8.metadata.external.qualifier.QualityTransformer;
 import com.minimajack.v8.metadata.external.template.TemplateDescription;
 import com.minimajack.v8.metadata.external.type.TypeValue;
 import com.minimajack.v8.metadata.external.type.TypesTransformer;
+import com.minimajack.v8.metadata.inner.classes.V8ClassObject;
 import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
 import com.minimajack.v8.metadata.inner.classes.attributes.AttributesList;
 import com.minimajack.v8.metadata.inner.classes.configuration.accounting.AccountingConfiguraionMetaData;
@@ -202,39 +203,39 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   @Override
   public ProjectTree process(final ProjectTree tree) {
-    ByteBuffer rootBuffer = getFileBuffer(tree, "root");
+    final ByteBuffer rootBuffer = getFileBuffer(tree, "root");
     if (rootBuffer != null) {
       final V8Root root = V8Reader.read(V8Root.class, getFileBuffer(tree, "root"));
       final V8MetaData md =
           V8Reader.read(V8MetaData.class, getFileBuffer(tree, root.guid.toString()));
-      for (final V8InnerClass v8Metadata : md.mdd) {
-        if (v8Metadata instanceof ExternalDataProcessorMetaData) {
-          processExternalDataProcessor(tree, (ExternalDataProcessorMetaData) v8Metadata);
-        } else if (v8Metadata instanceof CommonConfiguraionMetaData) {
-          processCommonConfigurationMetaData(tree, (CommonConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata instanceof MainConfiguraionMetaData) {
-          processMainConfigurationMetaData(tree, (MainConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata instanceof AccountingConfiguraionMetaData) {
-          processAccountingConfiguraionMetaData(tree, (AccountingConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata instanceof CalculationConfiguraionMetaData) {
-          processCalculationConfiguraionMetaData(tree, (CalculationConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata instanceof BusinessProcessesConfiguraionMetaData) {
-          processBusinessProcessesConfiguraionMetaData(tree, (BusinessProcessesConfiguraionMetaData) v8Metadata);
-        } else if (v8Metadata instanceof ExternalDataSourcesConfiguraionMetaData) {
-          processExternalDataSourcesConfiguraionMetaData(tree, (ExternalDataSourcesConfiguraionMetaData) v8Metadata);
+      for (final V8ClassObject v8Metadata : md.mdd) {
+        if (v8Metadata.clazz instanceof ExternalDataProcessorMetaData) {
+          processExternalDataProcessor(tree, (ExternalDataProcessorMetaData) v8Metadata.clazz);
+        } else if (v8Metadata.clazz instanceof CommonConfiguraionMetaData) {
+          processCommonConfigurationMetaData(tree, (CommonConfiguraionMetaData) v8Metadata.clazz);
+        } else if (v8Metadata.clazz instanceof MainConfiguraionMetaData) {
+          processMainConfigurationMetaData(tree, (MainConfiguraionMetaData) v8Metadata.clazz);
+        } else if (v8Metadata.clazz instanceof AccountingConfiguraionMetaData) {
+          processAccountingConfiguraionMetaData(tree, (AccountingConfiguraionMetaData) v8Metadata.clazz);
+        } else if (v8Metadata.clazz instanceof CalculationConfiguraionMetaData) {
+          processCalculationConfiguraionMetaData(tree, (CalculationConfiguraionMetaData) v8Metadata.clazz);
+        } else if (v8Metadata.clazz instanceof BusinessProcessesConfiguraionMetaData) {
+          processBusinessProcessesConfiguraionMetaData(tree, (BusinessProcessesConfiguraionMetaData) v8Metadata.clazz);
+        } else if (v8Metadata.clazz instanceof ExternalDataSourcesConfiguraionMetaData) {
+          processExternalDataSourcesConfiguraionMetaData(tree, (ExternalDataSourcesConfiguraionMetaData) v8Metadata.clazz);
         }
       }
     } else {
-      logger.warn("Can't find root file {}", this.path);
+      this.logger.warn("Can't find root file {}", this.path);
     }
     return tree;
   }
 
   private void processExternalDataSourcesConfiguraionMetaData(final ProjectTree tree,
       final ExternalDataSourcesConfiguraionMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof ExternalDataSources) {
-        processExternalDataSources(tree, (ExternalDataSources) section);
+    for (final V8ClassObject section : v8MetaData.innerType.sections) {
+      if (section.clazz instanceof ExternalDataSources) {
+        processExternalDataSources(tree, (ExternalDataSources) section.clazz);
       } else {
         throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
       }
@@ -258,11 +259,11 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processBusinessProcessesConfiguraionMetaData(final ProjectTree tree,
       final BusinessProcessesConfiguraionMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof Tasks) {
-        processTasks(tree, (Tasks) section);
-      } else if (section instanceof BusinessProcesses) {
-        processBusinessProcesses(tree, (BusinessProcesses) section);
+    for (final V8ClassObject section : v8MetaData.innerType.sections) {
+      if (section.clazz instanceof Tasks) {
+        processTasks(tree, (Tasks) section.clazz);
+      } else if (section.clazz instanceof BusinessProcesses) {
+        processBusinessProcesses(tree, (BusinessProcesses) section.clazz);
       } else {
         throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
       }
@@ -300,11 +301,11 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processCalculationConfiguraionMetaData(final ProjectTree tree,
       final CalculationConfiguraionMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof ChartsOfCalculation) {
-        processChartsOfCalculation(tree, (ChartsOfCalculation) section);
-      } else if (section instanceof CalculationRegisters) {
-        processCalculationRegisters(tree, (CalculationRegisters) section);
+    for (final V8ClassObject section : v8MetaData.innerType.sections) {
+      if (section.clazz instanceof ChartsOfCalculation) {
+        processChartsOfCalculation(tree, (ChartsOfCalculation) section.clazz);
+      } else if (section.clazz instanceof CalculationRegisters) {
+        processCalculationRegisters(tree, (CalculationRegisters) section.clazz);
       } else {
         throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
       }
@@ -343,11 +344,11 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processAccountingConfiguraionMetaData(final ProjectTree tree,
       final AccountingConfiguraionMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof ChartsOfAccounts) {
-        processChartsOfAccounts(tree, (ChartsOfAccounts) section);
-      } else if (section instanceof AccountingRegisters) {
-        processAccountingRegisters(tree, (AccountingRegisters) section);
+    for (final V8ClassObject section : v8MetaData.innerType.sections) {
+      if (section.clazz instanceof ChartsOfAccounts) {
+        processChartsOfAccounts(tree, (ChartsOfAccounts) section.clazz);
+      } else if (section.clazz instanceof AccountingRegisters) {
+        processAccountingRegisters(tree, (AccountingRegisters) section.clazz);
       } else {
         throw new RuntimeException("NOT IMPLEMENTED " + section.getClass());
       }
@@ -387,37 +388,37 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processMainConfigurationMetaData(final ProjectTree tree,
       final MainConfiguraionMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.mcbi.sections) {
-      if (section instanceof Constants) {
-        processConstants(tree, (Constants) section);
-      } else if (section instanceof Documents) {
-        processDocuments(tree, (Documents) section);
-      } else if (section instanceof CommonForms) {
-        processCommonForms(tree, (CommonForms) section);
-      } else if (section instanceof InformationRegisters) {
-        processInformationRegisters(tree, (InformationRegisters) section);
-      } else if (section instanceof CommandGroups) {
-        processCommandGroups(tree, (CommandGroups) section);
-      } else if (section instanceof CommonCommands) {
-        processCommonCommands(tree, (CommonCommands) section);
-      } else if (section instanceof DocumentNumerators) {
-        processDocumentNumerators(tree, (DocumentNumerators) section);
-      } else if (section instanceof DocumentJournals) {
-        processDocumentJournals(tree, (DocumentJournals) section);
-      } else if (section instanceof Reports) {
-        processReports(tree, (Reports) section);
-      } else if (section instanceof ChartsOfCharacteristicTypes) {
-        processChartsOfCharacteristicTypes(tree, (ChartsOfCharacteristicTypes) section);
-      } else if (section instanceof AccumulationRegisters) {
-        processAccumulationRegisters(tree, (AccumulationRegisters) section);
-      } else if (section instanceof Sequences) {
-        processSequences(tree, (Sequences) section);
-      } else if (section instanceof DataProcessors) {
-        processDataProcessors(tree, (DataProcessors) section);
-      } else if (section instanceof Catalogs) {
-        processCatalogs(tree, (Catalogs) section);
-      } else if (section instanceof Enums) {
-        processEnums(tree, (Enums) section);
+    for (final V8ClassObject section : v8MetaData.innerType.mcbi.sections) {
+      if (section.clazz instanceof Constants) {
+        processConstants(tree, (Constants) section.clazz);
+      } else if (section.clazz instanceof Documents) {
+        processDocuments(tree, (Documents) section.clazz);
+      } else if (section.clazz instanceof CommonForms) {
+        processCommonForms(tree, (CommonForms) section.clazz);
+      } else if (section.clazz instanceof InformationRegisters) {
+        processInformationRegisters(tree, (InformationRegisters) section.clazz);
+      } else if (section.clazz instanceof CommandGroups) {
+        processCommandGroups(tree, (CommandGroups) section.clazz);
+      } else if (section.clazz instanceof CommonCommands) {
+        processCommonCommands(tree, (CommonCommands) section.clazz);
+      } else if (section.clazz instanceof DocumentNumerators) {
+        processDocumentNumerators(tree, (DocumentNumerators) section.clazz);
+      } else if (section.clazz instanceof DocumentJournals) {
+        processDocumentJournals(tree, (DocumentJournals) section.clazz);
+      } else if (section.clazz instanceof Reports) {
+        processReports(tree, (Reports) section.clazz);
+      } else if (section.clazz instanceof ChartsOfCharacteristicTypes) {
+        processChartsOfCharacteristicTypes(tree, (ChartsOfCharacteristicTypes) section.clazz);
+      } else if (section.clazz instanceof AccumulationRegisters) {
+        processAccumulationRegisters(tree, (AccumulationRegisters) section.clazz);
+      } else if (section.clazz instanceof Sequences) {
+        processSequences(tree, (Sequences) section.clazz);
+      } else if (section.clazz instanceof DataProcessors) {
+        processDataProcessors(tree, (DataProcessors) section.clazz);
+      } else if (section.clazz instanceof Catalogs) {
+        processCatalogs(tree, (Catalogs) section.clazz);
+      } else if (section.clazz instanceof Enums) {
+        processEnums(tree, (Enums) section.clazz);
       } else {
         throw new RuntimeException("NOT IMPLEMENTED" + section.getClass());
       }
@@ -661,53 +662,53 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processCommonConfigurationMetaData(final ProjectTree tree,
       final CommonConfiguraionMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof Languages) {
-        processLanguages(tree, (Languages) section);
-      } else if (section instanceof Subsystems) {
-        processSubsystems(tree, (Subsystems) section);
-      } else if (section instanceof CommonModules) {
-        processCommonModules(tree, (CommonModules) section);
-      } else if (section instanceof SessionParams) {
-        processSessionParams(tree, (SessionParams) section);
-      } else if (section instanceof Roles) {
-        processRoles(tree, (Roles) section);
-      } else if (section instanceof CommonAttributes) {
-        processCommonAttributes(tree, (CommonAttributes) section);
-      } else if (section instanceof ExchangePlans) {
-        processExchangePlans(tree, (ExchangePlans) section);
-      } else if (section instanceof FilterCriteria) {
-        processFilterCriteria(tree, (FilterCriteria) section);
-      } else if (section instanceof EventSubscriptions) {
-        processEventSubscriptions(tree, (EventSubscriptions) section);
-      } else if (section instanceof ScheduledJobs) {
-        processScheduledJobs(tree, (ScheduledJobs) section);
-      } else if (section instanceof FunctionalOptions) {
-        processFunctionalOptions(tree, (FunctionalOptions) section);
-      } else if (section instanceof FunctionalOptionParams) {
-        processFuctionalOptionParams(tree, (FunctionalOptionParams) section);
-      } else if (section instanceof DefinedTypes) {
-        processDefinedTypes(tree, (DefinedTypes) section);
-      } else if (section instanceof SettingsStorages) {
-        processSettingsStorages(tree, (SettingsStorages) section);
-      } else if (section instanceof CommonTemplates) {
-        processCommonTemplates(tree, (CommonTemplates) section);
-      } else if (section instanceof CommonPictures) {
-        processCommonPictures(tree, (CommonPictures) section);
-      } else if (section instanceof XdtoPackages) {
-        processXdtoPackages(tree, (XdtoPackages) section);
-      } else if (section instanceof WebServices) {
-        processWebServices(tree, (WebServices) section);
-      } else if (section instanceof HttpServices) {
-        processHttpServices(tree, (HttpServices) section);
-      } else if (section instanceof WsReferences) {
-        processWsReferences(tree, (WsReferences) section);
-      } else if (section instanceof StyleItems) {
-        processStyleItems(tree, (StyleItems) section);
-      } else if (section instanceof Interfaces) {
-        processInterfaces(tree, (Interfaces) section);
-      } else if (section instanceof Styles) {
-        processStyles(tree, (Styles) section);
+    for (final V8ClassObject section : v8MetaData.innerType.sections) {
+      if (section.clazz instanceof Languages) {
+        processLanguages(tree, (Languages) section.clazz);
+      } else if (section.clazz instanceof Subsystems) {
+        processSubsystems(tree, (Subsystems) section.clazz);
+      } else if (section.clazz instanceof CommonModules) {
+        processCommonModules(tree, (CommonModules) section.clazz);
+      } else if (section.clazz instanceof SessionParams) {
+        processSessionParams(tree, (SessionParams) section.clazz);
+      } else if (section.clazz instanceof Roles) {
+        processRoles(tree, (Roles) section.clazz);
+      } else if (section.clazz instanceof CommonAttributes) {
+        processCommonAttributes(tree, (CommonAttributes) section.clazz);
+      } else if (section.clazz instanceof ExchangePlans) {
+        processExchangePlans(tree, (ExchangePlans) section.clazz);
+      } else if (section.clazz instanceof FilterCriteria) {
+        processFilterCriteria(tree, (FilterCriteria) section.clazz);
+      } else if (section.clazz instanceof EventSubscriptions) {
+        processEventSubscriptions(tree, (EventSubscriptions) section.clazz);
+      } else if (section.clazz instanceof ScheduledJobs) {
+        processScheduledJobs(tree, (ScheduledJobs) section.clazz);
+      } else if (section.clazz instanceof FunctionalOptions) {
+        processFunctionalOptions(tree, (FunctionalOptions) section.clazz);
+      } else if (section.clazz instanceof FunctionalOptionParams) {
+        processFuctionalOptionParams(tree, (FunctionalOptionParams) section.clazz);
+      } else if (section.clazz instanceof DefinedTypes) {
+        processDefinedTypes(tree, (DefinedTypes) section.clazz);
+      } else if (section.clazz instanceof SettingsStorages) {
+        processSettingsStorages(tree, (SettingsStorages) section.clazz);
+      } else if (section.clazz instanceof CommonTemplates) {
+        processCommonTemplates(tree, (CommonTemplates) section.clazz);
+      } else if (section.clazz instanceof CommonPictures) {
+        processCommonPictures(tree, (CommonPictures) section.clazz);
+      } else if (section.clazz instanceof XdtoPackages) {
+        processXdtoPackages(tree, (XdtoPackages) section.clazz);
+      } else if (section.clazz instanceof WebServices) {
+        processWebServices(tree, (WebServices) section.clazz);
+      } else if (section.clazz instanceof HttpServices) {
+        processHttpServices(tree, (HttpServices) section.clazz);
+      } else if (section.clazz instanceof WsReferences) {
+        processWsReferences(tree, (WsReferences) section.clazz);
+      } else if (section.clazz instanceof StyleItems) {
+        processStyleItems(tree, (StyleItems) section.clazz);
+      } else if (section.clazz instanceof Interfaces) {
+        processInterfaces(tree, (Interfaces) section.clazz);
+      } else if (section.clazz instanceof Styles) {
+        processStyles(tree, (Styles) section.clazz);
       } else {
         throw new RuntimeException("Undefined section" + section.getClass());
       }
@@ -1076,19 +1077,21 @@ public class MetadataProcessor extends ProjectTreeSearcher {
 
   private void processExternalDataProcessor(final ProjectTree tree,
       final ExternalDataProcessorMetaData v8MetaData) {
-    for (final V8InnerClass section : v8MetaData.innerType.sections) {
-      if (section instanceof FormList) {
-        this.logger.debug("FormSections size: {}", ((FormList) section).forms.size());
-        processForms(tree, (FormList) section);
+    for (final V8ClassObject section : v8MetaData.innerType.sections) {
+      if (section.clazz instanceof FormList) {
+        this.logger.debug("FormSections size: {}", ((FormList) section.clazz).forms.size());
+        processForms(tree, (FormList) section.clazz);
 
-      } else if (section instanceof TabularList) {
-        this.logger.debug("TabularSections size: {}", ((TabularList) section).tabularSections
+      } else if (section.clazz instanceof TabularList) {
+        this.logger
+            .debug("TabularSections size: {}", ((TabularList) section.clazz).tabularSections
+                .size());
+      } else if (section.clazz instanceof TemplateList) {
+        this.logger.debug("TemplateSection size: {}", ((TemplateList) section.clazz).templates
             .size());
-      } else if (section instanceof TemplateList) {
-        this.logger.debug("TemplateSection size: {}", ((TemplateList) section).templates.size());
-        processTemplates(tree, (TemplateList) section);
-      } else if (section instanceof AttributesList) {
-        this.logger.debug("Attributes size: {}", ((AttributesList) section).descr.size());
+        processTemplates(tree, (TemplateList) section.clazz);
+      } else if (section.clazz instanceof AttributesList) {
+        this.logger.debug("Attributes size: {}", ((AttributesList) section.clazz).descr.size());
       } else {
         this.logger.warn("Not implement section {}", section.getClass());
       }
@@ -1161,7 +1164,7 @@ public class MetadataProcessor extends ProjectTreeSearcher {
   private void moveLinkedContainerToFolder(final ProjectTree tree, final String name,
       final String dest) {
     final ProjectTree pt = findFileByName(tree, name);
-    if (pt != null && pt.type != FileType.ERROR) {
+    if ((pt != null) && (pt.type != FileType.ERROR)) {
       if (pt.type.equals(FileType.CONTAINER)) {
         final Path p = pt.getRawPath();
         final String destination = this.path.relativize(Paths.get(dest)).toString();

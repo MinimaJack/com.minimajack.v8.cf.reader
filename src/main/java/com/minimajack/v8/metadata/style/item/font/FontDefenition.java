@@ -6,11 +6,12 @@ import com.minimajack.v8.annotation.V8Version;
 
 @V8Class
 public class FontDefenition {
+
   @V8Version
   public Integer version;
   public FontDescription unk2;
-  @V8Since(version=6)
+  @V8Since(version = 6)
   public Integer unk3;
-  @V8Since(version=7)
+  @V8Since(version = 7)
   public Integer unk4;
 }

@@ -35,8 +35,8 @@ public class AccumulationRegistersBlock {
   public Integer unk19;
   public StandardAttributeDescriptions unk20;
   public UUID unk21;
-  public UnkObject unk22; 
-  public UnkObject unk23; 
-  public V8Synonym unk24; 
+  public UnkObject unk22;
+  public UnkObject unk23;
+  public V8Synonym unk24;
 
 }

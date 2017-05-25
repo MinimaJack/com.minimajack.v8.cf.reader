@@ -12,7 +12,7 @@ public final class InformationRegisterPeriodicity extends V8InnerClass {
     Quarter,
     Month,
     Day,
-    Second
-
+    Second,
+    RecorderPosition
   }
 }

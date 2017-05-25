@@ -1,7 +1,6 @@
 package com.minimajack.v8.packer;
 
 import com.google.common.io.ByteStreams;
-
 import com.minimajack.v8.format.Container;
 import com.minimajack.v8.format.V8File;
 import com.minimajack.v8.format.V8FileAttribute;
@@ -68,7 +67,7 @@ public class SimpleFileContainerWriter extends ContainerWriter {
 
   @Override
   public boolean hasData() {
-    return super.hasData() || this.fileList.size() > 0;
+    return super.hasData() || (this.fileList.size() > 0);
   }
 
   @Override
@@ -111,12 +110,13 @@ public class SimpleFileContainerWriter extends ContainerWriter {
       try (FileInputStream fis = new FileInputStream(currentFile)) {
         data = ByteStreams.toByteArray(fis);
       } catch (final IOException e) {
-        throw new RuntimeException("Can't read file data" + currentFile); 
+        throw new RuntimeException("Can't read file data" + currentFile);
       }
     }
     if (this.packed) {
       final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      final DeflaterOutputStream dataStream = new DeflaterOutputStream(baos, new Deflater(6, true));
+      final DeflaterOutputStream dataStream =
+          new DeflaterOutputStream(baos, new Deflater(6, true));
       try {
         dataStream.write(data);
         dataStream.finish();

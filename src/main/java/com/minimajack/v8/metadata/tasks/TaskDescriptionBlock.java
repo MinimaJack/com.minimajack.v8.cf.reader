@@ -5,12 +5,12 @@ import com.minimajack.v8.annotation.V8Since;
 import com.minimajack.v8.annotation.V8Version;
 import com.minimajack.v8.metadata.external.common.MetadataMainInfo;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.CompactFlags;
-import com.minimajack.v8.metadata.persist.CompositeIDInfo;
-import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.persist.CharacteristicsDescriptions;
+import com.minimajack.v8.metadata.persist.CompositeIDInfo;
 import com.minimajack.v8.metadata.persist.FieldList;
+import com.minimajack.v8.metadata.persist.StandardAttributeDescriptions;
 
 import java.util.UUID;
 

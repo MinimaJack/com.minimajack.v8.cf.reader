@@ -11,5 +11,5 @@ public class TemplateDescriptionInner {
   public Integer templateType;
 
   public MetadataMainInfo msn;
-  
+
 }

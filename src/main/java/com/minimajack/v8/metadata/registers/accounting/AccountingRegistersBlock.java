@@ -40,11 +40,11 @@ public class AccountingRegistersBlock {
   public Integer unk22;
   public StandardAttributeDescriptions unk23;
   public UUID unk24;
-  public UnkObject unk25; 
-  public UnkObject unk26; 
+  public UnkObject unk25;
+  public UnkObject unk26;
   public V8Synonym unk27;
-  @V8Since(version=21)
-  @Required(required=false)
+  @V8Since(version = 21)
+  @Required(required = false)
   public Integer unk28;
 
 }

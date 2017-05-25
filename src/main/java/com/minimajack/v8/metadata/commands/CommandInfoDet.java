@@ -5,6 +5,7 @@ import com.minimajack.v8.metadata.external.unknown.UnkObjectIntUuidUuid;
 
 @V8Class
 public class CommandInfoDet {
+
   public Integer version;
   public UnkObjectIntUuidUuid unk1;
   public CommandInfoDet0 cid0;

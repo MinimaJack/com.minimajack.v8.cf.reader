@@ -21,10 +21,10 @@ public class FullDimentionDescription {
 
   @V8Since(version = 3)
   public Integer unk3;
- 
+
   @V8Since(version = 6)
   public Integer unk4;
- 
+
   @V8Since(version = 6)
   public Integer unk5;
 }

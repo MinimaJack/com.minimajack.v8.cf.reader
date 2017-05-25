@@ -1,7 +1,6 @@
 package com.minimajack.v8.code;
 
 import com.google.common.io.ByteStreams;
-
 import com.minimajack.v8.project.ProjectTree;
 
 import java.io.File;

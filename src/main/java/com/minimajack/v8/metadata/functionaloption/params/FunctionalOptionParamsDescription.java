@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.functionaloption.params;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
+import com.minimajack.v8.metadata.inner.classes.V8ClassObject;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ public class FunctionalOptionParamsDescription {
 
   public Integer version;
   public FunctionalOptionParamsBlock info;
-  public List<V8InnerClass> sections;
+  public List<V8ClassObject> sections;
 }

@@ -8,5 +8,5 @@ public class ResourceDescription {
   public FullResourceDescription description;
 
   public Integer unk; // zero or list of objects
-  
+
 }

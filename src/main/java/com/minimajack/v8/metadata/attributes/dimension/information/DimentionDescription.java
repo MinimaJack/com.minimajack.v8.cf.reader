@@ -8,5 +8,5 @@ public class DimentionDescription {
   public FullDimentionDescription description;
 
   public Integer unk; // zero or list of objects
-  
+
 }

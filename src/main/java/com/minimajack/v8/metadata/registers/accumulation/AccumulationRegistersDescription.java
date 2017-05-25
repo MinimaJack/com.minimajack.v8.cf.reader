@@ -1,7 +1,7 @@
 package com.minimajack.v8.metadata.registers.accumulation;
 
 import com.minimajack.v8.annotation.V8Class;
-import com.minimajack.v8.metadata.inner.classes.V8InnerClass;
+import com.minimajack.v8.metadata.inner.classes.V8ClassObject;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ public class AccumulationRegistersDescription {
 
   public Integer version;
   public AccumulationRegistersBlock arb;
-  public List<V8InnerClass> sections;
+  public List<V8ClassObject> sections;
 
 }

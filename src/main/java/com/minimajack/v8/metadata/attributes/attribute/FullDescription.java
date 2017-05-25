@@ -20,10 +20,10 @@ public class FullDescription {
   @V8Since(version = 1)
   public Integer unk2;
 
-  @V8Since(version = 3, removed=6)
+  @V8Since(version = 3, removed = 6)
   public Integer unk3;
-  
+
   @V8Since(version = 6)
-  @Required(required=false)
+  @Required(required = false)
   public Integer unk4;
 }

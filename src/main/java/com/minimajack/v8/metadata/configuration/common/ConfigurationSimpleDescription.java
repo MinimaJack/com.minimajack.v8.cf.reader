@@ -6,8 +6,8 @@ import com.minimajack.v8.metadata.external.common.V8MetaFullName;
 import com.minimajack.v8.metadata.external.common.V8Synonym;
 import com.minimajack.v8.metadata.external.type.ListArrayTypes;
 import com.minimajack.v8.metadata.external.type.ListTypes;
-import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 import com.minimajack.v8.metadata.external.unknown.Fields;
+import com.minimajack.v8.metadata.external.unknown.MetadataObjectPropertyValueCollection;
 
 import java.util.UUID;
 

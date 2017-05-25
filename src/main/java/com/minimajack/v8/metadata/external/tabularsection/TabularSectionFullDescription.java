@@ -9,7 +9,7 @@ public class TabularSectionFullDescription {
   public Integer version;
 
   public TabularSectionDescription tabularSectionDescription;
-  
+
   @Required(required = false)
   public Integer si; // find in catalogs
 }
