@@ -10,12 +10,12 @@ public class ScheduledJobDescriptionBlock {
 
   public Integer version;
   public MetadataMainInfo vmn;
-  public String unk1;
-  public String unk2;
-  public Integer unk3;
-  public Integer unk4;
-  public UUID unk5;
-  public String unk6;
-  public Integer unk7;
-  public Integer unk8;
+  public String key;
+  public String description;
+  public Boolean use;
+  public Boolean predefined;
+  public UUID handlerModule;
+  public String handlerFunction;
+  public Integer restartCountOnFailure;
+  public Integer restartIntervalOnFailure;
 }

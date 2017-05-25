@@ -10,7 +10,7 @@ public class ScheduledJobDescription {
 
   public Integer version;
 
-  public ScheduledJobDescriptionBlock v8mn;
+  public ScheduledJobDescriptionBlock info;
 
   public List<V8InnerClass> sections;
 }
